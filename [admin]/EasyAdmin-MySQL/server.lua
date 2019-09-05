@@ -28,7 +28,6 @@ AddEventHandler('ea_data:retrieveBanlist', function(callback)
 	end
 	MySQL.Async.fetchAll('SELECT * FROM ea_bans', {}, function(bans)
 		callback(bans)
-		print("retrieved banlist")
 	end)
 end)
 

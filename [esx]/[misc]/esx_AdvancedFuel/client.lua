@@ -393,41 +393,10 @@ end
 
 function renderBoxes()
 	if(IsPedInAnyVehicle(GetPlayerPed(-1), -1) and GetPedVehicleSeat(GetPlayerPed(-1)) == -1 and not isBlackListedModel()) then
-
-		if(hud_form == 1) then
-			if(showBar) then
-				DrawRect(hud_x, hud_y, 0.0149999999999998, 0.15, 255, 255, 255, 200)
-				DrawRect(hud_x, hud_y, 0.0119999999999998, 0.142, 80, 80, 80, 255)
-				DrawRect(hud_x, hud_y, 0.0119999999999998, essence, 225, 146, 45, 255)
-			end
-
-			if(showText) then
-				local percent = (essence/0.142)*100
-
-				DrawAdvancedText(text_x, text_y, 0.005, 0.0028, 0.4,round(percent,1).."%", 255, 255, 255, 255, 0, 1)
-			end
-		else
-			if(showBar) then
-				DrawRect(hud_x, hud_y, 0.15, 0.0149999999999998, 255, 255, 255, 200)
-				DrawRect(hud_x, hud_y, 0.142, 0.0119999999999998, 80, 80, 80, 255)
-				DrawRect(hud_x, hud_y, essence, 0.0119999999999998, 225, 146, 45, 255)
-			end
-
-			if(showText) then
-				local percent = (essence/0.142)*100
-
-				DrawAdvancedText(text_x, text_y, 0.005, 0.0028, 0.4,round(percent,1).."%", 255, 255, 255, 255, 0, 1)
-			end
-		end
+		local percent = (essence/0.142)*100
+		TriggerEvent("speedometer:showFuel", round(percent, 1))
 	end
 end
-
-
-
-
-
-
-
 
 function isNearStation()
 	local ped = GetPlayerPed(-1)

@@ -9,7 +9,7 @@ local BigMapInVehicles = false
 -- Change this to false to enable the radar for every passenger
 local OnlyDriver = false
 
-local Hide = false
+local Hide = true
 
 Citizen.CreateThread(function()
     while true do
