@@ -17,6 +17,7 @@ Config.EarlyRespawnTimer          = 1 * minute  -- Time til respawn is available
 Config.BleedoutTimer              = 10 * minute -- Time til the player bleeds out
 
 Config.EnablePlayerManagement     = false
+Config.MaxInService = 50
 
 Config.RemoveWeaponsAfterRPDeath  = true
 Config.RemoveCashAfterRPDeath     = true

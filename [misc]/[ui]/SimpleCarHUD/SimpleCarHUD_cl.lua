@@ -1,6 +1,6 @@
 -- SCREEN POSITION PARAMETERS
 local screenPosX = 0.165                    -- X coordinate (top left corner of HUD)
-local screenPosY = 0.868                  -- Y coordinate (top left corner of HUD)
+local screenPosY = 0.848                  -- Y coordinate (top left corner of HUD)
  
 -- SPEEDOMETER PARAMETERS
 local speedLimit = 100.0                    -- Speed limit for changing speed color

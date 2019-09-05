@@ -3,6 +3,8 @@ local playersHealing = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
+TriggerEvent('esx_service:activateService', 'ambulance', Config.MaxInService)
+
 RegisterServerEvent('esx_ambulancejob:revive')
 AddEventHandler('esx_ambulancejob:revive', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)
