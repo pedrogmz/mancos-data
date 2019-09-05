@@ -23,4 +23,14 @@ tracks = [{
 	"name": "Rim'K - Air Max ft. Ninho",
 	"duration": "3:28",
 	"file": "rimk-air-max-ft-ninho"
+}, {
+	"track": 3,
+	"name": "Enzo Salvaggi - 20 ( prod. Call Me G )",
+	"duration": "2:55",
+	"file": "enzo-salvaggi-20-prod-call-me-g"
+}, {
+	"track": 4,
+	"name": "Enzo Salvaggi - FENDI ( Lyric Video ) ( prod. Rapas )",
+	"duration": "2:24",
+	"file": "enzo-salvaggi-fendi-lyric-video-prod-rapas"
 }]

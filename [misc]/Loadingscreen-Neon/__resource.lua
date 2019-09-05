@@ -5,6 +5,8 @@ files {
 
 	'Assets/Audio/niska-du-lundi-au-lundi-clip-officiel.mp3',
 	'Assets/Audio/rimk-air-max-ft-ninho.mp3',
+	'Assets/Audio/enzo-salvaggi-20-prod-call-me-g.mp3',
+	'Assets/Audio/enzo-salvaggi-fendi-lyric-video-prod-rapas.mp3',
 
 	'Assets/CSS/Neon.css',
 	'Assets/CSS/Styles.css',
