@@ -21,7 +21,7 @@ files {
 	'html/index.html',
 	'html/js/script.js',
 	'html/css/style.css',
-	'html/css/style.css.map',
+	'html/css/grid.css',
 	'html/images/container.png',
 	'html/images/background.png',
 	'html/images/logo.png',
