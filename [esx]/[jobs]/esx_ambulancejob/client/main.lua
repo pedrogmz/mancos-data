@@ -152,9 +152,10 @@ function StartDistressSignal()
 			timer = timer - 30
 
 			SetTextFont(4)
+			SetTextProportional(1)
 			SetTextScale(0.45, 0.45)
 			SetTextColour(185, 185, 185, 255)
-			SetTextDropshadow(0, 0, 0, 0, 255)
+			SetTextDropShadow(0, 0, 0, 0, 255)
 			SetTextEdge(1, 0, 0, 0, 255)
 			SetTextDropShadow()
 			SetTextOutline()
@@ -192,6 +193,7 @@ end
 
 function DrawGenericTextThisFrame()
 	SetTextFont(4)
+	SetTextProportional(0)
 	SetTextScale(0.0, 0.5)
 	SetTextColour(255, 255, 255, 255)
 	SetTextDropshadow(0, 0, 0, 0, 255)
@@ -325,6 +327,7 @@ function RemoveItemsAfterRPDeath()
 
 			TriggerServerEvent('esx:updateLastPosition', formattedCoords)
 			RespawnPed(PlayerPedId(), formattedCoords, Config.RespawnPoint.heading)
+			TriggerServerEvent('mythic_hospital:server:RequestBed')
 
 			StopScreenEffect('DeathFailOut')
 			DoScreenFadeIn(800)
@@ -393,4 +396,11 @@ if Config.LoadIpl then
 	Citizen.CreateThread(function()
 		RequestIpl('Coroner_Int_on') -- Morgue
 	end)
+end
+
+function openAmbulance()
+	if PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' and (GetGameTimer() - GUI.Time) > 150 then
+		OpenMobileAmbulanceActionsMenu()
+		GUI.Time = GetGameTimer()
+	end
 end

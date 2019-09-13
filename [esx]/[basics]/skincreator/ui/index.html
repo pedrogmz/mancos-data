@@ -5,7 +5,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <!--<script src="nui://game/ui/jquery.js" type="text/javascript"></script> -->
-  <script src="locales/en.js"></script>
+  <script src="locales/es.js"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link href="tabs.css" rel="stylesheet" type="text/css" />
 </head>
@@ -16,19 +16,19 @@
     <input id="radio2" type="radio" name="css-tabs">
     <input id="radio3" type="radio" name="css-tabs">
     <div id="tabs">
-      <label id="tab1" for="radio1" data-link="visage">Apparence</label>
-      <label id="tab2" for="radio2" data-link="pilosite">Pilosité</label>
-      <label id="tab3" for="radio3" data-link="vetements">Vêtements</label>
+      <label id="tab1" for="radio1" data-link="visage">Apariencia</label>
+      <label id="tab2" for="radio2" data-link="pilosite">Pelo</label>
+      <label id="tab3" for="radio3" data-link="vetements">Ropa</label>
     </div>
     <div id="content">
       <form id="formSkinCreator">
         <section id="content1">
           <div class="block visage active">
             <div class="group">
-              <h2 id="morphology">Morphologie</h2>
+              <h2 id="morphology">Morfologia</h2>
 			  <div class="input">
-				<div class="label">Sexe</div>
-				<div class="label"><span>M</span> <span style="float:right;">F</span></div>
+				<div class="label">Sexo</div>
+				<div class="label"><span>H</span> <span style="float:right;">M</span></div>
 				<div class="label-value" data-legend="" style="display:none;"></div>
 				<div class="type-range">
 				  <a href="#" class="arrow arrow-left" style="color: white; text-decoration: none; text-decoration-style: none;">&nbsp;</a>
@@ -37,7 +37,7 @@
 				</div>
 			  </div>
               <div class="input">
-                <div class="label" id="maleFaces">Visage du père</div>
+                <div class="label" id="maleFaces">Cara de padre</div>
                 <div class="type-img">
                   <label for="pere1">
                     <input type="radio" name="pere" class="pere" value="0" id="pere1" checked>
@@ -138,7 +138,7 @@
                 </div>
               </div>
               <div class="input">
-                <div class="label" id="femaleFaces">Visage de la mère</div>
+                <div class="label" id="femaleFaces">Cara de la madre</div>
                 <div class="type-img">
                   <label for="mere1">
                     <input type="radio" name="mere" class="mere" value="21" id="mere1" checked>
@@ -233,7 +233,7 @@
 
 
               <div class="input">
-                <div class="label" id="geneticsHeader">Génétique Père / Mère</div>
+                <div class="label" id="geneticsHeader">Genética Padre / Madre</div>
                 <div class="label-value" data-legend="" style="display:none;"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -243,7 +243,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="eyeColor">Couleur des yeux</div>
+                <div class="label" id="eyeColor">Color de ojos</div>
                 <div class="type-radio">
                   <label for="eye1">
                     <input type="radio" name="eyecolor" class="eyecolor" value="0" id="eye1" checked>
@@ -286,9 +286,9 @@
             </div>
 
             <div class="group">
-              <h2 id="skinHeader">Peau</h2>
+              <h2 id="skinHeader">piel</h2>
               <div class="input">
-                <div class="label" id="skinColor">Couleur de peau</div>
+                <div class="label" id="skinColor">Color de piel</div>
                 <div class="type-radio">
                   <label for="p1">
                     <input type="radio" name="peaucolor" class="peaucolor" value="12" id="p1" checked>
@@ -320,7 +320,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="skinMarksHeader">Problème de peau</div>
+                <div class="label" id="skinMarksHeader">Problema de la piel</div>
                 <div class="label-value" data-legend="11"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -330,7 +330,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="frecklesHeader">Tâches de rousseur</div>
+                <div class="label" id="frecklesHeader">Pecas</div>
                 <div class="label-value" data-legend="17"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -340,7 +340,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="wrinkles">Rides</div>
+                <div class="label" id="wrinkles">Arrugas</div>
                 <div class="label-value" data-legend="14"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -350,7 +350,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="wrinkleIntensity">Intensité des rides</div>
+                <div class="label" id="wrinkleIntensity">Intensidad de arrugas</div>
                 <div class="label-value" data-legend="10"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -364,9 +364,9 @@
         <section id="content2">
           <div class="block pilosite active">
             <div class="group">
-              <h2 id="hairHeader">Cheveux</h2>
+              <h2 id="hairHeader">Pelo</h2>
               <div class="input">
-                <div class="label" id="hairstyle">Coiffure</div>
+                <div class="label" id="hairstyle">Estilo de peinado</div>
                 <div class="label-value" data-legend="74"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -376,7 +376,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="hairColor">Couleur de cheveux</div>
+                <div class="label" id="hairColor">Color de pelo</div>
                 <div class="type-radio">
                   <label for="c1">
                     <input type="radio" name="haircolor" class="haircolor" value="0" id="c1" checked>
@@ -479,9 +479,9 @@
             </div>
 
             <div class="group">
-              <h2 id="eyebrowHeader">Sourcils</h2>
+              <h2 id="eyebrowHeader">Cejas</h2>
               <div class="input">
-                <div class="label" id="eyebrowShape">Forme des sourcils</div>
+                <div class="label" id="eyebrowShape">Formas de cejas</div>
                 <div class="label-value" data-legend="34"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -491,7 +491,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="eyebrowThickness">Épaisseur des sourcils</div>
+                <div class="label" id="eyebrowThickness">Grosor de las cejas</div>
                 <div class="label-value" data-legend="10"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -502,9 +502,9 @@
             </div>
 
             <div class="group">
-              <h2 id="beardHeader">Barbe</h2>
+              <h2 id="beardHeader">Barba</h2>
               <div class="input">
-                <div class="label" id="beardStyle">Type de barbe</div>
+                <div class="label" id="beardStyle">Tipo de barba</div>
                 <div class="label-value" data-legend="28"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -514,7 +514,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="beardThickness">Épaisseur de barbe</div>
+                <div class="label" id="beardThickness">Espesor de la barba</div>
                 <div class="label-value" data-legend="10"></div>
                 <div class="type-range">
                   <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -524,7 +524,7 @@
               </div>
 
               <div class="input">
-                <div class="label" id="beardColor">Couleur de la pilosité</div>
+                <div class="label" id="beardColor">Color de barba</div>
                 <div class="type-radio">
                   <label for="bc1">
                     <input type="radio" name="barbecolor" class="barbecolor" value="0" id="bc1" checked>
@@ -583,29 +583,29 @@
         <section id="content3">
           <div class="block vetements active">
             <div class="group">
-              <h2 id="hatsHeader">Chapeau</h2>
+              <h2 id="hatsHeader">Sombrero</h2>
 			  <div class="vetements-value" data-legend="">0</div>
               <ul class="chapeaux">
 				<button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-				<li order="0" data="0" class="active">Aucun</li>
-				<li order="1" data="2">Bonnet</li>
-				<li order="2" data="7">Beret</li>
-				<li order="3" data="13">Chapeau de cowboy</li>
+				<li order="0" data="0" class="active">Ninguno</li>
+				<li order="1" data="2">Boina</li>
+				<li order="2" data="7">Boina</li>
+				<li order="3" data="13">Sombrero vaquero</li>
 				<li order="4" data="14">Bandana</li>
-				<li order="5" data="15">Casque audio</li>
+				<li order="5" data="15">Auriculares</li>
 				<li order="6" data="20">Bob tréi</li>
-				<li order="7" data="21">Chapeau de vacances</li>
-				<li order="8" data="25">Chapeau de mafieu</li>
-				<li order="9" data="26">Chapeau melon</li>
-				<li order="10" data="27">Chapeau haut de forme</li>
-				<li order="11" data="34">Bonnet en laine</li>
-				<li order="12" data="55">Casquette Broker</li>
-				<li order="13" data="76">Casquette Vapid</li>
-				<li order="14" data="96">Casquette Sand Castle</li>
+				<li order="7" data="21">Sombrero de vacaciones</li>
+				<li order="8" data="25">Sombrero de mafia</li>
+				<li order="9" data="26">Bombin</li>
+				<li order="10" data="27">Sombrero de copa</li>
+				<li order="11" data="34">Sombrero de lana</li>
+				<li order="12" data="55">Gorra Broker</li>
+				<li order="13" data="76">Gorra Vapid</li>
+				<li order="14" data="96">Gorra Sand Castle</li>
 				<button type="button" class="arrow arrowvetement-right">&nbsp;</button>
 			  </ul>
 			  <div class="input">
-				<div class="label">Hat color</div>
+				<div class="label">Color de sombrero</div>
 				<div class="label-value" name="helmet_2" data-legend="0"></div>
 				<div class="type-range">
 				  <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -615,27 +615,27 @@
 			  </div>
             </div>
             <div class="group">
-			  <h2 id="glassesHeader">Lunettes</h2>
+			  <h2 id="glassesHeader">Gafas</h2>
 			  <div class="vetements-value" data-legend="">0</div>
 			  <ul class="lunettes">
 				<button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-				<li order="0" data="0" class="active">Aucune</li>
-				<li order="1" data="1">Larges noires (soleil)</li>
-				<li order="2" data="2">Larges noires</li>
-				<li order="3" data="3">Semie-ouvertes (soleil)</li>
-				<li order="4" data="4">Semie-ouvertes noires</li>
-				<li order="5" data="5">Aviateur (soleil)</li>
-				<li order="6" data="6">Aviateur</li>
-				<li order="7" data="7">Wayfarer (soleil)</li>
-				<li order="8" data="8">Zoo (soleil)</li>
-				<li order="9" data="9">Sport (soleil)</li>
-				<li order="10" data="10">Montagne (soleil)</li>
-				<li order="11" data="11">Intello</li>
-				<li order="12" data="11">Ski (soleil)</li>
+				<li order="0" data="0" class="active">Ninguna</li>
+				<li order="1" data="1">Negras grandes (sol)</li>
+				<li order="2" data="2">Negras grandes</li>
+				<li order="3" data="3">Semiabiertas (sol)</li>
+				<li order="4" data="4">Semiabiertas negras</li>
+				<li order="5" data="5">Aviator (sol)</li>
+				<li order="6" data="6">Aviator</li>
+				<li order="7" data="7">Wayfarer (sol)</li>
+				<li order="8" data="8">Zoo (sol)</li>
+				<li order="9" data="9">Sport (sol)</li>
+				<li order="10" data="10">Montaña (sol)</li>
+				<li order="11" data="11">Friki</li>
+				<li order="12" data="11">Ski (sol)</li>
 				<button type="button" class="arrow arrowvetement-right">&nbsp;</button>
 			  </ul>
 			  <div class="input">
-				<div class="label">Glasses color</div>
+				<div class="label">Color de gafas</div>
 				<div class="label-value" name="glasses_2" data-legend="0"></div>
 				<div class="type-range">
 				  <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -645,30 +645,30 @@
 			  </div>
 			</div>
             <div class="group">
-              <h2 id="earringsHeader">Oreilles</h2>
+              <h2 id="earringsHeader">Orejas</h2>
               <div class="vetements-value" data-legend="">0</div>
               <ul class="oreilles">
                 <button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-                <li order="0" data="0" class="active">Aucune</li>
-                <li order="1" data="3">Boucle (gauche)</li>
-                <li order="2" data="4">Boucle (droite)</li>
-                <li order="3" data="5">Boucle</li>
-                <li order="4" data="9">Diamant (droite)</li>
-                <li order="5" data="10">Diamant (gauche)</li>
-                <li order="6" data="11">Diamant</li>
-                <li order="7" data="18">Carré (gauche)</li>
-                <li order="8" data="19">Carré (droite)</li>
+                <li order="0" data="0" class="active">Ninguna</li>
+                <li order="1" data="3">Bucle (izquierda)</li>
+                <li order="2" data="4">Bucle (derecha)</li>
+                <li order="3" data="5">Bucle</li>
+                <li order="4" data="9">Diamante (derecha)</li>
+                <li order="5" data="10">Diamante (izquierda)</li>
+                <li order="6" data="11">Diamante</li>
+                <li order="7" data="18">Carré (izquierda)</li>
+                <li order="8" data="19">Carré (derecha)</li>
                 <li order="9" data="20">Carré</li>
-                <li order="10" data="27">Pique (gauche)</li>
-                <li order="11" data="28">Pique (droite)</li>
+                <li order="10" data="27">Pique (izquierda)</li>
+                <li order="11" data="28">Pique (derecha)</li>
                 <li order="12" data="29">Pique</li>
-                <li order="13" data="30">Vrai diamant (gauche)</li>
-                <li order="14" data="31">Vrai diamant (droite)</li>
-                <li order="15" data="32">Vrai diamant</li>
+                <li order="13" data="30">Diamante verdadero (izquierda)</li>
+                <li order="14" data="31">Diamante verdadero (derecha)</li>
+                <li order="15" data="32">Diamante verdadero</li>
                 <button type="button" class="arrow arrowvetement-right">&nbsp;</button>
               </ul>
 			  <div class="input">
-				<div class="label">Ears color</div>
+				<div class="label">Color de orejas</div>
 				<div class="label-value" name="ears_2" data-legend="0"></div>
 				<div class="type-range">
 				  <a href="#" class="arrow arrow-left">&nbsp;</a>
@@ -679,196 +679,196 @@
             </div>
 
             <div class="group">
-              <h2 id="topsHeader">Hauts</h2>
+              <h2 id="topsHeader">Torso</h2>
               <div class="vetements-value" data-legend="">0</div>
               <ul class="hauts">
                 <button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-                <li data="0" class="active">Aucun</li>
-                <li data="1">T-shirt basique beige</li>
-                <li data="2">T-shirt basique rose</li>
-                <li data="3">Maillot basketball simple</li>
-                <li data="4">Décontracté sportif or</li>
-                <li data="5">Décontracté sportif rouge</li>
-                <li data="6">Costume décontracté</li>
-                <li data="7">Costume 3 pièces noir</li>
-                <li data="8">Costume 3 pièces blanc</li>
-                <li data="9">Débardeur blanc</li>
-                <li data="10">Veste en cuir brune</li>
-                <li data="11">Veste en cuir noire</li>
-                <li data="12">Veste en cuir rouge</li>
-                <li data="13">Sweat à capuche bleu marine</li>
-                <li data="14">Sweat à capuche bleu brun</li>
-                <li data="15">Sweat à capuche bleu bordeaux</li>
-                <li data="16">Sweat à capuche bleu tréi</li>
-                <li data="17">Polo à rayures</li>
-                <li data="18">Costume et chemise blanche</li>
-                <li data="19">Costume cravate noire</li>
-                <li data="20">Costume cravate rouge</li>
-                <li data="21">Costume noeud papillon</li>
-                <li data="22">Chemise à carreaux verte</li>
-                <li data="23">Chemise manches retroussées</li>
-                <li data="24">Chemise bleue sur pull</li>
-                <li data="25">Chemise jaune sur pull</li>
-                <li data="26">T-shirt V taupe</li>
-                <li data="27">T-shirt V bleu</li>
-                <li data="28">T-shirt V rose</li>
-                <li data="29">Débardeur bleu</li>
-                <li data="30">Débardeur jaune</li>
-                <li data="31">Débardeur dégradé</li>
-                <li data="32">Chemise manche courte bleue marine</li>
-                <li data="33">Chemise manche courte rose</li>
-                <li data="34">Chemise manche courte à carreaux</li>
-                <li data="35">Costume décontracté avec chemise</li>
-                <li data="36">Débardeur rayé jaune/vert</li>
-                <li data="37">Débardeur rayé camo</li>
-                <li data="38">Blouson brun</li>
-                <li data="39">Blouson noir/jaune</li>
-                <li data="40">Blouson noir/rouge</li>
-                <li data="41">T-shirt manches longues gris/noir</li>
-                <li data="42">T-shirt manches longues jaune/noir</li>
-                <li data="43">Polo Stark rouge</li>
-                <li data="44">Polo Stark bleu</li>
-                <li data="45">Chemise à carreaux rouge</li>
-                <li data="46">Chemise avec bretelles</li>
-                <li data="47">Pull noir</li>
-                <li data="48">Pull blanc</li>
-                <li data="49">Pull kaki</li>
-                <li data="50">Sweat à capuche</li>
-                <li data="51">Doudoune brune à poils foncés</li>
-                <li data="52">Doudoune brune à poils clairs</li>
-                <li data="53">Doudoune brune à poils</li>
-                <li data="54">Parka longue et costume 3 pièces</li>
+                <li data="0" class="active">Ningun</li>
+                <li data="1">Camiseta basica BUECO</li>
+                <li data="2">Camiseta basica rosa</li>
+                <li data="3">Camiseta baloncesto BULLS</li>
+                <li data="4">Chaqueta deportiva dorada</li>
+                <li data="5">Chaqueta deportiva roja</li>
+                <li data="6">Americana y camiseta clara</li>
+                <li data="7">Traje 3 piezas negro</li>
+                <li data="8">Traje 3 piezas claro</li>
+                <li data="9">Camiseta tirantas blanca</li>
+                <li data="10">Chaqueta de cuero marron</li>
+                <li data="11">Chaqueta de cuero negro</li>
+                <li data="12">Chaqueta de cuero rojo</li>
+                <li data="13">Sudadera con capucha azul</li>
+                <li data="14">Sudadera con capucha marron</li>
+                <li data="15">Sudadera con capucha burdeos</li>
+                <li data="16">Sudadera con capucha camuflaje</li>
+                <li data="17">Polo estampado</li>
+                <li data="18">Traje y camisa blanca</li>
+                <li data="19">Traje corbata negra</li>
+                <li data="20">Traje corbata roja</li>
+                <li data="21">Traje con pajarita</li>
+                <li data="22">Camisa con cuadros verdes</li>
+                <li data="23">Camisa de manga corta gris</li>
+                <li data="24">Camisa azul sobre jersey</li>
+                <li data="25">Camisa amarilla sobre jersey</li>
+                <li data="26">Camiseta con cuello en V gris</li>
+                <li data="27">Camiseta con cuello en V azul</li>
+                <li data="28">Camiseta con cuello en V rosa</li>
+                <li data="29">Camiseta tirantas azul</li>
+                <li data="30">Camiseta tirantas amarillo</li>
+                <li data="31">Camiseta tirantas degradado</li>
+                <li data="32">Camisa manga corta azul marino</li>
+                <li data="33">Camisa manga corta rosa</li>
+                <li data="34">Camisa manga corta a cuadros</li>
+                <li data="35">Americana negra con camisa</li>
+                <li data="36">Camiseta tirantas amarillo/verde</li>
+                <li data="37">Camiseta tirantas gris</li>
+                <li data="38">Chaqueta marron</li>
+                <li data="39">Chaqueta marrón/amarillo</li>
+                <li data="40">Chaqueta negro/rojo</li>
+                <li data="41">Camiseta de manga larga agris/negra</li>
+                <li data="42">Camiseta de manga larga amarilla/azul</li>
+                <li data="43">Polo Stark rojo</li>
+                <li data="44">Polo Stark azul</li>
+                <li data="45">Camisa a cuadros roja</li>
+                <li data="46">Camisa con tirantes</li>
+                <li data="47">Sueter negro</li>
+                <li data="48">Sueter blanco</li>
+                <li data="49">Sueter caqui</li>
+                <li data="50">Sudadera con capuucha</li>
+                <li data="51">Abrigo de piel marron con pelo oscuro</li>
+                <li data="52">Abrigo de piel marron con pelo claro</li>
+                <li data="53">Abrigo de piel negro</li>
+                <li data="54">Parka larga y traje de 3 piezas</li>
                 <li data="55">Bomber Louis Vuitton</li>
-                <li data="56">Parka chemise cravate</li>
-                <li data="57">Bomber rouge Wolves</li>
-                <li data="58">T-shirt XXL blanc</li>
-                <li data="59">T-shirt XXL noir</li>
-                <li data="60">Polo Ralph Lauren rose</li>
+                <li data="56">Gabardina con corbata</li>
+                <li data="57">Bomber roja Wolves</li>
+                <li data="58">Camiseta XXL blanca</li>
+                <li data="59">Camiseta XXL negra</li>
+                <li data="60">Polo Ralph Lauren rosa</li>
                 <li data="61">Polo Ralph Lauren beige</li>
-                <li data="62">Polo Ralph Lauren bleu marine</li>
-                <li data="63">Pull à capuche noir</li>
-                <li data="64">Pull à capuche blanc</li>
-                <li data="65">Pull à capuche rouge</li>
+                <li data="62">Polo Ralph Lauren azul marino</li>
+                <li data="63">Sudadera negra</li>
+                <li data="64">Sudadera blanca</li>
+                <li data="65">Sudadera roja</li>
                 <li data="66">Bomber Los Santos</li>
                 <li data="67">Bomber Double P</li>
                 <li data="68">Bomber Magnetics</li>
                 <li data="69">Bomber Hinterland</li>
                 <li data="70">Bomber Broker</li>
                 <li data="71">Bomber Trickster</li>
-                <li data="72">Pull basic noir</li>
-                <li data="73">Chemise en jeans</li>
-                <li data="74">Costume bleu cintré</li>
-                <li data="75">Costume rose cintré</li>
-                <li data="76">Costume rouge</li>
-                <li data="77">Chemise à fleurs</li>
-                <li data="78">Veste molletonnée</li>
-                <li data="79">Chemise cardigan sans manche</li>
-                <li data="80">Pull col roulé gris</li>
-                <li data="81">Pull col roulé noir</li>
-                <li data="82">Veste survêtement Asics</li>
-                <li data="83">Chemise à carreaux bleus</li>
-                <li data="84">Chemise à carreaux verts</li>
-                <li data="85">Chemise à carreaux rouges</li>
-                <li data="86">Chemise à carreaux gris/blancs</li>
+                <li data="72">Jersey basico negro</li>
+                <li data="73">Camisa vaquera</li>
+                <li data="74">Camisa azul cintré</li>
+                <li data="75">Chaqueta azul y camisa</li>
+                <li data="76">Chaqueta morada y camisa</li>
+                <li data="77">Chaqueta roja y camisa</li>
+                <li data="78">Chaqueta boatiné y camisa</li>
+                <li data="79">Camisa y chaleco</li>
+                <li data="80">Jersey gris de cuello alto</li>
+                <li data="81">Jersey negro de cuello alto</li>
+                <li data="82">Chaqueta deportiva Adidas</li>
+                <li data="83">Camisa a cuadros azules</li>
+                <li data="84">Camisa a cuadros verdes</li>
+                <li data="85">Camisa a cuadros rojos</li>
+                <li data="86">Camisa a cuadros blancos</li>
                 <li data="87">Polo Liberty</li>
-                <li data="88">Pull à capuche Liberty noir</li>
-                <li data="89">Pull à capuche Liberty rouge</li>
-                <li data="90">Bomber vert</li>
-                <li data="91">Bomber violet</li>
-                <li data="92">Bomber rouge</li>
-                <li data="93">Bomber bleu</li>
+                <li data="88">Sudadera Advisory negra</li>
+                <li data="89">Sudadera Nike roja</li>
+                <li data="90">Bomber verde</li>
+                <li data="91">Bomber violeta</li>
+                <li data="92">Bomber roja</li>
+                <li data="93">Bomber azul</li>
                 <li data="94">Bomber gris</li>
-                <li data="95">Bomber blanc</li>
-                <li data="96">Bomber noir</li>
-                <li data="97">T-shirt blanc</li>
-                <li data="98">Veste en cuir</li>
-                <li data="99">Doudoune rouge</li>
-                <li data="100">Doudoune verte</li>
-                <li data="101">Doudoune marron</li>
-                <li data="102">Doudoune jaune moutarde</li>
-                <li data="103">Veste en jeans</li>
-                <li data="104">Veste en jeans broderies</li>
-                <li data="105">Veste en jeans sans manche broderies</li>
-                <li data="106">Parka grise</li>
-                <li data="107">Sweat à capuche sans manche</li>
-                <li data="108">Sweat à capuche Bigness</li>
-                <li data="109">Sweat à capuche Güffy</li>
-                <li data="110">Sweat à capuche Manor</li>
-                <li data="111">Sweat à capuche sans manche</li>
-                <li data="112">T-shirt avec poche</li>
-                <li data="113">Veste Blagueurs</li>
-                <li data="114">Veste Güffy</li>
-                <li data="115">Veste Santo Capra</li>
-                <li data="116">Pull Perseus</li>
-                <li data="117">Doudoune grise</li>
-                <li data="118">Maillot Wigwam</li>
+                <li data="95">Bomber blanca</li>
+                <li data="96">Bomber negra</li>
+                <li data="97">Camiseta amarilla</li>
+                <li data="98">Chaqueta de cuero</li>
+                <li data="99">Plumas roja</li>
+                <li data="100">Plumas verde</li>
+                <li data="101">Plumas marron</li>
+                <li data="102">Plumas amarilla mostaza</li>
+                <li data="103">Chaqueta vaquera</li>
+                <li data="104">Chaqueta vaquera bordada</li>
+                <li data="105">Chaleco vaquero bordado</li>
+                <li data="106">Parka gris</li>
+                <li data="107">Sudadera sin mangas</li>
+                <li data="108">Sudadera con capucha Bigness</li>
+                <li data="109">Sudadera con capucha Güffy</li>
+                <li data="110">Sudadera con capucha Manor</li>
+                <li data="111">Chaleco negro</li>
+                <li data="112">Camiseta con bolsillo</li>
+                <li data="113">Chaqueta Ralph Lauren Verde</li>
+                <li data="114">Chaqueta Güffy</li>
+                <li data="115">Chaqueta Santo Capra</li>
+                <li data="116">Plumas Puma azul</li>
+                <li data="117">Chaqueta gris</li>
+                <li data="118">Camiseta Hockey Wigwam</li>
                 <button type="button" class="arrow arrowvetement-right">&nbsp;</button>
               </ul>
             </div>
 
             <div class="group">
-              <h2 id="jeansHeader">Jambes</h2>
+              <h2 id="jeansHeader">Piernas</h2>
               <div class="vetements-value" data-legend="">0</div>
               <ul class="pantalons">
                 <button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-                <li data="0" class="active">Aucun</li>
+                <li data="0" class="active">Nada</li>
                 <li data="1">Jeans regular</li>
-                <li data="2">Jeans regular délavé</li>
-                <li data="3">Jeans regular droit</li>
-                <li data="4">Short de sport</li>
-                <li data="5">Jogging blanc</li>
-                <li data="6">Jeans skinny noir</li>
-                <li data="7">Jeans skinny bleu</li>
-                <li data="8">Jeans skinny bleu délavé</li>
-                <li data="9">Jogging large blanc</li>
-                <li data="10">Jogging large noir</li>
-                <li data="11">Pantalon large noir</li>
-                <li data="12">Pantalon large brun</li>
-                <li data="13">Pantalon à poche kaki</li>
-                <li data="14">Pantalon à poche beige</li>
-                <li data="15">Pantalon de costume regular noir</li>
-                <li data="16">Pantalon de costume regular bleu</li>
-                <li data="17">Short noir</li>
-                <li data="18">Short gris</li>
-                <li data="19">Short beige</li>
-                <li data="20">Short running gris</li>
-                <li data="21">Short running noir</li>
-                <li data="22">Short running bordeaux</li>
-                <li data="23">Short large</li>
-                <li data="24">Pantalon blanc</li>
-                <li data="25">Pantalon skinny noir</li>
-                <li data="26">Pantalon skinny gris</li>
-                <li data="27">Pantalon skinny blanc</li>
-                <li data="28">Jeans skinny noir</li>
-                <li data="29">Jeans skinny bleu clair</li>
-                <li data="30">Jeans skinny rouge</li>
-                <li data="31">Jeans skinny bleu</li>
-                <li data="32">Pantalon skinny noir</li>
-                <li data="33">Pantalon skinny gris</li>
-                <li data="34">Pantalon skinny gris clair</li>
-                <li data="35">Pantalon skinny beige</li>
-                <li data="36">Jogging court noir</li>
-                <li data="37">Jogging court gris</li>
-                <li data="38">Pantalon long clair</li>
-                <li data="39">Pantalon long foncé</li>
-                <li data="40">Pantalon court clair</li>
-                <li data="41">Pantalon court foncé</li>
-                <li data="42">Short de bain Le Chein</li>
-                <li data="43">Jogging long Addidas</li>
-                <li data="44">Pantalon à carreaux</li>
-                <li data="45">Pantalon à carreaux</li>
-                <li data="46">Pantalon en cuire</li>
-                <li data="47">Jeans à motifs</li>
-                <li data="48">Jeans troué</li>
-                <li data="49">Jogging skinny brun</li>
-                <li data="50">Jogging skinny noir</li>
-                <li data="51">Jogging skinny blanc</li>
-                <li data="52">Jeans skinny bleu marine</li>
-                <li data="53">Jeans skinny bleu</li>
-                <li data="54">Jeans skinny gris</li>
-                <li data="55">Pantalon camo</li>
-                <li data="56">Short camo</li>
-                <li data="57">Pantalon Banks camo</li>
+                <li data="2">Jeans regular decolorado</li>
+                <li data="3">Jeans regular caido</li>
+                <li data="4">Pantalones deporte cortos</li>
+                <li data="5">Pantalon deporte blanco</li>
+                <li data="6">Vaqueros pitillo negros</li>
+                <li data="7">Vaqueros pitillo azul</li>
+                <li data="8">Vaqueros pitillo azul decolorado</li>
+                <li data="9">Pantalon deporte anchos blanco</li>
+                <li data="10">Pantalon deporte anchos negro</li>
+                <li data="11">Pantalon ancho negro</li>
+                <li data="12">Pantalon ancho marron</li>
+                <li data="13">Pantalon bolsillos caqui</li>
+                <li data="14">Pantalones con bolsillo beige</li>
+                <li data="15">Pantalon de traje regular negro</li>
+                <li data="16">Pantalon de traje regular azul</li>
+                <li data="17">Pantalones cortos negros</li>
+                <li data="18">Pantalones cortos gris</li>
+                <li data="19">Pantalones cortos beige</li>
+                <li data="20">Shorts de running grises</li>
+                <li data="21">Shorts de running negros</li>
+                <li data="22">Shorts de running burdeos</li>
+                <li data="23">Pantalon corto ancho</li>
+                <li data="24">Pantalon blanco</li>
+                <li data="25">Pantalon de pitillo negro</li>
+                <li data="26">Pantalon de pitillo gris</li>
+                <li data="27">Pantalon de pitillo blanco</li>
+                <li data="28">Vaqueros pitillo negros</li>
+                <li data="29">Vaqueros pitillo azul claro</li>
+                <li data="30">Vaqueros pitillo rojo</li>
+                <li data="31">Vaqueros pitillo azul</li>
+                <li data="32">Pantalon estrecho negro</li>
+                <li data="33">Pantalon estrecho gris</li>
+                <li data="34">Pantalon estrecho gris claro</li>
+                <li data="35">Pantalon sestrecho beige</li>
+                <li data="36">Pantalon ancho negro corto</li>
+                <li data="37">Pantalon ancho gris corto</li>
+                <li data="38">Pantalon largo claro</li>
+                <li data="39">Pantalon largo oscuro</li>
+                <li data="40">Pantalon pegado claro</li>
+                <li data="41">Pantalon pegado oscuro</li>
+                <li data="42">Traje de baño Le Chein</li>
+                <li data="43">Pantalon ancho largo negro</li>
+                <li data="44">Pantalones a cuadros gris</li>
+                <li data="45">Pantalones a cuadros marrón</li>
+                <li data="46">Pantalones de cuero</li>
+                <li data="47">Jeans estampados</li>
+                <li data="48">Jeans rotos</li>
+                <li data="49">Pantalon Adidas negro</li>
+                <li data="50">Pantalon Adidas negro R.Madrid</li>
+                <li data="51">Pantalon pegado negro</li>
+                <li data="52">Vaqueros pitillo azul marino</li>
+                <li data="53">Vaqueros pitillo azul</li>
+                <li data="54">Vaqueros pitillo gris</li>
+                <li data="55">Pantalon de camuflaje</li>
+                <li data="56">Pantalones cortos de camuflaje</li>
+                <li data="57">Pantalones Banks camuflaje</li>
                 <button type="button" class="arrow arrowvetement-right">&nbsp;</button>
               </ul>
             </div>
@@ -878,81 +878,81 @@
               <div class="vetements-value" data-legend="">0</div>
               <ul class="chaussures">
                 <button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-                <li data="0" class="active">Aucun</li>
-                <li data="1">Baskets EE</li>
-                <li data="2">Baskets Etny noires</li>
-                <li data="3">Baskets Etny blanches</li>
-                <li data="4">Baskets Etny rouges</li>
-                <li data="5">Chaussures marin grises</li>
-                <li data="6">Chaussures marin brunes</li>
-                <li data="7">Chaussures marin bleues</li>
-                <li data="8">Converse noires</li>
-                <li data="9">Converse roses</li>
+                <li data="0" class="active">Nada</li>
+                <li data="1">Zapatillas EE</li>
+                <li data="2">Zapatillas Etny negras</li>
+                <li data="3">Zapatillas Etny blancas</li>
+                <li data="4">Zapatillas Etny rojas</li>
+                <li data="5">Zapatos marineros grises</li>
+                <li data="6">Zapatos marineros marrones</li>
+                <li data="7">Zapatos marineros azules</li>
+                <li data="8">Converse negro</li>
+                <li data="9">Converse rojas</li>
                 <li data="10">Converse moutarde</li>
                 <li data="11">Converse grises</li>
-                <li data="12">Tongs blanches</li>
-                <li data="13">Claquettes et chaussettes</li>
-                <li data="14">Baskets blanches</li>
-                <li data="15">Baskets rouges</li>
-                <li data="16">Baskets tréi</li>
-                <li data="17">Baskets rouges</li>
-                <li data="18">Baskets jaunes/vertes</li>
-                <li data="19">Baskets bleues/rouges</li>
-                <li data="20">Chaussures de ville noires</li>
-                <li data="21">Timberland Classique</li>
-                <li data="22">Timberland bleues</li>
-                <li data="23">Timberland roses</li>
-                <li data="24">Chaussures de ville noires</li>
-                <li data="25">Chaussures de ville brunes</li>
-                <li data="26">Tongs noires</li>
-                <li data="27">Chaussures de ville marrons</li>
-                <li data="28">Rangers noires</li>
-                <li data="29">Rangers abimées</li>
-                <li data="30">Fashion à pics blanches</li>
-                <li data="31">Fashion à pics noires</li>
-                <li data="32">Fashion à pics rouges</li>
-                <li data="33">Fashion à pics rouges intégral</li>
-                <li data="34">Sneakers blanches</li>
-                <li data="35">Sneakers guépard</li>
-                <li data="36">Escarpins bruns</li>
-                <li data="37">Escarpins noirs</li>
-                <li data="38">Baskets blanches sans lacet</li>
-                <li data="39">Baskets noires sans lacet</li>
-                <li data="40">Baskets tréi sans lacet</li>
-                <li data="41">Baskets beiges</li>
-                <li data="42">Baskets brunes</li>
-                <li data="43">Baskets rouges</li>
-                <li data="44">Baskets blanches</li>
-                <li data="45">Baskets noires</li>
-                <li data="46">Baskets roses</li>
-                <li data="47">Baskets montantes blanc/rose</li>
-                <li data="48">Baskets montantes vertes</li>
-                <li data="49">Baskets montantes oranges</li>
-                <li data="50">Baskets fluo blanches</li>
+                <li data="12">Chanclas blancas</li>
+                <li data="13">Zapatos y calcetines</li>
+                <li data="14">Zapatillas blancas</li>
+                <li data="15">Zapatillas rojas</li>
+                <li data="16">Zapatillas tréi</li>
+                <li data="17">Zapatillas rojas</li>
+                <li data="18">Zapatillas amarillas/verdes</li>
+                <li data="19">Zapatillas azules/rojas</li>
+                <li data="20">Zapatos de vestir negros</li>
+                <li data="21">Timberland Clásicas</li>
+                <li data="22">Timberland azules</li>
+                <li data="23">Timberland rojas</li>
+                <li data="24">Zapatos de vestir negros</li>
+                <li data="25">Zapatos de vestir marrones</li>
+                <li data="26">Chanclas negras</li>
+                <li data="27">Zapatos de vestir marrones</li>
+                <li data="28">Rangers negros</li>
+                <li data="29">Rangers dañados</li>
+                <li data="30">Fashion con picos blancos</li>
+                <li data="31">Fashion con picos negros</li>
+                <li data="32">Fashion con picos rojos</li>
+                <li data="33">Fashion con picos rojos intégral</li>
+                <li data="34">Zapatillas blancos</li>
+                <li data="35">Zapatillas guépard</li>
+                <li data="36">Escarpines bruns</li>
+                <li data="37">Escarpines noirs</li>
+                <li data="38">Zapatillas blancas sin encaje</li>
+                <li data="39">Zapatillas negras sin encaje</li>
+                <li data="40">Zapatillas tréi sin encaje</li>
+                <li data="41">Zapatillas beiges</li>
+                <li data="42">Zapatillas marrones</li>
+                <li data="43">Zapatillas rojas</li>
+                <li data="44">Zapatillas blancas</li>
+                <li data="45">Zapatillas negras</li>
+                <li data="46">Zapatillas rosas</li>
+                <li data="47">Zapatillas altas blancas/rosadas</li>
+                <li data="48">Zapatillas altas verdes</li>
+                <li data="49">Zapatillas altas naranjas</li>
+                <li data="50">Zapatillas fluo blancas</li>
                 <button type="button" class="arrow arrowvetement-right">&nbsp;</button>
               </ul>
             </div>
 
             <div class="group">
-              <h2 id="watchHeader">Montre</h2>
+              <h2 id="watchHeader">Reloj</h2>
               <div class="vetements-value" data-legend="">0</div>
               <ul class="montre">
                 <button type="button" class="arrow arrowvetement-left">&nbsp;</button>
-                <li data="0" class="active">Aucune</li>
-                <li data="1">Classique</li>
+                <li data="0" class="active">Ninguno</li>
+                <li data="1">Clasico</li>
                 <li data="2">Connectée</li>
-                <li data="3">Sport (noire)</li>
-                <li data="4">Sport (blanche)</li>
+                <li data="3">Deporte (negro)</li>
+                <li data="4">Deporte (blanco)</li>
                 <li data="5">Plaquée or</li>
-                <li data="6">Or</li>
-                <li data="7">Métallique</li>
+                <li data="6">Oro</li>
+                <li data="7">Metálico</li>
                 <button type="button" class="arrow arrowvetement-right">&nbsp;</button>
               </ul>
             </div>
 
           </div>
         </section>
-        <button class="submit" id="finishButton">Terminer</button>
+        <button class="submit" id="finishButton">Acabado</button>
       </form>
     </div>
   </div>
@@ -960,14 +960,14 @@
   <div class="rotation">
     <div class="button">A</div>
     <div class="button">E</div>
-    <p id="rotationLabel">Rotation personnage</p>
+    <p id="rotationLabel">Rotación del personaje</p>
   </div>
 
   <div class="popup confirmation">
-    <p id="popupConfirm">Êtes-vous sûr de vouloir valider votre apparence ?</p>
+    <p id="popupConfirm">¿Estás seguro de que quieres validar tu apariencia?</p>
     <div class="buttons">
-      <div id="popupYes" class="button yes">Oui</div>
-      <div id="popupNo" class="button no">Non</div>
+      <div id="popupYes" class="button yes">Sí</div>
+      <div id="popupNo" class="button no">No</div>
     </div>
   </div>
 

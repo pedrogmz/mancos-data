@@ -3,6 +3,7 @@ description 'Ecran de chargement'
 files {
 	'Index.html',
 
+	'Assets/Audio/AMON-031MANCOSRP.mp3',
 	'Assets/Audio/niska-du-lundi-au-lundi-clip-officiel.mp3',
 	'Assets/Audio/rimk-air-max-ft-ninho.mp3',
 	'Assets/Audio/enzo-salvaggi-20-prod-call-me-g.mp3',

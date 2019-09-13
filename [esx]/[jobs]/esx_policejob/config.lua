@@ -17,7 +17,7 @@ Config.HandcuffTimer              = 10 * 60000 -- 10 mins
 Config.EnableJobBlip              = false -- enable blips for colleagues, requires esx_society
 
 Config.MaxInService               = 50
-Config.Locale                     = 'fr'
+Config.Locale                     = 'es'
 
 Config.PoliceStations = {
 
@@ -388,4 +388,62 @@ Config.Uniforms = {
 		}
 	}
 
+}
+
+Config.TeleportZones = {
+  --Teleport de garaje de policia a los vestuarios
+  VestuarioGaraje = {
+    Pos       = { x = 459.87, y = -990.77, z = 29.69 },
+    Size      = { x = 1.2, y = 1.2, z = 0.1 },
+    Color     = { r = 3, g = 18, b = 249 },
+    Marker    = 1,
+    Hint      = _U('e_to_enter_1'),
+    Teleport  = { x = 458.27, y = -1008.22, z =  27.28 }
+  },
+
+  GarajeVestuario = {
+    Pos       = { x = 458.27, y = -1008.22, z = 27.28 },
+    Size      = { x = 1.2, y = 1.2, z = 0.1 },
+    Color     = { r = 3, g = 18, b = 249 },
+    Marker    = 1,
+    Hint      = _U('e_to_exit_1'),
+    Teleport  = { x = 459.87, y = -990.77, z = 29.69 },
+  },
+  --Teleport de puerta debajo de escaleras a Sandy Shores
+  Comisariasanndy = {
+    Pos       = { x = 470.43, y = -985.05, z = 29.69 },
+    Size      = { x = 1.2, y = 1.2, z = 0.1 },
+    Color     = { r = 3, g = 18, b = 249 },
+    Marker    = 1,
+    Hint      = _U('e_to_enter_2'),
+    Teleport  = { x = 1848.75, y = 3689.96, z = 33.27 }
+  },
+  
+  SanndyComisaria = {
+    Pos       = { x = 1848.75, y = 3689.96, z = 33.27 },
+    Size      = { x = 1.2, y = 1.2, z = 0.1 },
+    Color     = { r = 3, g = 18, b = 249 },
+    Marker    = 1,
+    Hint      = _U('e_to_exit_2'),
+    Teleport  = { x = 470.43, y = -985.05, z = 29.69 },
+  },
+  
+  --Teleport de puerta despues de las celdas a Paleto
+  ComisariaPaleto = {
+    Pos       = { x = 469.6, y = -986.7, z = 29.69 },
+    Size      = { x = 1.2, y = 1.2, z = 0.1 },
+    Color     = { r = 3, g = 18, b = 249 },
+    Marker    = 1,
+    Hint      = _U('e_to_enter_3'),
+    Teleport  = { x = -447.99, y = 6008.31, z = 30.72 }
+  },
+  
+  PaletoComisaria = {
+    Pos       = { x = -447.99, y = 6008.31, z = 30.72 },
+    Size      = { x = 1.2, y = 1.2, z = 0.1 },
+    Color     = { r = 3, g = 18, b = 249 },
+    Marker    = 1,
+    Hint      = _U('e_to_exit_3'),
+    Teleport  = { x = 469.6, y = -986.7, z = 29.69 },
+  },
 }

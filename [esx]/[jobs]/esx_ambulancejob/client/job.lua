@@ -1,26 +1,198 @@
 local CurrentAction, CurrentActionMsg, CurrentActionData = nil, '', {}
 local HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum
 local IsBusy = false
+local playerInService = false
 local spawnedVehicles, isInShopMenu = {}, false
+
+--outfit
+function OutfitsMenu()
+	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)
+		local elements = {}
+
+		for i=1, #dressing, 1 do
+			table.insert(elements, {
+				label = dressing[i],
+				value = i
+			})
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'player_dressing',
+		{
+			title    = _U('ropapersonal'),
+			align    = 'top-left',
+			elements = elements
+		}, function(data2, menu2)
+
+			TriggerEvent('skinchanger:getSkin', function(skin)
+				ESX.TriggerServerCallback('esx_property:getPlayerOutfit', function(clothes)
+					TriggerEvent('skinchanger:loadClothes', skin, clothes)
+					TriggerEvent('esx_skin:setLastSkin', skin)
+
+					TriggerEvent('skinchanger:getSkin', function(skin)
+						TriggerServerEvent('esx_skin:save', skin)
+					end)
+				end, data2.current.value)
+			end)
+
+		end, function(data2, menu2)
+			menu2.close()
+		end)
+	end)
+end
+
+--Baul
+function BaulAbrirMenu(station)
+	local elements = {
+		{label = _U('Dejarobjeto'), value = 'put_stock'},
+		{label = _U('Cogerobjeto'), value = 'get_stock'}
+	}
+
+	ESX.UI.Menu.CloseAll()
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'ambulance_actions', {
+		title    = _U('armario'),
+		align    = 'top-left',
+		elements = elements
+	}, function(data, menu)
+		if data.current.value == 'put_stock' then
+			OpenPutStocksMenu()
+		elseif data.current.value == 'get_stock' then
+			OpenGetStocksMenu()
+		end
+	end, function(data, menu)
+		menu.close()
+	end)
+end
+
+function OpenGetStocksMenu()
+
+	ESX.TriggerServerCallback('esx_ambulancejob:getStockItems', function(items)
+
+		local elements = {}
+
+		for i=1, #items, 1 do
+			table.insert(elements, {
+				label = 'x' .. items[i].count .. ' ' .. items[i].label,
+				value = items[i].name
+			})
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
+		{
+			title    = _U('ems_stock'),
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+
+			local itemName = data.current.value
+
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'stocks_menu_get_item_count', {
+				title = _U('quantity')
+			}, function(data2, menu2)
+
+				local count = tonumber(data2.value)
+
+				if count == nil then
+					ESX.ShowNotification(_U('quantity_invalid'))
+				else
+					menu2.close()
+					menu.close()
+					TriggerServerEvent('esx_ambulancejob:getStockItem', itemName, count)
+
+					Citizen.Wait(300)
+					OpenGetStocksMenu()
+				end
+
+			end, function(data2, menu2)
+				menu2.close()
+			end)
+
+		end, function(data, menu)
+			menu.close()
+		end)
+
+	end)
+end
+
+function OpenPutStocksMenu()
+
+	ESX.TriggerServerCallback('esx_ambulancejob:getPlayerInventory', function(inventory)
+
+		local elements = {}
+
+		for i=1, #inventory.items, 1 do
+			local item = inventory.items[i]
+
+			if item.count > 0 then
+				table.insert(elements, {
+					label = item.label .. ' x' .. item.count,
+					type = 'item_standard',
+					value = item.name
+				})
+			end
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
+		{
+			title    = _U('inventory'),
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+
+			local itemName = data.current.value
+
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'stocks_menu_put_item_count', {
+				title = _U('quantity')
+			}, function(data2, menu2)
+
+				local count = tonumber(data2.value)
+
+				if count == nil then
+					ESX.ShowNotification(_U('quantity_invalid'))
+				else
+					menu2.close()
+					menu.close()
+					TriggerServerEvent('esx_ambulancejob:putStockItems', itemName, count)
+
+					Citizen.Wait(300)
+					OpenPutStocksMenu()
+				end
+
+			end, function(data2, menu2)
+				menu2.close()
+			end)
+
+		end, function(data, menu)
+			menu.close()
+		end)
+	end)
+
+end
 
 function OpenAmbulanceActionsMenu()
 	local elements = {
-		{label = _U('cloakroom'), value = 'cloakroom'}
+		{label = _U('cloakroom'), value = 'cloakroom'},
+		{label = _U('ropero'), value = 'ropero'}
 	}
 
 	if Config.EnablePlayerManagement and ESX.PlayerData.job.grade_name == 'boss' then
 		table.insert(elements, {label = _U('boss_actions'), value = 'boss_actions'})
+		table.insert(elements, {label = _U('Farmacia'), value = 'farmacia'})
 	end
 
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'ambulance_actions', {
-		title    = _U('ambulance'),
+		title    = _U('ambulance_actions2'),
 		align    = 'top-left',
 		elements = elements
 	}, function(data, menu)
 		if data.current.value == 'cloakroom' then
 			OpenCloakroomMenu()
+		elseif data.current.value == 'ropero' then
+			OutfitsMenu()
+		elseif data.current.value == 'farmacia' then
+			OpenPharmacyMenu()
 		elseif data.current.value == 'boss_actions' then
 			TriggerEvent('esx_society:openBossMenu', 'ambulance', function(data, menu)
 				menu.close()
@@ -215,8 +387,7 @@ Citizen.CreateThread(function()
 					isInMarker, currentHospital, currentPart, currentPartNum = true, hospitalNum, 'AmbulanceActions', k
 				end
 			end
-
-			-- Pharmacies
+			--[[-- Pharmacies
 			for k,v in ipairs(hospital.Pharmacies) do
 				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
 
@@ -228,7 +399,23 @@ Citizen.CreateThread(function()
 				if distance < Config.Marker.x then
 					isInMarker, currentHospital, currentPart, currentPartNum = true, hospitalNum, 'Pharmacy', k
 				end
+			end]]--
+
+			-- baul
+			for k,v in ipairs(hospital.Baul) do
+				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
+
+				if distance < Config.DrawDistance then
+					DrawMarker(Config.Marker.type, v, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, Config.Marker.rotate, nil, nil, false)
+					letSleep = false
+				end
+
+				if distance < Config.Marker.x then
+					isInMarker, currentHospital, currentPart, currentPartNum = true, hospitalNum, 'Baul', k
+				end
 			end
+
+
 
 			-- Vehicle Spawners
 			for k,v in ipairs(hospital.Vehicles) do
@@ -323,6 +510,14 @@ AddEventHandler('esx_ambulancejob:hasEnteredMarker', function(hospital, part, pa
 			CurrentAction = part
 			CurrentActionMsg = _U('actions_prompt')
 			CurrentActionData = {}
+		elseif part == 'Outfits' then
+			CurrentAction = part
+			CurrentActionMsg = _U('actions_outfits')
+			CurrentActionData = {}
+		elseif part == 'Baul' then
+			CurrentAction = part
+			CurrentActionMsg = _U('actions_baul')
+			CurrentActionData = {}
 		elseif part == 'Pharmacy' then
 			CurrentAction = part
 			CurrentActionMsg = _U('open_pharmacy')
@@ -365,8 +560,8 @@ Citizen.CreateThread(function()
 
 				if CurrentAction == 'AmbulanceActions' then
 					OpenAmbulanceActionsMenu()
-				elseif CurrentAction == 'Pharmacy' then
-					OpenPharmacyMenu()
+				elseif CurrentAction == 'Baul' then
+					BaulAbrirMenu()
 				elseif CurrentAction == 'Vehicles' then
 					OpenVehicleSpawnerMenu(CurrentActionData.hospital, CurrentActionData.partNum)
 				elseif CurrentAction == 'Helicopters' then
@@ -414,6 +609,16 @@ AddEventHandler('esx_ambulancejob:putInVehicle', function()
 	end
 end)
 
+-- don't show dispatches if the player isn't in service
+AddEventHandler('esx_phone:cancelMessage', function(dispatchNumber)
+	if type(PlayerData.job.name) == 'string' and PlayerData.job.name == 'ambulance' and PlayerData.job.name == dispatchNumber then
+		-- if esx_service is enabled
+		if Config.MaxInService ~= -1 and not playerInService then
+			CancelEvent()
+		end
+	end
+end)
+
 function OpenCloakroomMenu()
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'cloakroom', {
 		title    = _U('cloakroom'),
@@ -424,10 +629,71 @@ function OpenCloakroomMenu()
 		}
 	}, function(data, menu)
 		if data.current.value == 'citizen_wear' then
+
+			if Config.MaxInService ~= -1 then
+
+				ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+					if isInService then
+
+						playerInService = false
+
+						local notification = {
+							title    = _U('service_anonunce'),
+							subject  = '',
+							msg      = _U('service_out_announce', GetPlayerName(PlayerId())),
+							iconType = 1
+						}
+
+						TriggerServerEvent('esx_service:notifyAllInService', notification, 'ambulance')
+						TriggerServerEvent('esx_service:disableService', 'ambulance')
+						ESX.ShowNotification(_U('service_out'))
+					end
+				end, 'ambulance')
+			end
+
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 				TriggerEvent('skinchanger:loadSkin', skin)
 			end)
-		elseif data.current.value == 'ambulance_wear' then
+		elseif Config.MaxInService ~= -1 and data.current.value == 'ambulance_wear' then
+			local serviceOk = 'waiting'
+
+			ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+				if not isInService then
+
+					ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
+						if not canTakeService then
+							ESX.ShowNotification(_U('service_max', inServiceCount, maxInService))
+						else
+
+							serviceOk = true
+							playerInService = true
+
+							local notification = {
+								title    = _U('service_anonunce'),
+								subject  = '',
+								msg      = _U('service_in_announce', GetPlayerName(PlayerId())),
+								iconType = 1
+							}
+	
+							TriggerServerEvent('esx_service:notifyAllInService', notification, 'ambulance')
+							ESX.ShowNotification(_U('service_in'))
+						end
+					end, 'ambulance')
+
+				else
+					serviceOk = true
+				end
+			end, 'ambulance')
+
+			while type(serviceOk) == 'string' do
+				Citizen.Wait(5)
+			end
+
+			-- if we couldn't enter service don't let the player get changed
+			if not serviceOk then
+				return
+			end
+
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 				if skin.sex == 0 then
 					TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_male)
@@ -846,9 +1112,10 @@ end
 
 function drawLoadingText(text, red, green, blue, alpha)
 	SetTextFont(4)
+	SetTextProportional(0)
 	SetTextScale(0.0, 0.5)
 	SetTextColour(red, green, blue, alpha)
-	SetTextDropshadow(0, 0, 0, 0, 255)
+	SetTextDropShadow(0, 0, 0, 0, 255)
 	SetTextEdge(1, 0, 0, 0, 255)
 	SetTextDropShadow()
 	SetTextOutline()
@@ -867,7 +1134,16 @@ function OpenPharmacyMenu()
 		align    = 'top-left',
 		elements = {
 			{label = _U('pharmacy_take', _U('medikit')), value = 'medikit'},
-			{label = _U('pharmacy_take', _U('bandage')), value = 'bandage'}
+			{label = _U('pharmacy_take', _U('bandage')), value = 'bandage'},
+			-- {label = _U('pharmacy_take', _U('medbocata')), value = 'medbocata'},
+			-- {label = _U('pharmacy_take', _U('gauze')), value = 'gauze'},
+			-- {label = _U('pharmacy_take', _U('bandage')), value = 'bandage'},
+			-- {label = _U('pharmacy_take', _U('firstaid')), value = 'firstaid'},
+			-- {label = _U('pharmacy_take', _U('medkit')), value = 'medkit'},
+			-- {label = _U('pharmacy_take', _U('vicodin')), value = 'vicodin'},
+			-- {label = _U('pharmacy_take', _U('hydrocodone')), value = 'hydrocodone'},
+			-- {label = _U('pharmacy_take', _U('morphine')), value = 'morphine'},
+			{label = _U('pharmacy_take', 'Taser'), value = 'WEAPON_STUNGUN'},
 		}
 	}, function(data, menu)
 		TriggerServerEvent('esx_ambulancejob:giveItem', data.current.value)

@@ -1988,3 +1988,92 @@ function ImpoundVehicle(vehicle)
 	ESX.ShowNotification(_U('impound_successful'))
 	currentTask.busy = false
 end
+
+-----------------------
+----- TELEPORTERS -----
+
+function IsJobTrue()
+    if PlayerData ~= nil then
+        local IsJobTrue = false
+        if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
+            IsJobTrue = true
+        end
+        return IsJobTrue
+    end
+end
+
+AddEventHandler('esx_policejob:teleportMarkers', function(position)
+  SetEntityCoords(GetPlayerPed(-1), position.x, position.y, position.z)
+end)
+
+-- Show top left hint
+Citizen.CreateThread(function()
+  while true do
+    Wait(0)
+    if hintIsShowed == true then
+      SetTextComponentFormat("STRING")
+      AddTextComponentString(hintToDisplay)
+      DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+    end
+  end
+end)
+
+-- Display teleport markers
+Citizen.CreateThread(function()
+  while true do
+    Wait(0)
+
+    if IsJobTrue() then
+
+        local coords = GetEntityCoords(GetPlayerPed(-1))
+        for k,v in pairs(Config.TeleportZones) do
+          if(v.Marker ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
+            DrawMarker(v.Marker, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
+          end
+        end
+
+    end
+
+  end
+end)
+
+-- Activate teleport marker
+Citizen.CreateThread(function()
+  while true do
+    Wait(0)
+    local coords      = GetEntityCoords(GetPlayerPed(-1))
+    local position    = nil
+    local zone        = nil
+
+    if IsJobTrue() then
+
+        for k,v in pairs(Config.TeleportZones) do
+          if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
+            isInPublicMarker = true
+            position = v.Teleport
+            zone = v
+            break
+          else
+            isInPublicMarker  = false
+          end
+        end
+
+        if IsControlJustReleased(0, Keys["E"]) and isInPublicMarker then
+          TriggerEvent('esx_policejob:teleportMarkers', position)
+        end
+
+        -- hide or show top left zone hints
+        if isInPublicMarker then
+          hintToDisplay = zone.Hint
+          hintIsShowed = true
+        else
+          if not isInMarker then
+            hintToDisplay = "no hint to display"
+            hintIsShowed = false
+          end
+        end
+
+    end
+
+  end
+end)
