@@ -69,6 +69,7 @@ files {
 	-- JS LOCALES
 	'ui/locales/nl.js',
 	'ui/locales/en.js',
+	'ui/locales/es.js',
 	"ui/tabs.css"
 }
 
@@ -79,6 +80,7 @@ server_scripts {
 	'locales/de.lua',
 	'locales/br.lua',
 	'locales/en.lua',
+	'locales/es.lua',
 	'locales/fi.lua',
 	'locales/fr.lua',
 	'locales/sv.lua',
@@ -93,6 +95,7 @@ client_scripts {
 	'locales/de.lua',
 	'locales/br.lua',
 	'locales/en.lua',
+	'locales/es.lua',
 	'locales/fi.lua',
 	'locales/fr.lua',
 	'locales/sv.lua',

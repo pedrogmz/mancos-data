@@ -4,7 +4,9 @@ body {
   height: 80px;
   color: #fff;
   background-image: url("../images/background.png");
-  /*display: none;*/
+  display: none;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .margin-top {

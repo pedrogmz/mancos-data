@@ -15,21 +15,26 @@ var blue_text = '' // Texte en bleu
 var tracks
 tracks = [{
 	"track": 1, // Position dans la liste
+	"name": "AMON 031 MANCOSRP", // Le nom qui va apparête
+	"duration": "2:23",
+	"file": "AMON-031MANCOSRP" // Le nom du fichier MP3 (Il ne doit pas contenir d'espace ou de caractère spéciaux.
+}, {
+	"track": 2, // Position dans la liste
 	"name": "Niska - Du lundi au lundi", // Le nom qui va apparête
 	"duration": "2:42",
 	"file": "niska-du-lundi-au-lundi-clip-officiel" // Le nom du fichier MP3 (Il ne doit pas contenir d'espace ou de caractère spéciaux.
 }, {
-	"track": 2,
+	"track": 3,
 	"name": "Rim'K - Air Max ft. Ninho",
 	"duration": "3:28",
 	"file": "rimk-air-max-ft-ninho"
 }, {
-	"track": 3,
+	"track": 4,
 	"name": "Enzo Salvaggi - 20 ( prod. Call Me G )",
 	"duration": "2:55",
 	"file": "enzo-salvaggi-20-prod-call-me-g"
 }, {
-	"track": 4,
+	"track": 5,
 	"name": "Enzo Salvaggi - FENDI ( Lyric Video ) ( prod. Rapas )",
 	"duration": "2:24",
 	"file": "enzo-salvaggi-fendi-lyric-video-prod-rapas"

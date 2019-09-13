@@ -31,9 +31,14 @@ client_scripts {
 	'locales/cs.lua',
 	'config.lua',
 	'client/main.lua',
+	'client/paracaidas.lua',
 	'client/job.lua'
 }
 
 dependencies {
 	'es_extended'
+}
+
+exports {
+  'openAmbulance'
 }

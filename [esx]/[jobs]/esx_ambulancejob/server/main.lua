@@ -3,7 +3,9 @@ local playersHealing = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-TriggerEvent('esx_service:activateService', 'ambulance', Config.MaxInService)
+if Config.MaxInService ~= -1 then
+	TriggerEvent('esx_service:activateService', 'ambulance', Config.MaxInService)
+end
 
 RegisterServerEvent('esx_ambulancejob:revive')
 AddEventHandler('esx_ambulancejob:revive', function(target)
@@ -15,6 +17,74 @@ AddEventHandler('esx_ambulancejob:revive', function(target)
 	else
 		print(('esx_ambulancejob: %s attempted to revive!'):format(xPlayer.identifier))
 	end
+end)
+
+--baul
+RegisterServerEvent('esx_ambulancejob:getStockItem')
+AddEventHandler('esx_ambulancejob:getStockItem', function(itemName, count)
+
+  local xPlayer = ESX.GetPlayerFromId(source)
+
+  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_ambulance', function(inventory)
+
+    local item = inventory.getItem(itemName)
+
+    if item.count >= count then
+      inventory.removeItem(itemName, count)
+      xPlayer.addInventoryItem(itemName, count)
+    else
+      TriggerClientEvent('esx:showNotification', xPlayer.source, _U('quantity_invalid'))
+    end
+
+    TriggerClientEvent('esx:showNotification', xPlayer.source, _U('you_removed') .. count .. ' ' .. item.label)
+
+  end)
+
+end)
+
+ESX.RegisterServerCallback('esx_ambulancejob:getStockItems', function(source, cb)
+
+  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_ambulance', function(inventory)
+    cb(inventory.items)
+  end)
+
+end)
+
+RegisterServerEvent('esx_ambulancejob:putStockItems')
+AddEventHandler('esx_ambulancejob:putStockItems', function(itemName, count)
+
+  local xPlayer = ESX.GetPlayerFromId(source)
+
+  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_ambulance', function(inventory)
+
+    local item = inventory.getItem(itemName)
+    local playerItemCount = xPlayer.getInventoryItem(itemName).count
+
+    if item.count >= 0 and count <= playerItemCount then
+      xPlayer.removeInventoryItem(itemName, count)
+      inventory.addItem(itemName, count)
+    else
+      TriggerClientEvent('esx:showNotification', xPlayer.source, _U('invalid_quantity'))
+    end
+
+    TriggerClientEvent('esx:showNotification', xPlayer.source, _U('you_added') .. count .. ' ' .. item.label)
+
+  end)
+
+end)
+
+
+ESX.RegisterServerCallback('esx_ambulancejob:getStockItems', function(source, cb)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_ambulance', function(inventory)
+		cb(inventory.items)
+	end)
+end)
+
+ESX.RegisterServerCallback('esx_ambulancejob:getPlayerInventory', function(source, cb)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local items   = xPlayer.inventory
+
+	cb( { items = items } )
 end)
 
 RegisterServerEvent('esx_ambulancejob:heal')
@@ -121,23 +191,23 @@ ESX.RegisterServerCallback('esx_ambulancejob:buyJobVehicle', function(source, cb
 	if price == 0 then
 		print(('esx_ambulancejob: %s attempted to exploit the shop! (invalid vehicle model)'):format(xPlayer.identifier))
 		cb(false)
+	end
+
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
+
+		MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, `stored`) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
+			['@owner'] = xPlayer.identifier,
+			['@vehicle'] = json.encode(vehicleProps),
+			['@plate'] = vehicleProps.plate,
+			['@type'] = type,
+			['@job'] = xPlayer.job.name,
+			['@stored'] = true
+		}, function (rowsChanged)
+			cb(true)
+		end)
 	else
-		if xPlayer.getMoney() >= price then
-			xPlayer.removeMoney(price)
-	
-			MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, `stored`) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
-				['@owner'] = xPlayer.identifier,
-				['@vehicle'] = json.encode(vehicleProps),
-				['@plate'] = vehicleProps.plate,
-				['@type'] = type,
-				['@job'] = xPlayer.job.name,
-				['@stored'] = true
-			}, function (rowsChanged)
-				cb(true)
-			end)
-		else
-			cb(false)
-		end
+		cb(false)
 	end
 end)
 
@@ -220,8 +290,23 @@ AddEventHandler('esx_ambulancejob:giveItem', function(itemName)
 	if xPlayer.job.name ~= 'ambulance' then
 		print(('esx_ambulancejob: %s attempted to spawn in an item!'):format(xPlayer.identifier))
 		return
-	elseif (itemName ~= 'medikit' and itemName ~= 'bandage') then
+	elseif (itemName ~= 'medagua' and 
+			itemName ~= 'medbocata' and 
+			itemName ~= 'medikit' and 
+			itemName ~= 'bandage' and
+			itemName ~= 'gauze' and
+			itemName ~= 'firstaid' and
+			itemName ~= 'medkit' and
+			itemName ~= 'vicodin' and
+			itemName ~= 'hydrocodone' and
+			itemName ~= 'morphine' and		
+			itemName ~= 'WEAPON_STUNGUN') then
 		print(('esx_ambulancejob: %s attempted to spawn in an item!'):format(xPlayer.identifier))
+		return
+	end
+	
+	if(itemName == 'WEAPON_STUNGUN') then
+		xPlayer.addWeapon(itemName)
 		return
 	end
 
@@ -239,7 +324,7 @@ AddEventHandler('esx_ambulancejob:giveItem', function(itemName)
 	end
 end)
 
-TriggerEvent('es:addGroupCommand', 'revive', 'admin', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'revive', 'support', function(source, args, user)
 	if args[1] ~= nil then
 		if GetPlayerName(tonumber(args[1])) ~= nil then
 			print(('esx_ambulancejob: %s used admin revive'):format(GetPlayerIdentifiers(source)[1]))
