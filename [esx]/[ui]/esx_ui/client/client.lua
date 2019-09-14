@@ -53,13 +53,13 @@ Citizen.CreateThread(function()
             armortext = cfg.armortext,
             deadtext = cfg.deadtext
         })
-		if IsPedInAnyVehicle(PlayerPedId(), true) then
+		--[[if IsPedInAnyVehicle(PlayerPedId(), true) then
 			if (GetPedInVehicleSeat(GetVehiclePedIsIn(PlayerPedId(), false), -1) == PlayerPedId()) then
 				DisplayRadar(true)
 			end
 		else
 			DisplayRadar(false)
-		end
+		end]]
     end
 end)
 

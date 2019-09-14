@@ -1,0 +1,26 @@
+ESX = nil
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
+RegisterNetEvent('esx_policedog:hasClosestDrugs')
+AddEventHandler('esx_policedog:hasClosestDrugs', function(playerId)
+    local target = ESX.GetPlayerFromId(playerId)
+    local src = source
+    local inventory = target.inventory
+    for i = 1, #inventory do
+        for k, v in pairs(Config.Drugs) do
+            if inventory[i].name == v and inventory[i].count > 0 then
+                TriggerClientEvent('esx_policedog:hasDrugs', src, true)
+                return
+            end
+        end
+    end
+    TriggerClientEvent('esx_policedog:hasDrugs', src, false)
+end)
+
+
+RegisterServerEvent("esx_policedog:RequestVehicleToggle")
+AddEventHandler("esx_policedog:RequestVehicleToggle", function()
+    local src = source
+    print("Requested Vehicle Toggle")
+    TriggerClientEvent("esx_policedog:ToggleVehicle", src, Config.VehicleRestriction, Config.VehiclesList)
+end)
