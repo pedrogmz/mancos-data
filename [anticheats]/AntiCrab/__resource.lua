@@ -6,5 +6,5 @@ server_script 'config.lua'
 server_script 'sv_AntiCrab.lua'
 
 dependencies {
-	'easyadmin'
+    			'EasyAdmin'
 }
