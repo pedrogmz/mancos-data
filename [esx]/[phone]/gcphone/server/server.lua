@@ -29,7 +29,6 @@ local ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) 
     ESX = obj 
     ESX.RegisterServerCallback('gcphone:getItemAmount', function(source, cb, item)
-        print('gcphone:getItemAmount call item : ' .. item)
         local xPlayer = ESX.GetPlayerFromId(source)
         local items = xPlayer.getInventoryItem(item)
         if items == nil then

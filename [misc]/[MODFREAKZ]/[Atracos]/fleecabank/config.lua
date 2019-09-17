@@ -10,10 +10,10 @@ Citizen.CreateThread(function(...)
 end)
 
 MFF.PoliceJobName = "police"
-MFF.MinPoliceCount = 0
+MFF.MinPoliceCount = 1
 
 MFF.InteractKey = "E"
-MFF.ResetTimer = 120 -- minutes?
+MFF.ResetTimer = 10 -- minutes?
 MFF.InteractTimer = 10
 
 MFF.LoadDist = 50.0

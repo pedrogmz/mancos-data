@@ -261,8 +261,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 	PlayerData = ESX.GetPlayerData()
 	local elements = {
 		{label = _U('garage_storeditem'), action = 'garage'},
-		{label = _U('garage_storeitem'), action = 'store_garage'},
-		{label = _U('garage_buyitem'), action = 'buy_vehicle'}
+		{label = _U('garage_storeitem'), action = 'store_garage'}
 	}
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle', {
@@ -270,63 +269,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 		align    = 'top-left',
 		elements = elements
 	}, function(data, menu)
-		if data.current.action == 'buy_vehicle' then
-			local shopElements, shopCoords = {}
-
-			if type == 'car' then
-				shopCoords = Config.PoliceStations[station].Vehicles[partNum].InsideShop
-				local authorizedVehicles = Config.AuthorizedVehicles[PlayerData.job.grade_name]
-
-				if #Config.AuthorizedVehicles.Shared > 0 then
-					for k,vehicle in ipairs(Config.AuthorizedVehicles.Shared) do
-						table.insert(shopElements, {
-							label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
-							name  = vehicle.label,
-							model = vehicle.model,
-							price = vehicle.price,
-							type  = 'car'
-						})
-					end
-				end
-
-				if #authorizedVehicles > 0 then
-					for k,vehicle in ipairs(authorizedVehicles) do
-						table.insert(shopElements, {
-							label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
-							name  = vehicle.label,
-							model = vehicle.model,
-							price = vehicle.price,
-							type  = 'car'
-						})
-					end
-				else
-					if #Config.AuthorizedVehicles.Shared == 0 then
-						return
-					end
-				end
-			elseif type == 'helicopter' then
-				shopCoords = Config.PoliceStations[station].Helicopters[partNum].InsideShop
-				local authorizedHelicopters = Config.AuthorizedHelicopters[PlayerData.job.grade_name]
-
-				if #authorizedHelicopters > 0 then
-					for k,vehicle in ipairs(authorizedHelicopters) do
-						table.insert(shopElements, {
-							label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
-							name  = vehicle.label,
-							model = vehicle.model,
-							price = vehicle.price,
-							livery = vehicle.livery or nil,
-							type  = 'helicopter'
-						})
-					end
-				else
-					ESX.ShowNotification(_U('helicopter_notauthorized'))
-					return
-				end
-			end
-
-			OpenShopMenu(shopElements, playerCoords, shopCoords)
-		elseif data.current.action == 'garage' then
+		if data.current.action == 'garage' then
 			local garage = {}
 
 			ESX.TriggerServerCallback('esx_vehicleshop:retrieveJobVehicles', function(jobVehicles)
@@ -612,6 +555,8 @@ function OpenPoliceActionsMenu()
 				{label = _U('id_card'), value = 'identity_card'},
 				{label = _U('search'), value = 'body_search'},
 				{label = _U('handcuff'), value = 'handcuff'},
+				{label = _U('cuffagr'), value = 'cuffagr'},
+				{label = _U('uncuffagr'), value = 'uncuffagr'},
 				{label = _U('drag'), value = 'drag'},
 				{label = _U('put_in_vehicle'), value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
@@ -639,6 +584,24 @@ function OpenPoliceActionsMenu()
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+					elseif action == 'cuffagr' then
+						local target, distance = ESX.Game.GetClosestPlayer()
+						playerheading = GetEntityHeading(GetPlayerPed(-1))
+						playerlocation = GetEntityForwardVector(PlayerPedId())
+						playerCoords = GetEntityCoords(GetPlayerPed(-1))
+						local target_id = GetPlayerServerId(target)
+						if distance <= 2.0 then
+							TriggerServerEvent('esx_policejob:requestarrest', target_id, playerheading, playerCoords, playerlocation)
+						else
+							ESX.ShowNotification('No hay nadie cerca')
+						end
+					elseif action == 'uncuffagr' then
+						local target, distance = ESX.Game.GetClosestPlayer()
+						playerheading = GetEntityHeading(GetPlayerPed(-1))
+						playerlocation = GetEntityForwardVector(PlayerPedId())
+						playerCoords = GetEntityCoords(GetPlayerPed(-1))
+						local target_id = GetPlayerServerId(target)
+						TriggerServerEvent('esx_policejob:requestrelease', target_id, playerheading, playerCoords, playerlocation)
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
@@ -2076,4 +2039,54 @@ Citizen.CreateThread(function()
     end
 
   end
+end)
+
+-- Arrest Agresivo
+
+RegisterNetEvent('esx_policejob:getarrested')
+AddEventHandler('esx_policejob:getarrested', function(playerheading, playercoords, playerlocation)
+	playerPed = GetPlayerPed(-1)
+	SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
+	local x, y, z   = table.unpack(playercoords + playerlocation * 1.0)
+	SetEntityCoords(GetPlayerPed(-1), x, y, z)
+	SetEntityHeading(GetPlayerPed(-1), playerheading)
+	Citizen.Wait(250)
+	loadanimdict('mp_arrest_paired')
+	TaskPlayAnim(GetPlayerPed(-1), 'mp_arrest_paired', 'crook_p2_back_right', 8.0, -8, 3750 , 2, 0, 0, 0, 0)
+	Citizen.Wait(3760)
+	isHandcuffed = true
+	TriggerEvent('esx_policejob:handcuff')
+	loadanimdict('mp_arresting')
+	TaskPlayAnim(GetPlayerPed(-1), 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0.0, false, false, false)
+end)
+
+RegisterNetEvent('esx_policejob:doarrested')
+AddEventHandler('esx_policejob:doarrested', function()
+	Citizen.Wait(250)
+	loadanimdict('mp_arrest_paired')
+	TaskPlayAnim(GetPlayerPed(-1), 'mp_arrest_paired', 'cop_p2_back_right', 8.0, -8,3750, 2, 0, 0, 0, 0)
+	Citizen.Wait(3000)
+end) 
+
+RegisterNetEvent('esx_policejob:douncuffing')
+AddEventHandler('esx_policejob:douncuffing', function()
+	Citizen.Wait(250)
+	loadanimdict('mp_arresting')
+	TaskPlayAnim(GetPlayerPed(-1), 'mp_arresting', 'a_uncuff', 8.0, -8,-1, 2, 0, 0, 0, 0)
+	Citizen.Wait(5500)
+	ClearPedTasks(GetPlayerPed(-1))
+end)
+
+RegisterNetEvent('esx_policejob:getuncuffed')
+AddEventHandler('esx_policejob:getuncuffed', function(playerheading, playercoords, playerlocation)
+	local x, y, z   = table.unpack(playercoords + playerlocation * 1.0)
+	SetEntityCoords(GetPlayerPed(-1), x, y, z)
+	SetEntityHeading(GetPlayerPed(-1), playerheading)
+	Citizen.Wait(250)
+	loadanimdict('mp_arresting')
+	TaskPlayAnim(GetPlayerPed(-1), 'mp_arresting', 'b_uncuff', 8.0, -8,-1, 2, 0, 0, 0, 0)
+	Citizen.Wait(5500)
+	isHandcuffed = false
+	TriggerEvent('esx_policejob:handcuff')
+	ClearPedTasks(GetPlayerPed(-1))
 end)

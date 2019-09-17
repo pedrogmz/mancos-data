@@ -11,8 +11,8 @@ end)
 
 -- Make sure you change these.
 MFV.InteractDist = 2.0 -- dist for drawtext to appear
-MFV.RefreshTimer = 120 -- minutes? (maybe, idk)
-MFV.MinPoliceOnline = 0 -- if count >= policecount, then canrob = true;
+MFV.RefreshTimer = 10 -- minutes? (maybe, idk)
+MFV.MinPoliceOnline = 1 -- if count >= policecount, then canrob = true;
 MFV.PoliceLabel = "Police" -- change this to your police job label, found in the database table "jobs".
 
 -- Probably don't change these.
