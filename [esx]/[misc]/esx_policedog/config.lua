@@ -13,20 +13,20 @@ Config = {
 }
 
 Strings = {
-    ['not_police'] = 'You are ~r~not ~s~an officer!',
-    ['menu_title'] = 'Police dog',
-    ['take_out_remove'] = 'Take out / remove police dog',
-    ['deleted_dog'] = 'Removed the police dog',
-    ['spawned_dog'] = 'Created a police dog',
-    ['sit_stand'] = 'Make dog sit / stand',
-    ['no_dog'] = "You don't have any dog!",
-    ['dog_dead'] = 'Your dog is dead :/',
-    ['search_drugs'] = 'Search closest player for drugs',
-    ['no_drugs'] = 'No drugs found.', 
-    ['drugs_found'] = 'Found drugs',
-    ['dog_too_far'] = 'The dog is too far away!',
-    ['attack_closest'] = 'Attack closest player',
-	['toggle_vehicle'] = 'In/Out Vehicle'
+    ['not_police'] = '¡~r~No ~s~eres Policía!',
+    ['menu_title'] = 'Perro policía',
+    ['take_out_remove'] = 'Guardar perro policía',
+    ['deleted_dog'] = 'Perro policía ~r~guardado ~s~',
+    ['spawned_dog'] = 'Perro policía ~r~creado ~s~',
+    ['sit_stand'] = 'Haz al perro sentarse/levantarse',
+    ['no_dog'] = "No tienes ningún perro",
+    ['dog_dead'] = 'Tu perro está muerto :/',
+    ['search_drugs'] = 'Busca a la persona más cercana las drogas',
+    ['no_drugs'] = 'No tiene drogas.', 
+    ['drugs_found'] = 'Drogas ~r~encontradas ~s~',
+    ['dog_too_far'] = '¡El perro está muy lejos!',
+    ['attack_closest'] = 'Ataca a la persona más cercana',
+    ['toggle_vehicle'] = 'Entrar/Salir del vehículo'
 }
 
 -- Restricts the dog to getting into certain vehicles
