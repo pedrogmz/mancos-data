@@ -559,3 +559,17 @@ RegisterServerEvent('esx_policejob:message')
 AddEventHandler('esx_policejob:message', function(target, msg)
 	TriggerClientEvent('esx:showNotification', target, msg)
 end)
+
+RegisterServerEvent('esx_policejob:requestarrest')
+AddEventHandler('esx_policejob:requestarrest', function(targetid, playerheading, playerCoords,  playerlocation)
+    _source = source
+    TriggerClientEvent('esx_policejob:getarrested', targetid, playerheading, playerCoords, playerlocation)
+    TriggerClientEvent('esx_policejob:doarrested', _source)
+end)
+
+RegisterServerEvent('esx_policejob:requestrelease')
+AddEventHandler('esx_policejob:requestrelease', function(targetid, playerheading, playerCoords,  playerlocation)
+    _source = source
+    TriggerClientEvent('esx_policejob:getuncuffed', targetid, playerheading, playerCoords, playerlocation)
+    TriggerClientEvent('esx_policejob:douncuffing', _source)
+end)
