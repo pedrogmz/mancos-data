@@ -10,7 +10,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(10) -- [[Usually 1 however the difference between the two is un-noticable.]]
         for theveh in EnumerateVehicles() do -- [[Gets every single vehicle that exists... I think.]]
             if GetEntityHealth(theveh) == 0 then -- [[If the vehicle is destroyed continue.]]
-				Citizen.Wait(9000)
+				Citizen.Wait(90000)
                 SetEntityAsMissionEntity(theveh, false, false) -- [[Sets the entity as mission entity for further use.]]
                 DeleteEntity(theveh) -- [[Once set as mission entity it will be deleted.]]
             end
