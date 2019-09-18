@@ -28,8 +28,8 @@ Locales['es'] = {
   -- Vehicles
   ['vehicle_menu'] = 'Vehículo',
   ['vehicle_blocked'] = 'Todos los puntos estan ocupados',
-  ['garage_prompt'] = '~INPUT_CONTEXT~ para acceder al ~y~garaje~s~',
-  ['garage_prompt_delete'] = '~INPUT_CONTEXT~ para borrar el ~y~vehiculo~s~',
+  ['garage_prompt'] = 'Presiona ~INPUT_CONTEXT~ para acceder al ~y~garaje~s~',
+  ['garage_prompt_delete'] = 'Presiona ~INPUT_CONTEXT~ para guardar el ~y~vehiculo~s~',
   ['garage_title'] = 'Acciones de vehículo',
   ['garage_stored'] = 'Almacenados',
   ['garage_notstored'] = 'No está en el garaje',

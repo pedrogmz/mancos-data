@@ -289,7 +289,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 	if #Config.AuthorizedVehicles.Shared > 0 then
 		for k,vehicle in ipairs(Config.AuthorizedVehicles.Shared) do
 			table.insert(shopElements, {
-				label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+				label = ('%s'):format(vehicle.label),
 				name  = vehicle.label,
 				model = vehicle.model,
 				type  = 'car'
@@ -300,7 +300,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 	if #authorizedVehicles > 0 then
 		for k,vehicle in ipairs(authorizedVehicles) do
 			table.insert(shopElements, {
-				label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+				label = ('%s'):format(vehicle.label),
 				name  = vehicle.label,
 				model = vehicle.model,
 				type  = 'car'
@@ -1500,7 +1500,7 @@ Citizen.CreateThread(function()
 					local distance = GetDistanceBetweenCoords(coords, v.Vehicles[i].Spawner, true)
 
 					if distance < Config.DrawDistance then
-						DrawMarker(36, v.Vehicles[i].Spawner, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+						DrawMarker(27, v.Vehicles[i].Spawner, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
 						letSleep = false
 					end
 
@@ -1513,7 +1513,7 @@ Citizen.CreateThread(function()
 					local distance = GetDistanceBetweenCoords(coords, v.VehicleDeleter[i].DeletePoint, true)
 
 					if distance < Config.DrawDistance then
-						DrawMarker(36, v.VehicleDeleter[i].DeletePoint, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+						DrawMarker(27, v.VehicleDeleter[i].DeletePoint, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
 						letSleep = false
 					end
 
