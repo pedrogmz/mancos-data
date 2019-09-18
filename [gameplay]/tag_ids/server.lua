@@ -1,11 +1,3 @@
-roleList = {
-	{0, "~w~"}, -- Regular Civilian / Non-Staff
-	{1, "~r~STAFF ~w~"}, --[[ T-Mod ]]-- 
-	{1, "~r~STAFF ~w~"}, --[[ Moderator ]]--
-	{1, "~r~STAFF ~w~"}, --[[ Admin ]]--
-	{1, "~p~MANAGEMENT ~w~"}, --[[ Management ]]--
-	{1, "~o~OWNER ~w~"}, --[[ Owner ]]--
-}
 
 function playerRank(source) 
 	if IsPlayerAceAllowed(source, "tag.jefe") then
@@ -24,21 +16,6 @@ function playerRank(source)
 end
 
 prefixes = {}
-hasPrefix = {}
-alreadyGotRoles = {}
-
-function stringsplit(inputstr, sep)
-    if sep == nil then
-        sep = "%s"
-    end
-    local t={} ; i=1
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-        t[i] = str
-        i = i + 1
-    end
-    return t
-end
-
 hidePrefix = {}
 hideAll = {}
 
@@ -71,7 +48,6 @@ RegisterCommand("tag", function(source, args, rawCommand)
 		local src = source
 		local roleGive = playerRank(src)
 		table.insert(prefixes, {GetPlayerName(src), roleGive})
-		table.insert(alreadyGotRoles, GetPlayerName(src))
 		TriggerClientEvent("GetStaffID:StaffStr:Return", -1, prefixes, false)
 		---
 	
@@ -101,12 +77,10 @@ RegisterCommand("tags", function(source, args, rawCommand)
 	end
 end)
 
-AddEventHandler('playerConnecting', function(playerName, deferrals)
---AddEventHandler('chatMessage', function(source, name, msg)
+AddEventHandler('playerConnecting', function(source)
 	local src = source
 
 	local roleGive = playerRank(src)
 	table.insert(prefixes, {GetPlayerName(src), roleGive})
-	table.insert(alreadyGotRoles, GetPlayerName(src))
 	TriggerClientEvent("GetStaffID:StaffStr:Return", -1, prefixes, false)
 end)

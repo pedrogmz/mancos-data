@@ -29,6 +29,7 @@ Locales['es'] = {
   ['vehicle_menu'] = 'Vehículo',
   ['vehicle_blocked'] = 'Todos los puntos estan ocupados',
   ['garage_prompt'] = '~INPUT_CONTEXT~ para acceder al ~y~garaje~s~',
+  ['garage_prompt_delete'] = '~INPUT_CONTEXT~ para borrar el ~y~vehiculo~s~',
   ['garage_title'] = 'Acciones de vehículo',
   ['garage_stored'] = 'Almacenados',
   ['garage_notstored'] = 'No está en el garaje',
@@ -158,4 +159,6 @@ Locales['es'] = {
   ['e_to_exit_2'] = '~INPUT_PICKUP~ para ir a Comisaria.',
   ['e_to_enter_3'] = '~INPUT_PICKUP~ para ir a Paleto Bay.',
   ['e_to_exit_3'] = '~INPUT_PICKUP~ para ir a Comisaria.',
+  -- Nuevos Textos
+  ['only_police'] = 'Solo para vehiculos de policia',
 }

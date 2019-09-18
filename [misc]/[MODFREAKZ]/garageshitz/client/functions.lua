@@ -302,7 +302,7 @@ SpawnLocalVehicle = function(vehicleProps)
 	
 	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then 
 		ESX.ShowNotification("Please move the vehicle that is in the way.")
-
+		HandleCamera(cachedData["currentGarage"], false)
 		return
 	end
 	
@@ -330,7 +330,7 @@ SpawnVehicle = function(vehicleProps)
 	
 	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then 
 		ESX.ShowNotification("Please move the vehicle that is in the way.")
-
+		HandleCamera(cachedData["currentGarage"], false)
 		return
 	end
 	

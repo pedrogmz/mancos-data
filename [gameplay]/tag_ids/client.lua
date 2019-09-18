@@ -1,23 +1,22 @@
-local showPlayerBlips = false
-local ignorePlayerNameDistance = false
 local playerNamesDist = 2
-local displayIDHeight = 1.1 --Height of ID above players head(starts at center body mass)
---Set Default Values for Colors
-local red = 255
-local green = 255
-local blue = 255
+local displayIDHeight = 1.1 --Height of ID above players head (Starts at center body mass)
 
-function DrawText3D(x,y,z, text) 
-    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+prefixes = {}
+hidePrefix = {}
+hideAll = false
+prefixStr = ""
+
+function DrawText3D(x, y, z, red, green, blue, text)
+    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
-    local dist = GetDistanceBetweenCoords(px,py,pz, x,y,z, 1)
+    local dist = GetDistanceBetweenCoords(px, py, pz, x, y, z, 1)
 
     local scale = (1/dist)*2
     local fov = (1/GetGameplayCamFov())*100
     local scale = scale*fov
     
     if onScreen then
-        SetTextScale(0.0*scale, 0.55*scale)
+        SetTextScale(0.0 * scale, 0.55 * scale)
         SetTextFont(0)
         SetTextProportional(1)
         SetTextColour(red, green, blue, 255)
@@ -28,15 +27,10 @@ function DrawText3D(x,y,z, text)
         SetTextEntry("STRING")
         SetTextCentre(1)
         AddTextComponentString(text)
-		World3dToScreen2d(x,y,z, 0) --Added Here
-        DrawText(_x,_y)
+		World3dToScreen2d(x, y, z, 0)
+        DrawText(_x, _y)
     end
 end
-
-prefixes = {}
-hidePrefix = {}
-hideAll = false
-prefixStr = ""
 
 RegisterNetEvent("ID:Tags-Toggle")
 AddEventHandler("ID:Tags-Toggle", function(val, error)
@@ -83,43 +77,27 @@ Citizen.CreateThread(function()
 				
 				local playName = GetPlayerName(GetPlayerFromServerId(GetPlayerServerId(player)))
 				if ((distance < playerNamesDist)) then
-					if not (ignorePlayerNameDistance) then
-						if NetworkIsPlayerTalking(player) then
-							red = 0
-							green = 0
-							blue = 255
-							for i = 1, #prefixes do
-								if prefixes[i][1] == playName then
-									prefixStr = prefixes[i][2]
-								end
-							end
-							if not (has_value(hidePrefix, playName)) then
-								-- Show their ID tag with prefix then
-								DrawText3D(x2, y2, z2 + displayIDHeight, prefixStr .. "~b~[" .. GetPlayerServerId(player) .. "]")
-							else
-								-- Don't show their ID tag with prefix then
-								DrawText3D(x2, y2, z2 + displayIDHeight, "~b~[" .. GetPlayerServerId(player) .. "]")
-							end
-							prefixStr = ""
-						else
-							red = 255
-							green = 255
-							blue = 255
-							for i = 1, #prefixes do
-								if prefixes[i][1] == playName then
-									prefixStr = prefixes[i][2]
-								end
-							end
-							if not (has_value(hidePrefix, playName)) then
-								-- Show their ID tag with prefix then
-								DrawText3D(x2, y2, z2 + displayIDHeight, prefixStr .. "~w~[" .. GetPlayerServerId(player) .. "]")
-							else
-								-- Don't show their ID tag with prefix then
-								DrawText3D(x2, y2, z2 + displayIDHeight, "~w~[" .. GetPlayerServerId(player) .. "]")
-							end
-							prefixStr = ""
+					for i = 1, #prefixes do
+						if prefixes[i][1] == playName then
+							prefixStr = prefixes[i][2]
 						end
 					end
+					if not (has_value(hidePrefix, playName)) then
+						-- Show their ID tag with prefix then
+						if NetworkIsPlayerTalking(player) then
+							DrawText3D(x2, y2, z2 + displayIDHeight, 0, 0, 255, prefixStr .. "~b~[" .. GetPlayerServerId(player) .. "]")
+						else
+							DrawText3D(x2, y2, z2 + displayIDHeight, 255, 255, 255, prefixStr .. "~w~[" .. GetPlayerServerId(player) .. "]")
+						end
+					else
+						-- Don't show their ID tag with prefix then
+						if NetworkIsPlayerTalking(player) then
+							DrawText3D(x2, y2, z2 + displayIDHeight, 0, 0, 255, "~b~[" .. GetPlayerServerId(player) .. "]")
+						else
+							DrawText3D(x2, y2, z2 + displayIDHeight, 255, 255, 255, "~w~[" .. GetPlayerServerId(player) .. "]")
+						end
+					end
+					prefixStr = ""
 				end
 			end
 		end

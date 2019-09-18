@@ -256,246 +256,85 @@ function OpenArmoryMenu(station)
 	end)
 end
 
-function OpenVehicleSpawnerMenu(type, station, part, partNum)
-	local playerCoords = GetEntityCoords(PlayerPedId())
-	PlayerData = ESX.GetPlayerData()
-	local elements = {
-		{label = _U('garage_storeditem'), action = 'garage'},
-		{label = _U('garage_storeitem'), action = 'store_garage'}
-	}
-
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle', {
-		title    = _U('garage_title'),
-		align    = 'top-left',
-		elements = elements
-	}, function(data, menu)
-		if data.current.action == 'garage' then
-			local garage = {}
-
-			ESX.TriggerServerCallback('esx_vehicleshop:retrieveJobVehicles', function(jobVehicles)
-				if #jobVehicles > 0 then
-					for k,v in ipairs(jobVehicles) do
-						local props = json.decode(v.vehicle)
-						local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(props.model))
-						local label = ('%s - <span style="color:darkgoldenrod;">%s</span>: '):format(vehicleName, props.plate)
-
-						if v.stored then
-							label = label .. ('<span style="color:green;">%s</span>'):format(_U('garage_stored'))
-						else
-							label = label .. ('<span style="color:darkred;">%s</span>'):format(_U('garage_notstored'))
-						end
-
-						table.insert(garage, {
-							label = label,
-							stored = v.stored,
-							model = props.model,
-							vehicleProps = props
-						})
-					end
-
-					ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_garage', {
-						title    = _U('garage_title'),
-						align    = 'top-left',
-						elements = garage
-					}, function(data2, menu2)
-						if data2.current.stored then
-							local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(station, part, partNum)
-
-							if foundSpawn then
-								menu2.close()
-
-								ESX.Game.SpawnVehicle(data2.current.model, spawnPoint.coords, spawnPoint.heading, function(vehicle)
-									ESX.Game.SetVehicleProperties(vehicle, data2.current.vehicleProps)
-
-									TriggerServerEvent('esx_vehicleshop:setJobVehicleState', data2.current.vehicleProps.plate, false)
-									ESX.ShowNotification(_U('garage_released'))
-								end)
-							end
-						else
-							ESX.ShowNotification(_U('garage_notavailable'))
-						end
-					end, function(data2, menu2)
-						menu2.close()
-					end)
-				else
-					ESX.ShowNotification(_U('garage_empty'))
-				end
-			end, type)
-		elseif data.current.action == 'store_garage' then
-			StoreNearbyVehicle(playerCoords)
-		end
-	end, function(data, menu)
-		menu.close()
-	end)
-end
-
-function StoreNearbyVehicle(playerCoords)
-	local vehicles, vehiclePlates = ESX.Game.GetVehiclesInArea(playerCoords, 30.0), {}
-
-	if #vehicles > 0 then
-		for k,v in ipairs(vehicles) do
-
-			-- Make sure the vehicle we're saving is empty, or else it wont be deleted
-			if GetVehicleNumberOfPassengers(v) == 0 and IsVehicleSeatFree(v, -1) then
-				table.insert(vehiclePlates, {
-					vehicle = v,
-					plate = ESX.Math.Trim(GetVehicleNumberPlateText(v))
-				})
-			end
-		end
-	else
-		ESX.ShowNotification(_U('garage_store_nearby'))
-		return
-	end
-
-	ESX.TriggerServerCallback('esx_policejob:storeNearbyVehicle', function(storeSuccess, foundNum)
-		if storeSuccess then
-			local vehicleId = vehiclePlates[foundNum]
-			local attempts = 0
-			ESX.Game.DeleteVehicle(vehicleId.vehicle)
-			IsBusy = true
-
-			Citizen.CreateThread(function()
-				BeginTextCommandBusyString('STRING')
-				AddTextComponentSubstringPlayerName(_U('garage_storing'))
-				EndTextCommandBusyString(4)
-
-				while IsBusy do
-					Citizen.Wait(100)
-				end
-
-				RemoveLoadingPrompt()
-			end)
-
-			-- Workaround for vehicle not deleting when other players are near it.
-			while DoesEntityExist(vehicleId.vehicle) do
-				Citizen.Wait(500)
-				attempts = attempts + 1
-
-				-- Give up
-				if attempts > 30 then
-					break
-				end
-
-				vehicles = ESX.Game.GetVehiclesInArea(playerCoords, 30.0)
-				if #vehicles > 0 then
-					for k,v in ipairs(vehicles) do
-						if ESX.Math.Trim(GetVehicleNumberPlateText(v)) == vehicleId.plate then
-							ESX.Game.DeleteVehicle(v)
-							break
-						end
-					end
-				end
-			end
-
-			IsBusy = false
-			ESX.ShowNotification(_U('garage_has_stored'))
-		else
-			ESX.ShowNotification(_U('garage_has_notstored'))
-		end
-	end, vehiclePlates)
-end
-
-function GetAvailableVehicleSpawnPoint(station, part, partNum)
-	local spawnPoints = Config.PoliceStations[station][part][partNum].SpawnPoints
-	local found, foundSpawnPoint = false, nil
-
-	for i=1, #spawnPoints, 1 do
-		if ESX.Game.IsSpawnPointClear(spawnPoints[i].coords, spawnPoints[i].radius) then
-			found, foundSpawnPoint = true, spawnPoints[i]
-			break
-		end
-	end
-
-	if found then
-		return true, foundSpawnPoint
-	else
-		ESX.ShowNotification(_U('vehicle_blocked'))
-		return false
-	end
-end
-
-function OpenShopMenu(elements, restoreCoords, shopCoords)
+function IsInAuthorizedVehicle()
 	local playerPed = PlayerPedId()
-	isInShopMenu = true
-
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop', {
-		title    = _U('vehicleshop_title'),
-		align    = 'top-left',
-		elements = elements
-	}, function(data, menu)
-		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_shop_confirm', {
-			title    = _U('vehicleshop_confirm', data.current.name, data.current.price),
-			align    = 'top-left',
-			elements = {
-				{label = _U('confirm_no'), value = 'no'},
-				{label = _U('confirm_yes'), value = 'yes'}
-		}}, function(data2, menu2)
-			if data2.current.value == 'yes' then
-				local newPlate = exports['esx_vehicleshop']:GeneratePlate()
-				local vehicle  = GetVehiclePedIsIn(playerPed, false)
-				local props    = ESX.Game.GetVehicleProperties(vehicle)
-				props.plate    = newPlate
-
-				ESX.TriggerServerCallback('esx_policejob:buyJobVehicle', function (bought)
-					if bought then
-						ESX.ShowNotification(_U('vehicleshop_bought', data.current.name, ESX.Math.GroupDigits(data.current.price)))
-
-						isInShopMenu = false
-						ESX.UI.Menu.CloseAll()
-						DeleteSpawnedVehicles()
-						FreezeEntityPosition(playerPed, false)
-						SetEntityVisible(playerPed, true)
-
-						ESX.Game.Teleport(playerPed, restoreCoords)
-					else
-						ESX.ShowNotification(_U('vehicleshop_money'))
-						menu2.close()
-					end
-				end, props, data.current.type)
-			else
-				menu2.close()
-			end
-		end, function(data2, menu2)
-			menu2.close()
-		end)
-	end, function(data, menu)
-		isInShopMenu = false
-		ESX.UI.Menu.CloseAll()
-
-		DeleteSpawnedVehicles()
-		FreezeEntityPosition(playerPed, false)
-		SetEntityVisible(playerPed, true)
-
-		ESX.Game.Teleport(playerPed, restoreCoords)
-	end, function(data, menu)
-		DeleteSpawnedVehicles()
-		WaitForVehicleToLoad(data.current.model)
-
-		ESX.Game.SpawnLocalVehicle(data.current.model, shopCoords, 0.0, function(vehicle)
-			table.insert(spawnedVehicles, vehicle)
-			TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
-			FreezeEntityPosition(vehicle, true)
-			SetModelAsNoLongerNeeded(data.current.model)
-
-			if data.current.livery then
-				SetVehicleModKit(vehicle, 0)
-				SetVehicleLivery(vehicle, data.current.livery)
-			end
-		end)
-	end)
-
-	WaitForVehicleToLoad(elements[1].model)
-	ESX.Game.SpawnLocalVehicle(elements[1].model, shopCoords, 0.0, function(vehicle)
-		table.insert(spawnedVehicles, vehicle)
-		TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
-		FreezeEntityPosition(vehicle, true)
-		SetModelAsNoLongerNeeded(elements[1].model)
-
-		if elements[1].livery then
-			SetVehicleModKit(vehicle, 0)
-			SetVehicleLivery(vehicle, elements[1].livery)
+	local vehModel  = GetEntityModel(GetVehiclePedIsIn(playerPed, false))
+	local authorizedVehicles = Config.AuthorizedVehicles[PlayerData.job.grade_name]
+	
+	for k,vehicle in ipairs(authorizedVehicles) do
+		if vehModel == GetHashKey(vehicle.model) then
+			return true
 		end
+	end
+	
+	return false
+end
+
+function DeleteJobVehicle()
+	local playerPed = PlayerPedId()
+
+	if IsInAuthorizedVehicle() then
+		ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
+	else
+		ESX.ShowNotification(_U('only_police'))
+	end
+end
+
+function OpenVehicleSpawnerMenu(type, station, part, partNum)
+	ESX.UI.Menu.CloseAll()
+
+	local shopElements = {}
+	local authorizedVehicles = Config.AuthorizedVehicles[PlayerData.job.grade_name]
+	
+	if #Config.AuthorizedVehicles.Shared > 0 then
+		for k,vehicle in ipairs(Config.AuthorizedVehicles.Shared) do
+			table.insert(shopElements, {
+				label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+				name  = vehicle.label,
+				model = vehicle.model,
+				type  = 'car'
+			})
+		end
+	end
+	
+	if #authorizedVehicles > 0 then
+		for k,vehicle in ipairs(authorizedVehicles) do
+			table.insert(shopElements, {
+				label = ('%s - <span style="color:green;">%s</span>'):format(vehicle.label, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+				name  = vehicle.label,
+				model = vehicle.model,
+				type  = 'car'
+			})
+		end
+	else
+		if #Config.AuthorizedVehicles.Shared == 0 then
+			return
+		end
+	end
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_spawner', {
+		title		=_U('vehicleshop_title'),
+		align		= 'top-left',
+		elements	= shopElements
+	}, function(data, menu)
+		if not ESX.Game.IsSpawnPointClear(Config.PoliceStations[station][part][partNum].SpawnPoints[1].coords, 5.0) then
+			ESX.ShowNotification(_U('spawnpoint_blocked'))
+			return
+		end
+
+		menu.close()
+		DeleteSpawnedVehicles()
+		ESX.Game.SpawnVehicle(data.current.model,Config.PoliceStations[station][part][partNum].SpawnPoints[1].coords, Config.PoliceStations[station][part][partNum].SpawnPoints[1].heading, function(vehicle)
+			table.insert(spawnedVehicles, vehicle)
+			local playerPed = PlayerPedId()
+			TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
+		end)
+	end, function(data, menu)
+		CurrentAction     = 'vehicle_spawner'
+		CurrentActionMsg  = _U('spawner_prompt')
+		CurrentActionData = {}
+
+		menu.close()
 	end)
 end
 
@@ -1329,6 +1168,15 @@ AddEventHandler('esx_policejob:hasEnteredMarker', function(station, part, partNu
 		CurrentAction     = 'menu_vehicle_spawner'
 		CurrentActionMsg  = _U('garage_prompt')
 		CurrentActionData = {station = station, part = part, partNum = partNum}
+	elseif part == 'VehicleDeleter' then
+		local playerPed = PlayerPedId()
+		local vehicle   = GetVehiclePedIsIn(playerPed, false)
+		
+		if IsPedInAnyVehicle(playerPed, false) and GetPedInVehicleSeat(vehicle, -1) == playerPed then
+			CurrentAction     = 'vehicle_deleter'
+			CurrentActionMsg  = _U('garage_prompt_delete')
+			CurrentActionData = { vehicle = vehicle }
+		end
 	elseif part == 'Helicopters' then
 		CurrentAction     = 'Helicopters'
 		CurrentActionMsg  = _U('helicopter_prompt')
@@ -1660,6 +1508,19 @@ Citizen.CreateThread(function()
 						isInMarker, currentStation, currentPart, currentPartNum = true, k, 'Vehicles', i
 					end
 				end
+				
+				for i=1, #v.VehicleDeleter, 1 do
+					local distance = GetDistanceBetweenCoords(coords, v.VehicleDeleter[i].DeletePoint, true)
+
+					if distance < Config.DrawDistance then
+						DrawMarker(36, v.VehicleDeleter[i].DeletePoint, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+						letSleep = false
+					end
+
+					if distance < Config.MarkerSize.x then
+						isInMarker, currentStation, currentPart, currentPartNum = true, k, 'VehicleDeleter', i
+					end
+				end
 
 				for i=1, #v.Helicopters, 1 do
 					local distance =  GetDistanceBetweenCoords(coords, v.Helicopters[i].Spawner, true)
@@ -1805,8 +1666,8 @@ Citizen.CreateThread(function()
 					else
 						ESX.ShowNotification(_U('service_not'))
 					end
-				elseif CurrentAction == 'delete_vehicle' then
-					ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
+				elseif CurrentAction == 'vehicle_deleter' then
+					DeleteJobVehicle()
 				elseif CurrentAction == 'menu_boss_actions' then
 					ESX.UI.Menu.CloseAll()
 					TriggerEvent('esx_society:openBossMenu', 'police', function(data, menu)
@@ -2021,7 +1882,7 @@ Citizen.CreateThread(function()
           end
         end
 
-        if IsControlJustReleased(0, Keys["E"]) and isInPublicMarker then
+        if IsControlJustReleased(0, 38) and isInPublicMarker then
           TriggerEvent('esx_policejob:teleportMarkers', position)
         end
 
