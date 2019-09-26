@@ -145,38 +145,35 @@ Config.AuthorizedWeapons = {
 
 Config.AuthorizedVehicles = {
 	Shared = {
-		{ model = 'police', label = 'Police Cruiser', price = 10000 },
-		{ model = 'pbus', label = 'Police Prison Bus', price = 5000 }
+	
 	},
 
 	recruit = {
-
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	},
 
 	officer = {
-		{ model = 'police3', label = 'Police Interceptor', price = 20000 }
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	},
 
 	sergeant = {
-		{ model = 'policet', label = 'Police Transporter', price = 18500 },
-		{ model = 'policeb', label = 'Police Bike', price = 30500 }
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	},
 
 	intendent = {
-
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	},
 
 	lieutenant = {
-		{ model = 'riot', label = 'Police Riot', price = 70000 },
-		{ model = 'fbi2', label = 'FIB SUV', price = 60000 }
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	},
 
 	chef = {
-
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	},
 
 	boss = {
-
+		{ model = 'pdcharger', label = 'Police Charger', price = 10000 }
 	}
 }
 

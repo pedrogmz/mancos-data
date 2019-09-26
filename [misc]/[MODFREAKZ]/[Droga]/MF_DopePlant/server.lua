@@ -280,11 +280,11 @@ ESX.RegisterUsableItem('dopebag', function(source)
     xPlayer.removeInventoryItem('trimmedweed', MFD.WeedPerBag)
     xPlayer.addInventoryItem('bagofdope', 1)
     canUse = true
-    msg = "You put "..MFD.WeedPerBag.." trimmed weed into the ziplock bag"
+    msg = "Has puesto "..MFD.WeedPerBag.." de Marihuana en una Bolsa de cremallera."
   elseif xPlayer.getInventoryItem('trimmedweed').count > 0 then
-    msg = "You need scales to weigh the bag up correctly."
+    msg = "Necesitas una Báscula de precisión para pesar correctamente."
   else
-    msg = "You don't have enough trimmed weed to do this."
+    msg = "No tienes suficiente Marihuana para hacer esto."
   end
   TriggerClientEvent('MF_DopePlant:UseBag', source, canUse, msg)
 end)

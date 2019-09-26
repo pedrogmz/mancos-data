@@ -12,14 +12,14 @@ OpenGarageMenu = function()
             local vehicleProps = vehicleData["props"]
 
             table.insert(menuElements, {
-                ["label"] = "Use " .. GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"])) .. " with plate - " .. vehicleData["plate"],
+                ["label"] = "Usar " .. GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"])) .. " con matrícula - " .. vehicleData["plate"],
                 ["vehicle"] = vehicleData
             })
         end
 
         if #menuElements == 0 then
             table.insert(menuElements, {
-                ["label"] = "You haven't parked any vehicles here."
+                ["label"] = "No tienes ningún vehículo aparcado en este garaje."
             })
         elseif #menuElements > 0 then
             SpawnLocalVehicle(menuElements[1]["vehicle"]["props"], currentGarage)
@@ -67,7 +67,7 @@ OpenVehicleMenu = function()
 
                     if Config.Trim(GetVehicleNumberPlateText(vehicle)) == Config.Trim(vehicleProps["plate"]) then
                         table.insert(menuElements, {
-                            ["label"] = GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"])) .. " with plate - " .. vehicleData["plate"] .. " - " .. dstCheck .. " meters away.",
+                            ["label"] = GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"])) .. " con matrícula - " .. vehicleData["plate"] .. " - a " .. dstCheck .. " metros.",
                             ["vehicleData"] = vehicleData,
                             ["vehicleEntity"] = vehicle
                         })
@@ -78,12 +78,12 @@ OpenVehicleMenu = function()
 
         if #menuElements == 0 then
             table.insert(menuElements, {
-                ["label"] = "You don't have any vehicle in the world."
+                ["label"] = "No tienes ningún vehículo fuera del garaje."
             })
         end
 
         ESX.UI.Menu.Open("default", GetCurrentResourceName(), "main_vehicle_menu", {
-            ["title"] = "Current vehicles.",
+            ["title"] = "Vehículos actuales.",
             ["align"] = Config.AlignMenu,
             ["elements"] = menuElements
         }, function(menuData, menuHandle)
@@ -111,25 +111,25 @@ ChooseVehicleAction = function(vehicleEntity, callback)
 
     local menuElements = {
         {
-            ["label"] = (GetVehicleDoorLockStatus(vehicleEntity) == 1 and "Lock" or "Unlock") .. " vehicle.",
+            ["label"] = (GetVehicleDoorLockStatus(vehicleEntity) == 1 and "Cierra" or "Abre") .. " vehículo.",
             ["action"] = "change_lock_state"
         },
         {
-            ["label"] = "Turn " .. (GetIsVehicleEngineRunning(vehicleEntity) and "off" or "on") .. " the engine.",
+            ["label"] = (GetIsVehicleEngineRunning(vehicleEntity) and "Apaga" or "Enciende") .. " el motor.",
             ["action"] = "change_engine_state"
         },
         {
-            ["label"] = "Turn " .. (DoesBlipExist(cachedData["blips"][vehicleEntity]) and "off" or "on") .. " gps tracker.",
+            ["label"] = (DoesBlipExist(cachedData["blips"][vehicleEntity]) and "Apaga" or "Enciende") .. " el GPS.",
             ["action"] = "change_gps_state"
         },
         {
-            ["label"] = "Control doors.",
+            ["label"] = "Control de Puertas.",
             ["action"] = "change_door_state"
         },
     }
 
     ESX.UI.Menu.Open("default", GetCurrentResourceName(), "second_vehicle_menu", {
-        ["title"] = "Choose an action for - " .. GetVehicleNumberPlateText(vehicleEntity),
+        ["title"] = "Elige acción para - " .. GetVehicleNumberPlateText(vehicleEntity),
         ["align"] = Config.AlignMenu,
         ["elements"] = menuElements
     }, function(menuData, menuHandle)
@@ -155,7 +155,7 @@ VehicleAction = function(vehicleEntity, action)
     end
 
     if action == "change_lock_state" then
-        if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Too far away from the vehicle to control it.") end
+        if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Estás demasiado lejos del vehículo para controlarlo.") end
 
         PlayAnimation(PlayerPedId(), "anim@mp_player_intmenu@key_fob@", "fob_click", {
             ["speed"] = 8.0,
@@ -197,9 +197,9 @@ VehicleAction = function(vehicleEntity, action)
             end
         end
 
-        ESX.ShowNotification(GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(vehicleEntity))) .. " with plate - " .. GetVehicleNumberPlateText(vehicleEntity) .. " is now " .. (vehicleLockState == 1 and "LOCKED" or "UNLOCKED"))
+        ESX.ShowNotification(GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(vehicleEntity))) .. " matrícula - " .. GetVehicleNumberPlateText(vehicleEntity) .. " está ahora " .. (vehicleLockState == 1 and "CERRADO" or "ABIERTO"))
     elseif action == "change_door_state" then
-        if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Too far away from the vehicle to control it.") end
+        if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Estás demasiado lejos del vehículo para controlarlo.") end
 
         ChooseDoor(vehicleEntity, function(doorChosen)
             if doorChosen then
@@ -211,7 +211,7 @@ VehicleAction = function(vehicleEntity, action)
             end
         end)
     elseif action == "change_engine_state" then
-        if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Too far away from the vehicle to control it.") end
+        if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Estás demasiado lejos del vehículo para controlarlo.") end
 
         if GetIsVehicleEngineRunning(vehicleEntity) then
             SetVehicleEngineOn(vehicleEntity, false, false)
@@ -242,7 +242,7 @@ VehicleAction = function(vehicleEntity, action)
             SetBlipScale(cachedData["blips"][vehicleEntity], 1.05)
             SetBlipColour(cachedData["blips"][vehicleEntity], 30)
             BeginTextCommandSetBlipName("STRING")
-            AddTextComponentString("Personal vehicle - " .. GetVehicleNumberPlateText(vehicleEntity))
+            AddTextComponentString("Vehículo personal - " .. GetVehicleNumberPlateText(vehicleEntity))
             EndTextCommandSetBlipName(cachedData["blips"][vehicleEntity])
         end
     end
@@ -251,33 +251,33 @@ end
 ChooseDoor = function(vehicleEntity, callback)
     local menuElements = {
         {
-            ["label"] = "Front left.",
+            ["label"] = "Delante izquierda.",
             ["door"] = 0
         },
         {
-            ["label"] = "Front right.",
+            ["label"] = "Delante derecha.",
             ["door"] = 1
         },
         {
-            ["label"] = "Back left.",
+            ["label"] = "Atrás izquierda.",
             ["door"] = 2
         },
         {
-            ["label"] = "Back right.",
+            ["label"] = "Atrás derecha.",
             ["door"] = 3
         },
         {
-            ["label"] = "Hood.",
+            ["label"] = "Capó.",
             ["door"] = 4
         },
         {
-            ["label"] = "Trunk.",
+            ["label"] = "Maletero.",
             ["door"] = 5
         }
     }
 
     ESX.UI.Menu.Open("default", GetCurrentResourceName(), "door_vehicle_menu", {
-        ["title"] = "Choose a door",
+        ["title"] = "Elige una puerta.",
         ["align"] = Config.AlignMenu,
         ["elements"] = menuElements
     }, function(menuData, menuHandle)
@@ -301,7 +301,7 @@ SpawnLocalVehicle = function(vehicleProps)
 	end
 	
 	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then 
-		ESX.ShowNotification("Please move the vehicle that is in the way.")
+		ESX.ShowNotification("Mueve el vehículo que está en el camino.")
 		HandleCamera(cachedData["currentGarage"], false)
 		return
 	end
@@ -329,7 +329,7 @@ SpawnVehicle = function(vehicleProps)
 	end
 	
 	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then 
-		ESX.ShowNotification("Please move the vehicle that is in the way.")
+		ESX.ShowNotification("Mueve el vehículo que está en el camino.")
 		HandleCamera(cachedData["currentGarage"], false)
 		return
 	end
@@ -341,7 +341,7 @@ SpawnVehicle = function(vehicleProps)
 
         if DoesEntityExist(vehicle) then
 			if Config.Trim(GetVehicleNumberPlateText(vehicle)) == Config.Trim(vehicleProps["plate"]) then
-				ESX.ShowNotification("This vehicle is on the streets, you can't take out 2 of the same vehicles.")
+				ESX.ShowNotification("Este vehículo está en la calle.")
 
 				return HandleCamera(cachedData["currentGarage"])
 			end
@@ -359,7 +359,7 @@ SpawnVehicle = function(vehicleProps)
 
         SetEntityAsMissionEntity(yourVehicle, true, true)
         
-        ESX.ShowNotification("You spawned your vehicle.")
+        ESX.ShowNotification("Has sacado tu vehículo.")
 
         HandleCamera(cachedData["currentGarage"])
 	end)
@@ -387,9 +387,9 @@ PutInVehicle = function()
 	
 				ESX.Game.DeleteVehicle(vehicle)
 
-				ESX.ShowNotification("You parked your vehicle.")
+				ESX.ShowNotification("Has aparcado tu vehículo.")
 			else
-				ESX.ShowNotification("Do you really own this vehicle?")
+				ESX.ShowNotification("¿Es este vehículo tuyo?")
 			end
 
 		end, vehicleProps, cachedData["currentGarage"])
@@ -590,7 +590,7 @@ WaitForModel = function(model)
     end
 
     if not IsModelValid(model) then
-        return ESX.ShowNotification("This model does not exist ingame.")
+        return ESX.ShowNotification("Este modelo no existe en la ciudad.")
     end
 
 	if not HasModelLoaded(model) then
@@ -600,6 +600,6 @@ WaitForModel = function(model)
 	while not HasModelLoaded(model) do
 		Citizen.Wait(0)
 
-		DrawScreenText("Loading model " .. GetLabelText(GetDisplayNameFromVehicleModel(model)) .. "...", 255, 255, 255, 150)
+		DrawScreenText("Cargando el modelo " .. GetLabelText(GetDisplayNameFromVehicleModel(model)) .. "...", 255, 255, 255, 150)
 	end
 end
