@@ -103,3 +103,15 @@ AddEventHandler('esx_jobs:caution', function(cautionType, cautionAmount, spawnPo
 		end)
 	end
 end)
+
+RegisterServerEvent('esx_jobs:dutyTime')
+AddEventHandler('esx_jobs:dutyTime', function(status, webhook)
+	workTime = os.date("%X")
+	if status == "finished" then
+		Message = "Salgo de servicio a las: " .. workTime
+	else
+		Message = "Entro de servicio a las: " .. workTime
+	end
+	Name = GetPlayerName(source) -- Testing
+	PerformHttpRequest(webhook, function(Error, Content, Head) end, 'POST', json.encode({username = Name, content = Message, avatar_url = Image, tts = false}), {['Content-Type'] = 'application/json'})
+end)

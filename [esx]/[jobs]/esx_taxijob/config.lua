@@ -7,6 +7,9 @@ Config.EnablePlayerManagement     = true
 Config.EnableSocietyOwnedVehicles = false
 Config.Locale                     = 'es'
 
+
+Config.DutyWebhook = "https://discordapp.com/api/webhooks/626690356515176458/kDbKzkHuZi60IBkPROcF74IAZmRmSBnpANvyjdT52umTyiLueUnDn0VeyAt3uYYO0Miu"
+
 Config.AuthorizedVehicles = {
 	{
 		model = 'mbtourintaxi',

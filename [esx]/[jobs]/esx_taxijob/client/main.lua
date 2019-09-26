@@ -191,6 +191,8 @@ function OpenCloakroom()
 							}
 	
 							TriggerServerEvent('esx_service:notifyAllInService', notification, 'taxi')
+							TriggerServerEvent('esx_jobs:dutyTime', Config.DutyWebhook, 'started')
+							
 							ESX.ShowNotification(_U('service_in'))
 						end
 					end, 'taxi')
