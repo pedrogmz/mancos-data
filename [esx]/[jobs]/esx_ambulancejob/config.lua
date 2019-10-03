@@ -6,7 +6,7 @@ Config.Marker                     = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 1
 
 Config.ReviveReward               = 300  -- revive reward, set to 0 if you don't want it enabled
 Config.AntiCombatLog              = true -- enable anti-combat logging?
-Config.LoadIpl                    = true -- disable if you're using fivem-ipl or other IPL loaders
+Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
 Config.Locale                     = 'es'
 
@@ -26,6 +26,8 @@ Config.RemoveItemsAfterRPDeath    = true
 -- Let the player pay for respawning early, only if he can afford it.
 Config.EarlyRespawnFine           = false
 Config.EarlyRespawnFineAmount     = 5000
+
+Config.RemoveTattooCost = 200
 
 Config.RespawnPoint = { coords = vector3(353.19, -565.13, 28.79), heading = 48.13 }
 
@@ -50,7 +52,9 @@ Config.Hospitals = {
 			vector3(334.44, -587.12, 27.79)
 		},
 
-
+		RemoveTattoo = {
+			vector3(347.57, -575.32, 28.1)
+		},
 
 		Vehicles = {
 			{

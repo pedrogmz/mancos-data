@@ -5,6 +5,3 @@ client_script 'cl_AntiCrab.lua'
 server_script 'config.lua'
 server_script 'sv_AntiCrab.lua'
 
-dependencies {
-    			'EasyAdmin'
-}

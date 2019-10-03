@@ -415,7 +415,19 @@ Citizen.CreateThread(function()
 				end
 			end
 
+			-- tattoo
+			for k,v in ipairs(hospital.RemoveTattoo) do
+				local distance = GetDistanceBetweenCoords(playerCoords, v, true)
 
+				if distance < Config.DrawDistance then
+					DrawMarker(Config.Marker.type, v, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.1, 1.1, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, Config.Marker.rotate, nil, nil, false)
+					letSleep = false
+				end
+
+				if distance < Config.Marker.x then
+					isInMarker, currentHospital, currentPart, currentPartNum = true, hospitalNum, 'RemoveTattoo', k
+				end
+			end
 
 			-- Vehicle Spawners
 			for k,v in ipairs(hospital.Vehicles) do
@@ -538,6 +550,11 @@ AddEventHandler('esx_ambulancejob:hasEnteredMarker', function(hospital, part, pa
 			CurrentActionData = {to = travelItem.To.coords, heading = travelItem.To.heading}
 		end
 	end
+	if part == 'RemoveTattoo' then
+		CurrentAction = part
+		CurrentActionMsg = "Pulsa ~INPUT_CONTEXT~ para remover el tattoo."
+		CurrentActionData = {}
+	end
 end)
 
 AddEventHandler('esx_ambulancejob:hasExitedMarker', function(hospital, part, partNum)
@@ -560,6 +577,8 @@ Citizen.CreateThread(function()
 
 				if CurrentAction == 'AmbulanceActions' then
 					OpenAmbulanceActionsMenu()
+				elseif CurrentAction == 'RemoveTattoo' then
+					TriggerEvent('esx_tattooshop:openPlayerTattooMenu')
 				elseif CurrentAction == 'Baul' then
 					BaulAbrirMenu()
 				elseif CurrentAction == 'Vehicles' then

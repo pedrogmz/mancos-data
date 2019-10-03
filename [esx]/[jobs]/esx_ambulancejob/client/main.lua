@@ -12,6 +12,19 @@ Keys = {
 
 local FirstSpawn, PlayerLoaded = true, false
 
+-- tattoo test
+local bedOccupying = nil
+local bedObject = nil
+local bedOccupyingData = nil
+
+local cam = nil
+
+local inBedDict = "anim@gangops@morgue@table@"
+local inBedAnim = "ko_front"
+local getOutDict = 'switch@franklin@bed'
+local getOutAnim = 'sleep_getup_rubeyes'
+-- tattoo test
+
 IsDead = false
 ESX = nil
 
@@ -404,3 +417,98 @@ function openAmbulance()
 		GUI.Time = GetGameTimer()
 	end
 end
+
+-- tattoo
+
+--[[function OpenRemoveTattooMenu()
+	local elements = {}
+	
+	ESX.TriggerServerCallback('esx_tattooshop:requestPlayerTattoos', function(tattooList)
+		if tattooList then
+			for k,v in pairs(tattooList) do
+				table.insert(elements, {
+					label = 'Tattoo ' .. x,
+					value = items[i].name
+				})
+			end
+		end
+	end)
+
+	ESX.UI.Menu.CloseAll()
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'ambulance_actions', {
+		title    = 'Tattoos a remover',
+		align    = 'top-left',
+		elements = elements
+	}, function(data, menu)
+		if data.current.value == 'put_stock' then
+			OpenPutStocksMenu()
+		elseif data.current.value == 'get_stock' then
+			OpenGetStocksMenu()
+		end
+		
+		currentTattoo = data.current.value
+	end, function(data, menu)
+		menu.close()
+	end)
+end]]
+
+RegisterNetEvent('esx_ambulancejob:LeaveBed')
+AddEventHandler('esx_ambulancejob:LeaveBed', function()
+    RequestAnimDict(getOutDict)
+    while not HasAnimDictLoaded(getOutDict) do
+        Citizen.Wait(0)
+    end
+
+    RenderScriptCams(0, true, 200, true, true)
+    DestroyCam(cam, false)
+
+    SetEntityInvincible(PlayerPedId(), false)
+
+    SetEntityHeading(PlayerPedId(), bedOccupyingData.h - 90)
+    TaskPlayAnim(PlayerPedId(), getOutDict , getOutAnim ,8.0, -8.0, -1, 0, 0, false, false, false )
+    Citizen.Wait(5000)
+    ClearPedTasks(PlayerPedId())
+    FreezeEntityPosition(PlayerPedId(), false)
+    TriggerServerEvent('esx_ambulancejob:LeaveBed', bedOccupying)
+
+    FreezeEntityPosition(bedObject, false)
+
+    bedOccupying = nil
+    bedObject = nil
+    bedOccupyingData = nil
+end)
+
+RegisterNetEvent('esx_ambulancejob:sendToBed')
+AddEventHandler('esx_ambulancejob:sendToBed', function(id, data)
+    bedOccupying = id
+    bedOccupyingData = data
+
+    bedObject = GetClosestObjectOfType(data.x, data.y, data.z, 1.0, data.model, false, false, false)
+    FreezeEntityPosition(bedObject, true)
+
+    SetEntityCoords(PlayerPedId(), data.x, data.y, data.z)
+    RequestAnimDict(inBedDict)
+    while not HasAnimDictLoaded(inBedDict) do
+        Citizen.Wait(0)
+    end
+    TaskPlayAnim(PlayerPedId(), inBedDict , inBedAnim ,8.0, -8.0, -1, 1, 0, false, false, false )
+    SetEntityHeading(PlayerPedId(), data.h + 180)
+    SetEntityInvincible(PlayerPedId(), true)
+
+    cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
+    SetCamActive(cam, true)
+    RenderScriptCams(true, false, 1, true, true)
+    AttachCamToPedBone(cam, PlayerPedId(), 31085, 0, 0, 1.0 , true)
+    SetCamFov(cam, 90.0)
+    SetCamRot(cam, -90.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
+
+    Citizen.CreateThread(function ()
+        Citizen.Wait(5)
+        local player = PlayerPedId()
+
+		TriggerEvent('esx:showNotification', '~r~Los doctores te estan quitando el tatuaje')
+        Citizen.Wait(2000)
+        TriggerServerEvent('esx_ambulancejob:enteredBed')
+    end)
+end)

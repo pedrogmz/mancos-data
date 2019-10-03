@@ -1,3 +1,9 @@
+local beds = {
+    { x = 347.07, y = -575.89, z = 28.79, h = 75.0, taken = false, model = -1091386327 },
+}
+
+local bedsTaken = {}
+
 ESX = nil
 local playersHealing = {}
 
@@ -390,4 +396,32 @@ AddEventHandler('esx_ambulancejob:setDeathStatus', function(isDead)
 		['@identifier'] = identifier,
 		['@isDead'] = isDead
 	})
+end)
+
+-- tattoo
+RegisterServerEvent('esx_ambulancejob:requestBed')
+AddEventHandler('esx_ambulancejob:requestBed', function()
+    for k, v in pairs(beds) do
+        if not v.taken then
+            v.taken = true
+            bedsTaken[source] = k
+            TriggerClientEvent('esx_ambulancejob:sendToBed', source, k, v)
+            return
+        end
+    end
+
+	TriggerClientEvent('esx:showNotification', source, '~r~That Bed Is Taken')
+end)
+
+RegisterServerEvent('esx_ambulancejob:enteredBed')
+AddEventHandler('esx_ambulancejob:enteredBed', function()
+    local src = source
+
+	TriggerClientEvent('esx:showNotification', src, '~w~Tu tatuaje fue removido')
+	TriggerClientEvent('esx_ambulancejob:LeaveBed', src)
+end)
+
+RegisterServerEvent('esx_ambulancejob:LeaveBed')
+AddEventHandler('esx_ambulancejob:LeaveBed', function(id)
+    beds[id].taken = false
 end)

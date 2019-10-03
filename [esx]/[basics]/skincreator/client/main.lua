@@ -1328,7 +1328,6 @@ AddEventHandler('playerSpawned', function()
 					TriggerEvent('skinchanger:loadSkin', {sex = 0})
 				else
 					TriggerEvent('skinchanger:loadSkin', skin)
-					print('this triggered when dead')
 				end
 			end)
 
@@ -1340,7 +1339,6 @@ end)
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
 	playerLoaded = true
-	print('this triggered when dead')
 end)
 
 AddEventHandler('esx_skin:getLastSkin', function(cb)
