@@ -51,6 +51,8 @@ function OpenAnimationsMenu()
 	for i=1, #Config.Animations, 1 do
 		table.insert(elements, {label = Config.Animations[i].label, value = Config.Animations[i].name})
 	end
+	
+	TriggerEvent('mancos_ui:openMenu', 'animations')
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'animations',
 	{
@@ -61,6 +63,7 @@ function OpenAnimationsMenu()
 		OpenAnimationsSubMenu(data.current.value)
 	end, function(data, menu)
 		menu.close()
+		TriggerEvent('mancos_ui:openMenu', 'animations')
 	end)
 end
 

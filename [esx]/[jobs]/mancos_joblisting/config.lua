@@ -6,5 +6,5 @@ Config.MarkerColor  = {r = 100, g = 100, b = 204}
 Config.MarkerType   = 27
 
 Config.Zones = {
-	vector3(-265.0, -963.6, 30.2)
+	vector3(-265.0, -963.6, 30.3)
 }

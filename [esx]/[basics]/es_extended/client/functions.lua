@@ -1020,6 +1020,8 @@ end
 ESX.ShowInventory = function()
 	local playerPed = PlayerPedId()
 	local elements  = {}
+	
+	TriggerEvent('mancos_ui:openMenu', 'inventory')
 
 	if ESX.PlayerData.money > 0 then
 		local formattedMoney = _U('locale_currency', ESX.Math.GroupDigits(ESX.PlayerData.money))
@@ -1313,6 +1315,7 @@ ESX.ShowInventory = function()
 
 	end, function(data, menu)
 		menu.close()
+		TriggerEvent('mancos_ui:openMenu', 'inventory')
 	end)
 end
 

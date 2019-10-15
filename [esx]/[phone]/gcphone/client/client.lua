@@ -79,6 +79,7 @@ Citizen.CreateThread(function()
       if IsControlJustPressed(1, KeyOpenClose) then
         hasPhone(function (hasPhone)
           if hasPhone == true then
+			TriggerEvent('mancos_ui:openMenu', 'phone')
             TooglePhone()
           else
             ShowNoPhoneWarning()
@@ -660,7 +661,8 @@ end)
 
 
 
-function TooglePhone() 
+function TooglePhone()
+	TriggerEvent('mancos_ui:openMenu', 'phone')
   menuIsOpen = not menuIsOpen
   SendNUIMessage({show = menuIsOpen})
   if menuIsOpen == true then 
@@ -677,6 +679,7 @@ RegisterNUICallback('faketakePhoto', function(data, cb)
 end)
 
 RegisterNUICallback('closePhone', function(data, cb)
+	TriggerEvent('mancos_ui:openMenu', 'phone')
   menuIsOpen = false
   SendNUIMessage({show = false})
   PhonePlayOut()
