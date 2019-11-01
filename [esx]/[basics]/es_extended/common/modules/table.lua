@@ -1,5 +1,15 @@
 ESX.Table = {}
 
+function ESX.Table.ContainsValue(t, value)	
+	for k, v in pairs(t) do	
+		if v == value then	
+			return true	
+		end	
+	end	
+
+	return false	
+end
+
 -- nil proof alternative to #table
 function ESX.Table.SizeOf(t)
 	local count = 0

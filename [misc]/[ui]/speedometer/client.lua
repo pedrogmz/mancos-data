@@ -84,24 +84,14 @@ Citizen.CreateThread(function()
 	end
 end)
 
-RegisterNetEvent("speedometer:showFuel")
-AddEventHandler("speedometer:showFuel",function(fuel)
-	SendNUIMessage({
-		showfuel = true,
-		fuel = fuel
-	})
-end)
-
 -- Consume fuel factor
---[[Citizen.CreateThread(function()
+Citizen.CreateThread(function()
 	while true do
 		local Ped = GetPlayerPed(-1)
 		if(IsPedInAnyVehicle(Ped)) then
 			local PedCar = GetVehiclePedIsIn(Ped, false)
 			if PedCar and GetPedInVehicleSeat(PedCar, -1) == Ped then
-				carSpeed = math.ceil(GetEntitySpeed(PedCar) * 3.6)
 				fuel = GetVehicleFuelLevel(PedCar)
-				TriggerServerEvent("vehicule:getFuel", GetVehicleNumberPlateText(GetVehiclePedIsUsing(GetPlayerPed(-1))), GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(GetPlayerPed(-1)))))
 
 				SendNUIMessage({
 					showfuel = true,
@@ -112,4 +102,4 @@ end)
 
 		Citizen.Wait(1)
 	end
-end)]]
+end)

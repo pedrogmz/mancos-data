@@ -1,5 +1,5 @@
 {
-  "reseau": "Gannon",
+  "reseau": "MancosRP",
   "warningMessageCount": 250,
   "themeColor": "#303f9f",
   "colors": [
@@ -34,7 +34,7 @@
   },
 
   "//": "REQUIRE https://github.com/citizenfx/screenshot-basic or set false",
-  "enableTakePhoto": true,
+  "enableTakePhoto": false,
   "fileUploadService_Url": "https://wew.wtf/upload.php",
   "fileUploadService_Field": "files[]",
 
@@ -61,50 +61,10 @@
     "value": "s8.png"
   },
 
-
-  "serviceCall": [{
-      "display": "Police",
-      "icon": "/html/static/img/icons_app/police.png",
-      "subMenu": [{
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "police"
-          }
-        },
-        {
-          "title": "Appeler le standard",
-          "eventName": "gcphone:autoCallNumber",
-          "type": {
-            "number": "911"
-          }
-        }
-      ]
-    },
-    {
-      "display": "Ambulance",
-      "backgroundColor": "red",
-      "subMenu": [{
-        "title": "Envoyer un message",
-        "eventName": "esx_addons_gcphone:call",
-        "type": {
-          "number": "ambulance"
-        }
-      }]
-    }
+  "serviceCall": [
   ],
 
-  "defaultContacts": [{
-      "number": "ambulance",
-      "display": "Ambulance",
-      "icon": "/html/static/img/icons_app/bank.png"
-    },
-    {
-      "number": "police",
-      "display": "Police",
-      "backgroundColor": "blue",
-      "letter": "P"
-    }
+  "defaultContacts": [
   ],
 
   "apps": [{
@@ -216,7 +176,7 @@
       "routeName": "9gag"
     }
   ],
-  "defaultLanguage": "en_US",
+  "defaultLanguage": "es_ES",
   "language": {
      "fr_FR": {
       "NAME": "Français",

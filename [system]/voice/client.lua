@@ -14,7 +14,7 @@ local Keys = {
 local r,g,b,a = 166,166,255,255 -- rgba color
 
 -- ranges
-local voice = {default = 5.0, shout = 12.0, whisper = 1.0, current = 0}
+local voice = {default = 6.0, shout = 17.0, whisper = 1.0, current = 0}
 
 AddEventHandler('onClientMapStart', function()
 	if voice.current == 0 then

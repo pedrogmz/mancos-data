@@ -68,7 +68,7 @@ AddEventHandler('esx_status:load', function(status)
   			status = GetStatusData()
   		})
 
-  		TriggerEvent('esx_ui:updateStatus', GetStatusData(true))
+  		TriggerEvent('mancos_ui:updateStatus', GetStatusData(true))
   		Citizen.Wait(Config.TickTime)
   	end
   end)
