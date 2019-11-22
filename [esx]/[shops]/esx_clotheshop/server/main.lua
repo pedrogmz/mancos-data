@@ -24,10 +24,9 @@ end)
 
 ESX.RegisterServerCallback('esx_clotheshop:buyClothes', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local coins = xPlayer.getAccount('coins')
 
-	if coins.money >= Config.Price then
-		xPlayer.removeAccountMoney('coins', Config.Price)
+	if xPlayer.getMoney() >= Config.Price then
+		xPlayer.removeMoney(Config.Price)
 		TriggerClientEvent('esx:showNotification', source, _U('you_paid', Config.Price))
 		cb(true)
 	else

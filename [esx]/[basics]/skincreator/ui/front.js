@@ -30,6 +30,7 @@ $('.arrow-left').on('click', function (e) {
 });
 
 // Arrows for clothes module
+
 $('.arrowvetement-right').on('click', function (e) {
   var li = $(this).parent().find('li.active'),
     active = li.next(),
@@ -45,6 +46,7 @@ $('.arrowvetement-right').on('click', function (e) {
     $(this).parent().parent().find('.vetements-value').text(id + '/' + max)
   }
 });
+
 $('.arrowvetement-left').on('click', function (e) {
   var li = $(this).parent().find('li.active'),
     active = li.prev(),

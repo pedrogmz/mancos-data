@@ -13,20 +13,60 @@ emsonline = 0
 policeonline = 0
 taxionline = 0
 mecanoonline = 0
+barmanonline = 0
+cardeleronline = 0
+tenderonline = 0
 
 -- Get jobs data every 10 secconds
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10000)
+
+		TriggerServerEvent('mancosui:getusers')
+
+		--[[
+
 		ESX.TriggerServerCallback('esx_service:getInServiceCount', function(inServiceCount)
 			policeonline = inServiceCount['police']
 			emsonline = inServiceCount['ambulance']
 			taxionline = inServiceCount['taxi']
 			mechaniconline = inServiceCount['mechanic']
+			barmanonline = inServiceCount['barman']
+			cardeleronline = inServiceCount['cardealer']
+			tenderonline = inServiceCount['unemployed']
+
 		end)
-		SendNUIMessage({action = "updateJobsOnline", emsonline = emsonline, policeonline = policeonline, taxionline = taxionline, mechaniconline = mechaniconline})
+		
+		SendNUIMessage({
+			action = "updateJobsOnline", 
+			emsonline = emsonline, 
+			policeonline = policeonline, 
+			taxionline = taxionline, 
+			mechaniconline = mechaniconline,
+			barmanonline = barmanonline,
+			cardeleronline = cardeleronline,
+			tenderonline = unemployedonline
+		})
+		]]--
 	end
 end)
+
+RegisterNetEvent('mancosui:sendjobs')
+AddEventHandler('mancosui:sendjobs', function(data)
+
+	SendNUIMessage({
+		action = "updateJobsOnline", 
+		emsonline = data.emsonline, 
+		policeonline = data.policeonline, 
+		taxionline = data.taxionline, 
+		mechaniconline = data.mechaniconline,
+		barmanonline = data.barmanonline,
+		cardeleronline = data.cardeleronline,
+		tenderonline = data.tenderonline
+	})
+
+end)
+
 
 Citizen.CreateThread(function()
     while true do
@@ -47,7 +87,6 @@ Citizen.CreateThread(function()
 		status['health'] = GetEntityHealth(GetPlayerPed(-1)) - 100
 		status['stamina'] = 100 - GetPlayerSprintStaminaRemaining(PlayerId())
 		SendNUIMessage({action = "updateHealth", status = status})
-
 	end
 end)
 
@@ -65,6 +104,7 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 
 	-- Job
 	local job = data.job
+	
 	SendNUIMessage({action = "setValue", key = "job", value = job.grade_label, icon = job.name})
 
 	-- Money
@@ -77,6 +117,8 @@ AddEventHandler('esx:setAccountMoney', function(account)
 		SendNUIMessage({action = "setValue", key = "coins", value = account.money})
 	end
 end)
+
+
 
 RegisterNetEvent('mancos_ui:openMenu')
 AddEventHandler('mancos_ui:openMenu', function(menu)

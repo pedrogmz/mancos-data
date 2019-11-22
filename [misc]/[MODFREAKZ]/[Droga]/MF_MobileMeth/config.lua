@@ -19,7 +19,7 @@ MFM.ShowBlip = false
 
 -- Police count and name
 MFM.PoliceJobName = "police"
-MFM.MinPolCount   = 0
+MFM.MinPolCount   = 3
 
 -- Minutes.
 MFM.CookTimerA = 0.5 -- prepare ingredients
@@ -28,7 +28,7 @@ MFM.CookTimerC = 0.5 -- cool meth
 MFM.CookTimerD = 0.5 -- package meth
 
 -- The door.
-MFM.HintLocation      =   vector4(-68.26,-1208.83,28.12, 134.55)
+MFM.HintLocation      =   vector4(2434.46,5011.6,46.83, 134.55)
 
 -- Possible spawns.
 MFM.TruckLocations    =   {

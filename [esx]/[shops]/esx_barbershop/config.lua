@@ -1,13 +1,13 @@
 Config = {}
 
-Config.Price = 100
+Config.Price = 200
 
 Config.DrawDistance = 100.0
-Config.MarkerSize   = vector3(1.5, 1.5, 1.0)
+Config.MarkerSize   = vector3(2.5, 2.5, 1.0)
 Config.MarkerColor  = {r = 102, g = 102, b = 204}
 Config.MarkerType   = 1
 
-Config.Locale = 'fr'
+Config.Locale = 'es'
 
 Config.Shops = {
 	vector3(-814.3, -183.8, 36.6),

@@ -99,6 +99,7 @@ Citizen.CreateThread(function()
 	while true do
 		if guiEnabled then
 			DisableControlAction(0, 1,   true) -- LookLeftRight
+			DisableControlAction(0, 245,   true) -- Chat [Arnedo5]
 			DisableControlAction(0, 2,   true) -- LookUpDown
 			DisableControlAction(0, 106, true) -- VehicleMouseControlOverride
 			DisableControlAction(0, 142, true) -- MeleeAttackAlternate

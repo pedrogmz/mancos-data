@@ -81,6 +81,7 @@ function OpenShopMenu()
 		'lipstick_4',
 		'ears_1',
 		'ears_2',
+		'skin',
 	})
 end
 

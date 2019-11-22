@@ -37,7 +37,7 @@ TriggerEvent('es:addCommand', 'report', function(source, args, user)
 end, {help = "Report a player or an issue", params = {{name = "report", help = "What you want to report"}}})
 
 -- Noclip
-TriggerEvent('es:addGroupCommand', 'noclip', "mod", function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'noclip', "support", function(source, args, user)
 	TriggerClientEvent("es_admin:noclip", source)
 end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Insufficienct permissions!"} })
@@ -61,7 +61,7 @@ end, function(source, args, user)
 end, {help = "Admin chat"})
 
 -- Kicking
-TriggerEvent('es:addGroupCommand', 'kick', "mod", function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'kick', "support", function(source, args, user)
 	if args[1] then
 		if(tonumber(args[1]) and GetPlayerName(tonumber(args[1])))then
 			local player = tonumber(args[1])
@@ -94,7 +94,7 @@ end, {help = "Kick a user with the specified reason or no reason", params = {{na
 
 -- Freezing
 local frozen = {}
-TriggerEvent('es:addGroupCommand', 'freeze', "mod", function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'freeze', "support", function(source, args, user)
 	if args[1] then
 		if(tonumber(args[1]) and GetPlayerName(tonumber(args[1])))then
 			local player = tonumber(args[1])

@@ -1,0 +1,103 @@
+a {
+    color: #00baac;
+}
+
+.container {
+    margin-top: 15%;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ------------------------------------------- */
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #00baac;
+    -webkit-box-shadow: 0 1px 0 0 #00baac;
+    box-shadow: 0 1px 0 0 #00baac;
+}
+
+input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label, input[type=email]:not(.browser-default):focus:not([readonly])+label, input[type=url]:not(.browser-default):focus:not([readonly])+label, input[type=time]:not(.browser-default):focus:not([readonly])+label, input[type=date]:not(.browser-default):focus:not([readonly])+label, input[type=datetime]:not(.browser-default):focus:not([readonly])+label, input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, input[type=tel]:not(.browser-default):focus:not([readonly])+label, input[type=number]:not(.browser-default):focus:not([readonly])+label, input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #00baac;
+}
+
+
+/* Preloader */
+.container-loader {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.ball-loader {
+    width: 50px;
+    height: 6.6666666667px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+  }
+  
+  .ball-loader-ball {
+    will-change: transform;
+    height: 6.6666666667px;
+    width: 6.6666666667px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    -webkit-animation: grow 1s ease-in-out infinite alternate;
+            animation: grow 1s ease-in-out infinite alternate;
+  }
+  .ball-loader-ball.ball1 {
+    left: 0;
+    -webkit-transform-origin: 100% 50%;
+            transform-origin: 100% 50%;
+  }
+  .ball-loader-ball.ball2 {
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale(1);
+            transform: translateX(-50%) scale(1);
+    -webkit-animation-delay: 0.33s;
+            animation-delay: 0.33s;
+  }
+  .ball-loader-ball.ball3 {
+    right: 0;
+    -webkit-animation-delay: 0.66s;
+            animation-delay: 0.66s;
+  }
+  
+  @-webkit-keyframes grow {
+    to {
+      -webkit-transform: translateX(-50%) scale(0);
+              transform: translateX(-50%) scale(0);
+    }
+  }
+  
+  @keyframes grow {
+    to {
+      -webkit-transform: translateX(-50%) scale(0);
+              transform: translateX(-50%) scale(0);
+    }
+  }
+  

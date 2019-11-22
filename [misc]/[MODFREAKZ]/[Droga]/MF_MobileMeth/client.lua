@@ -45,7 +45,7 @@ function MFM:Update(...)
       local dist = Utils.GetVecDist(plyPos, self.HintLocation)
       if dist < self.DrawTextDist then
         local p = self.HintLocation
-        Utils.DrawText3D(p.x,p.y,p.z, " [~r~E~s~]  para llamar en la puerta")
+        Utils.DrawText3D(p.x,p.y,p.z, "[~r~E~s~]  para llamar en la puerta")
         if IsControlJustPressed(0, Keys["E"]) and GetGameTimer() - timer > 150 then    
           ESX.TriggerServerCallback('MF_MobileMeth:GetCops',function(count)
             if count and count >= self.MinPolCount then 
@@ -67,7 +67,7 @@ function MFM:Update(...)
               local randNum = math.random(1,#self.TruckLocations)
               local spawnLoc = self.TruckLocations[randNum]
               local nearStreet = GetStreetNameFromHashKey(GetStreetNameAtCoord(spawnLoc.x,spawnLoc.y,spawnLoc.z))
-              noteTemplate.text = " Encuentra el vehículo cerca de "..nearStreet..".\nNo tardes."
+              noteTemplate.text = "Encuentra el vehículo cerca de "..nearStreet..".\nNo tardes."
 
               self.MissionStarted = {
                 TruckLoc = spawnLoc,
@@ -84,7 +84,7 @@ function MFM:Update(...)
                 Utils.DrawText(noteTemplate)
               end
             else
-              ESX.ShowNotification("No hay suficiente policia.'")
+              ESX.ShowNotification("No hay nadie dentro. ~r~Vuelve más tarde~w~")
             end
           end)          
         end
@@ -199,7 +199,7 @@ function MFM:BeginCooking(driver)
                 self.CanCont = true
                 --doBreak = "The vehicle was driving too slow to continue." 
                 --driverMsg = "The vehicle was driving too slow to continue." 
-                ESX.ShowNotification('Alguien te ha denunciado. Muevete!.')
+                ESX.ShowNotification('Alguien te ha denunciado. ¡Muevete!.')
                 Citizen.Wait(1000)
                 TriggerServerEvent('MF_MobileMeth:NotifyPolice', GetEntityCoords(GetPlayerPed(-1)))
                 TriggerServerEvent('MF_Trackables:Notify','911',coordsHere,'police')

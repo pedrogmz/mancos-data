@@ -1,0 +1,2 @@
+el main.lua es para cobrar en $ para guardar los conjuntos
+el main.COINS.lua es para cobrar en monedas de donación para guardar los conjuntos

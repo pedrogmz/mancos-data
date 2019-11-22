@@ -4,6 +4,7 @@ files {
     'html/fonts/gta-ui.ttf',
     "html/ui.html",
     "html/ui.css",
+	"html/materialize.css",
     "html/ui.js",
     "html/images/barman.png",
     "html/images/barra_coins.png",
@@ -33,6 +34,8 @@ files {
     "html/images/telefono_2.png",
     "html/images/vendedor_coches.png",
 }
+
+server_script 'server/server.lua'
 
 client_script {
     'client/client.lua',

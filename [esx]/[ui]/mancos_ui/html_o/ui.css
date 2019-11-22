@@ -1,0 +1,222 @@
+@font-face {
+    font-family: 'gta-ui';
+    src: url('./fonts/gta-ui.ttf');
+}
+
+body {
+    overflow: hidden;
+    width:100%;
+}
+
+.container {
+	position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+	height: 44px;
+}
+
+.taskbar {
+    overflow: hidden;
+    width:100%;
+    background-image: url(images/Taskbar_vacia.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 48px;
+    bottom: 0%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.right_panel {
+	position:relative;
+	right: 4%;
+    float: right;
+	display: inline-flex;
+}
+
+.left_panel {
+	position: relative;
+	left: 1%;
+	float: left;
+	display: inline-flex;
+}
+
+/* left panel */
+.status_bar {
+    width: 18vw;
+    margin-right: 5px;
+}
+
+#health_bar { background-image: url(images/barra_vida_llena.png) }
+#health_bar_empty { background-image: url(images/barra_vida_vacia.png) }
+
+#hunger_bar { background-image: url(images/barra_hambre_llena.png) }
+#hunger_bar_empty { background-image: url(images/barra_hambre_vacia.png) }
+
+#thirst_bar { background-image: url(images/barra_sed_llena.png) }
+#thirst_bar_empty { background-image: url(images/barra_sed_vacia.png) }
+
+#stamina_bar { background-image: url(images/barra_energia_llena.png) }
+#stamina_bar_empty { background-image: url(images/barra_energia_vacia.png) }
+
+.left_panel .barra {
+    display: inline-block;
+    width: calc(100% - 3px);
+    height: 17px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.left_panel .barra div {
+    display: block;
+    width: 100%;
+    height: 100%;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.health_bar{
+	width: 15vw;
+    height: 19px;
+}
+
+.hunger_bar, .thirst_bar, .stamina_bar{
+	width: 100px;
+    height: 21px;
+}
+
+.needs_bar {
+    width: 15vw;
+    height: 21px;
+	display: inline-flex;
+}
+
+.jobs_online {
+	display: inline-flex;
+	height: 39px;
+}
+
+.jobs_online .job {
+	width: 50px;
+    margin: 3px 0px;
+	display: inline-flex;
+	background-repeat: no-repeat;
+}
+
+.jobs_online .job_count {
+    width: 19px;
+    height: 19px;
+    line-height: 18px;
+    background-color: #fa2f2f;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    z-index: 2;
+	margin: 16px auto 0;
+    border-radius: 100%;
+}
+
+#police { background-image: url(images/policia.png) }
+#ambulance { background-image: url(images/doctor.png) }
+#taxi { background-image: url(images/taxista.png) }
+#mechanic { background-image: url(images/mecanico.png) }
+#barman { background-image: url(images/barman.png) }
+#car_dealer { background-image: url(images/vendedor_coches.png) }
+#unemployed { background-image: url(images/dependiente.png) }
+
+/* right panel */
+.info {
+    display: flex;
+    width: 28vw;
+    margin-top: 7px;
+}
+
+.right_panel .barra { 
+	height: 25px;
+    width: 131px;
+    background-repeat: no-repeat;
+    margin-right: 4px;
+    text-align: center;
+    background-size: 100% 100%;
+}
+
+.barra span {
+	font-size: 23px;
+    line-height: 24px;
+    color: white;
+	font-family: "gta-ui", Verdana, Tahoma;
+    text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+.barra#job { background-image: url(images/barra_empleo.png); }
+.barra#money { background-image: url(images/barra_dinero.png); }
+.barra#coins { background-image: url(images/barra_coins.png); }
+
+.actions {
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.actions .action {
+	width: 46px;
+    height: 40px;
+    margin: 0px 2px 0px 2px;
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#phone { background-image: url(images/telefono_1.png) }
+#phone.active { background-image: url(images/telefono_2.png) }
+#inventory { background-image: url(images/mochila_1.png) }
+#inventory.active { background-image: url(images/mochila_2.png) }
+#social { background-image: url(images/social_1.png) }
+#social.active { background-image: url(images/social_2.png) }
+#animations { background-image: url(images/emociones_1.png) }
+#animations.active { background-image: url(images/emociones_2.png) }
+
+/* media queries */
+@media (min-width: 1800px) { 
+	.right_panel {
+		right: 1%;
+	}
+}
+@media (max-width: 1800px) { 
+	.right_panel {
+		right: 1%;
+	}
+}
+@media (max-width: 1720px) { 
+	.right_panel {
+		right: 0.5%;
+    }
+    .left_panel {
+        left: 0.5%;
+    }
+}
+@media (max-width: 1580px) { 
+    .actions {
+        margin-left: 0px;
+    }
+}
+@media (max-width: 1490px) { 
+    .actions .action{
+        width: 40px;
+        height: 37px;
+        margin: 2px 2px 2px 2px;
+    }
+}
+@media (max-width: 1490px) { 
+    .jobs_online .job{
+        width: 45px;
+    }
+    .jobs_online .job_count {
+        width: 18px;
+        height: 18px;
+        line-height: 17px;
+        font-size: 14px;
+        margin: 18px 5px 4px 20px;
+    }
+}

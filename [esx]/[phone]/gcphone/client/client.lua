@@ -79,7 +79,6 @@ Citizen.CreateThread(function()
       if IsControlJustPressed(1, KeyOpenClose) then
         hasPhone(function (hasPhone)
           if hasPhone == true then
-			TriggerEvent('mancos_ui:openMenu', 'phone')
             TooglePhone()
           else
             ShowNoPhoneWarning()
@@ -158,9 +157,9 @@ function showFixePhoneHelper (coords)
     local dist = GetDistanceBetweenCoords(
       data.coords.x, data.coords.y, data.coords.z,
       coords.x, coords.y, coords.z, 1)
-    if dist <= 2.0 then
+    if dist <= 1.0 then
       SetTextComponentFormat("STRING")
-      AddTextComponentString("~g~" .. data.name .. ' ~o~' .. number .. '~n~~INPUT_PICKUP~~w~ Utiliser')
+      AddTextComponentString("~g~" .. data.name .. ' ~o~' .. number .. '~n~~INPUT_PICKUP~~w~ Utilizar')
       DisplayHelpTextFromStringLabel(0, 0, 0, -1)
       if IsControlJustPressed(1, KeyTakeCall) then
         startFixeCall(number)
@@ -189,7 +188,7 @@ Citizen.CreateThread(function ()
           inRangedist = dist
           if (dist <= 1.5) then 
             SetTextComponentFormat("STRING")
-            AddTextComponentString("~INPUT_PICKUP~ Décrocher")
+            AddTextComponentString("~INPUT_PICKUP~ desenganche")
             DisplayHelpTextFromStringLabel(0, 0, 1, -1)
             if IsControlJustPressed(1, KeyTakeCall) then
               PhonePlayCall(true)
@@ -284,12 +283,12 @@ AddEventHandler("gcPhone:receiveMessage", function(message)
   SendNUIMessage({event = 'newMessage', message = message})
   table.insert(messages, message)
   if message.owner == 0 then
-    local text = '~o~Nouveau message'
+    local text = '~o~Mensaje nuevo'
     if ShowNumberNotification == true then
-      text = '~o~Nouveau message du ~y~'.. message.transmitter
+      text = '~o~Mensaje nuevo du ~y~'.. message.transmitter
       for _,contact in pairs(contacts) do
         if contact.number == message.transmitter then
-          text = '~o~Nouveau message de ~g~'.. contact.display
+          text = '~o~Mensaje nuevo de ~g~'.. contact.display
           break
         end
       end

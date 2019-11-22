@@ -82,7 +82,7 @@ function JVF:PositionCheck()
 	if not nearestDist then return; end
 
 	if self.LastVeh and nearestVeh ~= self.LastVeh.veh then 
-		self.FinanceStartingAmount = 10 
+		self.FinanceStartingAmount = 60 
 		self.LastVeh = { dist = nearestDist, veh = nearestVeh, pos = nearestPos, list = listType, key = key } 
 	else 
 		self.LastVeh = { dist = nearestDist, veh = nearestVeh, pos = nearestPos, list = listType, key  = key } 
@@ -122,7 +122,7 @@ function JVF:PositionCheck()
 			end
 		end
 	else 
-		self.FinanceStartingAmount = 10
+		self.FinanceStartingAmount = 60
 		return false
 	end
 end

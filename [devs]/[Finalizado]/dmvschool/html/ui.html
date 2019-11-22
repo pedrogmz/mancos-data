@@ -1,0 +1,360 @@
+<head>
+		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<script src="questions.js" type="text/javascript"></script>
+	
+		<script src="debounce.min.js" type="text/javascript"></script>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+		<!-- Google icons -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+		<link rel="stylesheet" href="styles.css" type="text/css">
+	</head>
+	
+	<body>
+		
+		<img id="cursor" src="cursor.png">
+		<div class="container question-container" id="container">
+			<div class="row">
+				<div class="col s12 m12">
+					<div class="card">
+						<div class="card-content">
+	
+							<!-- Página principal -->
+							<div class="home">
+
+								<div class="header grey lighten-2">
+									<h5 class="center" style="padding: 1% 0%;">Departamento de tráfico</h5>
+								</div>
+								
+	
+								<div class="flex" style="margin-top: 3%;">
+									<div class="center" style="width: 50%;">
+										<img src="http://arnedo5.000webhostapp.com/views/images/Logotipo2.png" alt="logo" class="logo">
+										<h6><b>Bienvenido a la autoescuela Mancos RP</b></h6>
+										<p>Requerimos que todos nuestros ciudadanos pasen por una prueba teórica antes de obtener una licencia de conducir válida. Tómese su tiempo y responda con sentido común, no adivine con suerte.</p>
+										<p>El Test teórico consiste en 12 preguntas de las cuales solo se pueden fallar 3.</p>
+									</div>
+	
+								</div>
+	
+								<div style="margin-left: 5%;">
+									<h6><b>Examen teórico</b></h6>
+									<p>- La prueba escrita cuesta $ 200 dólares, no hay reembolsos si falla.</p>
+									<p>- Si no pasa la prueba una vez, no puede volver a intentarlo de inmediato, vuelva otro día e intente nuevamente.</p>
+									<br>
+									<h6><b>Examen práctico</b></h6>
+									<p>- El examen práctico cuesta $ 500 dólares, como antes, este pago no se reembolsa si no pasa el examen.</p>
+									<p>- ¡El objetivo principal del examen de manejo es la atención al detalle, prestar atención a su entorno y no chocar!</p>
+									<br><br>
+								</div>
+
+								<div class="flex">				
+									<a class="waves-effect waves-light btn btnQuestion">Empezar</a>
+								</div>
+	
+							</div>
+	
+							<!-- Página de test -->
+							<div class="questionnaire-container" style="margin-left: 5%;">
+								<div class="row">
+									<div class="col s12">
+										<h4 id="questionNumero">{{ Numero }}</h4>
+										<p id="question">{{ Pregunta }}}</p>
+										<br>
+										<form class="form" id="question-form">
+											<div>
+												<p>
+													<label>
+														<input name="question" type="radio" id="answerA" value="A"/>
+														<span class="answerA">{{ answerA }}</span>
+													</label>
+												</p>
+											</div>
+											<br>
+											<div>
+												<p>
+													<label>
+														<input name="question" type="radio" id="answerB" value="B"/>
+														<span class="answerB">{{ answerB }}</span>
+													</label>
+												</p>
+											</div>
+											<br>
+											<div>
+												<p>
+													<label>
+														<input name="question" type="radio" id="answerC" value="C"/>
+														<span class="answerC">{{ answerC }}</span>
+													</label>
+												</p>
+											</div>
+											<br>		
+											<div>
+												<p>
+													<label>
+														<input name="question" type="radio" id="answerD" value="D"/>
+														<span class="answerD">{{ answerD }}</span>
+													</label>
+												</p>
+											</div>
+											<div class="flex">	
+												<div class="center">
+													<p class="red-text" id="wrong">¡Indique una respuesta valida!</p>
+													<br>
+													<button type="submit" id="submit" class="submit waves-effect waves-light btn">Siguiente</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<!-- Examen complete OK -->
+							<div class="resultGood">
+
+								<div class="header grey lighten-2">
+									<h5 class="center" style="padding: 1% 0%;">Departamento de tráfico</h5>
+								</div>
+
+								<div class="center" style="margin-top: 8%;">
+
+									<h5><b>Enhorabuena</b></h5>
+									<p>¡Lo hiciste bastante bien durante la prueba!</p>
+									<p>Ahora puedes cerrar esta ventana y proceder al examen práctico.</p>
+									<br>
+									<p>¡Mucha suerte!</p>
+									<br>
+									<p>Resultados</p>
+									<br>
+
+									<div class="flex">
+										<div class="" style="margin: 0px 15px">
+											<p><b>Total de preguntas</b></p>
+											<br>
+											<p class="totalQ">{{ 10 }}</p>
+										</div>
+										<div class="" style="margin: 0px 15px">
+											<p><b>Correctas</b></p>
+											<br>
+											<p class="okQ">{{ 10 }}</p>
+										</div>
+										<div class="" style="margin: 0px 15px">
+											<p><b>Incorrectas</b></p>
+											<br>
+											<p class="errorQ">{{ 10 }}</p>
+										</div>
+									</div>
+									<br>
+									<button class="waves-effect waves-light btn button btnClose">Cerrar</button>
+								</div>
+
+							</div>
+
+							<!-- Examen complete Error -->
+							<div class="resultBad">
+
+								<div class="header grey lighten-2">
+									<h5 class="center" style="padding: 1% 0%;">Departamento de tráfico</h5>
+								</div>
+
+								<div class="center" style="margin-top: 8%;">
+									<h5><b>Fallastes!</b></h5>
+									<p>No estás listo para esta prueba, vuelve a intentarlo otra vez...</p>
+									<br>
+
+									<div class="flex">
+										<div class="" style="margin: 0px 15px">
+											<p><b>Total de preguntas</b></p>
+											<br>
+											<p class="totalQ">{{ 10 }}</p>
+										</div>
+										<div class="" style="margin: 0px 15px">
+											<p><b>Correctas</b></p>
+											<br>
+											<p class="okQ">{{ 10 }}</p>
+										</div>
+										<div class="" style="margin: 0px 15px">
+											<p><b>Incorrectas</b></p>
+											<br>
+											<p class="errorQ">{{ 10 }}</p>
+										</div>
+									</div>
+									<br>
+									<button class="waves-effect waves-light btn button btnKick">Cerrar</button>
+								</div>
+									
+							</div>
+
+							<!-- Progresion -->
+							<div class="progress-bar">
+								<br><br>
+								<div class="row">
+									<!-- 1 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square1"><p>1</p></div>
+									</div>
+
+									<!-- 2 -->
+									<div class="col s6 m1 flex">
+											<div class="square" id="square2"><p>2</p></div>
+									</div>
+
+									<!-- 3 -->
+									<div class="col s6 m1 flex">
+											<div class="square" id="square3"><p>3</p></div>
+									</div>
+
+									<!-- 4 -->
+									<div class="col s6 m1 flex">
+											<div class="square" id="square4"><p>4</p></div>
+									</div>
+
+									<!-- 5 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square5"><p>5</p></div>
+									</div>
+
+									<!-- 6 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square6"><p>6</p></div>
+									</div>
+
+									<!-- 7 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square7"><p>7</p></div>
+									</div>
+
+									<!-- 8 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square8"><p>8</p></div>
+									</div>
+
+									<!-- 9 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square9"><p>9</p></div>
+									</div>
+
+									<!-- 10 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square10"><p>10</p></div>
+									</div>
+
+									<!-- 11 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square11"><p>11</p></div>
+									</div>
+
+									<!-- 12 -->
+									<div class="col s6 m1 flex">
+										<div class="square" id="square12"><p>12</p></div>
+									</div>
+								</div>
+							</div>
+	
+						
+					</div>
+	
+				</div>
+			</div>
+		</div>
+	
+		<!--
+		<img id="cursor" src="cursor.png">
+		<div class="full-screen">
+			<div class="question-container">
+	
+				<div class="header">
+					<h1>Department of Motor Vehicles</h1>
+				</div>
+	
+				<div class="body home">
+					<div class="content">
+	
+						<center><img src="dmv.png" class="logo"><br><p class="bold-text">Welcome to the DMV Center</center>
+						<br><center>We require all of our citizens to go through a theory test before obtaining a valid driving license.<br>Take your time, and answer with common sence, do not take any lucky guesses.<br><br></center>
+						Theory Test<br>
+						- The written test costs $200 bucks, there are no refunds if you fail.<br>
+						- Do not worry, the DMV Center will allow loans, watch out not to fall in big debt!<br>
+						- If you fail the test once, you cannot take it again right away, come back another day and try again.<br><br>
+						Driving Test<br>
+						- The Driving test costs $500 bucks, like before, this payment is not refunded if you fail the test.<br>
+						- The main purpose of the driving test is the attention to detail, pay attention to your surroundings and do not crash!</p>
+					</div>
+					<div class="buttonspot">
+					<a href="#" class="button btnQuestion">Start</a>
+					</div>
+					<div class ="barre-progression" >
+						<h2>Progress</h2>
+						<progress class="progression" value="0" max="10" >
+					</div>
+				</div>
+				Question
+				<div class="body questionnaire-container">
+					<div class="content">
+						<h2 id="questionNumero">2</h2>
+						<p id="question">fghfghf</p>
+						<form class="form" id="question-form">
+							<div>
+								<input type="radio" name="question" id="answerA" value="A">
+								<label class="answerA">hfgh</label>
+							</div>
+							<div>
+								<input type="radio" name="question" id="answerB" value="B">
+								<label class="answerB">fghgf</label>
+							</div>
+							<div>
+								<input type="radio" name="question" id="answerC" value="C">
+								<label class="answerC">gfhfg</label>
+							</div>		
+							<div>
+								<input type="radio" name="question" id="answerD" value="D">
+								<label class="answerD">gfhfghfgh</label>
+							</div>
+							  <button type="submit" id="submit" class="submit">Next question</button>
+						  </form>
+					</div>
+					<div class ="barre-progression">
+						<h2>Progress</h2>
+						<progress class="progression" value="0" max="10" >
+					</div>
+				</div>
+				 Résults 
+				<div class="body resultGood">
+					<div class="content">
+						<center><p class="bold-text">Good job !</p><br><br>You did pretty good during the test!<br><br>You can now close this window and proceed to take the driving test.</center>
+					</div>
+					<div class="buttonspot">
+					<a href="#" class="button btnClose">Close</a>
+					</div>
+					<div class ="barre-progression" >
+						<h2>Progress</h2>
+						<progress class="progression" value="10" max="10" >
+					</div>
+				</div>
+				<div class="body resultBad">
+					<div class="content">
+						<center><p class="bold-text">You failed</p><br><br>You are not ready for this test, try again another time...<br><br></center>
+					</div>
+					<div class="buttonspot">
+					<a href="#" class="button btnKick">Close</a>
+					</div>
+					<div class ="barre-progression" >
+						<h2>Progress</h2>
+						<progress class="progression" value="10" max="10" >
+					</div>
+				</div>
+			</div>
+		</div>
+	-->
+		<!-- Jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+		<script src="scripts.js" type="text/javascript"></script>
+	</body>

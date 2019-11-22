@@ -26,7 +26,9 @@ TriggerEvent('es:addGroupCommand', 'addwl', "mod", function(source, args, user)
     addToWhitelist(args, source, false)
 end, function(source, args, user)
     TriggerClientEvent('chat:addMessage', source, {args = {"^1SYSTEM ", _U('permissions')}})
-end, {help = _U('addwl_help_text'), params = {{name = "identifier", help = _U('wl_help_text_param')}}})
+end, {help = _U('addwl_help_text'), params = {
+    {name = "identifier", help = _U('wl_help_text_param')}, {name = "Nombre", help = _U('wl_help_text_param_name')}    }
+})
 
 -- Remove Whitelist Command
 TriggerEvent('es:addGroupCommand', 'removewl', "mod", function(source, args, user)
@@ -47,26 +49,6 @@ end, function(source, args, user)
     TriggerClientEvent('chat:addMessage', source, {args = {"^1SYSTEM ", "Insufficienct permissions!"}})
 end, {help = _U('reloadwl_help_text'), params = {{name = "identifier", help = _U('wlr_help_text_param')}}})
 
--- Rcon Add Whitelist Command (Supports Ace)
-RegisterCommand("rconaddwl", function(source, args, rawCommand)
-    addToWhitelist(args, "", true)
-end, true)
-
--- Rcon Remove Whitelist Command (Supports Ace)
-RegisterCommand("rconremovewl", function(source, args, rawCommand)
-    removeFromWhitelist(args, "", true)
-end, true)
-
--- Rcon Reload Whitelist Command (Supports Ace)
-RegisterCommand("rconreloadwl", function(source, args, rawCommand)
-    for i = 0, #Whitelist do
-        Whitelist[i] = nil
-    end
-
-    initWhitelist()
-    RconPrint("[Whitelist] Reloaded")
-end, true)
-
 -- Load Whitelist
 function initWhitelist()
     MySQL.Async.fetchAll('SELECT identifier FROM whitelist', {}, function(result)
@@ -77,9 +59,10 @@ function initWhitelist()
 end
 
 -- Add whitelist to mysql
-function addWhitelistToMysql(identifier)
-    MySQL.Async.execute('INSERT INTO whitelist (identifier) VALUES (@identifier)', {
-        ['@identifier'] = identifier
+function addWhitelistToMysql(identifier, name)
+    MySQL.Async.execute('INSERT INTO whitelist (identifier, name) VALUES (@identifier, @name)', {
+        ['@identifier'] = identifier,
+        ['@name'] = name
     })
 end
 
@@ -96,7 +79,8 @@ function addToWhitelist(args, source, rcon)
         
         -- Converts args[1] to lowcase
         local id = tostring(args[1]):lower()
-        
+        local name = tostring(args[2])
+
         -- Check if ID includes Steam
         if string.find(id, "steam:") then
             
@@ -112,23 +96,27 @@ function addToWhitelist(args, source, rcon)
                 -- Check if ID Whitelisted
                 if not has_value(Whitelist, HexSteamID) then
 
-                    -- Adds ID to whitelist Mysql and Table
-                    addWhitelistToMysql(HexSteamID)
-                    table.insert(Whitelist, HexSteamID)
+                    if string.len(name) <= 49 then
+                        -- Adds ID to whitelist Mysql and Table
+                        addWhitelistToMysql(HexSteamID, name)
+                        table.insert(Whitelist, HexSteamID)
 
-                    if not rcon then
-                        TriggerClientEvent('chat:addMessage', source, {args = {"^2[WHITELIST] ", _U('added_to_whitelist', HexSteamID)}})
+                        if not rcon then
+                            TriggerClientEvent('chat:addMessage', source, {args = {"^2[WHITELIST] ", _U('added_to_whitelist', HexSteamID)}})
+                        else
+                            RconPrint("[Whitelist] ID agregada a la lista blanca " .. HexSteamID .. " \n")
+                        end
                     else
-                        RconPrint("[Whitelist] Added ID to whitelist " .. HexSteamID .. " \n")
+                        RconPrint("[Nombre] Longitud máxima 50 caracteres\n")
                     end
-                
+                  
                 -- ID found in table
                 else
 
                     if not rcon then
                         TriggerClientEvent('chat:addMessage', source, {args = {"^1WHITELIST ", _U('already_whitelisted')}})
                     else
-                        RconPrint("[Whitelist] The ID is already whitelisted\n")
+                        RconPrint("[Whitelist] El ID ya está en la lista blanca\n")
                     end
 
                 end
@@ -139,7 +127,7 @@ function addToWhitelist(args, source, rcon)
                 if not rcon then
                     TriggerClientEvent('chat:addMessage', source, {args = {"^1WHITELIST ", _U('not_valid_steamid')}})
                 else
-                    RconPrint("[Whitelist] Not a valid Steam ID\n")
+                    RconPrint("[Whitelist] No es una identificación de Steam válida\n")
                 end
 
             end
@@ -156,15 +144,21 @@ function addToWhitelist(args, source, rcon)
                 -- Check if ID is whitelisted
                 if not has_value(Whitelist, id) then
 
-                    -- Adds ID to whitelist MySQL and Table
-                    addWhitelistToMysql("license:" .. License)
-                    table.insert(Whitelist, id)
 
-                    if not rcon then
-                        TriggerClientEvent('chat:addMessage', source, {args = {"^2[WHITELIST] ", _U('added_to_whitelist', id)}})
+                    if string.len(name) <= 49 then
+                        -- Adds ID to whitelist MySQL and Table
+                        addWhitelistToMysql("license:" .. License, name)
+                        table.insert(Whitelist, id)
+    
+                        if not rcon then
+                            TriggerClientEvent('chat:addMessage', source, {args = {"^2[WHITELIST] ", _U('added_to_whitelist', id)}})
+                        else
+                            RconPrint("[Whitelist] ID agregada a la lista blanca " .. id .. " \n")
+                        end
                     else
-                        RconPrint("[Whitelist] Added ID to whitelist " .. id .. " \n")
+                        RconPrint("[Nombre] Longitud máxima 50 caracteres\n")
                     end
+                   
 
                 -- ID found in table
                 else
@@ -172,7 +166,7 @@ function addToWhitelist(args, source, rcon)
                     if not rcon then
                         TriggerClientEvent('chat:addMessage', source, {args = {"^1WHITELIST ", _U('already_whitelisted')}})
                     else
-                        RconPrint("[Whitelist] The ID is already whitelisted\n")
+                        RconPrint("[Whitelist] El ID ya está en la lista blanca\n")
                     end
 
                 end
@@ -183,7 +177,7 @@ function addToWhitelist(args, source, rcon)
                 if not rcon then
                     TriggerClientEvent('chat:addMessage', source, {args = {"^1WHITELIST ", _U('not_valid_license')}})
                 else
-                    RconPrint("[Whitelist] Not a valid License ID\n")
+                    RconPrint("[Whitelist] No es una identificación de licencia válida\n")
                 end
 
             end
@@ -193,7 +187,7 @@ function addToWhitelist(args, source, rcon)
             if not rcon then
                 TriggerClientEvent('chat:addMessage', source, {args = {"^1WHITELIST ", _U('invalid_id')}})
             else
-                RconPrint("[Whitelist] Invalid ID remember steam: or license:\n")
+                RconPrint("[Whitelist] Identificación no válida recuerde steam: o licencia:\n")
             end
         end
     
@@ -202,7 +196,7 @@ function addToWhitelist(args, source, rcon)
         if not rcon then
             TriggerClientEvent('chat:addMessage', source, {args = {"^1SYSTEM ", _U('invalid_entry')}})
         else
-            RconPrint("[Whitelist] Identifier Missing\n")
+            RconPrint("[Whitelist] Falta identificación\n")
         end
     end
 end

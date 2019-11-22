@@ -1,5 +1,5 @@
 local playerNamesDist = 2
-local displayIDHeight = 1.1 --Height of ID above players head (Starts at center body mass)
+local displayIDHeight = 1.2 --Height of ID above players head (Starts at center body mass)
 
 prefixes = {}
 hidePrefix = {}
@@ -17,7 +17,7 @@ function DrawText3D(x, y, z, red, green, blue, text)
     
     if onScreen then
         SetTextScale(0.0 * scale, 0.55 * scale)
-        SetTextFont(0)
+        SetTextFont(4)
         SetTextProportional(1)
         SetTextColour(red, green, blue, 255)
         SetTextDropshadow(0, 0, 0, 0, 255)
@@ -85,16 +85,16 @@ Citizen.CreateThread(function()
 					if not (has_value(hidePrefix, playName)) then
 						-- Show their ID tag with prefix then
 						if NetworkIsPlayerTalking(player) then
-							DrawText3D(x2, y2, z2 + displayIDHeight, 0, 0, 255, prefixStr .. "~b~[" .. GetPlayerServerId(player) .. "]")
+							DrawText3D(x2, y2, z2 + displayIDHeight, 0, 0, 255, prefixStr .. "~b~" .. GetPlayerServerId(player) .. "")
 						else
-							DrawText3D(x2, y2, z2 + displayIDHeight, 255, 255, 255, prefixStr .. "~w~[" .. GetPlayerServerId(player) .. "]")
+							DrawText3D(x2, y2, z2 + displayIDHeight, 255, 255, 255, prefixStr .. "~w~" .. GetPlayerServerId(player) .. "")
 						end
 					else
 						-- Don't show their ID tag with prefix then
 						if NetworkIsPlayerTalking(player) then
-							DrawText3D(x2, y2, z2 + displayIDHeight, 0, 0, 255, "~b~[" .. GetPlayerServerId(player) .. "]")
+							DrawText3D(x2, y2, z2 + displayIDHeight, 0, 0, 255, "~b~" .. GetPlayerServerId(player) .. "")
 						else
-							DrawText3D(x2, y2, z2 + displayIDHeight, 255, 255, 255, "~w~[" .. GetPlayerServerId(player) .. "]")
+							DrawText3D(x2, y2, z2 + displayIDHeight, 255, 255, 255, "~w~" .. GetPlayerServerId(player) .. "")
 						end
 					end
 					prefixStr = ""

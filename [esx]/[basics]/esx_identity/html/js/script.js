@@ -1,8 +1,29 @@
 $(function() {
+
+	// Arnedo5 - New display
+    function display(bool) {
+        if (bool) {
+			$('body').show();
+            $("#container").show();
+        } else {
+			$('body').hide();
+            $("#container").hide();
+        }
+    }
+
+	display(false)
+	
 	window.addEventListener('message', function(event) {
+
 		if (event.data.type == "enableui") {
-			document.body.style.display = event.data.enable ? "block" : "none";
+			if (event.data.enable  == true) {
+                display(true)
+            } else {
+                display(false)
+            }
+			// document.body.style.display = event.data.enable ? "block" : "none";
 		}
+		
 	});
 
 	document.onkeyup = function (data) {

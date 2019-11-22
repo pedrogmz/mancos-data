@@ -1,25 +1,26 @@
 Locales['en'] = {
-	['not_whitelisted'] = 'You are not whitelisted',
-	['whitelist_check'] = 'Checking Whitelist Status',
+	['not_whitelisted'] = 'No estás en la lista blanca',
+	['whitelist_check'] = 'Comprobación del estado de la lista blanca',
 
-	['permissions'] = 'Insufficienct permissions!',
+	['permissions'] = 'Permisos insuficientes!',
 
-	['addwl_help_text'] = 'Add an ID to the whitelist',
-	['removewl_help_text'] = 'Remove an ID from the whitelist',
-	['reloadwl_help_text'] = 'Reload the whitelist',
-	['wl_help_text_param'] = 'Format steam:*** or license:**',
-	['wlr_help_text_param'] = 'No arguments',
+	['addwl_help_text'] = 'Agregar una ID a la lista blanca ',
+	['removewl_help_text'] = 'Eliminar una ID de la lista blanca',
+	['reloadwl_help_text'] = 'Recargar la lista blanca',
+	['wl_help_text_param'] = 'Formato steam:*** o licencia:**',
+	['wl_help_text_param_name'] = 'Nombre y/o descripción',
+	['wlr_help_text_param'] = 'Sin arguments',
 
-	['added_to_whitelist'] = 'The ID where added to the whitelist - %s',
-	['removed_from_whitelist'] = 'The ID where removed from the whitelist - %s',
-	['reloaded_whitelist'] = 'Whitelist Reloaded',
+	['added_to_whitelist'] = 'El ID se agregó a la lista blanca - %s',
+	['removed_from_whitelist'] = 'La identificación se eliminó de la lista blanca - %s',
+	['reloaded_whitelist'] = 'Lista blanca recargada',
 
-	['already_whitelisted'] = 'The ID is already whitelisted',
-	['is_not_whitelisted'] = 'The ID is not whitelisted',
+	['already_whitelisted'] = 'El ID ya está en la lista blanca',
+	['is_not_whitelisted'] = 'El ID no está en la lista blanca',
 
-	['not_valid_steamid'] = 'Not a valid SteamID',
-	['not_valid_license'] = 'Not a valid License ID',
+	['not_valid_steamid'] = 'No es un SteamID válido',
+	['not_valid_license'] = 'No es una identificación de licencia válida',
 
-	['invalid_id'] = 'Invalid entry remember steam: or license:',
-	['invalid_entry'] = 'Missing Identifier'
+	['invalid_id'] = 'Entrada inválida recuerde steam: o licencia:',
+	['invalid_entry'] = 'Dalta identificador'
 }
