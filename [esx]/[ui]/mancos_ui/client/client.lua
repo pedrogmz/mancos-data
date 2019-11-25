@@ -22,19 +22,14 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10000)
 
-		TriggerServerEvent('mancosui:getusers')
-
-		--[[
-
 		ESX.TriggerServerCallback('esx_service:getInServiceCount', function(inServiceCount)
 			policeonline = inServiceCount['police']
 			emsonline = inServiceCount['ambulance']
 			taxionline = inServiceCount['taxi']
 			mechaniconline = inServiceCount['mechanic']
-			barmanonline = inServiceCount['barman']
+			barmanonline = inServiceCount['unicorn']
 			cardeleronline = inServiceCount['cardealer']
-			tenderonline = inServiceCount['unemployed']
-
+			tenderonline = inServiceCount['tender']
 		end)
 		
 		SendNUIMessage({
@@ -45,28 +40,10 @@ Citizen.CreateThread(function()
 			mechaniconline = mechaniconline,
 			barmanonline = barmanonline,
 			cardeleronline = cardeleronline,
-			tenderonline = unemployedonline
+			tenderonline = tenderonline
 		})
-		]]--
 	end
 end)
-
-RegisterNetEvent('mancosui:sendjobs')
-AddEventHandler('mancosui:sendjobs', function(data)
-
-	SendNUIMessage({
-		action = "updateJobsOnline", 
-		emsonline = data.emsonline, 
-		policeonline = data.policeonline, 
-		taxionline = data.taxionline, 
-		mechaniconline = data.mechaniconline,
-		barmanonline = data.barmanonline,
-		cardeleronline = data.cardeleronline,
-		tenderonline = data.tenderonline
-	})
-
-end)
-
 
 Citizen.CreateThread(function()
     while true do
@@ -108,7 +85,7 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 	SendNUIMessage({action = "setValue", key = "job", value = job.grade_label, icon = job.name})
 
 	-- Money
-	SendNUIMessage({action = "setValue", key = "money", value = data.money.."€"})
+	SendNUIMessage({action = "setValue", key = "money", value = data.money.."$"})
 end)
 
 RegisterNetEvent('esx:setAccountMoney')
@@ -117,8 +94,6 @@ AddEventHandler('esx:setAccountMoney', function(account)
 		SendNUIMessage({action = "setValue", key = "coins", value = account.money})
 	end
 end)
-
-
 
 RegisterNetEvent('mancos_ui:openMenu')
 AddEventHandler('mancos_ui:openMenu', function(menu)
@@ -133,7 +108,7 @@ end)
 
 RegisterNetEvent('es:activateMoney')
 AddEventHandler('es:activateMoney', function(e)
-	SendNUIMessage({action = "setValue", key = "money", value = e.."€"})
+	SendNUIMessage({action = "setValue", key = "money", value = e.."$"})
 end)
 
 RegisterNetEvent('mancos_ui:updateStatus')

@@ -1,7 +1,7 @@
 Config              = {}
 Config.DrawDistance = 100.0
 Config.MaxDelivery	= 1
-Config.TruckPrice	= 200
+Config.TruckPrice	= 0
 Config.Locale       = 'en'
 
 Config.Trucks = {
@@ -43,7 +43,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	-- a cot� des flic # VALIDO 2
 	Delivery2LS = {
@@ -52,7 +52,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	-- vers la plage # VALIDO 3
 	Delivery3LS = {
@@ -61,7 +61,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	-- studio 1 # VALIDO 4
 	Delivery4LS = {
@@ -70,7 +70,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	-- popular street et el rancho boulevard # VALIDO 5
 	Delivery5LS = {
@@ -79,7 +79,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	--Alta street et las lagunas boulevard # VALIDO 6
 	Delivery6LS = {
@@ -88,7 +88,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	--Rockford Drive Noth et boulevard del perro # VALIDO 7
 	Delivery7LS = {
@@ -97,7 +97,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	--Rockford Drive Noth et boulevard del perro # VALIDO 8
 	Delivery8LS = {
@@ -106,7 +106,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 100
+			Paye = 24
 		},
 	--New empire way (airport) # VALIDO 9
 	Delivery9LS = {
@@ -115,7 +115,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 200
+			Paye = 24
 		},
 	--Rockford drive south # VALIDO 10
 	Delivery10LS = {
@@ -124,7 +124,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 200
+			Paye = 24
 		},
 ------------------------------------------- Blaine County
 	-- panorama drive # VALIDO 1
@@ -134,7 +134,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 56
 		},
 	-- route 68 # VALIDO 2
 	Delivery2BC = {
@@ -143,7 +143,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 56
 		},
 	-- Algonquin boulevard et cholla springs avenue # VALIDO 3
 	Delivery3BC = {
@@ -152,7 +152,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 56
 		},
 	-- Joshua road # VALIDO 4
 	Delivery4BC = {
@@ -161,7 +161,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 56
 		},
 	-- East joshua road # VALIDO 5
 	Delivery5BC = {
@@ -170,7 +170,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 56
 		},
 	-- Seaview road # VALIDO 6
 	Delivery6BC = {
@@ -179,7 +179,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 56
 		}, 
 	-- Paleto boulevard # VALIDO 7 
 	Delivery7BC = {
@@ -188,7 +188,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 250
+			Paye = 63
 		},
 	-- Paleto boulevard et Procopio drive # VALIIDO 8 
 	Delivery8BC = {
@@ -197,7 +197,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 300
+			Paye = 63
 		},
 	-- Marina drive et joshua road # VALIIDO 9 
 	Delivery9BC = {
@@ -206,7 +206,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 300
+			Paye = 63
 		},
 	-- Pyrite Avenue # VALIIDO 10
 	Delivery10BC = {
@@ -215,7 +215,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 300
+			Paye = 63
 		},
 	
 	RetourCamion = {
@@ -224,7 +224,7 @@ Config.Livraison = {
 			Size  = {x = 4.0, y = 4.0, z = 4.0},
 			Color = {r = 0, g = 255, b = 0},
 			Type  = 1,
-			Paye = 200
+			Paye = 0
 		},
 	
 	AnnulerMission = {

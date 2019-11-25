@@ -42,6 +42,28 @@ Citizen.CreateThread(function()
 	PlayerData = ESX.GetPlayerData()
 end)
 
+
+function setUniform(job, playerPed)
+	TriggerEvent('skinchanger:getSkin', function(skin)
+
+		if skin.sex == 0 then
+			if Config.Uniforms[job].male then
+				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].male)
+			else
+				ESX.ShowNotification(_U('no_outfit'))
+			end
+
+		else
+			if Config.Uniforms[job].female then
+				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].female)
+			else
+				ESX.ShowNotification(_U('no_outfit'))
+      end
+      
+		end
+	end)
+end
+
 function SelectRandomTowable()
 
   local index = GetRandomIntInRange(1,  #Config.Towables)
@@ -100,11 +122,27 @@ function OpenMecanoActionsMenu()
 
   local elements = {
     {label = _U('vehicle_list'),   value = 'vehicle_list'},
-    {label = _U('work_wear'),      value = 'cloakroom'},
+    -- {label = _U('work_wear'),      value = 'cloakroom'},
     {label = _U('civ_wear'),       value = 'cloakroom2'},
     {label = _U('deposit_stock'),  value = 'put_stock'},
     {label = _U('withdraw_stock'), value = 'get_stock'}
   }
+
+  local grade = PlayerData.job.grade_name
+
+  -- Arnedo 5 | Trajes por rango
+  if grade == 'recrue' then
+		table.insert(elements, {label = _U('work_wear'), value = 'recrue_wear'})
+	elseif grade == 'novice' then
+		table.insert(elements, {label = _U('work_wear'), value = 'novice_wear'})
+	elseif grade == 'experimente' then
+		table.insert(elements, {label = _U('work_wear'), value = 'experimente_wear'})
+	elseif grade == 'chief' then
+		table.insert(elements, {label = _U('work_wear'), value = 'chief_wear'})
+	elseif grade == 'boss' then
+		table.insert(elements, {label = _U('work_wear'), value = 'boss_wear'})
+  end
+  
   if Config.EnablePlayerManagement and PlayerData.job ~= nil and PlayerData.job.grade_name == 'boss' then
     table.insert(elements, {label = _U('boss_actions'), value = 'boss_actions'})
   end
@@ -119,6 +157,24 @@ function OpenMecanoActionsMenu()
       elements = elements
     },
     function(data, menu)
+
+
+      -- Arnedo5 | Trajes por rango
+      if
+        data.current.value == 'recrue_wear' or
+        data.current.value == 'novice_wear' or
+        data.current.value == 'experimente_wear' or
+        data.current.value == 'chief_wear' or
+        data.current.value == 'boss_wear'
+      then
+
+      	local playerPed = GetPlayerPed(-1)
+        setUniform(data.current.value, playerPed)
+        
+		  end
+
+
+
       if data.current.value == 'vehicle_list' then
 
         if Config.EnableSocietyOwnedVehicles then
@@ -209,6 +265,7 @@ function OpenMecanoActionsMenu()
 		if data.current.value == 'cloakroom' then
 		
 
+      
 			--[[
 			local serviceOk = 'waiting'
 
@@ -251,9 +308,7 @@ function OpenMecanoActionsMenu()
 
 			]]--
 
-			print ("LE JOB")
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
-				print ("ENTER JOB")
 				if skin.sex == 0 then
 					TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_male)
 				else
@@ -288,7 +343,8 @@ function OpenMecanoActionsMenu()
 			end
 ]]--
 
-
+      setUniform("clear_wear", playerped)
+      
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 				TriggerEvent('skinchanger:loadSkin', skin)
 			end)

@@ -27,9 +27,9 @@ Config.objects = {
 }
 
 Config.Text = {
-	SitOnChair = '~g~G~w~ para sentarte
-	SitOnBed = '~g~E~w~ para sentarte
-	LieOnBed = '~g~E~w~ para tumbarte
-	SwitchBetween = '~w~  Usa las ~g~flechas',
+	SitOnChair = '~g~G~w~ para sentarte',
+	SitOnBed = '~g~E~w~ para sentarte',
+	LieOnBed = '~g~E~w~ para',
+	SwitchBetween = '',
 	Standup = '~g~F~w~ para levantarte'
 }

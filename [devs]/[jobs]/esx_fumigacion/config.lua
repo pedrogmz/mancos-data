@@ -1,7 +1,7 @@
 Config              = {}
 Config.DrawDistance = 100.0
 Config.MaxDelivery	= 10
-Config.TruckPrice	= 200
+Config.TruckPrice	= 300
 Config.Locale       = 'en'
 
 Config.Trucks = {
@@ -43,7 +43,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},
 	-- a cot� des flic
 	Delivery2LS = {
@@ -52,7 +52,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},
 	-- vers la plage
 	Delivery3LS = {
@@ -61,7 +61,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},
 	Delivery4LS = {
 			Pos   = {x = 2531.19, y = 4354.49, z = 134.41},
@@ -69,7 +69,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},	
 	Delivery5LS = {
 			Pos   = {x = 2848.45, y = 4621.68, z = 134.41},
@@ -77,7 +77,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},		
 
 ------------------------------------------- Blaine County
@@ -88,7 +88,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},
 	-- route 68
 	Delivery2BC = {
@@ -97,7 +97,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},
 	-- Algonquin boulevard et cholla springs avenue
 	Delivery3BC = {
@@ -106,7 +106,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},
 	Delivery4BC = {
 			Pos   = {x = 2633.72, y = 4433.26, z = 154.320533752441},
@@ -114,7 +114,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 80
+			Paye = 7
 		},	
 		
 	RetourCamion = {
@@ -123,7 +123,7 @@ Config.Livraison = {
 			Size  = {x = 2.0, y = 2.0, z = 2.0},
 			Color = {r = 0, g = 255, b = 0},
 			Type  = 33,
-			Paye = 200
+			Paye = 300
 		},
 	
 	AnnulerMission = {

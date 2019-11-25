@@ -476,7 +476,7 @@ function JVS:DealerUpdate()
 		end
 
 		if dist < self.SpawnVehDist then 
-			DrawMarker(1, self.DealerMarkerPos.x, self.DealerMarkerPos.y, self.DealerMarkerPos.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 1.5, 1.5, 245, 245, 245, 30, false, true, 2, false, false, false, false)
+			DrawMarker(1, self.DealerMarkerPos.x, self.DealerMarkerPos.y, self.DealerMarkerPos.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 1.5, 1.5, 57, 141, 255, 80, false, true, 2, false, false, false, false)
 			
 			local nearestDist,nearestVeh,nearestPos,listType,key = self:GetNearestDisplay(plyPos)
 			if nearestDist < self.DrawTextDist and listType == 1 then

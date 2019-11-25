@@ -54,6 +54,7 @@ Locales['es'] = {
   ['roadcone']                  = 'Cono',
   ['toolbox']                   = 'Caja de herramientas',
   ['mechanic_stock']            = 'Stock de mecanico',
+  ['mecano_customer']           = 'Customización mecánico',
   ['quantity']                  = 'Cantidad',
   ['invalid_quantity']          = 'Cantidad invalida',
   ['inventory']                 = 'Inventário',

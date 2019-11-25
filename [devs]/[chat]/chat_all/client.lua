@@ -38,7 +38,6 @@ RegisterNetEvent('hidi:chatProximidadOoc')
 AddEventHandler('hidi:chatProximidadOoc', function(id,nombre,mensaje)
     local _id = PlayerId()
     local pid = GetPlayerFromServerId(id)
-
     if pid == id then
         TriggerEvent('chatMessage', "", {255, 0, 0}, "^4[OOC]^0 " .. nombre ..": ".."^0 " .. mensaje)
     elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(_id)), GetEntityCoords(GetPlayerPed(pid)), true) < 19.999 then

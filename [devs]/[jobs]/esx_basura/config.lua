@@ -1,9 +1,9 @@
 Config              = {}
 Config.DrawDistance = 100.0
 Config.MaxDelivery	= 10
-Config.TruckPrice	= 200     -- old config from orginal script not used in this version.
+Config.TruckPrice	= 0     -- old config from orginal script not used in this version.
 Config.Locale       = 'en'
-Config.BagPay       = 10     -- Pay per bag pulled from bin.
+Config.BagPay       = 1    -- Pay per bag pulled from bin.
 Config.MulitplyBags = true   -- Multiplies BagPay by number of workers - 4 max.
 Config.TruckPlateNumb = 0
 
@@ -84,7 +84,7 @@ Config.Livraison = {
 		},
 	-- PrincipalBank
 	Delivery4LS = {
-			Pos   = {x = 159.09, y = -1816.69, z = 27.9},
+			Pos   = {x = 159.09, y = -1816.69, z = 27.0},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -111,7 +111,7 @@ Config.Livraison = {
 		},
 	--grovestreetgas
 	Delivery7LS = {
-			Pos   = {x = 254.70010375977, y = -985.32482910156, z = 29.196590423584},
+			Pos   = {x = 254.70010375977, y = -985.32482910156, z = 28.196590423584},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -120,7 +120,7 @@ Config.Livraison = {
 		},
 	--fleecacarpark
 	Delivery8LS = {
-			Pos   = {x = 240.08079528809, y = -826.91204833984, z = 30.018426895142},
+			Pos   = {x = 240.08079528809, y = -826.91204833984, z = 29.018426895142},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -148,7 +148,7 @@ Config.Livraison = {
 ------------------------------------------- 2nd Patrol 
 	-- Palomino Noose HQ
 	Delivery1BC = {
-			Pos   = {x = 317.53698730469, y = -737.95416259766, z = 29.278547286987},
+			Pos   = {x = 317.53698730469, y = -737.95416259766, z = 28.278547286987},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -175,7 +175,7 @@ Config.Livraison = {
 		},
 	-- Elysian Fields
 	Delivery4BC = {
-			Pos   = {x = 443.96984863281, y = -574.33978271484, z = 28.494501113892},
+			Pos   = {x = 443.96984863281, y = -574.33978271484, z = 27.494501113892},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -196,7 +196,7 @@ Config.Livraison = {
 
 	-- Carson Ave
 	Delivery6BC = {
-			Pos   = {x = -45.443946838379, y = -191.32261657715, z = 52.161594390869},
+			Pos   = {x = -45.443946838379, y = -191.32261657715, z = 51.161594390869},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -205,7 +205,7 @@ Config.Livraison = {
 		},
 	-- Dutch London
 	Delivery7BC = {
-			Pos   = {x = -31.948055267334, y = -93.437454223633, z = 57.249073028564},
+			Pos   = {x = -31.948055267334, y = -93.437454223633, z = 56.249073028564},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -214,7 +214,7 @@ Config.Livraison = {
 		},
 	-- Autopia Pkwy
 	Delivery8BC = {
-			Pos   = {x = 283.10873413086, y = -164.81878662109, z = 60.060565948486},
+			Pos   = {x = 283.10873413086, y = -164.81878662109, z = 59.060565948486},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -232,7 +232,7 @@ Config.Livraison = {
 		},
 	-- Exceptionalist Way
 	Delivery10BC = {
-			Pos   = {x = 441.89678955078, y = 125.97653198242, z = 99.887702941895},
+			Pos   = {x = 441.89678955078, y = 125.97653198242, z = 98.887702941895},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},

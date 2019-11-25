@@ -205,11 +205,17 @@ end)
 
 function setUniform(job, playerPed)
 	TriggerEvent('skinchanger:getSkin', function(skin)
+
+		
 		if skin.sex == 0 then
 			if Config.Uniforms[job].male then
 				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].male)
 			else
 				ESX.ShowNotification(_U('no_outfit'))
+			end
+
+			if job == 'bullet_wear_swat' then
+				SetPedArmour(playerPed, 100)
 			end
 
 			if job == 'bullet_wear' then
@@ -220,6 +226,10 @@ function setUniform(job, playerPed)
 				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].female)
 			else
 				ESX.ShowNotification(_U('no_outfit'))
+			end
+
+			if job == 'bullet_wear_swat' then
+				SetPedArmour(playerPed, 100)
 			end
 
 			if job == 'bullet_wear' then
@@ -238,6 +248,7 @@ function OpenCloakroomMenu()
 		{ label = _U('bullet_wear'), value = 'bullet_wear' },
 		{ label = _U('gilet_wear'), value = 'gilet_wear' }
 	}
+
 --hidi: AÑADIR NUEVOS RANGOS
 	if grade == 'alumn' then
 		table.insert(elements, {label = _U('police_wear'), value = 'alumn_wear'})
@@ -268,6 +279,10 @@ function OpenCloakroomMenu()
 	elseif grade == 'boss' then
 		table.insert(elements, {label = _U('police_wear'), value = 'boss_wear'})
 	end
+
+	-- Arnedo 5 | Nuevo traje de Swat y Moto
+	table.insert(elements, {label = _U('police_wear_swat'), value = 'swat_wear'})
+	table.insert(elements, {label = _U('police_wear_moto'), value = 'moto_wear'})
 
 	if Config.EnableNonFreemodePeds then
 		table.insert(elements, {label = 'Sheriff wear', value = 'freemode_ped', maleModel = 's_m_y_sheriff_01', femaleModel = 's_f_y_sheriff_01'})
@@ -393,9 +408,15 @@ function OpenCloakroomMenu()
 			data.current.value == 'inspector_wear' or
 			data.current.value == 'boss_wear' or
 			data.current.value == 'bullet_wear' or
-			data.current.value == 'gilet_wear'
+			data.current.value == 'gilet_wear' or
+			data.current.value == 'swat_wear' or
+			data.current.value == 'moto_wear'
 		then
 			setUniform(data.current.value, playerPed)
+
+			if data.current.value == 'swat_wear' then
+				setUniform("bullet_wear_swat", playerPed)
+			end 
 		end
 
 		if data.current.value == 'freemode_ped' then

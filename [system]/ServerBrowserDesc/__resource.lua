@@ -5,3 +5,7 @@ description 'Add items to server browser description'
 server_scripts {
 	'server/server.lua'
 }
+
+client_scripts {
+	'client/client.lua'
+}

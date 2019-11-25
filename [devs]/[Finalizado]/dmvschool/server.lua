@@ -66,6 +66,9 @@ AddEventHandler("dmv:dtcharge", function()
 
     TriggerClientEvent('esx:showNotification', _source, "~g~FLEECA INFORMA: ~s~200$ retirados por [pago test práctico]")
 
+    -- Arnedo 5 | Error no comprovar dinero
+    TriggerClientEvent('dmv:moneyok',_source) -- Examen teórico realizado
+
   else
     TriggerClientEvent('esx:showNotification', _source, "~r~¡Fondos insuficientes!")
   end

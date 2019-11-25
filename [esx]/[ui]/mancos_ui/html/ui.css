@@ -199,7 +199,6 @@ body {
 .barra#coins { background-image: url(images/barra_coins.png); }
 
 /* RIGHT PANEL BUTTONS*/
-
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -208,12 +207,21 @@ body {
 }
 
 .action{
+  position: relative;
   width: 40px;
   height: 40px;
   margin: 0% 2%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
+}
+
+.action .marker {
+  position: absolute;
+  color: white;
+  top: -5px;
+  left: -10px;
+  font-size: 10px;
 }
 
 #phone { background-image: url(images/telefono_1.png) }

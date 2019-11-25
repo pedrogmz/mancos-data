@@ -33,7 +33,7 @@ JVS.DisplayPositions = {
 
 JVS.Blips = {
 	CityShop = {
-		Zone = "Tienda de vehículos",
+		Zone = "Concesionario",
 		Sprite = 225,
 		Scale = 1.0,
 		Display = 4,

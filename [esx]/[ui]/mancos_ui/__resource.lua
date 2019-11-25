@@ -35,8 +35,6 @@ files {
     "html/images/vendedor_coches.png",
 }
 
-server_script 'server/server.lua'
-
 client_script {
     'client/client.lua',
     'config.lua',

@@ -43,6 +43,8 @@ end
 
 function OpenCuffMenu()
 
+	TriggerEvent('mancos_ui:openMenu', 'social')
+
 	local elements = {
 		{label = 'Ropa', value = 'clothes'},
         {label = 'Saco', value = 'headbag'},
@@ -161,6 +163,7 @@ function OpenCuffMenu()
 		end
 	end, function(data2, menu2)
 		menu2.close()
+		TriggerEvent('mancos_ui:openMenu', 'social')
 	end)
 end
 

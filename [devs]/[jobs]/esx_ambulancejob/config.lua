@@ -5,12 +5,12 @@ Config.DrawDistance               = 100.0
 Config.Marker                     = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
 Config.MarkerSize                 = { x = 3.0, y = 3.0, z = 1.5 }
 
-Config.ReviveReward               = 300  -- revive reward, set to 0 if you don't want it enabled
+Config.ReviveReward               = 8  -- revive reward, set to 0 if you don't want it enabled
 Config.AntiCombatLog              = true -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
 -- Revivir en camilla
-Config.Payrevive				  = 800
+Config.Payrevive				  = 70
 Config.RevivirCamillaMax		  = 0	
 Config.EMS						  = 0
 Config.MaxDistance = 1.5
@@ -42,7 +42,7 @@ Config.RespawnPoint = { coords = vector3(353.19, -565.13, 28.79), heading = 48.1
 
 Config.BedList = {
 	{
-		text = 'Pulsa [E] para ser atendido.',
+		text = '[E] para ser atendido.',
 		heading = 80.0,
 		objCoords  = {x = 333.69, y = -578.51, z = 43.02},---pillbox bed
 	}
@@ -102,7 +102,7 @@ Config.Hospitals = {
 		},
 
 		RemoveTattoo = {
-			vector3(347.57, -575.32, 28.1)
+			vector3(347.57, -575.32, 27.79)
 		},
 
 		Vehicles = {

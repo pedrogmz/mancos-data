@@ -8,10 +8,10 @@ Config.EnableBlips = true
 
 
 --- #### PRICES	
-Config.PriceTriBike = 89
-Config.PriceScorcher = 99
-Config.PriceCruiser = 129
-Config.PriceBmx = 109
+Config.PriceTriBike = 19
+Config.PriceScorcher = 27
+Config.PriceCruiser = 35
+Config.PriceBmx = 42
 
 
 --- #### MARKER EDITS

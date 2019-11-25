@@ -5,7 +5,7 @@ Config.EnablePlayerManagement     = true
 Config.EnableSocietyOwnedVehicles = false
 Config.NPCSpawnDistance           = 500.0
 Config.NPCNextToDistance          = 25.0
-Config.NPCJobEarnings             = { min = 289, max = 469 }
+Config.NPCJobEarnings             = { min = 70, max = 70 }
 Config.Locale                     = 'es'
 
 Config.Zones = {
@@ -60,20 +60,20 @@ Config.Zones = {
   }, ]]--
 
   VehicleSpawnPoint = {
-    Pos   = { x = -364.09, y = -78.91, z = 44.66 },
+    Pos   = { x = -358.71, y = -113.88, z = 38.7 },
     Size  = { x = 1.5, y = 1.5, z = 1.0 },
     Type  = -1,
   },
 
   VehicleDeleter = {
-    Pos   = { x = -364.09, y = -78.91, z = 44.66 },
+    Pos   = { x = -358.71, y = -113.88, z = 37.7 },
     Size  = { x = 3.0, y = 3.0, z = 1.0 },
     Color = { r = 204, g = 204, b = 0 },
     Type  = 1,
   },
 
   VehicleDelivery = {
-    Pos   = { x = -350.6, y = -89.13, z = 44.66 },
+    Pos   = { x = -360.88, y = -110.91, z = 38.7 },
     Size  = { x = 20.0, y = 20.0, z = 3.0 },
     Color = { r = 204, g = 204, b = 0 },
     Type  = -1,
@@ -138,4 +138,144 @@ Config.Vehicles = {
   'asterope',
   'banshee',
   'buffalo'
+}
+
+-- CHECK SKINCHANGER CLIENT MAIN.LUA for matching elements
+Config.Uniforms = {
+	recrue_wear = {
+		male = {
+			['tshirt_1'] = 59,  ['tshirt_2'] = 1,
+			['torso_1'] = 66,   ['torso_2'] = 2,
+			['decals_1'] = 0,   ['decals_2'] = 0,
+			['arms'] = 46, 		
+			['pants_1'] = 39,   ['pants_2'] = 2,
+			['shoes_1'] = 51,   ['shoes_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0,
+			['ears_1'] = -1,     ['ears_2'] = 0,
+		},
+		female = {
+      ['tshirt_1'] = 59,  ['tshirt_2'] = 1,
+			['torso_1'] = 66,   ['torso_2'] = 2,
+			['decals_1'] = 0,   ['decals_2'] = 0,
+			['arms'] = 46, 		
+			['pants_1'] = 39,   ['pants_2'] = 2,
+			['shoes_1'] = 51,   ['shoes_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0,
+			['ears_1'] = -1,     ['ears_2'] = 0,
+		}
+  },
+  novice_wear = {
+		male = {
+			['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+			['torso_1'] = 66,   ['torso_2'] = 2,
+			['decals_1'] = 0,   ['decals_2'] = 0,
+			['arms'] = 46, 		
+			['pants_1'] = 39,   ['pants_2'] = 2,
+			['shoes_1'] = 51,   ['shoes_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0,
+			['ears_1'] = -1,     ['ears_2'] = 0,
+		},
+		female = {
+      ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+			['torso_1'] = 66,   ['torso_2'] = 2,
+			['decals_1'] = 0,   ['decals_2'] = 0,
+			['arms'] = 46, 		
+			['pants_1'] = 39,   ['pants_2'] = 2,
+			['shoes_1'] = 51,   ['shoes_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0,
+			['ears_1'] = -1,     ['ears_2'] = 0,
+    },
+  },
+  experimente_wear = {
+    male = {
+      ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+      ['torso_1'] = 66,   ['torso_2'] = 3,
+      ['decals_1'] = 0,   ['decals_2'] = 0,
+      ['arms'] = 46, 		
+      ['pants_1'] = 39,   ['pants_2'] = 3,
+      ['shoes_1'] = 51,   ['shoes_2'] = 0,
+      ['helmet_1'] = -1,  ['helmet_2'] = 0,
+      ['chain_1'] = 0,    ['chain_2'] = 0,
+      ['ears_1'] = -1,     ['ears_2'] = 0,
+    },
+    female = {
+      ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+      ['torso_1'] = 66,   ['torso_2'] = 3,
+      ['decals_1'] = 0,   ['decals_2'] = 0,
+      ['arms'] = 46, 		
+      ['pants_1'] = 39,   ['pants_2'] = 3,
+      ['shoes_1'] = 51,   ['shoes_2'] = 0,
+      ['helmet_1'] = -1,  ['helmet_2'] = 0,
+      ['chain_1'] = 0,    ['chain_2'] = 0,
+      ['ears_1'] = -1,     ['ears_2'] = 0,
+    }
+},
+boss_wear = {
+  male = {
+    ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+    ['torso_1'] = 66,   ['torso_2'] = 0,
+    ['decals_1'] = 0,   ['decals_2'] = 0,
+    ['arms'] = 46, 		
+    ['pants_1'] = 39,   ['pants_2'] = 0,
+    ['shoes_1'] = 51,   ['shoes_2'] = 0,
+    ['helmet_1'] = -1,  ['helmet_2'] = 0,
+    ['chain_1'] = 0,    ['chain_2'] = 0,
+    ['ears_1'] = -1,     ['ears_2'] = 0,
+  },
+  female = {
+    ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+    ['torso_1'] = 66,   ['torso_2'] = 1,
+    ['decals_1'] = 0,   ['decals_2'] = 0,
+    ['arms'] = 46, 		
+    ['pants_1'] = 39,   ['pants_2'] = 1,
+    ['shoes_1'] = 51,   ['shoes_2'] = 0,
+    ['helmet_1'] = -1,  ['helmet_2'] = 0,
+    ['chain_1'] = 0,    ['chain_2'] = 0,
+    ['ears_1'] = -1,     ['ears_2'] = 0,
+  }
+},
+chief_wear = {
+  male = {
+    ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+    ['torso_1'] = 66,   ['torso_2'] = 1,
+    ['decals_1'] = 0,   ['decals_2'] = 0,
+    ['arms'] = 46, 		
+    ['pants_1'] = 39,   ['pants_2'] = 1,
+    ['shoes_1'] = 51,   ['shoes_2'] = 0,
+    ['helmet_1'] = -1,  ['helmet_2'] = 0,
+    ['chain_1'] = 0,    ['chain_2'] = 0,
+    ['ears_1'] = -1,     ['ears_2'] = 0,
+  },
+  female = {
+    ['tshirt_1'] = 90,  ['tshirt_2'] = 1,
+    ['torso_1'] = 66,   ['torso_2'] = 1,
+    ['decals_1'] = 0,   ['decals_2'] = 0,
+    ['arms'] = 46, 		
+    ['pants_1'] = 39,   ['pants_2'] = 1,
+    ['shoes_1'] = 51,   ['shoes_2'] = 0,
+    ['helmet_1'] = -1,  ['helmet_2'] = 0,
+    ['chain_1'] = 0,    ['chain_2'] = 0,
+    ['ears_1'] = -1,     ['ears_2'] = 0,
+  }
+},
+  clear_wear = {
+		male = {
+			['tshirt_1'] = -1,  ['tshirt_2'] = 0,
+			['bproof_1'] = -1,  ['bproof_2'] = 0,
+			['decals_1'] = -1,   ['decals_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['mask_1'] = -1 , ['mask_2'] = 0
+		},
+		female = {
+			['tshirt_1'] = -1,  ['tshirt_2'] = 0,
+			['bproof_1'] = -1,  ['bproof_2'] = 0,
+			['decals_1'] = -1,   ['decals_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['mask_1'] = -1 , ['mask_2'] = 0
+		}
+	}
 }

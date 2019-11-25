@@ -154,17 +154,36 @@ AddEventHandler('dmv:startptest', function(licence)
 		if theorylock == 3 or TestDone == 0 then
 			ESX.ShowNotification("~r~Debe aprovar el examen terórico antes de poder hacer el práctico.")	
 		else
-			TriggerServerEvent('dmv:dtcharge')
-			onTestBlipp = AddBlipForCoord(255.13990783691,-1400.7319335938,30.5374584198)
-			N_0x80ead8e2e1d5d52e(onTestBlipp)
-			SetBlipRoute(onTestBlipp, 1)
-			onTestEvent = 1
-			DamageControl = 1
-			SpeedControl = 1
-			onTtest = 3
-			DTut()
+
+		--Arnedo5 | Comprovar si hay coches en la zona
+		VehicleSpawnPoint = {
+			Pos     = {x = -693.67, y = -1403.83, z = 5.0},
+		}
+
+		if not ESX.Game.IsSpawnPointClear(VehicleSpawnPoint.Pos, 5.0) then
+			ESX.ShowNotification("¡Hay un vehículo bloqueando el punto de salida!")
+			return
+		end
+			
+		TriggerServerEvent('dmv:dtcharge')
+			
 		end
 	end
+
+end)
+
+-- 
+RegisterNetEvent('dmv:moneyok')
+AddEventHandler('dmv:moneyok', function()
+
+	onTestBlipp = AddBlipForCoord(255.13990783691,-1400.7319335938,30.5374584198)
+	N_0x80ead8e2e1d5d52e(onTestBlipp)
+	SetBlipRoute(onTestBlipp, 1)
+	onTestEvent = 1
+	DamageControl = 1
+	SpeedControl = 1
+	onTtest = 3
+	DTut()
 
 end)
 

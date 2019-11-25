@@ -3,14 +3,14 @@ Config = {}
 	--=====How long should it take for player to catch a fish=======--
 	---------------------------------------------------------------
 	--Time in miliseconds
-	Config.FishTime = {a = 40000, b = 64000}
+	Config.FishTime = {a = 90000, b = 104000}
 	
 	--------------------------------------------------------
 	--=====Prices of the items players can sell==========--
 	--------------------------------------------------------
 	--First amount minimum price second maximum amount (the amount player will get is random between those two numbers)
-	Config.FishPrice = {a = 25, b = 50} --Will get clean money THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
-	Config.TurtlePrice = {a = 80, b = 100} --Will get dirty money
+	Config.FishPrice = {a =  10, b = 10} --Will get clean money THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
+	Config.TurtlePrice = {a = 4, b = 4} --Will get dirty money
 	Config.SharkPrice = {a = 4000, b = 6000} --Will get dirty money
 
 	--------------------------------------------------------

@@ -574,8 +574,8 @@ Citizen.CreateThread(function()
 	local blip = AddBlipForCoord(Config.Cloakroom.CloakRoom.Pos.x, Config.Cloakroom.CloakRoom.Pos.y, Config.Cloakroom.CloakRoom.Pos.z)
   
 	SetBlipSprite (blip, 90)
-	SetBlipDisplay(blip, 0)
-	SetBlipScale  (blip, 1.2)
+	SetBlipDisplay(blip, 4)
+	SetBlipScale  (blip, 1.0)
 	SetBlipColour (blip, 5)
 	SetBlipAsShortRange(blip, true)
 

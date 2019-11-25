@@ -357,7 +357,7 @@ AddEventHandler('esx_garbagejob:hasEnteredMarker', function(zone)
 	end
 
 	if zone == 'AnnulerMission' then
-		if isInService and MissionLivraison and IsJobgarbage() then
+		if isInService and IsJobgarbage() then
 			if IsPedSittingInAnyVehicle(playerPed) and IsATruck() then
 				VerifPlaqueVehiculeActuel()
 				if plaquevehicule == plaquevehiculeactuel then
@@ -374,7 +374,7 @@ AddEventHandler('esx_garbagejob:hasEnteredMarker', function(zone)
 	end
 
 	if zone == 'RetourCamion' then
-		if isInService and MissionRetourCamion and IsJobgarbage() then
+		if isInService and IsJobgarbage() then
 			if IsPedSittingInAnyVehicle(playerPed) and IsATruck() then
 				VerifPlaqueVehiculeActuel()
 
@@ -448,11 +448,6 @@ function retourcamion_oui()
 		Blips['delivery'] = nil
 	end
 	
-	if Blips['annulermission'] ~= nil then
-		RemoveBlip(Blips['annulermission'])
-		Blips['annulermission'] = nil
-	end
-	
 	MissionRetourCamion = false
 	livraisonnombre = 0
 	MissionRegion = 0
@@ -498,11 +493,6 @@ function retourcamionannulermission_oui()
 		Blips['delivery'] = nil
 	end
 	
-	if Blips['annulermission'] ~= nil then
-		RemoveBlip(Blips['annulermission'])
-		Blips['annulermission'] = nil
-	end
-	
 	MissionLivraison = false
 	livraisonnombre = 0
 	MissionRegion = 0
@@ -519,11 +509,6 @@ function retourcamionperduannulermission_oui()
 	if Blips['delivery'] ~= nil then
 		RemoveBlip(Blips['delivery'])
 		Blips['delivery'] = nil
-	end
-	
-	if Blips['annulermission'] ~= nil then
-		RemoveBlip(Blips['annulermission'])
-		Blips['annulermission'] = nil
 	end
 	
 	MissionLivraison = false
@@ -678,7 +663,7 @@ Citizen.CreateThread(function()
 								CurrentAction = nil
 								trashcollection = false
 								truckdeposit = false
-								ESX.ShowNotification("Collection finished return to truck!")
+								ESX.ShowNotification("Recogida finalizada, ¡vuelve al camión!")
 								while not IsPedInVehicle(GetPlayerPed(-1), work_truck, false) do
 									Citizen.Wait(0)
 								end
@@ -757,7 +742,7 @@ Citizen.CreateThread(function()
 			DrawMarker(27, trunk.x , trunk.y, trunk.z, 0, 0, 0, 0, 0, 0, 1.25, 1.25, 1.0001, 0, 128, 0, 200, 0, 0, 0, 0)
 			dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, trunk.x , trunk.y, trunk.z)
 			if dist <= 2.0 then
-			ESX.Game.Utils.DrawText3D(vector3(trunk.x , trunk.y ,trunk.z + 0.50), "[~g~E~s~] Throw bag in truck.", 1.0)
+			ESX.Game.Utils.DrawText3D(vector3(trunk.x , trunk.y ,trunk.z + 0.50), "[~g~E~s~] Pon la bolsa en el camión.", 1.0)
 			end
 		end
 
@@ -768,12 +753,12 @@ Citizen.CreateThread(function()
 			if dist <= 5.0 then
 				if currentbag <= 0 then
 					if iscurrentboss then
-					ESX.Game.Utils.DrawText3D(trashcollectionpos + vector3(0.0, 0.0, 1.0), "[~g~E~s~] Clean up debris", 1.0)		
+					ESX.Game.Utils.DrawText3D(trashcollectionpos + vector3(0.0, 0.0, 1.0), "[~g~E~s~] Limpia el contenedor", 1.0)		
 					else
-					ESX.Game.Utils.DrawText3D(trashcollectionpos + vector3(0.0, 0.0, 1.0), "Collection done.. Wait on truck..", 1.0)		
+					ESX.Game.Utils.DrawText3D(trashcollectionpos + vector3(0.0, 0.0, 1.0), "Recogida finalizada.. Espera en el camión..", 1.0)		
 					end
 				else
-					ESX.Game.Utils.DrawText3D(trashcollectionpos + vector3(0.0, 0.0, 1.0), "[~g~E~s~] Collect bag from Trashbin ["..currentbag.."/"..bagsoftrash.."]", 1.0)
+					ESX.Game.Utils.DrawText3D(trashcollectionpos + vector3(0.0, 0.0, 1.0), "[~g~E~s~] Recoge la bolsa del contenedor ["..currentbag.."/"..bagsoftrash.."]", 1.0)
 				end
 			end
 		end
@@ -784,6 +769,8 @@ Citizen.CreateThread(function()
 			DrawMarker(destination.Type, destination.Pos.x, destination.Pos.y, destination.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, destination.Size.x, destination.Size.y, destination.Size.z, destination.Color.r, destination.Color.g, destination.Color.b, 100, false, true, 2, false, false, false, false)
 		end
 
+		DrawMarker(Config.Livraison.AnnulerMission.Type, Config.Livraison.AnnulerMission.Pos.x, Config.Livraison.AnnulerMission.Pos.y, Config.Livraison.AnnulerMission.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Livraison.AnnulerMission.Size.x, Config.Livraison.AnnulerMission.Size.y, Config.Livraison.AnnulerMission.Size.z, Config.Livraison.AnnulerMission.Color.r, Config.Livraison.AnnulerMission.Color.g, Config.Livraison.AnnulerMission.Color.b, 100, false, true, 2, false, false, false, false)
+		
 		local coords = GetEntityCoords(GetPlayerPed(-1))
 		
 		for k,v in pairs(Config.Zones) do
@@ -927,12 +914,7 @@ function MissionLivraisonLetsGo()
 		RemoveBlip(Blips['delivery'])
 		Blips['delivery'] = nil
 	end
-	
-	if Blips['annulermission'] ~= nil then
-		RemoveBlip(Blips['annulermission'])
-		Blips['annulermission'] = nil
-	end
-	
+
 	Blips['delivery'] = AddBlipForCoord(destination.Pos.x,  destination.Pos.y,  destination.Pos.z)
 	SetBlipRoute(Blips['delivery'], true)
 	BeginTextCommandSetBlipName("STRING")
@@ -964,11 +946,6 @@ function MissionLivraisonStopRetourDepot()
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString(_U('blip_depot'))
 	EndTextCommandSetBlipName(Blips['delivery'])
-	
-	if Blips['annulermission'] ~= nil then
-		RemoveBlip(Blips['annulermission'])
-		Blips['annulermission'] = nil
-	end
 
 	ESX.ShowNotification(_U('return_depot'))
 	
@@ -984,11 +961,3 @@ end
 function VerifPlaqueVehiculeActuel() 
 	plaquevehiculeactuel = GetVehicleNumberPlateText(GetVehiclePedIsIn(GetPlayerPed(-1), false))
 end						
-
-
-	
-	
-
-
-	
-	

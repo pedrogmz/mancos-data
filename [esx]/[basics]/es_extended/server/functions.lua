@@ -88,8 +88,6 @@ ESX.SavePlayer = function(xPlayer, cb)
 	end)
 
 	Async.parallel(asyncTasks, function(results)
-		RconPrint('[SAVED] ' .. xPlayer.name .. "^7\n")
-
 		if cb ~= nil then
 			cb()
 		end

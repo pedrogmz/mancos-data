@@ -375,3 +375,14 @@ function WashMoneyCRON(d, h, m)
 end
 
 TriggerEvent('cron:runAt', 3, 0, WashMoneyCRON)
+
+-- Arnedo 5 
+RegisterServerEvent('esx_society:getActualMoney')
+AddEventHandler('esx_society:withdrawMoney', function(society)
+
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local society = GetSociety(society)
+	
+	print ("ACTUAL MONEY")
+	
+end)

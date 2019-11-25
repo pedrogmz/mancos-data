@@ -6,17 +6,6 @@ updateScripts = {
 }
 
 AddEventHandler('onMySQLReady', function ()
-	MySQL.Async.execute(tableQuery, {}, function() end)
-	print("executed table query")
-
-	-- perform upgrades if necesarry
-	MySQL.Async.execute("SELECT count(*) FROM information_schema.COLUMNS WHERE COLUMN_NAME = 'discord' and TABLE_NAME = 'ea_bans'", {}, function(count)
-		if count == 0 then
-			MySQL.Async.execute(updateScripts[1], {}, function() end)
-			print("Performed ea_bans Database Upgrade, no further action is necesarry.")
-		end
-	end)
-	
 	Wait(100)
 	dbReady = true
 end)

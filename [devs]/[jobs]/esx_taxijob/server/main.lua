@@ -32,8 +32,8 @@ AddEventHandler('esx_taxijob:success', function()
 	end)
 
 	if societyAccount then
-		local playerMoney  = ESX.Math.Round(total / 100 * 30)
-		local societyMoney = ESX.Math.Round(total / 100 * 70)
+		local playerMoney  = math.random(40, 60) -- Transporte NPC para el jugador
+		local societyMoney = math.random(60, 95) -- Transporte NPC para la empresa
 
 		xPlayer.addMoney(playerMoney)
 		societyAccount.addMoney(societyMoney)

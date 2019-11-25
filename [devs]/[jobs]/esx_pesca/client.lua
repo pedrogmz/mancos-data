@@ -254,7 +254,7 @@ AddEventHandler('fishing:fishstart', function()
 			TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_STAND_FISHING", 0, true)
 			fishing = true
 		else
-			ESX.ShowNotification("Necesitas ir ~y~más lejos de la orilla~w~.")
+			ESX.ShowNotification("Necesitas ir ~y~mï¿½s lejos de la orilla~w~.")
 		end
 	end
 	
@@ -288,13 +288,13 @@ function OpenBoatsMenu(x, y , z)
 	local elements = {}
 	
 	
-		table.insert(elements, {label = '<span style="color:green;">Dinghy (pesca menor)</span> <span style="color:red;">2500$</span>', value = 'boat'})
-		table.insert(elements, {label = '<span style="color:green;">Suntrap (pesca menor)</span> <span style="color:red;">3500$</span>', value = 'boat6'}) 
-		table.insert(elements, {label = '<span style="color:green;">Jetmax (pesca menor)</span> <span style="color:red;">4500$</span>', value = 'boat5'}) 	
-		table.insert(elements, {label = '<span style="color:green;">Toro (pesca menor)</span> <span style="color:red;">5500$</span>', value = 'boat2'}) 
-		table.insert(elements, {label = '<span style="color:green;">Marquis (pesca mayor)</span> <span style="color:red;">6000$</span>', value = 'boat3'}) 
-		table.insert(elements, {label = '<span style="color:green;">Tug boat (pesca mayor)</span> <span style="color:red;">7500$</span>', value = 'boat4'})
-		table.insert(elements, {label = '<span style="color:blue;">SeaShark (ocio)</span> <span style="color:red;">7500$</span>', value = 'boat7'})
+		table.insert(elements, {label = '<span style="color:green;">Dinghy (pesca menor)</span> <span style="color:red;">600$</span>', value = 'boat'})
+		table.insert(elements, {label = '<span style="color:green;">Suntrap (pesca menor)</span> <span style="color:red;">1180$</span>', value = 'boat6'}) 
+		table.insert(elements, {label = '<span style="color:green;">Jetmax (pesca menor)</span> <span style="color:red;">850$</span>', value = 'boat5'}) 	
+		table.insert(elements, {label = '<span style="color:green;">Toro (pesca menor)</span> <span style="color:red;">900$</span>', value = 'boat2'}) 
+		table.insert(elements, {label = '<span style="color:green;">Marquis (pesca mayor)</span> <span style="color:red;">1300$</span>', value = 'boat3'}) 
+		table.insert(elements, {label = '<span style="color:green;">Tug boat (pesca mayor)</span> <span style="color:red;">200$</span>', value = 'boat4'})
+		table.insert(elements, {label = '<span style="color:blue;">SeaShark (ocio)</span> <span style="color:red;">500$</span>', value = 'boat7'})
 
 		
 	--If user has police job they will be able to get free Police Predator boat
@@ -318,8 +318,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 2500) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 2500)
+		TriggerServerEvent("fishing:lowmoney", 600) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 600)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "dinghy4")
 	end
@@ -327,8 +327,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat2' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 5500) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 5500)
+		TriggerServerEvent("fishing:lowmoney", 900) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 900)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "TORO")
 	end
@@ -336,8 +336,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat3' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 6000) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 6000)
+		TriggerServerEvent("fishing:lowmoney", 1300) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 1300)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "MARQUIS")
 	end
@@ -345,8 +345,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat4' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 7500) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 7500)
+		TriggerServerEvent("fishing:lowmoney", 200) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 200)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "tug")
 	end
@@ -354,8 +354,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat5' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 4500) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 4500)
+		TriggerServerEvent("fishing:lowmoney", 850) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 850)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "jetmax")
 	end
@@ -363,8 +363,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat6' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 3500) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 3500)
+		TriggerServerEvent("fishing:lowmoney", 1180) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 1180)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "suntrap")
 	end
@@ -372,8 +372,8 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat7' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 4500) 
-		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 4500)
+		TriggerServerEvent("fishing:lowmoney", 500) 
+		TriggerEvent("chatMessage", 'Has alquilado un barco por:', {255,0,255}, '$' .. 500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "seashark")
 		

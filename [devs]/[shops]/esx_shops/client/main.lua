@@ -16,6 +16,9 @@ local LastZone                = nil
 local CurrentAction           = nil
 local CurrentActionMsg        = ''
 local CurrentActionData       = {}
+local employ 				  = 0
+
+
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -96,7 +99,10 @@ AddEventHandler('esx_shops:hasExitedMarker', function(zone)
 	CurrentAction = nil
 	ESX.UI.Menu.CloseAll()
 end)
-
+RegisterNetEvent('esx_shops:employs')
+AddEventHandler('esx_shops:employs', function(data)
+	employ = data
+end)
 -- Create Blips
 Citizen.CreateThread(function()
 	
@@ -112,9 +118,7 @@ Citizen.CreateThread(function()
 				BeginTextCommandSetBlipName("STRING")
 				AddTextComponentString(_U('shops'))
 				EndTextCommandSetBlipName(blip)
-				
 			elseif k == 'Bar' then
-				
 				local blip = AddBlipForCoord(v.Pos[i].x, v.Pos[i].y, v.Pos[i].z)
 				SetBlipSprite (blip, 93)
 				SetBlipDisplay(blip, 4)
@@ -134,14 +138,21 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		local coords = GetEntityCoords(PlayerPedId())
+		--local employ = TriggerServerEvent('esx_shops:ComprobarServicio')
 
-		for k,v in pairs(Config.Zones) do
-			for i = 1, #v.Pos, 1 do
-				if(Config.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, true) < Config.DrawDistance) then
-					DrawMarker(Config.Type, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Size.x, Config.Size.y, Config.Size.z, Config.Color.r, Config.Color.g, Config.Color.b, 100, false, true, 2, false, false, false, false)
+		--if employ > 0 then
+			for k,v in pairs(Config.Zones) do
+				for i = 1, #v.Pos, 1 do
+					if(Config.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, true) < Config.DrawDistance) then
+						DrawMarker(Config.Type, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Size.x, Config.Size.y, Config.Size.z, Config.Color.r, Config.Color.g, Config.Color.b, 100, false, true, 2, false, false, false, false)
+					end
 				end
 			end
+		--[[
+		else
+			Citizen.Wait(5000)
 		end
+		]]--
 	end
 end)
 
@@ -178,15 +189,23 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-
 		if CurrentAction ~= nil then
+			TriggerServerEvent('esx_shops:ComprobarServicio')
 			ESX.ShowHelpNotification(CurrentActionMsg)
-
-			if IsControlJustReleased(0, Keys['E']) then
+			print('esx_shops')
+			print(employ)
+			if IsControlJustReleased(0, Keys['E'])  then
 				if CurrentAction == 'shop_menu' then
-					OpenShopMenu(CurrentActionData.zone)
+					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShop' then
+						OpenShopMenu(CurrentActionData.zone)
+					
+					elseif CurrentActionData.zone == 'Badulake' and employ < 1 then
+						OpenShopMenu(CurrentActionData.zone)
+					else
+						sendNotification('Hay tenderos, ponte en la cola.', 'error', 5000)
+						Citizen.Wait(1000)
+					end
 				end
-
 				CurrentAction = nil
 			end
 		else
@@ -194,3 +213,17 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+
+
+
+
+function sendNotification(message, messageType, messageTimeout)
+    TriggerEvent("pNotify:SendNotification", {
+        text = message,
+        type = messageType,
+        queue = "duty",
+        timeout = messageTimeout,
+        layout = "bottomCenter"
+    })
+end
+

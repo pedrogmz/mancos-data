@@ -28,7 +28,7 @@
 }
 
 .msg {
-    font-family: Font2, sans-serif;
+    font-family: Font2, Arial;
     color: #fff;
 
     font-size: calc(1.8vw / 1.77777); /* 13px in 720p, calc'd by width */
@@ -45,7 +45,7 @@
 }
 
 .msg > span > span > b {
-    font-family: Font2_cond, sans-serif;
+    font-family: Font2_cond, Arial;
     font-weight: normal;
 
     vertical-align: baseline;
@@ -79,7 +79,7 @@
 
     height: auto;
 
-    font-family: Font2, sans-serif;
+    font-family: Font2, Arial;
 }
 
 .chat-input > div {

@@ -68,10 +68,29 @@ AddEventHandler('esx_shops:buyItem', function(itemName, amount, zone)
 		else
 			xPlayer.removeMoney(price)
 			xPlayer.addInventoryItem(itemName, amount)
+			
 			TriggerClientEvent('esx:showNotification', _source, _U('bought', amount, itemLabel, ESX.Math.GroupDigits(price)))
 		end
 	else
 		local missingMoney = price - xPlayer.getMoney()
 		TriggerClientEvent('esx:showNotification', _source, _U('not_enough', ESX.Math.GroupDigits(missingMoney)))
 	end
+end)
+
+
+-- recorrer players
+
+RegisterServerEvent('esx_shops:ComprobarServicio')
+AddEventHandler('esx_shops:ComprobarServicio', function()	
+	local xJugadores = ESX.GetPlayers()
+	local employ = 0
+	TriggerEvent('es:getPlayers', function(players)
+		for i=1, #xJugadores, 1 do
+			local xJugador = ESX.GetPlayerFromId(xJugadores[i])
+			if xJugador.job.name == 'tender' then
+				employ = employ+1				
+			end
+		end		
+	end) 
+	TriggerClientEvent('esx_shops:employs', source,employ)
 end)

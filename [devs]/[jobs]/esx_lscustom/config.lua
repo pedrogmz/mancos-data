@@ -10,7 +10,7 @@ Config.Zones = {
 		Size  = {x = 1.0, y = 1.0, z = 0.2},
 		Color = {r = 204, g = 204, b = 0},
 		Marker= 1,
-		Blip = true,
+		Blip = false,
 		-- Name  = _U('blip_name'),
 		Hint  = _U('press_custom')
 	},
@@ -45,7 +45,7 @@ Config.Zones = {
 		Size  = {x = 1.0, y = 1.0, z = 0.2},
 		Color = {r = 204, g = 204, b = 0},
 		Marker= 1,
-		Blip = true,
+		Blip = false,
 		Name  = _U('blip_name'),
 		Hint  = _U('press_custom')
 	},

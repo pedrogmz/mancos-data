@@ -14,7 +14,7 @@ local Keys = {
 local r,g,b,a = 166,166,255,255 -- rgba color
 
 -- ranges
-local voice = {default = 6.0, shout = 17.0, whisper = 1.0, current = 0}
+local voice = {default = 6.0, shout = 21.0, whisper = 1.0, current = 0}
 
 AddEventHandler('onClientMapStart', function()
 	if voice.current == 0 then
@@ -76,10 +76,10 @@ Citizen.CreateThread(function()
 
                     if ((distance < playerNamesDist) and IsEntityVisible(GetPlayerPed(id))) ~= GetPlayerPed( -1 ) then
                 if NetworkIsPlayerTalking(id) then
-                    DrawMarker(25,x2,y2,z2 - takeaway, 0, 0, 0, 0, 0, 0, 0.8, 0.8, 10.3, 0, 132, 8, 48, 0, 0, 2, 0, 0, 0, 0)
+                    DrawMarker(-1,x2,y2,z2 - takeaway, 0, 0, 0, 0, 0, 0, 0.8, 0.8, 10.3, 0, 132, 8, 48, 0, 0, 2, 0, 0, 0, 0)
                 end
                 if NetworkIsPlayerTalking(PlayerId()) then
-                    DrawMarker(25,coords.x,coords.y,coords.z - takeaway, 0, 0, 0, 0, 0, 0, 0.8, 0.8, 10.3, 10, 10, 10, 6, 0, 0, 2, 0, 0, 0, 0)
+                    DrawMarker(-1,coords.x,coords.y,coords.z - takeaway, 0, 0, 0, 0, 0, 0, 0.8, 0.8, 10.3, 10, 10, 10, 6, 0, 0, 2, 0, 0, 0, 0)
                 end
                     end  
                 end

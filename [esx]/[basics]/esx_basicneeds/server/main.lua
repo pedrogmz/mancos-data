@@ -2,25 +2,71 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
+--SHOPS
+
 ESX.RegisterUsableItem('bread', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('bread', 1)
 
-	TriggerClientEvent('esx_status:add', source, 'hunger', 200000)
+	TriggerClientEvent('esx_status:add', source, 'hunger', 500000)
 	TriggerClientEvent('esx_basicneeds:onEat', source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_bread'))
 end)
+
+ESX.RegisterUsableItem('potatoes', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('potatoes', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 250000)
+	TriggerClientEvent('esx_basicneeds:onEat', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_potatoes'))
+end)
+
+ESX.RegisterUsableItem('hamburger', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('hamburger', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 750000)
+	TriggerClientEvent('esx_basicneeds:onEat', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_hamburger'))
+end)
+
 
 ESX.RegisterUsableItem('water', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('water', 1)
 
-	TriggerClientEvent('esx_status:add', source, 'thirst', 200000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 500000)
 	TriggerClientEvent('esx_basicneeds:onDrink', source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_water'))
 end)
+ESX.RegisterUsableItem('ecola', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('ecola', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'thirst', 750000)
+	TriggerClientEvent('esx_basicneeds:onDrink', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_ecola'))
+end)
+
+ESX.RegisterUsableItem('sprunk', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('sprunk', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'thirst', 750000)
+	TriggerClientEvent('esx_basicneeds:onDrink', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_sprunk'))
+end)
+
+
+
+
 
 TriggerEvent('es:addGroupCommand', 'heal', 'admin', function(source, args, user)
 	-- heal another player - don't heal source

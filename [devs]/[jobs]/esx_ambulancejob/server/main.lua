@@ -305,11 +305,12 @@ AddEventHandler('esx_ambulancejob:giveItem', function(itemName)
 			itemName ~= 'medkit' and
 			itemName ~= 'vicodin' and
 			itemName ~= 'hydrocodone' and
-			itemName ~= 'morphine' and		
-			itemName ~= 'WEAPON_STUNGUN') then
+			itemName ~= 'WEAPON_STUNGUN') and 
+			itemName ~= 'morphine' then		
 		print(('esx_ambulancejob: %s attempted to spawn in an item!'):format(xPlayer.identifier))
 		return
 	end
+
 	
 	if(itemName == 'WEAPON_STUNGUN') then
 		xPlayer.addWeapon(itemName)

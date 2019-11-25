@@ -8,10 +8,10 @@ Config.EnableBlips = true
 
 
 --- #### PRICES	
-Config.PriceSanchez = 89
-Config.PriceSanchez2 = 99
-Config.PriceManchez = 129
-Config.PriceBf400 = 109
+Config.PriceSanchez = 90
+Config.PriceSanchez2 = 103
+Config.PriceManchez = 128
+Config.PriceBf400 = 160
 
 
 --- #### MARKER EDITS

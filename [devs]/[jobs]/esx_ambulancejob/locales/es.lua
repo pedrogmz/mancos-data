@@ -70,6 +70,8 @@ Locales['es'] = {
   ['medagua'] = 'Bocata pequeño',
   ['ems_stock'] = 'Almacen',
   ['inventory'] = 'Inventario',
+  ['bread'] = 'Pan',
+  ['water'] = 'Agua',
   -- Misc
   ['invalid_amount'] = '~r~cantidad no válida',
   ['actions_prompt'] = '~INPUT_CONTEXT~ para ver las ~y~acciones de medico~s~.',
@@ -89,6 +91,8 @@ Locales['es'] = {
   ['ems_menu_putincar'] = 'Meter en el vehículo',
   ['ems_menu_small'] = 'Curar heridas pequeñas',
   ['ems_menu_big'] = 'Curar heridas mayores',
+  ['ems_menu_out'] = 'Sacar del vehiculo',
+  ['ems_menu_drag'] = 'Arrastrar',
   -- Phone
   ['alert_ambulance'] = 'Alerta de ambulancia',
   -- Death

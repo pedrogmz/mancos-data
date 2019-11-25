@@ -16,7 +16,7 @@ end)
 --------------------------------------------------------------------------------
 -- NE RIEN MODIFIER
 --------------------------------------------------------------------------------
-local namezone = "Delivery"
+local namezone = "Basurero"
 local namezonenum = 0
 local namezoneregion = 0
 local MissionRegion = 0

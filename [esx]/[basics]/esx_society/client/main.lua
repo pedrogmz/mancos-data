@@ -73,35 +73,44 @@ function UpdateSocietyMoneyHUDElement(money)
 end
 
 function OpenBossMenu(society, close, options)
-	local isBoss = nil
-	local options  = options or {}
-	local elements = {}
 
-	ESX.TriggerServerCallback('esx_society:isBoss', function(result)
-		isBoss = result
-	end, society)
+	-- Arnedo 5 | Mostrar el dinero de la sociedad
+	ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
 
-	while isBoss == nil do
-		Citizen.Wait(100)
-	end
-
-	if not isBoss then
-		return
-	end
-
-	local defaultOptions = {
-		withdraw  = true,
-		deposit   = true,
-		wash      = true,
-		employees = true,
-		grades    = true
-	}
-
-	for k,v in pairs(defaultOptions) do
-		if options[k] == nil then
-			options[k] = v
+		local isBoss = nil
+		local options  = options or {}
+		local elements = {}
+	
+		ESX.TriggerServerCallback('esx_society:isBoss', function(result)
+			isBoss = result
+		end, society)
+	
+		while isBoss == nil do
+			Citizen.Wait(100)
 		end
-	end
+	
+		if not isBoss then
+			return
+		end
+	
+		local defaultOptions = {
+			withdraw  = true,
+			deposit   = true,
+			wash      = true,
+			employees = true,
+			grades    = true
+		}
+	
+		for k,v in pairs(defaultOptions) do
+			if options[k] == nil then
+				options[k] = v
+			end
+		end
+
+	table.insert(elements, {
+		label = "Dinero actual - <span style='color: green;'>"..ESX.Math.GroupDigits(money).."</span>$",
+		value = "actual_money_nothing"
+	})
 
 	if options.withdraw then
 		table.insert(elements, {label = _U('withdraw_society_money'), value = 'withdraw_society_money'})
@@ -175,28 +184,33 @@ function OpenBossMenu(society, close, options)
 
 				local amount = tonumber(data.value)
 
-				if amount == nil then
-					ESX.ShowNotification(_U('invalid_amount'))
-				else
+					if amount == nil then
+						ESX.ShowNotification(_U('invalid_amount'))
+					else
+						menu.close()
+						TriggerServerEvent('esx_society:washMoney', society, amount)
+					end
+
+				end, function(data, menu)
 					menu.close()
-					TriggerServerEvent('esx_society:washMoney', society, amount)
-				end
+				end)
 
-			end, function(data, menu)
-				menu.close()
-			end)
+			elseif data.current.value == 'manage_employees' then
+				OpenManageEmployeesMenu(society)
+			elseif data.current.value == 'manage_grades' then
+				OpenManageGradesMenu(society)
+			end
 
-		elseif data.current.value == 'manage_employees' then
-			OpenManageEmployeesMenu(society)
-		elseif data.current.value == 'manage_grades' then
-			OpenManageGradesMenu(society)
-		end
+		end, function(data, menu)
+			if close then
+				close(data, menu)
+			end
+		end)
+			
 
-	end, function(data, menu)
-		if close then
-			close(data, menu)
-		end
-	end)
+	end, ESX.PlayerData.job.name)
+
+
 
 end
 

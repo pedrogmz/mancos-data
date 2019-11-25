@@ -28,9 +28,9 @@ AddEventHandler('mancosui:getusers', function(robb)
         if xPlayer.job.name == 'ambulance' then emsonline = emsonline + 1	end
         if xPlayer.job.name == 'taxi' then taxionline = taxionline + 1	end
         if xPlayer.job.name == 'mechanic' then mechaniconline = mechaniconline + 1	end
-        if xPlayer.job.name == 'barman' then barmanonline = barmanonline + 1	end
+        if xPlayer.job.name == 'unicorn' then barmanonline = barmanonline + 1	end
         if xPlayer.job.name == 'cardealer' then cardeleronline = cardeleronline + 1	end
-        if xPlayer.job.name == '247' then tenderonline = tenderonline + 1	end
+        if xPlayer.job.name == 'tender' then tenderonline = tenderonline + 1	end
         
     end
 

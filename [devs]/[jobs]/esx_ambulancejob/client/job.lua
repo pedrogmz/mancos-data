@@ -806,8 +806,6 @@ function OpenCloakroomMenu()
 		--{label = _U('ems_clothes_ems'), value = 'ambulance_wear'},
 	}
 
-	print (grade)
-
 	if grade == 'practicas' then
 		table.insert(elements, {label = 'Ropa de practicas', value = 'practicas_wear'})
 	elseif grade == 'paramedico' then
@@ -1518,10 +1516,10 @@ function OpenPharmacyMenu()
 		align    = 'top-left',
 		elements = {
 			{label = _U('pharmacy_take', _U('medikit')), value = 'medikit'},
+			{label = _U('pharmacy_take', _U('bandage')), value = 'bandage'},			
 			{label = _U('pharmacy_take', _U('water')), value = 'water'},
 			{label = _U('pharmacy_take', _U('bread')), value = 'bread'},
-			{label = _U('pharmacy_take', _U('bandage')), value = 'bandage'},		
-			{label = _U('pharmacy_take', 'Taser'), value = 'WEAPON_STUNGUN'},
+--			{label = _U('pharmacy_take', 'Taser'), value = 'WEAPON_STUNGUN'},
 		}
 	}, function(data, menu)
 		TriggerServerEvent('esx_ambulancejob:giveItem', data.current.value)

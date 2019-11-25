@@ -1,6 +1,6 @@
 local oUsing = false
 local oLastPos = nil
-local oAnim = "back"
+local oAnim = "tumbarte"
 local oAnimscroll = 0
 local oPlayer = false
 local oPlayerCoords = false
@@ -54,15 +54,15 @@ CreateThread(function()
 			if GetDistanceBetweenCoords(objectcoords.x, objectcoords.y, objectcoords.z,getPlayerCoords) < 1.8 and not oUsing then
 				if objects.isBed == true then
 					if oAnim == "sit" then
-						DrawText3D(objectcoords.x, objectcoords.y, objectcoords.z+0.30, Config.Text.SitOnBed)
+						DrawText3D(objectcoords.x, objectcoords.y, objectcoords.z+0.30, Config.Text.wwwwwwSitOnBed)
 					else
-						DrawText3D(objectcoords.x, objectcoords.y, objectcoords.z+0.30, Config.Text.LieOnBed.." ")
+						DrawText3D(objectcoords.x, objectcoords.y, objectcoords.z+0.30, Config.Text.LieOnBed.." "..oAnim)
 					end
 					DrawText3D(objectcoords.x, objectcoords.y, objectcoords.z+0.20, Config.Text.SwitchBetween)
-					if IsControlJustPressed(0, 175) then -- right
+					if IsControlJustPressed(0, 45) then -- right
 						oAnimscroll = oAnimscroll+1
 						if oAnimscroll == 0 then
-							oAnim = "back"
+							oAnim = "tumbarte"
 						elseif oAnimscroll == 1 then
 							oAnim = "stomach"
 						elseif oAnimscroll == 2 then
@@ -72,19 +72,19 @@ CreateThread(function()
 						end
 					end
 
-					if IsControlJustPressed(0, 174) then -- left
+					if IsControlJustPressed(0, 245) then -- left
 						oAnimscroll = oAnimscroll-1
 						if oAnimscroll == -1 then
 							oAnimscroll = 0
 						elseif oAnimscroll == 0 then
-							oAnim = "back"
+							oAnim = "tumbarte"
 						elseif oAnimscroll == 1 then
 							oAnim = "stomach"
 						elseif oAnimscroll == 2 then
 							oAnim = "sit"
 						elseif oAnimscroll == 3 then
 							oAnimscroll = 0
-							oAnim = "back"
+							oAnim = "tumbarte"
 						end
 					end
 					if IsControlJustPressed(0, objects.ButtonToLayOnBed) then
@@ -167,7 +167,7 @@ AddEventHandler("ChairBedSystem:Client:Animation", function(objects,objectcoords
 			TaskStartScenarioAtPosition(ped, Config.objects.SitAnimation.anim, objectcoords.x+vertx, objectcoords.y+verty, objectcoords.z-vertz, GetEntityHeading(object)+dir, 0, true, true)
 		end
 	else
-		if oAnim == "back" then
+		if oAnim == "tumbarte" then
 			if Config.objects.BedBackAnimation.dict ~= nil then
 				SetEntityCoords(ped, objectcoords.x, objectcoords.y, objectcoords.z+0.5)
 				SetEntityHeading(ped,  GetEntityHeading(object)-180.0)

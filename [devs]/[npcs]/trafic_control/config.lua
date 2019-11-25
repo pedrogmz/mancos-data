@@ -4,7 +4,7 @@
 ------------------------------------------------------------------------------
 
 Config = {}					-- My Ideal Max Numbers
-Config.TrafficX 			= 380	-- 100			-- Do not let the over all calculation 
+Config.TrafficX 			= 280	-- 100			-- Do not let the over all calculation 
 Config.PedestrianX 			= 693	-- 205			-- make this 0 or below, or else you 
 Config.ParkedX 				= 488	-- 200			-- will suffer a fate far worse 
 Config.Divider 				= 1000	-- 			-- than having no bananas... RIP

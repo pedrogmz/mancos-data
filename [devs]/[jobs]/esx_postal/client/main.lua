@@ -51,6 +51,30 @@ AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job
 end)
 
+
+function setUniform(job, playerPed)
+	TriggerEvent('skinchanger:getSkin', function(skin)
+
+		
+		if skin.sex == 0 then
+			if Config.Uniforms[job].male then
+				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].male)
+			else
+				ESX.ShowNotification(_U('no_outfit'))
+			end
+
+		else
+			if Config.Uniforms[job].female then
+				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].female)
+			else
+				ESX.ShowNotification(_U('no_outfit'))
+			end
+
+		end
+	end)
+end
+
+
 -- MENUS
 function MenuCloakRoom()
 	ESX.UI.Menu.CloseAll()
@@ -90,7 +114,15 @@ function MenuCloakRoom()
         end)
       end
 			if data.current.value == 'job_wear' then
+
 				isInService = true
+
+				local playerPed = GetPlayerPed(-1)
+
+  				setUniform("postal_outfit", playerPed) -- Arnedo5 | Traje generico
+				-- Arnedo5 | Nuevo traje				
+
+				--[[ 
 				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 
 					if skin.sex == 0 or 1 then
@@ -107,6 +139,7 @@ function MenuCloakRoom()
 					end
 					
 				end)
+]]--
 
 			end	
 			menu.close()
@@ -134,13 +167,13 @@ function MenuVehicleSpawner()
 			elements = elements
 		},
 		function(data, menu)
-			ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(vehicle)
+			ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 155.0, function(vehicle)
 				platenum = math.random(10000, 99999)
 				SetVehicleNumberPlateText(vehicle, "WAL"..platenum)             
                 MissionLivraisonSelect()
 				plaquevehicule = "WAL"..platenum
 				if data.current.value == 'phantom3' then
-					ESX.Game.SpawnVehicle("trailers2", Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(trailer)
+					ESX.Game.SpawnVehicle("trailers2", Config.Zones.VehicleSpawnPoint.Pos, 155.0, function(trailer)
 					    AttachVehicleToTrailer(vehicle, trailer, 1.1)
 					end)
 				end				

@@ -2,7 +2,7 @@
 Config = {
 	czas = 35, -- Temps après lequel la plaque peut être de nouveau vu (minutes)
 	cooldown = 30, -- Temps d'attente pour changer de nouveau la plaque
-	money = 5000, -- Prix de changement	
+	money = 400, -- Prix de changement	
 	coords = { x = -674.45, y = -881.41, z = 24.49 }, -- Coordonnées de l'atelier
 
 	-- Blip (https://docs.fivem.net/game-references/blips/)

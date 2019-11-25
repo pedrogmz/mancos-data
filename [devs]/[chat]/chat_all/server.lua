@@ -21,6 +21,12 @@ AddEventHandler('hidi:chatFaccion', function(mensaje,id)
 		sendChat('ambulance', "#F52785", nombre, mensaje,'Ambulancia')
 	elseif job == 'mechanic' then
 		sendChat('mechanic', "#C5C5C4", nombre, mensaje,'Mecanico')
+	elseif job == '247' then
+		sendChat('247', "#FF9639", nombre, mensaje,'24/7')
+	elseif job == 'bar' then
+		sendChat('bar', "#9775FA", nombre, mensaje,'Casino')		
+	elseif job == 'cardealer' then
+		sendChat('cardealer', "#C5CE51", nombre, mensaje,'Concesionario')		
 	elseif job == 'taxi' then
 		sendChat('taxi', "#FDCE0D", nombre, mensaje,'Taxista')
 	elseif job == 'police' then
@@ -67,16 +73,24 @@ TriggerEvent('es:addCommand', 'do', function(source, args, user)
     TriggerClientEvent("hidi:chatProximidadDo", -1, source, nombre, table.concat(args, " "))
 	--sendToDiscord(source, "do",mensaje)
 end)
-
+--[[
 TriggerEvent('es:addCommand', 'ooc', function(source, args, user)
 	local _player = GetPlayerName(source)
 	local _source = source
     TriggerClientEvent("hidi:chatProximidadOoc", -1, source, _player, table.concat(args, " "))
 	--sendToDiscord(source, "ooc",mensaje)
 end)
-
-
-
+]]
+AddEventHandler('chatMessage', function(source, args, message )
+	CancelEvent()
+	local _player = GetPlayerName(source)
+	local _source = source
+	if string.sub(message,1,string.len('/')) ~= '/' then
+		TriggerClientEvent("hidi:chatProximidadOoc", -1, source, _player, message)
+	end
+	--sendToDiscord(source, "ooc",mensaje)
+	
+end)
 
 --[[
 ############################################################################
