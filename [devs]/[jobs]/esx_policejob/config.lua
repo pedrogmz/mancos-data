@@ -116,7 +116,7 @@ Config.PoliceStations = {
 
 Config.AuthorizedWeapons = {
 	alumn = {		
-		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+--[[	{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
 		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
@@ -124,16 +124,18 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
 		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		]]--
 	},
 	agent = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
-		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },		
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHBANG', price = 0 }
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 	},
 	oficial3 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
@@ -142,7 +144,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	oficial2 = {		
@@ -152,7 +154,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	oficial1 = {		
@@ -162,7 +164,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	sargento2 = {		
@@ -172,7 +174,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	sargento1 = {		
@@ -182,7 +184,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	teniente = {		
@@ -192,7 +194,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	capitan3 = {		
@@ -202,7 +204,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	capitan2 = {		
@@ -212,7 +214,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	capitan1 = {		
@@ -222,7 +224,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	subinspector = {		
@@ -232,7 +234,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	inspector = {		
@@ -242,7 +244,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	},
 	boss = {		
@@ -252,7 +254,7 @@ Config.AuthorizedWeapons = {
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
-		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
 		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
 	}
 	--[[

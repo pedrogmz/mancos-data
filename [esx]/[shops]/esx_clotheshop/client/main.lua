@@ -63,12 +63,13 @@ function OpenShopMenu()
 							end
 						end)
 
-					else
+					-- anula el cambio de vestimenta al entrar al marker		
+				--[[ else
 						ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
-							TriggerEvent('skinchanger:loadSkin', skin)
+							TriggerEvent('skinchanger:loadSkin', skin) 
 						end)
 
-						ESX.ShowNotification(_U('not_enough_money'))
+						ESX.ShowNotification(_U('not_enough_money')) ]]-- 
 					end
 				end)
 			elseif data.current.value == 'no' then
@@ -117,12 +118,14 @@ end)
 AddEventHandler('esx_clotheshop:hasExitedMarker', function(zone)
 	ESX.UI.Menu.CloseAll()
 	currentAction = nil
-
+--[[
 	if not hasPaid then
 		TriggerEvent('esx_skin:getLastSkin', function(skin)
 			TriggerEvent('skinchanger:loadSkin', skin)
+			Citizen.Wait(2000)
 		end)
 	end
+]]-- fix para salir de la tienda y que no ponga la ropa no comprada.
 end)
 
 -- Create Blips

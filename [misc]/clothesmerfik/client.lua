@@ -69,28 +69,24 @@ function OpenActionMenuInteraction(target)
 			elements = elements
 		},
     function(data, menu)
-
-
-
-		
 		if data.current.value == 'ubie' then			
-		ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
-		TriggerEvent('skinchanger:loadSkin', skin)
-		end)
-		ESX.UI.Menu.CloseAll()	
+			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+				TriggerEvent('skinchanger:loadSkin', skin)
+			end)
+			ESX.UI.Menu.CloseAll()	
 		elseif data.current.value == 'tul' then
-		TriggerEvent('smerfikubrania:koszulka')
-		ESX.UI.Menu.CloseAll()	
+			TriggerEvent('smerfikubrania:koszulka')
+			ESX.UI.Menu.CloseAll()	
 		elseif data.current.value == 'spo' then
-		TriggerEvent('smerfikubrania:spodnie')
-		ESX.UI.Menu.CloseAll()	
+			TriggerEvent('smerfikubrania:spodnie')
+			ESX.UI.Menu.CloseAll()	
 		elseif data.current.value == 'but' then
-		TriggerEvent('smerfikubrania:buty')
-		ESX.UI.Menu.CloseAll()	
-	  end
+			TriggerEvent('smerfikubrania:buty')
+			ESX.UI.Menu.CloseAll()	
+		end
+	end, function(data, menu)
+		menu.close()
 	end)
-
-
 end
 
 RegisterCommand("camiseta", function()

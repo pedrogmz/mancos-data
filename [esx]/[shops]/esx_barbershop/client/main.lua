@@ -32,12 +32,13 @@ function OpenShopMenu()
 
 						TriggerServerEvent('esx_barbershop:pay')
 						hasPaid = true
-					else
+				-- anula el cambio de vestimenta al entrar al marker		
+				--[[else
 						ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 							TriggerEvent('skinchanger:loadSkin', skin) 
 						end)
 
-						ESX.ShowNotification(_U('not_enough_money'))
+						ESX.ShowNotification(_U('not_enough_money')) ]]-- 
 					end
 				end)
 			elseif data.current.value == 'no' then

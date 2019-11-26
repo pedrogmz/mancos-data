@@ -32,12 +32,13 @@ function OpenShopMenu()
 
 						TriggerServerEvent('esx_operacion:pay')
 						hasPaid = true
-					else
+				-- anula el cambio de vestimenta al entrar al marker		
+				--[[	else
 						ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 							TriggerEvent('skinchanger:loadSkin', skin) 
 						end)
 
-						ESX.ShowNotification(_U('not_enough_money'))
+						ESX.ShowNotification(_U('not_enough_money'))]]-- 
 					end
 				end)
 			elseif data.current.value == 'no' then
@@ -66,6 +67,7 @@ function OpenShopMenu()
 		'blush_1',
 		'blush_2',
 		'blush_3',
+		'eye_color',
 --		'complexion',
 --		'complexion_1',
 		'sun',
@@ -108,11 +110,11 @@ AddEventHandler('esx_operacion:hasExitedMarker', function(zone)
 	ESX.UI.Menu.CloseAll()
 	currentAction = nil
 
-	if not hasPaid then
+	--[[if not hasPaid then
 		ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 			TriggerEvent('skinchanger:loadSkin', skin)
 		end)
-	end
+	end]]-- no cambia si no tienes dinero
 end)
 
 -- Create Blips

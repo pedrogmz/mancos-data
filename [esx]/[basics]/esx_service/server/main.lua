@@ -5,6 +5,7 @@ local MaxInService = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 function GetInServiceCount(name)
+
 	local count = 0
 
 	for k,v in pairs(InService[name]) do
@@ -66,7 +67,7 @@ ESX.RegisterServerCallback('esx_service:getInServiceCount', function(source, cb)
 	inServiceCount['ambulance'] = GetInServiceCount('ambulance')
 	inServiceCount['taxi'] = GetInServiceCount('taxi')
 	inServiceCount['mechanic'] = GetInServiceCount('mechanic')
-	inServiceCount['unicorn'] = GetInServiceCount('unicorn')
+	inServiceCount['bar'] = GetInServiceCount('bar')
 	inServiceCount['tender'] = GetInServiceCount('tender')
 	inServiceCount['cardealer'] = GetInServiceCount('cardealer')
 	cb(inServiceCount)
@@ -80,4 +81,4 @@ AddEventHandler('playerDropped', function()
 			v[_source] = nil
 		end
 	end
-end)
+end) 

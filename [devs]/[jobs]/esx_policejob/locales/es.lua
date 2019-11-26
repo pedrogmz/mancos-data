@@ -11,7 +11,7 @@ Locales['es'] = {
   ['open_cloackroom'] = 'Presionar ~INPUT_CONTEXT~ para abrir la taquilla',
   -- Armory
   ['remove_object'] = 'Coger objeto',
-  ['deposit_object'] = 'Cepositar objeto',
+  ['deposit_object'] = 'Depositar objeto',
   ['get_weapon'] = 'Coger arma',
   ['put_weapon'] = 'Depositar arma',
   ['buy_weapons'] = 'Comprar armas',

@@ -26,35 +26,6 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-	while not IsPedInAnyVehicle(GetPlayerPed(-1)) do
-		Citizen.Wait(0)
-		if IsControlPressed(1, 39) then
-			-- Arnedo5 scroll [suelo]
-			--[[ 
-			ragdol = 1 end
-			if ragdol == 1 then
-				
-			SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
-			]]--
-		end
-	end
-end)
-Citizen.CreateThread(function()
-	while not IsPedInAnyVehicle(GetPlayerPed(-1)) do
-		Citizen.Wait(0)
-		if IsControlPressed(1, 40) then
-			-- Arnedo5 scroll [suelo]
-			--[[ 
-			ragdol = 0 end
-			if ragdol == 1 then
-				
-			SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
-			]]--
-		end
-	end
-end)
-
-Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		if IsEntityPlayingAnim(GetPlayerPed(-1), "dead", "dead_e", 3) then
@@ -75,8 +46,7 @@ Citizen.CreateThread(function()
         if IsEntityDead(ped) then
 			NetworkResurrectLocalPlayer(plyPos, true, true, false)
 			ClearPedTasks(ped)
-			Citizen.Wait(500)
-			
+			Citizen.Wait(500)			
 			TriggerEvent('deadan', ped)
 			-- TriggerServerEvent("deaths")
         	TriggerEvent("chatMessage", "[System]", { 255,0,0}, "Has muerto.")
@@ -97,6 +67,9 @@ AddEventHandler("deadan", function()
 		Citizen.CreateThread(function()
 			
 			loadAnimDict("dead")
+			SetPlayerInvincible(playerPed, true)
+			print(SetPlayerInvincible(playerPed, true))
+			print(ClearPedSecondaryTask(playerPed))
 			--TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
 			--Citizen.Wait(15000)
 			

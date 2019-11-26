@@ -27,7 +27,7 @@ Citizen.CreateThread(function()
 			emsonline = inServiceCount['ambulance']
 			taxionline = inServiceCount['taxi']
 			mechaniconline = inServiceCount['mechanic']
-			barmanonline = inServiceCount['unicorn']
+			barmanonline = inServiceCount['bar']
 			cardeleronline = inServiceCount['cardealer']
 			tenderonline = inServiceCount['tender']
 		end)

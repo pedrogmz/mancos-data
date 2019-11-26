@@ -20,6 +20,7 @@ AddEventHandler('esx_ambulancejob:revive', function(target)
 	if xPlayer.job.name == 'ambulance' then
 		xPlayer.addMoney(Config.ReviveReward)
 		TriggerClientEvent('esx_ambulancejob:revive', target)
+	
 	else
 		print(('esx_ambulancejob: %s attempted to revive!'):format(xPlayer.identifier))
 	end

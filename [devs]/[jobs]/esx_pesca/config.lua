@@ -3,7 +3,7 @@ Config = {}
 	--=====How long should it take for player to catch a fish=======--
 	---------------------------------------------------------------
 	--Time in miliseconds
-	Config.FishTime = {a = 90000, b = 104000}
+	Config.FishTime = {a = 120000, b = 194000}
 	
 	--------------------------------------------------------
 	--=====Prices of the items players can sell==========--

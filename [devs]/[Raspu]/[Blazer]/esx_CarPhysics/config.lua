@@ -8,11 +8,11 @@ Config.TCkey = 20 --- Traction Control Key (Default Z) // https://docs.fivem.net
 
 Config.CCkey = 249 --- Cruise Control Key (Default N) // https://docs.fivem.net/game-references/controls/
 
-Config.Maxspeed = 200.0 --- In meters per second 34 = 75mph
+Config.Maxspeed = 80.0 --- In meters per second 34 = 75mph
 
 Config.Minspeed = 0.1 --- In meters per second 0.1 = 0.2mph
 
-Config.action = 0.2     --- How much the TC wil try to stop you sliding Lower = more help
+Config.action = 0.3     --- How much the TC wil try to stop you sliding Lower = more help
 
 Config.OnScreenTextCC = true --- Enable/Disable On-Screen text
 

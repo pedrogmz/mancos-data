@@ -190,12 +190,10 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		if CurrentAction ~= nil then
-			TriggerServerEvent('esx_shops:ComprobarServicio')
 			ESX.ShowHelpNotification(CurrentActionMsg)
-			print('esx_shops')
-			print(employ)
 			if IsControlJustReleased(0, Keys['E'])  then
 				if CurrentAction == 'shop_menu' then
+					TriggerServerEvent('esx_shops:ComprobarServicio')
 					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShop' then
 						OpenShopMenu(CurrentActionData.zone)
 					
