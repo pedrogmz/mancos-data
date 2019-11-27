@@ -479,7 +479,7 @@ function OpenMobileMecanoActionsMenu()
       title    = _U('mechanic'),
       align    = 'top-left',
       elements = {
-        {label = _U('billing'),       value = 'billing'},
+        -- {label = _U('billing'),       value = 'billing'}, Arnedo5 | Se saca el tramitar factura directamente
 		{label = _U('hijack'),        value = 'hijack_vehicle'},
         {label = _U('clean'),         value = 'clean_vehicle'},
         {label = _U('imp_veh'),       value = 'del_vehicle'},

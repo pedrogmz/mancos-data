@@ -28,6 +28,10 @@ local getOutDict = 'switch@franklin@bed'
 local getOutAnim = 'sleep_getup_rubeyes'
 -- tattoo
 
+-- dead animation
+local ragdoll = false
+
+
 IsDead = false
 ESX = nil
 
@@ -102,14 +106,117 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 
 		if IsDead then
-			DisableAllControlActions(0)
+			--DisableAllControlActions(0)		
 			EnableControlAction(0, Keys['T'], true)
 			EnableControlAction(0, Keys['E'], true)
+			DisableControlAction(0, Keys['M'], true)
+			DisableControlAction(0, Keys['Y'], true)
+			DisableControlAction(0, 249, true)
+			DisableControlAction(0, Keys['Z'], true)
+			DisableControlAction(0, Keys['X'], true)
+			DisableControlAction(0, Keys['B'], true)
+			DisableControlAction(0, 182, true)
+			DisableControlAction(0, Keys['H'], true)
+			DisableControlAction(0, 288, true)
+			DisableControlAction(0, Keys['F2'], true)
+			DisableControlAction(0, Keys['F3'], true)
+			DisableControlAction(0, Keys['F4'], true)
+			DisableControlAction(0, Keys['F6'], true)
+			DisableControlAction(0, Keys['F7'], true)			
+			DisableControlAction(0, Keys['F9'], true)
+			DisableControlAction(0, Keys['F10'], true)
+			DisableControlAction(0, 344, true)
+			DisableControlAction(0, Keys['F12'], true)
+			
 		else
 			Citizen.Wait(500)
 		end
 	end
 end)
+
+-- Dead animation
+
+function setRagdollDead(flag)
+	ragdoll = flag
+  end
+  
+  Citizen.CreateThread(function()
+	  while true do
+		Citizen.Wait(0)
+		if ragdoll then
+		  SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
+		end
+	  end
+	end)
+  -- Respawn
+  Citizen.CreateThread(function()
+	  while true do
+		  Wait(500)
+		  local ped = GetPlayerPed(-1)
+		  local plyPos = GetEntityCoords(ped,  true)
+		  local player = PlayerId()
+		  if IsEntityDead(ped) then
+			  NetworkResurrectLocalPlayer(plyPos, true, true, false)
+			  SetEntityHealth(ped, 100)
+			  SetPlayerInvincible(player, true)
+			  ClearPedTasks(ped)
+			  Citizen.Wait(500)			
+			  TriggerEvent('deadan')
+			  TriggerEvent("chatMessage", "[System]", { 255,0,0}, "Has muerto.")		
+		  end
+	  end	
+  end)
+  -- Animacion de morir
+  RegisterNetEvent("deadan")
+  AddEventHandler("deadan", function()
+	  
+	  local playerPed = GetPlayerPed(-1)
+	  
+	  if DoesEntityExist(playerPed) then
+		  Citizen.CreateThread(function()			
+			  GivePlayerRagdollControl(PlayerId(), false)	
+			  
+			  --if ragdoll then
+				  --ClearPedSecondaryTask(playerPed)
+				  setRagdollDead(true)
+				  ragdol = false
+				  
+			  --[[
+				else
+				  setRagdollDead(false)
+				  ragdol = true
+				  
+				  print('1212')
+				  --TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
+				  --GivePlayerRagdollControl(PlayerId(), false)
+			  end		
+			  ]]--
+		  end)
+	  end
+  end)
+  RegisterNetEvent("deadanrev")
+  AddEventHandler("deadanrev", function()
+	  
+	local playerPed = GetPlayerPed(-1)
+	  
+	  	if DoesEntityExist(playerPed) then
+			  Citizen.CreateThread(function()
+				Citizen.Wait(5000)			
+			  	GivePlayerRagdollControl(PlayerId(), false)				  
+				setRagdollDead(false)
+				ragdol = true
+				  
+				
+				  --TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
+				  --GivePlayerRagdollControl(PlayerId(), false)
+			  	
+			  
+		  	end)
+	  end
+  end)
+
+
+
 
 function OnPlayerDeath()
 	IsDead = true
@@ -364,6 +471,8 @@ AddEventHandler('esx_ambulancejob:revive', function()
 
 		StopScreenEffect('DeathFailOut')
 		DoScreenFadeIn(800)
+		TriggerEvent('deadanrev')
+		
 	end)
 end)
 

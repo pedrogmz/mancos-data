@@ -1804,7 +1804,7 @@ AddEventHandler('esx_policejob:handcuff', function()
 			DisablePlayerFiring(playerPed, true)
 			SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
 			SetPedCanPlayGestureAnims(playerPed, false)
-			FreezeEntityPosition(playerPed, true)
+			FreezeEntityPosition(playerPed, false)
 			DisplayRadar(false)
 
 			if Config.EnableHandcuffTimer then
@@ -1945,16 +1945,21 @@ Citizen.CreateThread(function()
 		local playerPed = PlayerPedId()
 
 		if isHandcuffed then
-			DisableControlAction(0, 1, true) -- Disable pan
-			DisableControlAction(0, 2, true) -- Disable tilt
+			--DisableControlAction(0, 1, true) -- Disable pan
+			--DisableControlAction(0, 2, true) -- Disable tilt
 			DisableControlAction(0, 24, true) -- Attack
 			DisableControlAction(0, 257, true) -- Attack 2
 			DisableControlAction(0, 25, true) -- Aim
 			DisableControlAction(0, 263, true) -- Melee Attack 1
-			--DisableControlAction(0, 32, true) -- W
-			DisableControlAction(0, 34, true) -- A
-			DisableControlAction(0, 31, true) -- S
-			DisableControlAction(0, 30, true) -- D
+			--EnableControlAction(0, 32, true) -- W
+			--DisableControlAction(0, 34, true) -- A
+			--DisableControlAction(0, 31, true) -- S
+			--DisableControlAction(0, 30, true) -- D
+			DisableControlAction(0, 21, true)
+			DisableControlAction(0, 182, true)
+			DisableControlAction(0, 244, true)
+			DisableControlAction(0, 311, true)
+			DisableControlAction(0, 303, true)
 
 			DisableControlAction(0, 45, true) -- Reload
 			DisableControlAction(0, 22, true) -- Jump
@@ -1964,7 +1969,7 @@ Citizen.CreateThread(function()
 
 			DisableControlAction(0, 288,  true) -- Disable phone
 			DisableControlAction(0, 289, true) -- Inventory
-			DisableControlAction(0, 170, true) -- Animations
+			--DisableControlAction(0, 170, true) -- Animations
 			DisableControlAction(0, 167, true) -- Job
 
 			DisableControlAction(0, 0, true) -- Disable changing view

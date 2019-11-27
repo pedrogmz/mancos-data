@@ -1,25 +1,25 @@
-local ragdoll = false
+local ragdolll = false
 function setRagdoll(flag)
-  ragdoll = flag
+  ragdolll = flag
 end
 Citizen.CreateThread(function()
   while true do
     Citizen.Wait(0)
-    if ragdoll then
+    if ragdolll then
       SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
     end
   end
 end)
 
-ragdol = true
+ragdool = true
 RegisterNetEvent("Ragdoll")
 AddEventHandler("Ragdoll", function()
-	if ( ragdol ) then
+	if ( ragdool ) then
 		setRagdoll(true)
-		ragdol = false
+		ragdool = false
 	else
 		setRagdoll(false)
-		ragdol = true
+		ragdool = true
 	end
 end)
 

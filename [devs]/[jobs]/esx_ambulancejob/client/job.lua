@@ -21,6 +21,18 @@ Citizen.CreateThread(function()
 
 	PlayerData = ESX.GetPlayerData()
 end)
+
+
+
+
+
+
+
+
+
+
+
+
 --outfit
 function OutfitsMenu()
 	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)

@@ -3,18 +3,27 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 --SHOPS
+ESX.RegisterUsableItem('cigarrett', function(source) --Cigarro
+	local xPlayer = ESX.GetPlayerFromId(source)
 
-ESX.RegisterUsableItem('bread', function(source)
+	xPlayer.removeInventoryItem('cigarrett', 1)
+	TriggerClientEvent('esx_status:add', source, 'thirst', -10000)
+	TriggerClientEvent('esx_basicneeds:OnSmokeCigarett', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_cigar'))
+end)
+
+
+ESX.RegisterUsableItem('bread', function(source)  -- pan
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('bread', 1)
 
-	TriggerClientEvent('esx_status:add', source, 'hunger', 500000)
+	TriggerClientEvent('esx_status:add', source, 'hunger', 150000)
 	TriggerClientEvent('esx_basicneeds:onEat', source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_bread'))
 end)
 
-ESX.RegisterUsableItem('potatoes', function(source)
+ESX.RegisterUsableItem('potatoes', function(source)  -- patatas
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('potatoes', 1)
@@ -24,7 +33,17 @@ ESX.RegisterUsableItem('potatoes', function(source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_potatoes'))
 end)
 
-ESX.RegisterUsableItem('hamburger', function(source)
+ESX.RegisterUsableItem('sopa', function(source) -- sopa 
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('sopa', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 250000)
+	TriggerClientEvent('esx_basicneeds:onEat', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_sopa'))
+end)
+
+ESX.RegisterUsableItem('hamburger', function(source)  -- hamburguesa
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('hamburger', 1)
@@ -35,18 +54,17 @@ ESX.RegisterUsableItem('hamburger', function(source)
 end)
 
 
-ESX.RegisterUsableItem('water', function(source)
+ESX.RegisterUsableItem('water', function(source)  -- agua
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('water', 1)
 
-	TriggerClientEvent('esx_status:add', source, 'thirst', 500000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 150000)
 	TriggerClientEvent('esx_basicneeds:onDrink', source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_water'))
 end)
-ESX.RegisterUsableItem('ecola', function(source)
+ESX.RegisterUsableItem('ecola', function(source)  -- ecola
 	local xPlayer = ESX.GetPlayerFromId(source)
-
 	xPlayer.removeInventoryItem('ecola', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'thirst', 750000)
@@ -54,7 +72,7 @@ ESX.RegisterUsableItem('ecola', function(source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_ecola'))
 end)
 
-ESX.RegisterUsableItem('sprunk', function(source)
+ESX.RegisterUsableItem('sprunk', function(source) -- sprunk
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('sprunk', 1)

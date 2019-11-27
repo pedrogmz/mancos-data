@@ -128,134 +128,134 @@ Config.AuthorizedWeapons = {
 	},
 	agent = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
-		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },		
+		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
 		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
-		{ weapon = 'WEAPON_FLASHBANG', price = 0 }
 --		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
+
 	},
 	oficial3 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	oficial2 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	oficial1 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	sargento2 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	sargento1 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	teniente = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	capitan3 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	capitan2 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	capitan1 = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	subinspector = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	inspector = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	},
 	boss = {		
 		{ weapon = 'WEAPON_NIGHTSTICK', price = 0 },
 		{ weapon = 'WEAPON_STUNGUN', price = 0 },
-		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 },
 		{ weapon = 'WEAPON_COMBATPISTOL', price = 0 },
 		{ weapon = 'WEAPON_PUMPSHOTGUN', price = 0 },
 		{ weapon = 'WEAPON_SPECIALCARBINE', price = 0 },
---		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },		
-		{ weapon = 'WEAPON_FLASHLIGHT', price = 0 }
+		{ weapon = 'WEAPON_SMOKEGRENADE', price = 0 },
+--		{ weapon = 'WEAPON_SNIPERRIFLE', price = 0 },	
 	}
 	--[[
 	officer = {
@@ -317,7 +317,8 @@ Config.AuthorizedWeapons = {
 Config.AuthorizedVehicles = {
 	Shared = {
 		{ model = 'poli1', label = 'Patrulla - CV' },
-		{ model = 'poli3', label = 'Patrulla - Todoterreno' },
+		{ model = 'poli5', label = 'Patrulla - Taurus' },
+		{ model = 'poli3', label = 'Patrulla - Explorer 4x4' },
 		{ model = 'moto1', label = 'Patrulla - Moto' },
 		{ model = 'poli4', label = 'Interceptor - A' },
 		{ model = 'polf430', label = 'Interceptor - B' },
@@ -326,38 +327,32 @@ Config.AuthorizedVehicles = {
 
 	},
 	recruit = {
-		{ model = 'riot', label = 'Police Riot' },
-		{ model = 'fbi2', label = 'FIB SUV' }
+		{ model = 'riot', label = 'Police Riot' }
 	},
 
 	officer = {
-		{ model = 'police3', label = 'Police Interceptor'}
+		{ model = 'riot', label = 'Police Riot' }
 	},
 
 	sergeant = {
-		{ model = 'policet', label = 'Police Transporter' },
-		{ model = 'policeb', label = 'Police Bike' }
+		{ model = 'riot', label = 'Police Riot' }
 	},
 
 	intendent = {
-		{ model = 'riot', label = 'Police Riot' },
-		{ model = 'fbi2', label = 'FIB SUV' }
+		{ model = 'riot', label = 'Police Riot' }
 	},
 
 	lieutenant = {
-		{ model = 'riot', label = 'Police Riot' },
-		{ model = 'fbi2', label = 'FIB SUV' }
+		{ model = 'riot', label = 'Police Riot' }
 	},
 
 	chef = {
-		{ model = 'riot', label = 'Police Riot' },
-		{ model = 'fbi2', label = 'FIB SUV' }
+		{ model = 'riot', label = 'Police Riot' }
 	},
 
 	boss = {
-		{ model = 'riot', label = '[Jefe] - Police Riot' },
-		{ model = 'fbi2', label = '[Jefe] - FIB SUV' }
-	}
+		{ model = 'riot', label = 'Police Riot' }
+	},
 } 
 
 

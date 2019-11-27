@@ -26,7 +26,7 @@
       <animConvRoofWindowsAffected />
       <ptfxAssetName>null</ptfxAssetName>
       <audioNameHash>FBI</audioNameHash>
-      <layout>LAYOUT_LOW_INFERNUS</layout>
+      <layout>LAYOUT_STD_HIGHWINDOW</layout>
       <coverBoundOffsets>DOMINATOR_COVER_OFFSET_INFO</coverBoundOffsets>
       <explosionInfo>EXPLOSION_INFO_DEFAULT</explosionInfo>
       <scenarioLayout />
