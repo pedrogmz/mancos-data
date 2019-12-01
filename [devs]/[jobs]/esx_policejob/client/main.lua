@@ -966,6 +966,7 @@ function OpenPoliceActionsMenu()
 				-- {label = _U('fine'), value = 'fine'}, Arnedo5
 				{label = _U('pagodirecto'), value = 'pagodirecto'},
 				--{label = _U('unpaid_bills'), value = 'unpaid_bills'} Arnedo5
+				{label = "Servicios Comunitarios",	value = 'communityservice'},
 			}
 
 			if Config.EnableLicenses then
@@ -1003,6 +1004,8 @@ function OpenPoliceActionsMenu()
 						ShowPlayerLicense(closestPlayer)
 					elseif action == 'unpaid_bills' then
 						OpenUnpaidBillsMenu(closestPlayer)
+					elseif action == 'communityservice' then
+						SendToCommunityService(GetPlayerServerId(closestPlayer))
 					end
 				else
 					ESX.ShowNotification(_U('no_players_nearby'))
@@ -1119,6 +1122,26 @@ function OpenPoliceActionsMenu()
 		menu.close()
 	end)
 end
+
+-- ADDITION [3]
+-- add this function
+function SendToCommunityService(player)
+	ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'Community Service Menu', {
+		title = "Servicios comunitarios",
+	}, function (data2, menu)
+		local community_services_count = tonumber(data2.value)
+		
+		if community_services_count == nil then
+			ESX.ShowNotification('Meses invalidos.')
+		else
+			TriggerServerEvent("esx_communityservice:sendToCommunityService", player, community_services_count)
+			menu.close()
+		end
+	end, function (data2, menu)
+		menu.close()
+	end)
+end
+
 
 function OpenIdentityCardMenu(player)
 	ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)
@@ -1969,7 +1992,7 @@ Citizen.CreateThread(function()
 
 			DisableControlAction(0, 288,  true) -- Disable phone
 			DisableControlAction(0, 289, true) -- Inventory
-			--DisableControlAction(0, 170, true) -- Animations
+			DisableControlAction(0, 170, true) -- Animations
 			DisableControlAction(0, 167, true) -- Job
 
 			DisableControlAction(0, 0, true) -- Disable changing view

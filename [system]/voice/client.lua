@@ -14,7 +14,7 @@ local Keys = {
 local r,g,b,a = 166,166,255,255 -- rgba color
 
 -- ranges
-local voice = {default = 6.0, shout = 21.0, whisper = 1.0, current = 0}
+local voice = {default = 5.0, shout = 21.0, whisper = 1.0, current = 0}
 
 AddEventHandler('onClientMapStart', function()
 	if voice.current == 0 then
@@ -87,19 +87,19 @@ Citizen.CreateThread(function()
             Citizen.Wait(0)
 				if NetworkIsPlayerTalking(PlayerId()) then
 					if voice.current == 0 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~b~ Voz: Normal", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz: ~b~Normal", 255, 255, 255, 255)
 					elseif voice.current == 1 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~b~ Voz: Gritando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz: ~b~Gritando", 255, 255, 255, 255)
 					elseif voice.current == 2 then
-						drawTxt(0.164, 0.868, 1.5,1.0,0.4, "~b~ Voz: Susurrando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.5,1.0,0.4, "Voz: ~b~Susurrando", 255, 255, 255, 255)
 					end
 				else
 					if voice.current == 0 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~ Voz: Normal", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~Voz: Normal", 255, 255, 255, 255)
 					elseif voice.current == 1 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~ Voz: Gritando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~Voz: Gritando", 255, 255, 255, 255)
 					elseif voice.current == 2 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~ Voz: Susurrando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~Voz: Susurrando", 255, 255, 255, 255)
 					end
 				end
         end

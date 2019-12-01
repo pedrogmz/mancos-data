@@ -6,7 +6,7 @@ Config.EnableSocietyOwnedVehicles = false
 Config.EnableVaultManagement      = true
 Config.EnableHelicopters          = false
 Config.EnableMoneyWash            = false
-Config.MaxInService               = -1
+Config.MaxInService               = 4
 Config.Locale                     = 'fr'
 
 Config.MissCraft                  = 10 -- %

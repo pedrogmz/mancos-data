@@ -1,5 +1,5 @@
 Locales['es'] = {
-  ['tattoo_shop_prompt'] = 'pulsa ~INPUT_PICKUP~ para ~y~tatuarte~s~.',
+  ['tattoo_shop_prompt'] = '~INPUT_PICKUP~ para ~y~tatuarte~s~.',
   ['money_amount']       = '<span style="color:green;">%s€</span>',
   ['part']               = 'parte %s',
   ['go_back_to_menu']    = '< Volver',

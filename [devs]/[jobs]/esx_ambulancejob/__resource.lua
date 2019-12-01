@@ -7,6 +7,7 @@ version '1.2.0'
 server_scripts {
 	'@mysql-async/lib/MySQL.lua',
 	'@es_extended/locale.lua',
+	'@esx_basicneeds/server/main.lua',
 	'locales/br.lua',
 	'locales/en.lua',
 	'locales/fi.lua',

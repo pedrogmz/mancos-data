@@ -5,7 +5,7 @@ Config.EnablePlayerManagement     = true
 Config.EnableSocietyOwnedVehicles = false
 Config.NPCSpawnDistance           = 500.0
 Config.NPCNextToDistance          = 25.0
-Config.NPCJobEarnings             = { min = 70, max = 70 }
+Config.NPCJobEarnings             = { min = 8, max = 70 }
 Config.Locale                     = 'es'
 
 Config.Zones = {

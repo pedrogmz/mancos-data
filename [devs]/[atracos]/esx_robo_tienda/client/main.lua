@@ -85,7 +85,7 @@ AddEventHandler('esx_holdup:startTimer', function()
 	Citizen.CreateThread(function()
 		while holdingUp do
 			Citizen.Wait(0)
-			drawTxt(0.66, 1.44, 1.0, 1.0, 0.4, _U('robbery_timer', timer), 255, 255, 255, 255)
+			drawTxt(0.66, 1.40, 1.0, 1.0, 0.4, _U('robbery_timer', timer), 255, 255, 255, 255)
 		end
 	end)
 end)
@@ -109,7 +109,7 @@ Citizen.CreateThread(function()
 						ESX.ShowHelpNotification(_U('press_to_rob', v.nameOfStore))
 
 						if IsControlJustReleased(0, Keys['E']) then
-							if IsPedArmed(PlayerPedId(), 4) then
+							if IsPedArmed(PlayerPedId(), 7) then
 								TriggerServerEvent('esx_holdup:robberyStarted', k)
 							else
 								ESX.ShowNotification(_U('no_threat'))

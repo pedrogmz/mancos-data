@@ -41,7 +41,7 @@ function MFV:PoliceNotify()
   end)
 end
 
-function MFV:GetPoliceCount()
+function MFV:GetPoliceCount1()
   Citizen.CreateThread(function(...)
     self.PoliceCount = 0
     for k,v in pairs(ESX.GetPlayers()) do 
@@ -53,6 +53,24 @@ function MFV:GetPoliceCount()
     end
   end)
 end
+
+-- recorrer players
+
+function MFV:GetPoliceCount()
+	local xJugadores = ESX.GetPlayers()
+	local PoliceCount = 0
+	TriggerEvent('es:getPlayers', function(players)
+		for i=1, #xJugadores, 1 do
+			local xJugador = ESX.GetPlayerFromId(xJugadores[i])
+			if xJugador.job.name == 'police' then
+				PoliceCount = PoliceCount+1				
+			end
+		end		
+	end) 	
+end
+
+
+
 
 function MFV:RefreshLootTable()
   TriggerClientEvent('MF_Vangelico:SyncLoot', -1, self:SetupLoot(), true, false)

@@ -3,7 +3,7 @@
 Config = {
     Job = 'police',
     Command = 'k9', -- set to false if you dont want to have a command
-    Model = 351016938,
+    Model = 1318032802,
     TpDistance = 50.0,
     Sit = {
         dict = 'creatures@Shepherd@amb@world_dog_sitting@base',
@@ -17,7 +17,7 @@ Strings = {
     ['menu_title'] = 'Perro policía',
     ['take_out_remove'] = 'Guardar perro policía',
     ['deleted_dog'] = 'Perro policía ~r~guardado ~s~',
-    ['spawned_dog'] = 'Perro policía ~r~creado ~s~',
+    ['spawned_dog'] = 'Perro policía ~r~activo~s~',
     ['sit_stand'] = 'Haz al perro sentarse/levantarse',
     ['no_dog'] = "No tienes ningún perro",
     ['dog_dead'] = 'Tu perro está muerto :/',

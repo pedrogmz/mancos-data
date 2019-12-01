@@ -22,5 +22,7 @@ Config.Shops = {
 	vector3(1190.6, 2713.4, 37.2),
 	vector3(-1193.4, -772.3, 16.3),
 	vector3(-3172.5, 1048.1, 19.9),
+-- 	vector3(332.36, -586.2, 27.79), -- tienda hospital
+--	vector3(459.36, -992.62, 29.69), -- tienda comisaría
 	vector3(-1108.4, 2708.9, 18.1)
 }

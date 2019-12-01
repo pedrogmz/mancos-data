@@ -15,6 +15,7 @@ Config.Zones = {
 			{x = -1168.99,  y = -1573.02,  z = 4.66}
 		}
 	},
+	
 	Badulake = {
 		name = {'badulake'},
 		Items = {},

@@ -159,30 +159,74 @@ AddEventHandler('esx_247job:craft247', function(itemValue)
 
             local xPlayer           = ESX.GetPlayerFromId(_source)
 
-            local alephQuantity     = xPlayer.getInventoryItem('bread').count
-            local bethQuantity      = xPlayer.getInventoryItem('steak').count
-            local gimelQuantity     = xPlayer.getInventoryItem('cheese').count
+            local breadhQuantity     = xPlayer.getInventoryItem('bread').count
+            local waterQuantity      = xPlayer.getInventoryItem('water').count
+            local hamburgerQuantity  = xPlayer.getInventoryItem('hamburger').count
+			local potatoesQuantity   = xPlayer.getInventoryItem('potatoes').count
+			local sopaQuantity	     = xPlayer.getInventoryItem('sopa').count
+			local ecolaQuantity      = xPlayer.getInventoryItem('ecola').count
+			local sprunkQuantity     = xPlayer.getInventoryItem('sprunk').count
+			local fishingrodQuantity = xPlayer.getInventoryItem('fishingrod').count
+			local fishbaitQuantity   = xPlayer.getInventoryItem('fishbait').count
+			local turtlebaitQuantity = xPlayer.getInventoryItem('turtlebait').count
+			local phoneQuantity      = xPlayer.getInventoryItem('phone').count
+			local jumellesQuantity   = xPlayer.getInventoryItem('jumelles').count
+			local condonQuantity     = xPlayer.getInventoryItem('condon').count
+			local dildoQuantity      = xPlayer.getInventoryItem('dildo').count
+			local cigarrettQuantity = xPlayer.getInventoryItem('cigarrett').count
+			local pasteldecarneQuantity = xPlayer.getInventoryItem('pasteldecarne ').count
+			
+			
+			
 
-            if alephQuantity < 2 then
+            if breadhQuantity < 1 then
                 TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('bread') .. '~w~')
-            elseif bethQuantity < 1 then
-                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('steak') .. '~w~')
-            elseif gimelQuantity < 2 then
-                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('cheese') .. '~w~')
-            else
+            elseif waterQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('water') .. '~w~')
+            elseif hamburgerQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('hamburger') .. '~w~')
+			elseif potatoesQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('potatoes') .. '~w~')
+            elseif sopaQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('sopa') .. '~w~')
+			elseif ecolaQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('ecola') .. '~w~')
+            elseif sprunkQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('sprunk') .. '~w~')				
+			elseif fishingrodQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('fishingrod') .. '~w~')
+            elseif fishbaitQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('fishbait') .. '~w~')				
+			elseif turtlebaitQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('turtlebait') .. '~w~')
+            elseif phoneQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('phone') .. '~w~')	
+            elseif jumellesQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('jumelles') .. '~w~')				
+			elseif condonQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('condon') .. '~w~')
+            elseif dildoQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('dildo') .. '~w~')				
+			elseif cigarretteQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('cigarrett') .. '~w~')		
+			elseif pasteldecarneQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('pasteldecarne') .. '~w~')			
+--[[            else
                 local chanceToMiss = math.random(100)
                 if chanceToMiss <= Config.MissCraft then
                     TriggerClientEvent('esx:showNotification', _source, _U('craft_miss'))
                     xPlayer.removeInventoryItem('bread', 2)
-                    xPlayer.removeInventoryItem('steak', 1)
-                    xPlayer.removeInventoryItem('cheese', 2)
+                    xPlayer.removeInventoryItem('hamburger', 1)
+                    xPlayer.removeInventoryItem('potatoes', 2)
+
                 else
                     TriggerClientEvent('esx:showNotification', _source, _U('craft') .. _U('247') .. ' ~w~!')
                     xPlayer.removeInventoryItem('bread', 2)
-                    xPlayer.removeInventoryItem('steak', 1)
-                    xPlayer.removeInventoryItem('cheese', 2)
+                    xPlayer.removeInventoryItem('hamburger', 1)
+                    xPlayer.removeInventoryItem('potatoes', 2)
                     xPlayer.addInventoryItem('tender', 1)
                 end
+				]]--
             end
 
         end)

@@ -94,6 +94,7 @@ $(document).ready(function(){
 	
 	// Hunger Thrist
 	function updateStatus(status) {
+		
 		var hunger = status[0];
 		var thirst = status[1];
 		$('#hunger_bar').width( (Math.round(hunger.percent))+'%' );

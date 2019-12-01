@@ -27,7 +27,7 @@ Locales['fr'] = {
 
     -- Shops  
     ['shop']                     = 'Tienda de 24/7',
-    ['shop_menu']                = '~INPUT_CONTEXT~ para acceder a la tienda.',
+    ['shop_menu']                = '~INPUT_CONTEXT~ para abrir el frigorífigo.',
     ['bought']                   = 'Has comprado ~b~1x ',
     ['not_enough_money']         = '~r~No~w~ tienes suficiente ~r~dinero~w~.',
     ['max_item']                 = 'No puedes llevar más encima.',
@@ -62,15 +62,33 @@ Locales['fr'] = {
 
     -- Crafting Menu  
     ['crafting']                 = 'Fabrication Hamburger',
-    ['burger']                   = 'Burger',
-    ['bread']                    = 'Pain',
-    ['steak']                    = 'Steak',
-    ['cheese']                   = 'Fromage',
     ['assembling_cocktail']      = 'Mélange des différents ingrédients en cours !',
     ['craft_miss']               = 'Malheureux échec du mélange...',
     ['not_enough']               = 'Pas assez de ~r~ ',
     ['craft']                    = '~g~ est prêt',
-
+	
+	-- Alimentos
+	['bread']                 	 = 'Pan PVP 2$',
+	['water']                 	 = 'Agua PVP 1$',
+	['hamburger']                = 'Hamburgesa PVP 4$',
+	['pasteldecarne']              = 'Pastel de carne PVP 4$',	
+	['potatoes']                 = 'Patatas fritas PVP 3$',
+	['sopa']                	 = 'Sopa de pollo PVP 3$',
+	['ecola']                    = 'eCola PVP 2$',
+	['sprunk']                   = 'Sprunk PVP 2$',
+	['fishingrod']                 = 'Caña de pescar PVP 300$',
+	['fishbait']                 = 'Cebo de pescados PVP 1$',
+	['turtlebait']                 = 'Cebo de tortugas PVP 3$',
+	['phone']                 = 'Teléfono PVP 600$',
+	['jumelles']                 = 'Binoculares PVP 400$',
+	['condon']                 = 'Condon PVP 2$',
+	['dildo']                 = 'Dildo rosa PVP 26$',
+	['cigarrett']                 = 'Cigarro PVP 1$',
+	
+	
+	
+	
+	
     -- Misc  
     ['map_blip']                 = '24/7',
     ['burgershot']               = '24/7',

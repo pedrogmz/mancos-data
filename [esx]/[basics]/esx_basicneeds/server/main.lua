@@ -53,6 +53,16 @@ ESX.RegisterUsableItem('hamburger', function(source)  -- hamburguesa
 	TriggerClientEvent('esx:showNotification', source, _U('used_hamburger'))
 end)
 
+ESX.RegisterUsableItem('pasteldecarne', function(source)  -- pastel de carne
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('pasteldecarne', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 750000)
+	TriggerClientEvent('esx_basicneeds:onEat', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_bread'))
+end)
+
 
 ESX.RegisterUsableItem('water', function(source)  -- agua
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -82,9 +92,20 @@ ESX.RegisterUsableItem('sprunk', function(source) -- sprunk
 	TriggerClientEvent('esx:showNotification', source, _U('used_sprunk'))
 end)
 
+-- Alcohol
 
 
+ESX.RegisterUsableItem('whisky', function(source) -- whisky
+	local xPlayer = ESX.GetPlayerFromId(source)
 
+	xPlayer.removeInventoryItem('whisky', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
+    TriggerClientEvent('esx_status:remove', source, 'hunger', 10000)
+    TriggerClientEvent('esx_status:remove', source, 'thirst', 70000)
+    TriggerClientEvent('esx_optionalneeds:onDrink', source)
+	TriggerClientEvent('esx:showNotification', source, _U('used_whisky'))
+end)
 
 TriggerEvent('es:addGroupCommand', 'heal', 'admin', function(source, args, user)
 	-- heal another player - don't heal source

@@ -7,4 +7,6 @@ Locales['es'] = {
   ['used_ecola'] = 'Has usado ~y~1x~s~ ~b~Ecola~s~',
   ['used_sopa'] = 'Has usado ~y~1x~s~ ~b~Sopa de pollo~s~',
   ['used_sprunk'] = 'Has usado ~y~1x~s~ ~b~Sprunk~s~',
+  ['used_pasteldecarne'] = 'Has usado ~y~1x~s~ ~b~Pastel de carne~s~',
+  ['used_whisky'] = 'Has usado ~y~1x~s~ ~b~Whisky~s~',
 }

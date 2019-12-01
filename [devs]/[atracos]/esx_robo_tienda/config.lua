@@ -11,12 +11,12 @@ Config.PoliceNumberRequired = 2
 Config.TimerBeforeNewRob    = 1800 -- The cooldown timer on a store after robbery was completed / canceled, in seconds
 
 Config.MaxDistance    = 20   -- max distance from the robbary, going any longer away from it will to cancel the robbary
-Config.GiveBlackMoney = true -- give black money? If disabled it will give cash instead
+Config.GiveBlackMoney = false -- give black money? If disabled it will give cash instead
 
 Stores = {
 		["littleseoul_twentyfourseven"] = {
 		position = { x = -709.59, y = -904.18, z = 19.50 },
-		reward = math.random(3000, 20000),
+		reward = math.random(3000, 7000),
 		nameOfStore = "24/7 (Tienda)",
 		secondsRemaining = 200, -- seconds
 		lastRobbed = 0

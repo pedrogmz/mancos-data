@@ -227,7 +227,7 @@ function GetFormatDate(strDate) {
 	  
 	return (
     date.getFullYear() + '-' +
-    (month.length = 1 ? '0' + month : month) + '-' +
+    (month.toString().length == 1 ? '0' + month : month) + '-' +
 	(date.getDate().toString().length == 1 ? '0' + date.getDate() :  date.getDate()) + ' ' + 
     (date.getHours().toString().length == 1 ? '0' + date.getHours() :  date.getHours()) + ":" + 
     (date.getMinutes().toString().length == 1 ? '0' + date.getMinutes() :  date.getMinutes()));

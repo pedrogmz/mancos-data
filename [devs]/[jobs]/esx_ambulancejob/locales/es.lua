@@ -7,14 +7,14 @@ Locales['es'] = {
 
   -- Vehicles
   ['ambulance'] = 'Ambulancia',
-  ['helicopter_prompt'] = 'Pulsa ~INPUT_CONTEXT~ para acceder al ~y~helicoptero~s~.',
+  ['helicopter_prompt'] = '~INPUT_CONTEXT~ para acceder al ~y~helicoptero~s~.',
   ['helicopter_buy'] = 'Tienda de helicopteros',
   ['helicopter_garage'] = 'Sacar helicoptero',
   ['helicopter_store'] = 'Guardar helicoptero',
   ['helicopter_garage_title'] = 'Helicóptero de garaje',
   ['helicopter_title'] = 'Acciones de helicóptero',
   ['helicopter_notauthorized'] = 'No estás autorizado para comprar helicópteros.',
-  ['garage_prompt'] = 'Pulsa ~INPUT_CONTEXT~ para acceder al ~y~garaje~s~.',
+  ['garage_prompt'] = '~INPUT_CONTEXT~ para acceder al ~y~garaje~s~.',
   ['garage_title'] = 'Acciones del vehículo',
   ['garage_stored'] = 'Almacenado',
   ['garage_notstored'] = 'No en el garaje',
@@ -48,7 +48,7 @@ Locales['es'] = {
   ['no_vehicles'] = 'ningún vehículo cerca',
   ['player_not_unconscious'] = 'n\'estás inconsciente',
   ['player_not_conscious'] = 'that player is not conscious!',
-  ['actions_outfits'] = 'Pulsa ~INPUT_CONTEXT~ para abrir el ~y~ropero personal~s~',
+  ['actions_outfits'] = '~INPUT_CONTEXT~ para abrir el ~y~ropero personal~s~',
   -- Boss Menu
   ['boss_actions'] = 'Acciones de jefe',
   -- Farmacia
@@ -60,7 +60,7 @@ Locales['es'] = {
   ['morphine'] = 'Morfina',
   --Baul
   ['armario'] = 'Armario',
-  ['actions_baul'] = 'Pulsa ~INPUT_CONTEXT~ para abrir el ~y~Armario~s~',
+  ['actions_baul'] = '~INPUT_CONTEXT~ para abrir el ~y~Armario~s~',
   ['Farmacia'] = 'Armario de medicina',
   ['Dejarobjeto'] = 'Guardar objeto',
   ['Cogerobjeto'] = 'Coger objeto',
@@ -77,8 +77,8 @@ Locales['es'] = {
   ['actions_prompt'] = '~INPUT_CONTEXT~ para ver las ~y~acciones de medico~s~.',
   ['deposit_amount'] = 'Cantidad de fianza depositada',
   ['money_withdraw'] = 'Cantidad de fianza retirada',
-  ['fast_travel'] = 'Presione ~INPUT_CONTEXT~ para viajar rapido.',
-  ['open_pharmacy'] = 'Presione ~INPUT_CONTEXT~ para abrir la farmacia.',
+  ['fast_travel'] = '~INPUT_CONTEXT~ para viajar rapido.',
+  ['open_pharmacy'] = '~INPUT_CONTEXT~ para abrir la farmacia.',
   ['pharmacy_menu_title'] = 'Farmacia',
   ['pharmacy_take'] = 'tomar <span style="color:blue;">%s</span>',
   ['medikit'] = 'Medikit',
@@ -101,7 +101,7 @@ Locales['es'] = {
   ['respawn_bleedout_prompt'] = 'Mantén presionado [~b~E~s~] para reaparecer',
   ['respawn_bleedout_fine'] = 'mantén presionado [~b~E~s~] para reaparecer para ~g~$%s~s~',
   ['respawn_bleedout_fine_msg'] = 'Tu pagaste ~r~$%s~s~ por reaparecer.',
-  ['distress_send'] = 'Presione [~b~G~s~] enviar señal de socorro',
+  ['distress_send'] = '[~b~G~s~] enviar señal de socorro',
   ['distress_sent'] = '¡La señal de socorro ha sido enviada a las unidades disponibles!',
   ['distress_message'] = 'Atención médica requerida: ciudadano inconsciente!',
   ['combatlog_message'] = 'Ha sido forzado a reaparecer porque anteriormente ha dejado el servidor cuando está muerto.',
@@ -130,9 +130,9 @@ Locales['es'] = {
   ['teleport_helicopter'] = 'Ir al helicoptero',
 
    -- Garaje
-   ['spawner_prompt'] = 'Presiona ~INPUT_CONTEXT~ para acceder al ~y~Garaje~s~.',
-   ['press_to_open'] = 'Presiona ~INPUT_CONTEXT~ para acceder al menu.',
-   ['store_veh'] = 'Presiona ~INPUT_CONTEXT~ para guardar vehiculo.',
+   ['spawner_prompt'] = '~INPUT_CONTEXT~ para acceder al ~y~Garaje~s~.',
+   ['press_to_open'] = '~INPUT_CONTEXT~ para acceder al menu.',
+   ['store_veh'] = '~INPUT_CONTEXT~ para guardar vehiculo.',
    ['spawn_veh'] = 'Vehículo generado',
    ['spawnpoint_blocked'] = '¡Hay un vehículo bloqueando el punto de salida!',
 }

@@ -21,8 +21,8 @@ AddEventHandler('hidi:chatFaccion', function(mensaje,id)
 		sendChat('ambulance', "#F52785", nombre, mensaje,'Ambulancia')
 	elseif job == 'mechanic' then
 		sendChat('mechanic', "#C5C5C4", nombre, mensaje,'Mecanico')
-	elseif job == '247' then
-		sendChat('247', "#FF9639", nombre, mensaje,'24/7')
+	elseif job == 'tender' then
+		sendChat('tender', "#FF9639", nombre, mensaje,'24/7')
 	elseif job == 'bar' then
 		sendChat('bar', "#9775FA", nombre, mensaje,'Casino')		
 	elseif job == 'cardealer' then
@@ -57,30 +57,6 @@ AddEventHandler('hidi:PoliEms', function(mensaje,id)
 
 end)
 
-
-TriggerEvent('es:addCommand', 'me', function(source, args, user)
-	local _player = ESX.GetPlayerFromId(source)
-	local _identifier = _player.getIdentifier()
-    local nombre = GetCharacterName(_identifier)
-    TriggerClientEvent("hidi:chatProximidadMe", -1, source, nombre, table.concat(args, " "))
-	--sendToDiscord(source, "me",mensaje)
-end)
-
-TriggerEvent('es:addCommand', 'do', function(source, args, user)
-	local _player = ESX.GetPlayerFromId(source)
-	local _identifier = _player.getIdentifier()
-    local nombre = GetCharacterName(_identifier)
-    TriggerClientEvent("hidi:chatProximidadDo", -1, source, nombre, table.concat(args, " "))
-	--sendToDiscord(source, "do",mensaje)
-end)
---[[
-TriggerEvent('es:addCommand', 'ooc', function(source, args, user)
-	local _player = GetPlayerName(source)
-	local _source = source
-    TriggerClientEvent("hidi:chatProximidadOoc", -1, source, _player, table.concat(args, " "))
-	--sendToDiscord(source, "ooc",mensaje)
-end)
-]]
 AddEventHandler('chatMessage', function(source, args, message )
 	CancelEvent()
 	local _player = GetPlayerName(source)
@@ -100,20 +76,6 @@ end)
 ############################################################################
 ]]
 
---[[
-RegisterCommand('twt', function(source, args, rawCommand)
-    local playerName = GetPlayerName(source)
-	local msg = rawCommand:sub(5)
-	local _player = ESX.GetPlayerFromId(source)
-	local _identifier = _player.getIdentifier()
-	local _name = GetCharacterName(_identifier)
-    TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div style="padding: 0.1vw; margin: 0.1vw; border-radius: 3px;"><i class="fab fa-twitter"></i> ^0[^4Twitter^0] (^5@{0}^0): {1}</div>',
-        args = { _name, msg }
-    })
-	TriggerEvent('DiscordBot:ToDiscord', 'chat', playerName .. ' [ID: ' .. source .. '] Server: '..server, '**TWITTER: **' .. msg, 'steam', true, source)
-end, false)
-]]
 RegisterCommand('a', function(source, args, rawCommand)
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(3)
@@ -150,7 +112,7 @@ RegisterCommand('msg', function(source, args)
 	table.remove(args,1)
 	local mensaje = table.concat(args," ")
 	
-	if (GetPlayerName(receptor)) then
+	if _receptor then
 		TriggerClientEvent('chat:addMessage',receptor, {
 			template = '<font color="#FF008F"><b>PRIVADO DE</b></font> <font color="#FFFFFF"><b>[{2}] {0}</b></font><font color="#FFD022"><b>{1}</b></font>',
 			args = {emisor, " " .. mensaje,_source}
@@ -165,6 +127,23 @@ RegisterCommand('msg', function(source, args)
 	end
 
 end,false)
+
+
+TriggerEvent('es:addCommand', 'me', function(source, args, user)
+	local _player = ESX.GetPlayerFromId(source)
+	local _identifier = _player.getIdentifier()
+    local nombre = GetCharacterName(_identifier)
+    TriggerClientEvent("hidi:chatProximidadMe", -1, source, nombre, table.concat(args, " "))
+	--sendToDiscord(source, "me",mensaje)
+end)
+
+TriggerEvent('es:addCommand', 'do', function(source, args, user)
+	local _player = ESX.GetPlayerFromId(source)
+	local _identifier = _player.getIdentifier()
+    local nombre = GetCharacterName(_identifier)
+    TriggerClientEvent("hidi:chatProximidadDo", -1, source, nombre, table.concat(args, " "))
+	--sendToDiscord(source, "do",mensaje)
+end)
 
 
 --[[

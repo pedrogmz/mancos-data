@@ -80,4 +80,13 @@ end,false)
 ############################################################################
 ]]
 
-
+Citizen.CreateThread(function()
+    TriggerEvent('chat:addSuggestion', '/f', 'Chat de faccion.', {
+    { name="Mensaje", help="Envia un mensaje a todos los de tu faccion." }})
+    TriggerEvent('chat:addSuggestion', '/empl', 'Chat privado entre Medicos y Policias.', {
+        { name="Mensaje", help="Envia un mensaje a todos los Policias y Medicos" }})
+    TriggerEvent('chat:addSuggestion', '/a', 'Chat de ayuda.', {
+        { name="Mensaje", help="Uso exclusivo para solicitar ayuda fuera de rol." }})
+    TriggerEvent('chat:addSuggestion', '/msg', '[id_player] [mensaje].', {
+        { name="Chat privado entre dos personas", help="[id_player] [mensaje]." }})
+end)

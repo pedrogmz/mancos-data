@@ -9,8 +9,9 @@ Config.Jobs.lumberjack = {
 
 		Truck = {
 			Spawner = 1,
-			Hash = "rebel",
-			HasCaution = false
+			Hash = "phantom",
+			Trailer = "trailers",
+			HasCaution = true
 		}
 
 	},
@@ -40,7 +41,7 @@ Config.Jobs.lumberjack = {
 				{
 					name = _U("lj_wood"),
 					db_name = "wood",
-					time = 3000,
+					time = 4500,
 					max = 100,
 					add = 1,
 					remove = 1,
@@ -88,8 +89,8 @@ Config.Jobs.lumberjack = {
 				{
 					name = _U("lj_planks"),
 					db_name = "packaged_plank",
-					time = 4000,
-					max = 100,
+					time = 5000,
+					max = 500,
 					add = 5,
 					remove = 1,
 					requires = "cutted_wood",
@@ -110,7 +111,7 @@ Config.Jobs.lumberjack = {
 			Type = "vehspawner",
 			Spawner = 1,
 			Hint = _U("spawn_veh_button"),
-			Caution = 0
+			Caution = 200
 		},
 
 		VehicleSpawnPoint = {
@@ -134,7 +135,7 @@ Config.Jobs.lumberjack = {
 			Type = "vehdelete",
 			Hint = _U("return_vh_button"),
 			Spawner = 1,
-			Caution = 0,
+			Caution = 200,
 			GPS = 0,
 			Teleport = 0
 		},
@@ -154,7 +155,7 @@ Config.Jobs.lumberjack = {
 					time = 500,
 					remove = 1,
 					max = 100, -- if not present, probably an error at itemQtty >= item.max in esx_jobs_sv.lua
-					price = 20,
+					price = 3,
 					requires = "packaged_plank",
 					requires_name = _U("lj_planks"),
 					drop = 100

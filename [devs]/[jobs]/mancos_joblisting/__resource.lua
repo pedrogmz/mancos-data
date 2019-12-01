@@ -22,6 +22,7 @@ files {
 	'html/images/jobs/miner.png',
 	'html/images/jobs/pizza.png',
 	'html/images/jobs/police.png',
+	'html/images/jobs/gopostal.png',
 	'html/images/jobs/reporter.png',
 	'html/images/jobs/realestateagent.png',
 	'html/images/jobs/banksecurity.png',
@@ -31,6 +32,7 @@ files {
 	'html/images/jobs/trucker.png',
 	'html/images/jobs/taxi.png',
 	'html/images/jobs/unemployed.png',
+	'html/images/jobs/airlines.png',
 	-- PRICHE
 	'html/images/jobs/priche.png',
 }

@@ -1,6 +1,6 @@
 Config                            = {}
 Config.DrawDistance               = 100.0
-Config.NPCJobEarnings             = {min = 100, max = 250}
+Config.NPCJobEarnings             = {min = 50, max = 60}
 Config.MinimumDistance            = 3000 -- Minimum NPC job destination distance from the pickup in GTA units, a higher number prevents nearby destionations.
 Config.MaxInService               = 50
 Config.EnablePlayerManagement     = true
@@ -28,7 +28,7 @@ Config.Zones = {
 		Pos   = {x = 915.039, y = -162.187, z = 74.5},
 		Size  = {x = 1.0, y = 1.0, z = 1.0},
 		Color = {r = 204, g = 204, b = 0},
-		Type  = 36, Rotate = true
+		Type  = 36, Rotate = false
 	},
 
 	VehicleSpawnPoint = {
@@ -49,16 +49,16 @@ Config.Zones = {
 		Pos   = {x = 903.32, y = -170.55, z = 74.0},
 		Size  = {x = 1.0, y = 1.0, z = 1.0},
 		Color = {r = 204, g = 204, b = 0},
-		Type  = 20, Rotate = true
+		Type  = 20, Rotate = false
 	},
-
+--[[
 	Cloakroom = {
 		Pos     = {x = 894.88, y = -180.23, z = 74.5},
 		Size    = {x = 1.0, y = 1.0, z = 1.0},
 		Color   = {r = 204, g = 204, b = 0},
-		Type    = 21, Rotate = true
+		Type    = 21, Rotate = false
 	}
-
+]]--
 }
 
 Config.JobLocations = {

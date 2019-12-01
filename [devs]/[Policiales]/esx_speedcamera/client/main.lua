@@ -98,8 +98,8 @@ Citizen.CreateThread(function()
 				local veh = GetVehiclePedIsIn(playerPed)
 				local SpeedKMM = GetEntitySpeed(playerPed)*3.6
 				local SpeedKM = math.floor(SpeedKMM)
-				local maxSpeed = 82.0 -- THIS IS THE MAX SPEED IN KM/H
-				local maxSpeed2 = 122.0
+				local maxSpeed = 81.0 -- THIS IS THE MAX SPEED IN KM/H
+				local maxSpeed2 = 121.0
 				local plate = GetVehicleNumberPlateText(veh) 						-- Nurambo | Obtenemos la matrícula
 				local vehicle = GetDisplayNameFromVehicleModel(GetEntityModel(veh)) -- Arnedo5 | modelo del vehiculo
 
@@ -185,8 +185,8 @@ Citizen.CreateThread(function()
 				local veh = GetVehiclePedIsIn(playerPed)
 				local SpeedKMM = GetEntitySpeed(playerPed)*3.6
 				local SpeedKM = math.floor(SpeedKMM)
-				local maxSpeed = 122.0 -- THIS IS THE MAX SPEED IN KM/H
-				local maxSpeed2= 162.0
+				local maxSpeed = 121.0 -- THIS IS THE MAX SPEED IN KM/H
+				local maxSpeed2= 161.0
 				local plate = GetVehicleNumberPlateText(veh) 						-- Nurambo | Obtenemos la matrícula
 				local vehicle = GetDisplayNameFromVehicleModel(GetEntityModel(veh)) -- Arnedo5 | modelo del vehiculo
 				

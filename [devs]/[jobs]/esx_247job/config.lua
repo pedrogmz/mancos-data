@@ -6,7 +6,7 @@ Config.EnableSocietyOwnedVehicles = false
 Config.EnableVaultManagement      = true
 Config.EnableHelicopters          = false
 Config.EnableMoneyWash            = false
-Config.MaxInService               = -1
+Config.MaxInService               = 4
 Config.Locale                     = 'fr'
 
 Config.MissCraft                  = 10 -- %
@@ -46,7 +46,7 @@ Config.Zones = {
     },
 -- Venta
     Fridge = {	
-        Pos   = { x = -705.65, y = -913.86, z = 18.22 },
+        Pos   = { x = -705.84, y = -907.93, z = -117.78 },
         Size  = { x = 1.6, y = 1.6, z = 1.0 },
         Color = { r = 248, g = 248, b = 255 },
         Type  = 23,
@@ -97,14 +97,27 @@ Config.Zones = {
 -------- SHOPS --------
 -- generador comida
     Flacons = {
-        Pos   = { x = -234.48, y = -330.9, z = 29.18 },
-        Size  = { x = 1.6, y = 1.6, z = 1.0 },
-        Color = { r = 238, g = 0, b = 0 },
-        Type  = 23,
+        Pos   = { x = -705.7, y = -913.57, z = 19.22 },
+        Size  = { x = 1.0, y = 1.0, z = 1.0 },
+        Color = { r = 240, g = 240, b = 240 },
+        Type  = 29,
         Items = {
-            { name = 'bread',      label = _U('bread'),   price = 1 },
-            { name = 'steak',      label = _U('steak'),   price = 3 },
-            { name = 'cheese',       label = _U('cheese'),    price = 2 }
+            { name = 'bread',           label = _U('bread'),   price = 1 },
+			{ name = 'water',      		label = _U('water'),   price = 0 },
+			{ name = 'hamburger',       label = _U('hamburger'),   price = 2 },
+			{ name = 'pasteldecarne',   label = _U('pasteldecarne'),   price = 2 },
+			{ name = 'potatoes',        label = _U('potatoes'),   price = 1 },
+			{ name = 'sopa',            label = _U('sopa'),   price = 1 },
+			{ name = 'ecola',           label = _U('ecola'),   price = 1 },
+			{ name = 'sprunk',          label = _U('sprunk'),   price = 1 },
+			{ name = 'fishingrod',      label = _U('fishingrod'),   price = 100 },
+			{ name = 'fishbait',        label = _U('fishbait'),   price = 0 },
+            { name = 'turtlebait',      label = _U('turtlebait'),   price = 1 },
+			{ name = 'phone',     		label = _U('phone'),  		 price = 200 },
+			{ name = 'jumelles',        label = _U('jumelles'),  		 price = 80 },
+			{ name = 'condon',      	label = _U('condon'),  		 price = 0 },
+			{ name = 'dildo',     		label = _U('dildo'),   		price = 0 },
+			{ name = 'cigarrett',      label = _U('cigarrett'),   price = 0 }
         },
     },
 
