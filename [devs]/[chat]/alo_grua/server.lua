@@ -16,6 +16,8 @@ AddEventHandler('comprobarGrua', function(msg, x, y, z, name, ped)
 				TriggerClientEvent('grua:setBlip', xPlayers[i], name, x, y, z)
 				TriggerClientEvent('chat:addMessage', xPlayers[i], { args = {"^1GRUA ", tonumber(_source) .. " ^6" .. msg} }) --Hidita: Se añade el contenido del mensaje en el chat
 				TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], 'GRUA', '', '~r~Alerta GRUA ~n~~w~'.. tonumber(_source) .. ' - ' .. msg, 'CHAR_LS_CUSTOMS', 1)
+
+				TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(_source), 'mechanic', msg, x, y, z) -- Arnedo 5 | Nuevo aviso policia
 			end
 		end
 	end)

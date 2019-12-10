@@ -11,7 +11,6 @@ RegisterNetEvent('smerfikubrania:koszulka')
 AddEventHandler('smerfikubrania:koszulka', function()
 	TriggerEvent('skinchanger:getSkin', function(skin)
 	
-
 		local clothesSkin = {
 		['tshirt_1'] = 15, ['tshirt_2'] = 0,
 		['torso_1'] = 15, ['torso_2'] = 0,
@@ -37,11 +36,25 @@ RegisterNetEvent('smerfikubrania:buty')
 AddEventHandler('smerfikubrania:buty', function()
 	TriggerEvent('skinchanger:getSkin', function(skin)
 	
+		-- Arnedo5 | Cambiar 
+		TriggerEvent('skinchanger:getSkin', function(skin)
 
-		local clothesSkin = {
-		['shoes_1'] = 34, ['shoes_2'] = 0
-		}
-		TriggerEvent('skinchanger:loadClothes', skin, clothesSkin)
+
+			print(skin.sex)
+			if skin.sex == 0 then -- Hombre
+				local clothesSkin = {
+					['shoes_1'] = 34, ['shoes_2'] = 0
+					}
+					TriggerEvent('skinchanger:loadClothes', skin, clothesSkin)
+			else -- Mujer
+				local clothesSkin = {
+					['shoes_1'] = 35, ['shoes_2'] = 0
+					}
+					TriggerEvent('skinchanger:loadClothes', skin, clothesSkin)
+			end
+		end)
+
+	
 	end)
 end)
 

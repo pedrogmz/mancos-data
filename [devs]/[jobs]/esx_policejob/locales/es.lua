@@ -66,6 +66,7 @@ Locales['es'] = {
   -- Action Menu
   ['citizen_interaction'] = 'Interacción ciudadana',
   ['vehicle_interaction'] = 'Interacción vehículo',
+  ['dog_interaction'] = 'Perro policia',
   ['object_spawner'] = 'Colocar objetos',
 
   ['id_card'] = 'Documento de identidad',

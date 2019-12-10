@@ -133,7 +133,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63	
+			Paye = 63
 		},
 	-- route 68
 	Delivery2BC = {
@@ -243,22 +243,49 @@ Config.Uniforms = {
 		  ['tshirt_1'] = 88,  ['tshirt_2'] = 0,
 		  ['torso_1'] = 45,   ['torso_2'] = 1,
 		  ['decals_1'] = -1,   ['decals_2'] = 0,
+		  ['bproof_1'] = -1,  ['bproof_2'] = 0,
+		  ['bags_1'] = -1,	['bags_2'] = 9,
 		  ['arms'] = 0,
-		  ['sex'] = 0,
 		  ['pants_1'] = 12,   ['pants_2'] = 12,
 		  ['shoes_1'] = 7,    ['shoes_2'] = 0,
-		  ['chain_1'] = 0,    ['chain_2'] = 0
+		  ['chain_1'] = -1,    ['chain_2'] = 0,
+		  ['helmet_1'] = -1,  ['hemmet_2'] = 0,
+		  ['mask_1'] = -1
+		  
 	  },
 		  female = {
 		  ['tshirt_1'] = 7,  ['tshirt_2'] = 0,
 		  ['torso_1'] = 32,   ['torso_2'] = 1,
 		  ['decals_1'] = -1,   ['decals_2'] = 0,
-		  ['arms'] = 14,
-		  ['sex'] = 1,		  
+		  ['bproof_1'] = -1,  ['bproof_2'] = 0,
+		  ['bags_1'] = -1,	['bags_2'] = 9,
+		  ['arms'] = 14,  
 		  ['pants_1'] = 8,   ['pants_2'] = 2,
 		  ['shoes_1'] = 27,   ['shoes_2'] = 0,
-		  ['chain_1'] = 0,  ['chain_2'] = 0
+		  ['chain_1'] = -1,    ['chain_2'] = 0,
+		  ['helmet_1'] = -1,  ['hemmet_2'] = 0,
+		  ['mask_1'] = -1
 	  }
+	},
+	clear_wear = {
+		male = {
+			['tshirt_1'] = -1,  ['tshirt_2'] = 0,
+			['bproof_1'] = -1,  ['bproof_2'] = 0,
+			['decals_1'] = -1,   ['decals_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['bags_1'] = 0, ['bags_2'] = -1,
+			['mask_1'] = -1 , ['mask_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0
+		},
+		female = {
+			['tshirt_1'] = -1,  ['tshirt_2'] = 0,
+			['bproof_1'] = -1,  ['bproof_2'] = 0,
+			['decals_1'] = -1,   ['decals_2'] = 0,
+			['helmet_1'] = -1,  ['helmet_2'] = 0,
+			['bags_1'] = 0, ['bags_2'] = -1,
+			['mask_1'] = -1 , ['mask_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0
+		}
 	}
   }
   

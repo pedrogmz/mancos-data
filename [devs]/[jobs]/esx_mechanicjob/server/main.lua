@@ -227,7 +227,7 @@ if xPlayer.job.grade >= 3 then
 
   if societyAccount ~= nil then
 
-    local playerMoney  = math.random(10, 25) -- Remolque NPC para jugador
+    local playerMoney  = math.random(8, 12) -- Remolque NPC para jugador
     local societyMoney = math.random(35, 60) -- Remolque NPC para empresa
 
     xPlayer.addMoney(playerMoney)

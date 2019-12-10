@@ -32,7 +32,7 @@ Config.Zones = {
 		},
 
 	VehicleSpawnPoint = {
-			Pos   = {x = -328.50, y = -1520.99, z = 26.53},
+			Pos   = {x = -314.8, y = -1526.04, z = 27.29},
 			Size  = {x = 3.0, y = 3.0, z = 1.0},
 			Type  = -1
 		},
@@ -250,7 +250,7 @@ Config.Livraison = {
 		},
 	
 	AnnulerMission = {
-			Pos   = {x = -328.17, y = -1525.79, z = 27.53},
+			Pos   = {x = -313.5, y = -1517.66, z = 27.63},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 2.0, y = 2.0, z = 2.0},
 			Color = {r = 255, g = 0, b = 0},

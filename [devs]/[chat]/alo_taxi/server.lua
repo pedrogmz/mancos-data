@@ -16,6 +16,8 @@ AddEventHandler('comprobarTaxi', function(msg, x, y, z, name, ped)
 				TriggerClientEvent('taxi:setBlip', xPlayers[i], name, x, y, z)
 				TriggerClientEvent('chat:addMessage', xPlayers[i], { args = {"^1TAXI ", tonumber(_source) .. " ^3" .. msg} }) --Hidita: Se añade el contenido del mensaje en el chat
 				TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], 'TAXI', '', '~r~Alerta TAXI ~n~~w~'.. tonumber(_source) .. ' - ' .. msg, 'CHAR_TAXI', 1)
+
+				TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(_source), 'taxi', msg, x, y, z) -- Arnedo 5 | Nuevo aviso policia
 			end
 		end
 	end)

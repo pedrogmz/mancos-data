@@ -27,4 +27,5 @@ Locales['en'] = {
 	['blip_goal']				= 'Compañía de basuras: Delivery point', --'Garbage company : Delivery point',
 	['blip_depot']				= 'Compañía de basuras: base', --'Garbage company : depot',
 	['cancel_mission']			= '~INPUT_PICKUP~ para cancelar la recogida',
+	['finish_mission']			= '~INPUT_PICKUP~ para finalizar trabajo.'
 }

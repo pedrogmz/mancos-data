@@ -1,0 +1,45 @@
+a {
+    color: #00baac;
+}
+
+.container {
+    /*margin-top: 15%;*/
+    position: absolute;
+    margin: 0px;
+    top: 3%;
+    right: 3%;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.display {
+    display: flex;
+    align-items: right;
+    justify-content: flex-end;
+}
+
+.space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+p {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: right;
+    padding: 1%;
+}

@@ -143,7 +143,7 @@ mainMenu = function()
             {
                 title = Strings['menu_title'],
                 align = 'top-left',
-                elements = {{label = Strings['take_out_remove'], value = 'take_out_remove'}, {label = Strings['sit_stand'], value = 'sit_stand'}, {label = Strings['search_drugs'], value = 'search_drugs'}, {label = Strings['attack_closest'], value = 'attack_closest'}, {label = Strings['toggle_vehicle'], value = 'toggle_vehicle'}}
+                elements = {{label = Strings['take_out_remove'], value = 'take_out_remove'}, {label = Strings['sit_stand'], value = 'sit_stand'}, {label = Strings['search_drugs'], value = 'search_drugs'}, --[[{label = Strings['attack_closest'], value = 'attack_closest'},]] {label = Strings['toggle_vehicle'], value = 'toggle_vehicle'}}
             },
             function(data, menu)
                 if data.current.value == 'take_out_remove' then

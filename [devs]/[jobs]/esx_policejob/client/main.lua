@@ -18,8 +18,12 @@ local Keys = {
 }
 
 -- Garaje
-local HasAlreadyEnteredMarkerNew   = false
-local LastZoneNew                	 = nil
+local HasAlreadyEnteredMarkerNew   	= false
+local LastZoneNew                	= nil
+local wives 						= false
+
+-- Localización
+local activeGps						= false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -41,6 +45,21 @@ function cleanPlayer(playerPed)
 	ClearPedLastWeaponDamage(playerPed)
 	ResetPedMovementClipset(playerPed, 0)
 end
+
+-- Arnedo5 | En caso de que el jugador se desconecte y el gps este activado
+AddEventHandler('playerDropped', function (reason) -- Arnedo5 | Al desconectarse el usuario
+ 
+	local playerData = ESX.GetPlayerData()
+  
+	if ((PlayerData.job.name == "police" or PlayerData.job.name == "offpolice") and activeGps == true) then
+		local currentPlayer = PlayerId() -- Obtenemos el jugador actual
+		TriggerServerEvent('esx_gps:disable', currentPlayer)
+
+		activeGps = false
+	end
+	  
+end)
+
 
 -- RASPU GARAJE POLICIA
 -- Enter / Exit marker events, and draw markers
@@ -200,9 +219,6 @@ end)
 
 
 -- END GARAJE
-
-
-
 function setUniform(job, playerPed)
 	TriggerEvent('skinchanger:getSkin', function(skin)
 
@@ -221,6 +237,11 @@ function setUniform(job, playerPed)
 			if job == 'bullet_wear' then
 				SetPedArmour(playerPed, 100)
 			end
+
+			if job == 'gilet_wear' then
+				SetPedArmour(playerPed, 100)
+			end
+
 		else
 			if Config.Uniforms[job].female then
 				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].female)
@@ -235,6 +256,12 @@ function setUniform(job, playerPed)
 			if job == 'bullet_wear' then
 				SetPedArmour(playerPed, 100)
 			end
+
+			if job == 'gilet_wear' then
+				SetPedArmour(playerPed, 100)
+			end
+
+
 		end
 	end)
 end
@@ -953,8 +980,15 @@ function OpenPoliceActionsMenu()
 		elements = {
 			{label = _U('citizen_interaction'), value = 'citizen_interaction'},
 			{label = _U('vehicle_interaction'), value = 'vehicle_interaction'},
+			{label = _U('dog_interaction'), value = 'dog_interaction'},
 			{label = _U('object_spawner'), value = 'object_spawner'}
 	}}, function(data, menu)
+
+		-- Arnedo 5 | Abrir menú perro policia
+		if data.current.value == 'dog_interaction' then
+			TriggerEvent('esx_policedog:openMenu')
+		end
+
 		if data.current.value == 'citizen_interaction' then
 			local elements = {
 				{label = _U('id_card'), value = 'identity_card'},
@@ -967,6 +1001,7 @@ function OpenPoliceActionsMenu()
 				{label = _U('pagodirecto'), value = 'pagodirecto'},
 				--{label = _U('unpaid_bills'), value = 'unpaid_bills'} Arnedo5
 				{label = "Servicios Comunitarios",	value = 'communityservice'},
+				{label = "Servicios Penitenciarios",	value = 'penitencyservice'},
 			}
 
 			if Config.EnableLicenses then
@@ -988,6 +1023,9 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
+
+						TriggerServerEvent('esx_policejob:wives', GetPlayerServerId(closestPlayer)) -- Arnedo 5 | Poner esposas ropa
+						
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
@@ -1006,6 +1044,8 @@ function OpenPoliceActionsMenu()
 						OpenUnpaidBillsMenu(closestPlayer)
 					elseif action == 'communityservice' then
 						SendToCommunityService(GetPlayerServerId(closestPlayer))
+					elseif action == 'penitencyservice' then -- Arnedo5 | Servicios penitenciarios
+						TriggerServerEvent('esx_policejob:openJailMenu')
 					end
 				else
 					ESX.ShowNotification(_U('no_players_nearby'))
@@ -1837,7 +1877,9 @@ AddEventHandler('esx_policejob:handcuff', function()
 
 				StartHandcuffTimer()
 			end
+
 		else
+
 			if Config.EnableHandcuffTimer and handcuffTimer.active then
 				ESX.ClearTimeout(handcuffTimer.task)
 			end
@@ -1848,6 +1890,7 @@ AddEventHandler('esx_policejob:handcuff', function()
 			SetPedCanPlayGestureAnims(playerPed, true)
 			FreezeEntityPosition(playerPed, false)
 			DisplayRadar(true)
+
 		end
 	end)
 end)
@@ -1981,7 +2024,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0, 21, true)
 			DisableControlAction(0, 182, true)
 			DisableControlAction(0, 244, true)
-			DisableControlAction(0, 311, true)
+			--DisableControlAction(0, 311, true)
 			DisableControlAction(0, 303, true)
 
 			DisableControlAction(0, 45, true) -- Reload
@@ -2291,6 +2334,42 @@ Citizen.CreateThread(function()
 			end
 		end -- CurrentAction end
 
+		-- Arnedo5 | Activar / desactivar localización
+		if PlayerData.job  ~=  nil then
+			if IsControlJustReleased(0, 243) and not isDead and PlayerData.job and PlayerData.job.name == 'police' or (PlayerData.job.name == 'offpolice' and activeGps== true)then
+			
+				if activeGps == false then
+	
+					local currentPlayer = PlayerId() -- Obtenemos el jugador actual
+					TriggerServerEvent('ex_gps:enable', currentPlayer)
+	
+					activeGps = true
+	
+					ESX.ShowNotification("Localización GPS ~g~activada~s~ ")
+					Wait(5000)
+				else
+	
+					local currentPlayer = PlayerId() -- Obtenemos el jugador actual
+					TriggerServerEvent('esx_gps:disable', currentPlayer)
+	
+					activeGps = false
+	
+					ESX.ShowNotification("Localización GPS ~r~desactivada~s~ ")
+					Wait(5000)
+				end
+			
+			end
+		end
+		
+
+		if IsControlJustReleased(0, 38) and currentTask.busy then
+			ESX.ShowNotification(_U('impound_canceled'))
+			ESX.ClearTimeout(currentTask.task)
+			ClearPedTasks(PlayerPedId())
+
+			currentTask.busy = false
+		end
+
 		if IsControlJustReleased(0, 167) and not isDead and PlayerData.job and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
 			
 			OpenPoliceActionsMenu()
@@ -2305,13 +2384,6 @@ Citizen.CreateThread(function()
 			]]--
 		end
 
-		if IsControlJustReleased(0, 38) and currentTask.busy then
-			ESX.ShowNotification(_U('impound_canceled'))
-			ESX.ClearTimeout(currentTask.task)
-			ClearPedTasks(PlayerPedId())
-
-			currentTask.busy = false
-		end
 	end
 end)
 
@@ -2514,3 +2586,21 @@ RegisterNUICallback("processPenal", function(data)
     TriggerServerEvent('esx_policejob:processPenal', data.strId, data.strData, data.strDate, data.strName)
     
 end)
+
+-- Arnedo5 | Wives
+RegisterNetEvent("esx_policejob:wiv")
+AddEventHandler("esx_policejob:wiv", function(data)
+
+	if wives == true then
+
+		setUniform("wives_clean", playerped)
+
+		wives = false
+	else 
+		local playerPed = PlayerPedId()
+		setUniform("wives", playerPed)
+
+		wives = true
+	end
+
+end) 

@@ -754,6 +754,8 @@ RegisterNetEvent('instance:onPlayerLeft')
 AddEventHandler('instance:onPlayerLeft', function(instance, player)
 	if player == instance.host then
 		TriggerEvent('instance:leave')
+		TriggerEvent('instance:close') -- Arnedo 5 | Cerramos la instancia
+		ClearPedTasksImmediately(GetPlayerPed(-1))
 	end
 end)
 
@@ -887,6 +889,8 @@ Citizen.CreateThread(function()
 					OpenRoomMenu(CurrentActionData.property, CurrentActionData.owner)
 				elseif CurrentAction == 'room_exit' then
 					TriggerEvent('instance:leave')
+					TriggerEvent('instance:close') -- Arnedo 5 | Cerramos la instancia
+					ClearPedTasksImmediately(GetPlayerPed(-1))
 				end
 
 				CurrentAction = nil

@@ -42,7 +42,7 @@ Time.h = 12
 Time.m = 0
 local freezeTime = false
 local blackout = false
-local newWeatherTimer = 10
+local newWeatherTimer = 10 -- minutos para el cambio de clima
 
 RegisterServerEvent('vSync:requestSync')
 AddEventHandler('vSync:requestSync', function()

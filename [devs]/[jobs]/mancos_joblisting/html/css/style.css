@@ -1,11 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway|Roboto');
 body {
-	text-align: center;
-	position: relative;
-	overflow: hidden;
-	margin: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
 }
 
+.container {
+    margin-top: 7%;
+    overflow: auto;
+    height: 780px;
+}
+
+.container::-webkit-scrollbar {
+    width: 1em;
+}
+
+.container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+.background-card {
+    /* background-image: url(../images/blur.jpg); */
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+
+/*
 .background-image {
 	background-repeat: no-repeat;
 	position: absolute;
@@ -118,3 +147,4 @@ img {
 	transform: scale(1.2);
 }
 
+*/

@@ -321,6 +321,8 @@ AddEventHandler('esx_garbagejob:hasEnteredMarker', function(zone)
 		MenuCloakRoom()
 	end
 
+	print("ZONE")
+	print (zone)
 	if zone == 'VehicleSpawner' then
 		if isInService and IsJobgarbage() then
 			if MissionRetourCamion or MissionLivraison then
@@ -379,7 +381,8 @@ AddEventHandler('esx_garbagejob:hasEnteredMarker', function(zone)
 				VerifPlaqueVehiculeActuel()
 
 				if plaquevehicule == plaquevehiculeactuel then
-                    CurrentAction     = 'retourcamion'
+					CurrentAction     = 'retourcamion'
+					CurrentActionMsg  = _U('finish_mission') -- Arnedo5 | Añadimos mensaje finalizar
 				else
                     CurrentAction     = 'retourcamionannulermission'
                     CurrentActionMsg  = _U('not_your_truck')
@@ -705,7 +708,9 @@ Citizen.CreateThread(function()
 					end
 					SetVehicleDoorOpen(work_truck,5,false, false)
 
-                end
+				end
+				print ("ACCTION")
+				print(CurrentAction)
 
                 if CurrentAction == 'retourcamion' then
                     retourcamion_oui()
@@ -762,6 +767,8 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
+		
+
 		if MissionLivraison then
 			DrawMarker(destination.Type, destination.Pos.x, destination.Pos.y, destination.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, destination.Size.x, destination.Size.y, destination.Size.z, destination.Color.r, destination.Color.g, destination.Color.b, 100, false, true, 2, false, false, false, false)
 			DrawMarker(Config.Livraison.AnnulerMission.Type, Config.Livraison.AnnulerMission.Pos.x, Config.Livraison.AnnulerMission.Pos.y, Config.Livraison.AnnulerMission.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Livraison.AnnulerMission.Size.x, Config.Livraison.AnnulerMission.Size.y, Config.Livraison.AnnulerMission.Size.z, Config.Livraison.AnnulerMission.Color.r, Config.Livraison.AnnulerMission.Color.g, Config.Livraison.AnnulerMission.Color.b, 100, false, true, 2, false, false, false, false)

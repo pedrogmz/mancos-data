@@ -57,6 +57,8 @@ ESX.RegisterServerCallback('esx_tattooshop:removeTattoo', function(source, cb, t
 	else
 		local missingMoney = 500 - coins.money
 		TriggerClientEvent('esx:showNotification', source, _U('not_enough_money', ESX.Math.GroupDigits(missingMoney)))
+
+
 		cb(false)
 	end
 end)

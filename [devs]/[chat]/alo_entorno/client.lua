@@ -37,6 +37,9 @@ RegisterCommand('entorno', function(source, args)
         TriggerEvent('chatMessage', '^5Entorno', {255,255,255}, ' ^7Por favor, escribe lo sucedido detalladamente.')
     else
         TriggerServerEvent('comprobarEntorno', msg, x, y, z, name)
+
+        -- Arnedo 5 Registrar nuevo entorno
+        
     end
 end)
 

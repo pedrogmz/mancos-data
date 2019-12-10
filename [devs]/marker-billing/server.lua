@@ -143,8 +143,6 @@ AddEventHandler('marker_billing:billing', function(id, date)
     local xPlayers = ESX.GetPlayers()
     local _source = source
 
-    -- print (xPlayer.getMoney())
-    -- print (xPlayer.getBank())
 
     if (xPlayer) then
         MySQL.Async.fetchAll("SELECT COALESCE(SUM(amount),0) AS 'TOTAL' FROM billing LEFT JOIN tablet_npenal ON billing.id = tablet_npenal.TABNIDPENAL WHERE billing.identifier = @identifier AND tablet_npenal.TABNPAID = 0", {
@@ -161,9 +159,7 @@ AddEventHandler('marker_billing:billing', function(id, date)
                     -- En caso de tener dinero en el  banco, retiramos el dinero
                     xPlayer.removeAccountMoney('bank', totalBilling)
 
-                    
                     removeMoney(_source, xPlayer, date)
-
 
                     for i=1, #xPlayers, 1 do
                         local xPlayerr = ESX.GetPlayerFromId(xPlayers[i])
@@ -171,7 +167,10 @@ AddEventHandler('marker_billing:billing', function(id, date)
                             TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..totalBilling.._U('success_'..ESX.GetPlayerFromId(_source).job.name).."")
                         end
                     end
-                   
+
+                    -- Arnedo5 | El dinero se guarda en la sociedad
+                    TriggerClientEvent('billingSocietyAdd', _source, 'police', totalBilling)
+
                 else -- En caso de no tener dinero mostramos un mensaje de alerta por el terminal 
                     TriggerClientEvent("showData", _source,  _U('error_money'))
                 end 
@@ -194,10 +193,8 @@ function removeMoney(_source, xPlayer, date)
         ['@date'] = date,
 	}, function(rowsChanged)
         if rowsChanged == 0 then
-            print ("ERROR")
 			TriggerClientEvent("showData", _source, "Error al tramitar la facturacion")
         else 
-            print ("OK")
             TriggerClientEvent("showData", _source,  _U('msg_'..ESX.GetPlayerFromId(_source).job.name))
             
         end
@@ -250,6 +247,9 @@ AddEventHandler('marker_billing:billingMechanic', function(id, description, note
 									TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..total.."$ retirados por pago de factura en Mecánico ["..description.."]")
 								end
                             end
+
+                              -- Arnedo5 | El dinero se guarda en la sociedad
+                            TriggerClientEvent('billingSocietyAdd', _source, 'mechanic', tonumber(total))
                             
                             -- Restart values form
                             TriggerClientEvent("marker_billing:exit", _source)

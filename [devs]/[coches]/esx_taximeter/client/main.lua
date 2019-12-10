@@ -55,19 +55,21 @@ Citizen.CreateThread(function()
     Citizen.Wait(0)
     local ped = GetPlayerPed(-1)
 
-if playerJobName == 'ambulance' then
+if playerJobName == 'ambulanceee' then
     if IsPedSittingInAnyVehicle(ped) and IsDriver() and IsAppropriateVehicle() then
       meterOwner = true
 
       if IsControlPressed(0, 56) then
+
+       
         if not configOpen then
           showConfig()
           configOpen = true
-		  else 
-		  if configOpen then
-		  configOpen = false
-        end
-	end
+		    else 
+          if configOpen then
+            configOpen = false
+          end
+	      end
 
         -- Rest rate amount when getting in a new vehicle
         if not firstConfigOpenInVehicle then

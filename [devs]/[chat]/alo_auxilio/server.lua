@@ -16,6 +16,8 @@ AddEventHandler('comprobarAuxilio', function(msg, x, y, z, name, ped)
 				TriggerClientEvent('auxilio:setBlip', xPlayers[i], name, x, y, z)
 				TriggerClientEvent('chat:addMessage', xPlayers[i], { args = {"^1AUXILIO ", tonumber(_source) .. " ^1" .. msg} }) --Hidita: Se añade el contenido del mensaje en el chat
 				TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], 'EMS', '', '~r~Alerta EMS ~n~~w~'.. tonumber(_source) .. ' - ' .. msg, 'CHAR_CHAT_CALL', 1)
+
+				TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(_source), 'ambulance', msg, x, y, z) -- Arnedo 5 | Nuevo aviso policia
 			end
 		end
 	end)

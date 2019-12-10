@@ -341,7 +341,7 @@ function OpenVehicleSpawnerMenu()
 
           local playerPed = GetPlayerPed(-1)
 
-          if Config.MaxInService == -1 then
+          if Config.MaxInService == 4 then
 
             ESX.Game.SpawnVehicle(model, {
               x = vehicles.SpawnPoint.x,

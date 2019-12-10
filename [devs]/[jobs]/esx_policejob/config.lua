@@ -323,36 +323,48 @@ Config.AuthorizedVehicles = {
 --		{ model = 'poli4', label = 'Interceptor - A' },
 --		{ model = 'polf430', label = 'Interceptor - B' },
 		{ model = 'furgon1', label = 'Patrulla - SWAT' },
-		{ model = 'pbus', label = 'Bus - Prison Bus' }	
+		{ model = 'pbus', label = 'Bus - Prison Bus' },	
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
+	}
 
-	},
+
+	--[[ 
 	recruit = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
 
 	officer = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
 
 	sergeant = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
 
 	intendent = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
 
 	lieutenant = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
 
 	chef = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
 
 	boss = {
-		{ model = 'riot', label = 'Police Riot' }
+		{ model = 'riot', label = 'Furgón de transporte' },
+		{ model = 'riot2', label = 'Camión antidisturbios' }
 	},
+	]]--
 } 
 
 
@@ -461,7 +473,6 @@ Config.Uniforms = {
 		male = {
 			['tshirt_1'] = 56,  ['tshirt_2'] = 0,
 			['torso_1'] = 193,   ['torso_2'] = 0,
-			['decals_1'] = 0,   ['decals_2'] = 0,
 			['arms'] = 42,
 			['bags_1'] = 52,	['bags_2'] = 9,
 			['bproof_1'] = 13,  ['bproof_2'] = 0,			
@@ -475,7 +486,6 @@ Config.Uniforms = {
 		female = {
 			['tshirt_1'] = 51,  ['tshirt_2'] = 0,
 			['torso_1'] = 195,   ['torso_2'] = 0,
-			['decals_1'] = 0,   ['decals_2'] = 0,
 			['arms'] = 49,
 			['bags_1'] = 52,	['bags_2'] = 9,
 			['pants_1'] = 31,   ['pants_2'] = 1,
@@ -676,7 +686,7 @@ Config.Uniforms = {
 			['bproof_1'] = 13,  ['bproof_2'] = 0,
 			['bags_1'] = 52,	['bags_2'] = 9,
 			['pants_1'] = 35,   ['pants_2'] = 0,
-			['shoes_1'] = 51,                                       
+			['shoes_1'] = 51,   ['shoes_2'] = 0,                    
 			['helmet_1'] = -1,  ['helmet_2'] = 0,
 			['chain_1'] = 6,    ['chain_2'] = 0,
 			['ears_1'] = -1,     ['ears_2'] = 0,
@@ -924,6 +934,22 @@ Config.Uniforms = {
 			['bproof_1'] = 18,  ['bproof_2'] = 0
 		}
 	},
+	wives = {
+		male = {
+			['chain_1'] = 41,    ['chain_2'] = 0
+		},
+		female = {
+			['chain_1'] = 25,    ['chain_2'] = 0
+		}
+	},
+	wives_clean = {
+		male = {
+			['chain_1'] = 0,    ['chain_2'] = 0
+		},
+		female = {
+			['chain_1'] = 0,    ['chain_2'] = 0
+		}
+	},
 	gilet_wear = {
 		male = {
 			['tshirt_1'] = 65, ['tshirt_2'] = 0,
@@ -943,7 +969,8 @@ Config.Uniforms = {
 			['decals_1'] = -1,   ['decals_2'] = 0,
 			['helmet_1'] = -1,  ['helmet_2'] = 0,
 			['bags_1'] = 0, ['bags_2'] = -1,
-			['mask_1'] = -1 , ['mask_2'] = 0
+			['mask_1'] = -1 , ['mask_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = -1,  ['tshirt_2'] = 0,
@@ -951,7 +978,8 @@ Config.Uniforms = {
 			['decals_1'] = -1,   ['decals_2'] = 0,
 			['helmet_1'] = -1,  ['helmet_2'] = 0,
 			['bags_1'] = 0, ['bags_2'] = -1,
-			['mask_1'] = -1 , ['mask_2'] = 0
+			['mask_1'] = -1 , ['mask_2'] = 0,
+			['chain_1'] = 0,    ['chain_2'] = 0
 		}
 	}
 }

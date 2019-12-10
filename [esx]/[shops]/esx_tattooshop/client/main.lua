@@ -62,6 +62,8 @@ function OpenShopMenu()
 					ESX.TriggerServerCallback('esx_tattooshop:purchaseTattoo', function(success)
 						if success then
 							table.insert(currentTattoos, {collection = currentValue, texture = data2.current.value})
+						else 
+							cleanPlayer() -- Arnedo5
 						end
 					end, currentTattoos, price, {collection = currentValue, texture = data2.current.value})
 
@@ -282,6 +284,7 @@ function OpenPlayerTattooMenu(playerTattoos)
 					cleanPlayer()
 					setPedSkin()
 				else 
+					
 					menu.close()
 				end
 			end, currentTattoos)

@@ -131,7 +131,7 @@ function OpenBikesMenu()
 
 	if data.current.value == 'bike' then
 		if Config.EnablePrice then
-			TriggerServerEvent("esx:bike:lowmoney", Config.PriceSanchez) 
+			TriggerServerEvent("esx:bike:lowmoney:moto", Config.PriceSanchez) 
 			TriggerEvent("chatMessage", _U('bikes'), {255,0,255}, _U('bike_pay', Config.PriceSanchez))
 		end
 		
@@ -144,7 +144,7 @@ function OpenBikesMenu()
 	
 	if data.current.value == 'bike2' then
 		if Config.EnablePrice then
-			TriggerServerEvent("esx:bike:lowmoney", Config.PriceSanchez2) 
+			TriggerServerEvent("esx:bike:lowmoney:moto", Config.PriceSanchez2) 
 			TriggerEvent("chatMessage", _U('bikes'), {255,0,255}, _U('bike_pay', Config.PriceSanchez2))
 		end
 		
@@ -158,7 +158,7 @@ function OpenBikesMenu()
 	
 	if data.current.value == 'bike3' then
 		if Config.EnablePrice then
-			TriggerServerEvent("esx:bike:lowmoney", Config.PriceManchez) 
+			TriggerServerEvent("esx:bike:lowmoney:moto", Config.PriceManchez) 
 			TriggerEvent("chatMessage", _U('bikes'), {255,0,255}, _U('bike_pay', Config.PriceManchez))
 		end
 		
@@ -171,7 +171,7 @@ function OpenBikesMenu()
 	
 	if data.current.value == 'bike4' then
 		if Config.EnablePrice then
-			TriggerServerEvent("esx:bike:lowmoney", Config.PriceBf400) 
+			TriggerServerEvent("esx:bike:lowmoney:moto", Config.PriceBf400) 
 			TriggerEvent("chatMessage", _U('bikes'), {255,0,255}, _U('bike_pay', Config.PriceBf400))
 		end
 		

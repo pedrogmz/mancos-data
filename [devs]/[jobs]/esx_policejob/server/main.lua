@@ -589,6 +589,11 @@ AddEventHandler('esx_policejob:processPenal', function(id, data, date, name)
 		 -- En caso de tener dinero en el  banco, retiramos el dinero
 		 xPlayer.removeAccountMoney('bank', obj.amount)
 
+		 print(obj.amount)
+
+		 -- Arnedo5 | El dinero se guarda en la sociedad
+		TriggerClientEvent('billingSocietyAdd', _source, 'police', tonumber(obj.amount))
+
 		 -- Insertamos todas las multas [billing]
 		 for k,v in ipairs(obj.description) do
 		
@@ -619,11 +624,10 @@ AddEventHandler('esx_policejob:processPenal', function(id, data, date, name)
 							for i=1, #xPlayers, 1 do
 								local xPlayerr = ESX.GetPlayerFromId(xPlayers[i])
 								if xPlayerr.identifier == xPlayer.identifier then
-									TriggerClientEvent('esx:showNotification', xPlayers[i], "~g~ FLEECA INFORMA: ~s~"..v.amount.."$ retirados por ["..v.description.."]\n \n")
+									TriggerClientEvent('esx:showNotification', xPlayers[i], "~g~ FLEECA INFORMA: ~s~"..v.amount.."$ retirados por ["..v.description.."]")
 								end
 							end
 
-						
 						end)
 					end)
 				end
@@ -631,55 +635,38 @@ AddEventHandler('esx_policejob:processPenal', function(id, data, date, name)
 		end
 
 		-- Mensaje al police
-		TriggerClientEvent('esx:showNotification', source, "Cargos imputados correctamente al ciudadano: ["..name.."]\n \n")
+		TriggerClientEvent('esx:showNotification', source, "Cargos imputados correctamente al ciudadano: ["..name.."]")
 		TriggerClientEvent("exitPolice", source)
 
+		
 		
 	else
 		TriggerClientEvent("showMessagePoliceJob", _source,  "El ciudadano no tiene suficiente dinero para tramitar la multa!")
 	end
-	
---[[ 
-	for k,v in ipairs(obj.description) do
-		
 
-		MySQL.Async.execute("INSERT INTO billing (id, identifier, sender, target_type, target, label, amount) VALUES (NULL, @identifier, @sender, 'society', 'society_police', @description, @amount)", {
-			['@identifier'] = xPlayer.identifier,
-			['@sender'] = sourceXPlayer.identifier,
-			['@description'] = v.description,
-			['@amount'] = v.amount
-		}, function (rowsChanged)
-
-
-			
-			print("OHHHHHHHHH KURWAAAAA")
-			print(rowsChanged)
-		end)
-
-
-		--print("KURWAAAAA")
-		--print(date)
-		--print(v.name)
-		--print(v.description)
-		
-
-	end
-
---]]
-
-
-
-
-
-
-	--print("KURWAAAAA")
-	-- print(xPlayer.identifier);
-	--print(obj.amount)
-	--print(obj.term)
-	
 end)
 
 
+-- Arnedo5 | Jail menu
+RegisterServerEvent('esx_policejob:openJailMenu')
+AddEventHandler('esx_policejob:openJailMenu', function()
+	local _source = source
 
+	TriggerClientEvent('mancos_jail:openJailMenu', _source)
+end)
+
+-- Arnedo5 | Wives - esposas
+RegisterServerEvent('esx_policejob:wives')
+AddEventHandler('esx_policejob:wives', function(id)
+
+	local xPlayer = ESX.GetPlayerFromId(id)
+	local _source = source
+
+	if xPlayer ~= nil then
+		TriggerClientEvent("esx_policejob:wiv", id)
+	end
+
+	--TriggerClientEvent('mancos_jail:openJailMenu', _source)
+end)
 
 

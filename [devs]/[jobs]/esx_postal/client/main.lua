@@ -54,7 +54,6 @@ end)
 
 function setUniform(job, playerPed)
 	TriggerEvent('skinchanger:getSkin', function(skin)
-
 		
 		if skin.sex == 0 then
 			if Config.Uniforms[job].male then
@@ -91,6 +90,8 @@ function MenuCloakRoom()
 		function(data, menu)
 			if data.current.value == 'citizen_wear' then
 				isInService = false
+
+				--[[ 
 				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 					  local model = nil
 
@@ -111,8 +112,16 @@ function MenuCloakRoom()
 
 					  TriggerEvent('skinchanger:loadSkin', skin)
 					  TriggerEvent('esx:restoreLoadout')
-        end)
-      end
+				end)
+				
+				]]--
+
+				-- Arnedo5 | Deja el aspecto por dejecto
+				setUniform("clear_wear", playerped)
+				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+					TriggerEvent('skinchanger:loadSkin', skin)
+				end)
+      		end
 			if data.current.value == 'job_wear' then
 
 				isInService = true

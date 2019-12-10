@@ -160,6 +160,16 @@ RegisterNUICallback("billingMechanic", function(data)
     TriggerServerEvent('marker_billing:billingMechanic', data.strId, data.strDescription, data.strNote, data.strTotal, data.date)
 end)
 
+RegisterNUICallback("billingSocietyAdd", function(society, total)
+    
+end)
+
+RegisterNetEvent("billingSocietyAdd")
+AddEventHandler("billingSocietyAdd", function(society, total)
+	TriggerServerEvent('esx_society:depositMoney', society, total)
+end) 
+
+
 RegisterNUICallback("error", function(data)
     SetDisplay(false)
 end)
