@@ -1,6 +1,6 @@
 Config              = {}
 Config.DrawDistance = 100.0
-Config.MaxDelivery	= 10
+Config.MaxDelivery	= 5
 Config.TruckPrice	= 150
 Config.Locale       = 'en'
 
@@ -37,21 +37,21 @@ Config.Livraison = {
 -------------------------------------------Los Santos
 	-- Strawberry avenue et Davis avenue
 	Delivery1LS = {
-			Pos   = {x = 121.0655, y = -1488.4984, z = 28.0},
+			Pos   = {x = 121.0655, y = -1608.4984, z = 28.0},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	-- a cot� des flic
 	Delivery2LS = {
-			Pos   = {x = 451.4836, y = -899.0954, z = 27.5},
+			Pos   = {x = 451.6036, y = -899.0954, z = 27.5},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	-- vers la plage
 	Delivery3LS = {
@@ -60,7 +60,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	-- studio 1
 	Delivery4LS = {
@@ -69,7 +69,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	-- popular street et el rancho boulevard
 	Delivery5LS = {
@@ -78,16 +78,16 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	--Alta street et las lagunas boulevard
 	Delivery6LS = {
-			Pos   = {x = 63.2668, y = -227.9965, z = 50.0},
+			Pos   = {x = 80.2668, y = -227.9965, z = 50.0},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	--Rockford Drive Noth et boulevard del perro
 	Delivery7LS = {
@@ -96,16 +96,16 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	--Rockford Drive Noth et boulevard del perro
 	Delivery8LS = {
-			Pos   = {x = 548.6097, y = -206.3496, z = 52.5},
+			Pos   = {x = 560.6097, y = -206.3496, z = 52.5},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	--New empire way (airport)
 	Delivery9LS = {
@@ -114,7 +114,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 	--Rockford drive south
 	Delivery10LS = {
@@ -123,7 +123,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 48
+			Paye = 60
 		},
 ------------------------------------------- Blaine County
 	-- panorama drive
@@ -133,7 +133,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63
+			Paye = 80
 		},
 	-- route 68
 	Delivery2BC = {
@@ -142,16 +142,16 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63
+			Paye = 80
 		},
 	-- Algonquin boulevard et cholla springs avenue
 	Delivery3BC = {
-			Pos   = {x =1685.1549, y = 3752.0849, z = 33.0},
+			Pos   = {x =1685.1549, y = 31002.0849, z = 33.0},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63
+			Paye = 80
 		},
 	-- Joshua road
 	Delivery4BC = {
@@ -160,7 +160,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63
+			Paye = 80
 		},
 	-- East joshua road
 	Delivery5BC = {
@@ -169,34 +169,34 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63
+			Paye = 80
 		},
 	-- Seaview road
 	Delivery6BC = {
-			Pos   = {x = 1930.6518, y = 4637.5878, z = 39.3},
+			Pos   = {x = 1930.6518, y = 4807.5878, z = 39.3},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 63
+			Paye = 80
 		},
 	-- Paleto boulevard
 	Delivery7BC = {
-			Pos   = {x = -448.2438, y = 5993.8686, z = 30.3},
+			Pos   = {x = -460.2438, y = 5993.8686, z = 30.3},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 75
+			Paye = 100
 		},
 	-- Paleto boulevard et Procopio drive
 	Delivery8BC = {
-			Pos   = {x = 107.9181, y = 6605.9750, z = 30.8},
+			Pos   = {x = 107.9181, y = 6605.91000, z = 30.8},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 75
+			Paye = 100
 		},
 	-- Marina drive et joshua road
 	Delivery9BC = {
@@ -205,16 +205,16 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 75
+			Paye = 100
 		},
 	-- Pyrite Avenue
 	Delivery10BC = {
-			Pos   = {x = -128.6733, y = 6344.5493, z = 31.0},
+			Pos   = {x = -128.6733, y = 8044.5493, z = 31.0},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 1,
-			Paye = 75
+			Paye = 100
 		},
 	
 	RetourCamion = {

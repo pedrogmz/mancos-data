@@ -59,7 +59,7 @@ Citizen.CreateThread(function()
     RequestIpl("ch1_02_open")
         
     -- Garage in La Mesa (autoshop): 970.27453, -1826.56982, 31.11477
-    RequestIpl("bkr_bi_id1_23_door")
+    -- RequestIpl("bkr_bi_id1_23_door")
         
     -- Hill Valley church - Grave: -282.46380000, 2835.84500000, 55.91446000
     RequestIpl("lr_cs6_08_grave_closed")

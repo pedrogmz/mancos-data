@@ -2,14 +2,14 @@
 
 Config = {
     Job = 'police',
-    Command = false, -- set to false if you dont want to have a command    Arnedo5 | Se saca la letra p
+    Command = false, -- set to false if you dont want to have a command    Arnedo5 | Se saca en F6
     Model = 882848737,
     TpDistance = 50.0,
     Sit = {
         dict = 'creatures@Shepherd@amb@world_dog_sitting@base',
         anim = 'base'
     },
-    Drugs = {'weed', 'cocaine', 'meth'}, -- add all drugs here for the dog to detect
+    Drugs = {'weed', 'porro', 'meth'}, -- add all drugs here for the dog to detect
 }
 
 Strings = {

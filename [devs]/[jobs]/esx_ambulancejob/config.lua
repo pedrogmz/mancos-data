@@ -2,25 +2,25 @@ Config                            = {}
 
 Config.DrawDistance               = 100.0
 
-Config.Marker                     = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
+Config.Marker                     = { type = 25, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
 Config.MarkerSize                 = { x = 3.0, y = 3.0, z = 1.5 }
 
-Config.ReviveReward               = 15  -- revive reward, set to 0 if you don't want it enabled
+Config.ReviveReward               = 25  -- revive reward, set to 0 if you don't want it enabled
 Config.AntiCombatLog              = true -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
 -- Revivir en camilla
-Config.Payrevive				  = 100
+Config.Payrevive				  = 200
 Config.RevivirCamillaMax		  = 0	
 Config.EMS						  = 0
-Config.MaxDistance = 1.5
+Config.MaxDistance				  = 1.5
 
 Config.EnableESXIdentity          = true
 
 Config.Locale                     = 'es'
 
-local second = 1000
-local minute = 60 * second
+local second 					  = 1000
+local minute				  	  = 60 * second
 
 Config.EarlyRespawnTimer          = 10 * minute  -- Time til respawn is available
 Config.BleedoutTimer              = 10 * minute -- Time til the player bleeds out
@@ -36,7 +36,7 @@ Config.RemoveItemsAfterRPDeath    = true
 Config.EarlyRespawnFine           = false
 Config.EarlyRespawnFineAmount     = 5000
 
-Config.RemoveTattooCost = 200
+Config.RemoveTattooCost 		  = 200
 
 Config.RespawnPoint = { coords = vector3(353.19, -565.13, 28.79), heading = 48.13 }
 
@@ -92,17 +92,17 @@ Config.Hospitals = {
 		},
 
 		AmbulanceActions = {
-			vector3(336.07, -580.48, 27.79)
+			vector3(310.51, -598.96, 42.31)
 		},
 		--[[Pharmacies = {
 			vector3(267.5, -1362.1, 23.5)
 		},]]--
 		Baul = {
-			vector3(334.44, -587.12, 27.79)
+			vector3(309.44, -602.53, 42.31)
 		},
 
 		RemoveTattoo = {
-			vector3(347.57, -575.32, 27.79)
+			vector3(346.98, -576.14, 28.53)
 		},
 
 		Vehicles = {
@@ -111,9 +111,9 @@ Config.Hospitals = {
 				InsideShop = vector3(446.7, -1355.6, 43.5),
 				Marker = { type = 36, x = 1.0, y = 1.0, z = 1.0, r = 100, g = 50, b = 200, a = 100, rotate = true },
 				SpawnPoints = {
-					{ coords = vector3(364.8, -595.42, 28.33), heading = 158.93, radius = 4.0 },
+					{ coords = vector3(364.8, -595.42, 28.33), heading = 158.93, radius = 4.0, firetruk = vector3(366.28, -586.5, 28.35), heading = 157.04, radius = 6.0 },
 					{ coords = vector3(361.21, -593.97, 28.31), heading = 158.02, radius = 4.0 },
-					{ coords = vector3(366.28, -586.5, 28.35), heading = 157.04, radius = 6.0 }
+					{ coords = vector3(366.28, -586.5, 28.35), heading = 157.04, radius = 6.0 },
 				}
 			}
 		},
@@ -130,25 +130,25 @@ Config.Hospitals = {
 		},
 		FastTravelElevatorUp = {
 			{ --Subida al hospital de arriba
-				From = vector3(340.25, -595.21, 27.79),
+				From = vector3(340.25, -595.21, 27.81),
 				To = { coords = vector3(332.85, -573.95, 42.32), heading = 159.0 },
-				Marker = { type = 1, x = 2.0, y = 2.0, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
+				Marker = { type = 25, x = 2.0, y = 2.0, z = 0.5, r = 93, g = 233, b = 247, a = 100, rotate = false }
 				
 			}
 		},
 		FastTravelElevatorhelicopter = {			
 			{ --Subir el helicopter
-				From = vector3(340.25, -584.49, 73.17),
+				From = vector3(340.25, -584.49, 73.20),
 				To = { coords = vector3(337.49, -594, 27.79), heading = 0.0 },
-				Marker = { type = 1, x = 2.0, y = 2.0, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
+				Marker = { type = 25, x = 2.0, y = 2.0, z = 0.5, r = 93, g = 233, b = 247, a = 100, rotate = false }
 			}
 		},
 		FastTravelElevatorDown = {
 			
 			{ --bajada al hospital de abajo
-				From = vector3(324.99, -598.43, 42.29),
+				From = vector3(325.03, -598.66, 42.31),
 				To = { coords = vector3(315.61, -582.6, 28.79), heading = 198.0 },
-				Marker = { type = 1, x = 2.0, y = 2.0, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
+				Marker = { type = 25, x = 2.0, y = 2.0, z = 0.5, r = 93, g = 233, b = 247, a = 100, rotate = false }
 			}
 		},
 
@@ -196,14 +196,14 @@ Config.Hospitals = {
 			{
 				From = vector3(237.4, -1373.8, 26.0),
 				To = { coords = vector3(251.9, -1363.3, 38.5), heading = 0.0 },
-				Marker = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false },
+				Marker = { type = 25, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false },
 				Prompt = _U('fast_travel')
 			},
 
 			{
 				From = vector3(256.5, -1357.7, 36.0),
 				To = { coords = vector3(235.4, -1372.8, 26.3), heading = 0.0 },
-				Marker = { type = 1, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false },
+				Marker = { type = 25, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false },
 				Prompt = _U('fast_travel')
 			}
 		}
@@ -217,7 +217,7 @@ Config.Hospitals = {
 				InsideShop = vector3(446.7, -1355.6, 43.5),
 				Marker = { type = 36, x = 1.0, y = 1.0, z = 1.0, r = 100, g = 50, b = 200, a = 100, rotate = true },
 				SpawnPoints = {
-					{ coords = vector3(293.08, -571.12, 42.92), heading = 60.74, radius = 4.0 },
+					{ coords = vector3(293.08, -571.12, 42.92), heading = 60.74, radius = 4.0, firetruk = vector3(292.47, -611.26, 43.44), heading = 60.74, radius = 4.0 },
 					{ coords = vector3(293.08, -571.12, 42.92), heading = 60.74, radius = 4.0 },
 					{ coords = vector3(293.08, -571.12, 42.92), heading = 60.74, radius = 6.0 }
 				}
@@ -230,7 +230,7 @@ Config.Hospitals = {
 Config.AuthorizedVehicles = {
 	Shared = {
 		{ model = 'ambulance', label = 'Ambulancia estándar'},
-		{ model = 'ambo', label = 'Ambulancia en Pruebas'}
+		{ model = 'firetruk', label = 'Camión de bomberos'}
 	},
 	paramedico = {
 
@@ -253,7 +253,6 @@ Config.AuthorizedVehicles = {
 	boss = {
 		{ model = 'ems2', label = 'Vehículo rápido'}
 	}
-
 }
 
 Config.AuthorizedHelicopters = {
@@ -276,7 +275,7 @@ Config.Uniforms = {
 			['shoes_1'] = 24,   ['shoes_2'] = 0,
 			['chain_1'] = 126,    ['chain_2'] = 0,
 			['bproof_1'] = 0,  ['bproof_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 159,  ['tshirt_2'] = 0,
@@ -287,7 +286,7 @@ Config.Uniforms = {
 			['shoes_1'] = 24,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
 			['bproof_1'] = 0,  ['bproof_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	paramedico_wear = {
@@ -300,7 +299,7 @@ Config.Uniforms = {
 			['shoes_1'] = 24,   ['shoes_2'] = 0,
 			['chain_1'] = 126,    ['chain_2'] = 0,
 			['bproof_1'] = 0,  ['bproof_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 159,  ['tshirt_2'] = 0,
@@ -311,7 +310,7 @@ Config.Uniforms = {
 			['shoes_1'] = 24,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
 			['bproof_1'] = 0,  ['bproof_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	medico_wear = {
@@ -324,7 +323,7 @@ Config.Uniforms = {
 			['shoes_1'] = 25,   ['shoes_2'] = 0,
 			['chain_1'] = 126,    ['chain_2'] = 0,
 			['bproof_1'] = 1,  ['bproof_2'] = 0,			
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 1,  ['tshirt_2'] = 0,
@@ -335,7 +334,7 @@ Config.Uniforms = {
 			['shoes_1'] = 24,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
 			['bproof_1'] = 1,  ['bproof_2'] = 0,			
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	cirujano_wear = {
@@ -347,7 +346,7 @@ Config.Uniforms = {
 			['pants_1'] = 24,   ['pants_2'] = 5,
 			['shoes_1'] = 66,   ['shoes_2'] = 1,
 			['chain_1'] = 126,    ['chain_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 159,  ['tshirt_2'] = 0,
@@ -357,7 +356,7 @@ Config.Uniforms = {
 			['pants_1'] = 23,   ['pants_2'] = 0,
 			['shoes_1'] = 57,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	fisotera_wear = {
@@ -369,7 +368,7 @@ Config.Uniforms = {
 			['pants_1'] = 24,   ['pants_2'] = 5,
 			['shoes_1'] = 66,   ['shoes_2'] = 1,
 			['chain_1'] = 126,    ['chain_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 159,  ['tshirt_2'] = 0,
@@ -379,7 +378,7 @@ Config.Uniforms = {
 			['pants_1'] = 23,   ['pants_2'] = 0,
 			['shoes_1'] = 57,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	pisco_wear = {
@@ -391,7 +390,7 @@ Config.Uniforms = {
 			['pants_1'] = 24,   ['pants_2'] = 1,
 			['shoes_1'] = 66,   ['shoes_2'] = 1,
 			['chain_1'] = 126,    ['chain_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 159,  ['tshirt_2'] = 0,
@@ -401,7 +400,7 @@ Config.Uniforms = {
 			['pants_1'] = 23,   ['pants_2'] = 0,
 			['shoes_1'] = 57,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	boss_wear = {
@@ -414,7 +413,7 @@ Config.Uniforms = {
 			['shoes_1'] = 25,   ['shoes_2'] = 0,
 			['chain_1'] = 126,    ['chain_2'] = 0,
 			['bproof_1'] = 1,  ['bproof_2'] = 0,			
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		},
 		female = {
 			['tshirt_1'] = 1,  ['tshirt_2'] = 0,
@@ -425,7 +424,7 @@ Config.Uniforms = {
 			['shoes_1'] = 24,   ['shoes_2'] = 0,
 			['chain_1'] = 96,    ['chain_2'] = 0,
 			['bproof_1'] = 1,  ['bproof_2'] = 0,			
-			['ears_1'] = -1,     ['ears_2'] = 0
+			['ears_1'] = 2,     ['ears_2'] = 0
 		}
 	},
 	clear_wear = {

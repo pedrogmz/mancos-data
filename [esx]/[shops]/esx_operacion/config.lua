@@ -1,11 +1,11 @@
 Config = {}
 
-Config.Price = 100
+Config.Price = 500
 
 Config.DrawDistance = 100.0
 Config.MarkerSize   = vector3(1.0, 1.0, 1.0)
 Config.MarkerColor  = {r = 102, g = 102, b = 204}
-Config.MarkerType   = 1
+Config.MarkerType   = 25
 
 Config.Locale = 'es'
 
@@ -16,5 +16,5 @@ Config.Shops = {
 --	vector3(1931.5, 3729.7, 31.8),
 --	vector3(1212.8, -472.9, 65.2),
 --	vector3(459.83, -988.47, 29.69), -- comisaría
-	vector3(348.77, -572.1, 27.79)
+	vector3(348.84, -571.19, 28.53)
 }

@@ -197,8 +197,8 @@ function MFM:BeginCooking(driver)
               while (GetGameTimer() - timer) < self.MaxVehicleStopTime * 1000 do Citizen.Wait(0); end
               if GetEntitySpeed(vehicle) * 3.6 < self.MinSpeedForCook then 
                 self.CanCont = true
-                --doBreak = "The vehicle was driving too slow to continue." 
-                --driverMsg = "The vehicle was driving too slow to continue." 
+                --doBreak = "El vehículo está conduciendo muy lento para continuar." 
+                --driverMsg = "El vehículo está conduciendo muy lento para continuar." 
                 ESX.ShowNotification('Alguien te ha denunciado. ¡Muevete!.')
                 Citizen.Wait(1000)
                 TriggerServerEvent('MF_MobileMeth:NotifyPolice', GetEntityCoords(GetPlayerPed(-1)))
@@ -237,18 +237,18 @@ function MFM:BeginCooking(driver)
   else return; end
 
   if doCont then
-    exports['progressBars']:startUI(math.floor(self.CookTimerC * 60 * 1000), "Deja que la meta se compacte")
+    exports['progressBars']:startUI(math.floor(self.CookTimerC * 60 * 1000), "Enfriando la meta")
     Citizen.Wait(math.floor(self.CookTimerC * 60 * 1000) + 5000)
   else return; end
 
   if doCont then
-    exports['progressBars']:startUI(math.floor(self.CookTimerD * 60 * 1000), "Empacando meta")
+    exports['progressBars']:startUI(math.floor(self.CookTimerD * 60 * 1000), "Empaquetando la meta")
     Citizen.Wait(math.floor(self.CookTimerD * 60 * 1000) + 5000)
   else return; end
 
   if doCont then
-    ESX.ShowNotification("Has terminado de cocinar.")
-    TriggerServerEvent('MF_MobileMeth:FinishCook', self.Driver, true, "Has terminado de cocinar.")
+    ESX.ShowNotification("Has terminado de empaquetar la meta, ya puedes ir al destino.")
+    TriggerServerEvent('MF_MobileMeth:FinishCook', self.Driver, true, "Has terminado de empaquetar la meta, ya puedes ir al destino.")
     self.Driver = false
   end
 end

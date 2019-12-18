@@ -119,19 +119,25 @@ function OpenBossMenu(society, close, options)
 	if options.deposit then
 		table.insert(elements, {label = _U('deposit_society_money'), value = 'deposit_money'})
 	end
+-- los trabajos indicados no muestran gestion de empleados y gestion de salarios
+	if society ~= 'thelost' and society ~= 'ballas' and society ~= 'tender' and society ~= 'cardealer' and society ~= 'steel' then
 
---[[	if options.wash then
-		table.insert(elements, {label = _U('wash_money'), value = 'wash_money'})
+	
+		if options.employees then
+			table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
+		end
+	
+		if options.grades then
+			table.insert(elements, {label = _U('salary_management'), value = 'manage_grades'})
+		end
 	end
+-- Quitados opción de lavar dinero, contratar gente y cambiar los salarios.
+--[[
+		if options.wash then
+			table.insert(elements, {label = _U('wash_money'), value = 'wash_money'})
+		end
+	
 ]]--
-	if options.employees then
-		table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
-	end
-
-	if options.grades then
-		table.insert(elements, {label = _U('salary_management'), value = 'manage_grades'})
-	end
-
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'boss_actions_' .. society, {
 		title    = _U('boss_menu'),
 		align    = 'top-left',

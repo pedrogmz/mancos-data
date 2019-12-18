@@ -8,14 +8,21 @@ Config.Locale       = 'es'
 Config.Zones = {
 
 	
-	GrowShop = {
+	GrowShopBallas = {
 		name = {'growshop'},
 		Items = {},
 		Pos = {		
-			{x = -1168.99,  y = -1573.02,  z = 4.66}
+			{x = 999.73,  y = -3200.29,  z = -38.99}
 		}
 	},
-	
+	GrowShopTheLost = {
+		name = {'growshop'},
+		Items = {},
+		Pos = {		
+			{x = 1112.27,  y = -3153.18,  z = -37.52}
+		}
+	},	
+
 	Badulake = {
 		name = {'badulake'},
 		Items = {},
@@ -23,7 +30,7 @@ Config.Zones = {
 			{x = -707.93,  y = -915.66,  z = 19.22}
 		}
 	},
-	--[[
+--[[
 	Fishshop = {
 		name = {'fishshop'},
 		Items = {},
@@ -31,7 +38,7 @@ Config.Zones = {
 			{x = -717.28,  y = -910.03,  z = 19.22}
 		}
 	},
-	]]--
+]]--
 	Bar = {
 		name = {'bar'},
 		Items = {},

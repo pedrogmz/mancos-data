@@ -9,19 +9,19 @@ Citizen.CreateThread(function(...)
   end
 end)
 
-MFD.FoodDrainSpeed      = 0.0200
-MFD.WaterDrainSpeed     = 0.0200
-MFD.QualityDrainSpeed   = 0.0050
+MFD.FoodDrainSpeed      = 0.0020  -- resta comida (tiempo) -- 0.0200
+MFD.WaterDrainSpeed     = 0.0020  -- resta bebida (tiempo) -- 0.0200
+MFD.QualityDrainSpeed   = 0.0000  -- resta calidad (cantidad) -- 0.0050
 
-MFD.GrowthGainSpeed     = 1.0000
-MFD.QualityGainSpeed    = 0.0100
+MFD.GrowthGainSpeed     = 0.014  -- velocidad crecimiento por tiempo -- 1.0000 
+MFD.QualityGainSpeed    = 0.010  -- cantidad por tiempo (cantidad) -- 0.0100
 
 MFD.SyncDist = 50.0
 MFD.InteractDist = 2.5
-MFD.PoliceJobLabel = "Police"
-MFD.WeedPerBag = 5
-MFD.JointsPerBag = 10
-MFD.BagsPerPapers = 1
+MFD.PoliceJobLabel = "police"
+MFD.WeedPerBag = 20
+MFD.JointsPerBag = 10  -- no implementado ??
+MFD.BagsPerPapers = 1  -- no implementado ??
 
 MFD.PlantTemplate = {
    ["Gender"] = "Hembra",

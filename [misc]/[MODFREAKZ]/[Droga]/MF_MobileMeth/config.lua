@@ -19,16 +19,16 @@ MFM.ShowBlip = false
 
 -- Police count and name
 MFM.PoliceJobName = "police"
-MFM.MinPolCount   = 3
+MFM.MinPolCount   = 0
 
 -- Minutes.
-MFM.CookTimerA = 0.5 -- prepare ingredients
-MFM.CookTimerB = 0.5 -- cook meth
-MFM.CookTimerC = 0.5 -- cool meth
-MFM.CookTimerD = 0.5 -- package meth
+MFM.CookTimerA = 1.00 -- prepare ingredients
+MFM.CookTimerB = 2.00 -- cook meth
+MFM.CookTimerC = 1.30 -- cool meth
+MFM.CookTimerD = 1.30 -- package meth
 
 -- The door.
-MFM.HintLocation      =   vector4(2434.46,5011.6,46.83, 134.55)
+MFM.HintLocation      =   vector4(138.87,-1921.72,21.38, 118.87)
 
 -- Possible spawns.
 MFM.TruckLocations    =   {
@@ -46,10 +46,10 @@ MFM.DropoffLocations  =   {
 
 -- Models.
 MFM.TruckModels = {
-  [1] = 'boxville',
-  [2] = 'boxville2',
-  [3] = 'boxville3',
-  [4] = 'boxville4',
+  [1] = 'journey',
+ -- [2] = 'camper',
+ -- [3] = 'boxville3',
+ -- [4] = 'boxville4',
 }
 
 -- Draw text at this distance.
@@ -65,7 +65,7 @@ MFM.TrackableNotifyTimer  =   15
 MFM.TruckSpawnDist        =   50.0
 
 -- Veh speed (KPH I think?).
-MFM.MinSpeedForCook       =   0.0
+MFM.MinSpeedForCook       =   25.0
 
 -- Vehicle can stop for x amount of seconds before police get notified.
-MFM.MaxVehicleStopTime    =   0
+MFM.MaxVehicleStopTime    =   4

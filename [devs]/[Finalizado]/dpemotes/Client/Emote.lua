@@ -20,6 +20,10 @@ local PtfxNoProp = false
 Citizen.CreateThread(function()
   while true do
 
+    if IsPedShooting(PlayerPedId()) and IsInAnimation then
+      EmoteCancel()
+    end
+
     if PtfxPrompt then
       if not PtfxNotif then
           SimpleNotify(PtfxInfo)
@@ -32,18 +36,8 @@ Citizen.CreateThread(function()
       end
     end
 
-    if Config.MenuKeybindEnabled then
-      if IsControlPressed(0, Config.MenuKeybind) then
-        OpenEmoteMenu()
-      end
-    end
-
-    if Config.EnableXtoCancel then
-      if IsControlPressed(0, 73) then
-        EmoteCancel()
-      end
-    end
-
+    if Config.MenuKeybindEnabled then if IsControlPressed(0, Config.MenuKeybind) and GetVehiclePedIsIn(GetPlayerPed(-1), false) == 0 then OpenEmoteMenu() end end
+    if Config.EnableXtoCancel then if IsControlPressed(0, 73) then EmoteCancel() end end
     Citizen.Wait(1)
   end
 end)
@@ -52,29 +46,30 @@ end)
 -- Commands / Events --------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
 
-RegisterCommand('e', function(source, args, raw)
-  EmoteCommandStart(source, args, raw)
+Citizen.CreateThread(function()
+    TriggerEvent('chat:addSuggestion', '/e', 'Ejecutar una animación', {{ name="emotename", help="dance, camera, sit or any valid emote."}})
+    TriggerEvent('chat:addSuggestion', '/e', 'Ejecutar una animación', {{ name="emotename", help="dance, camera, sit or any valid emote."}})
+    TriggerEvent('chat:addSuggestion', '/emote', 'Ejecutar una animación', {{ name="emotename", help="dance, camera, sit or any valid emote."}})
+    if Config.SqlKeybinding then
+      TriggerEvent('chat:addSuggestion', '/emotebind', 'Enlazar una animación', {{ name="key", help="num4, num5, num6, num7. num8, num9. Numpad 4-9!"}, { name="emotename", help="dance, camera, sit o cualquier emote válido."}})
+      TriggerEvent('chat:addSuggestion', '/emotebinds', 'Verifique sus emotes actualmente vinculados.')
+    end
+    TriggerEvent('chat:addSuggestion', '/emotemenu', 'Abrir el menú dpemotes (L) de forma predeterminada.')
+    TriggerEvent('chat:addSuggestion', '/emotes', 'Lista de emotes disponibles.')
+    TriggerEvent('chat:addSuggestion', '/walk', 'Establece tu estilo de caminar.', {{ name="style", help="/walks para una lista de estilos válidos"}})
+    TriggerEvent('chat:addSuggestion', '/walks', 'Lista de estilos de caminar disponibles.')
 end)
 
-RegisterCommand('emote', function(source, args, raw)
-  EmoteCommandStart(source, args, raw)
-end)
-
-RegisterCommand('emotes', function(source, args, raw)
-  EmotesOnCommand()
-end)
-
-RegisterCommand('emotemenu', function(source, args, raw)
-  OpenEmoteMenu()
-end)
-
-RegisterCommand('walk', function(source, args, raw)
-  WalkCommandStart(source, args, raw)
-end)
-
-RegisterCommand('walks', function(source, args, raw)
-  WalksOnCommand()
-end)
+RegisterCommand('e', function(source, args, raw) EmoteCommandStart(source, args, raw) end)
+RegisterCommand('emote', function(source, args, raw) EmoteCommandStart(source, args, raw) end)
+if Config.SqlKeybinding then
+  RegisterCommand('emotebind', function(source, args, raw) EmoteBindStart(source, args, raw) end)
+  RegisterCommand('emotebinds', function(source, args, raw) EmoteBindsStart(source, args, raw) end)
+end
+RegisterCommand('emotemenu', function(source, args, raw) OpenEmoteMenu() end)
+RegisterCommand('emotes', function(source, args, raw) EmotesOnCommand() end)
+RegisterCommand('walk', function(source, args, raw) WalkCommandStart(source, args, raw) end)
+RegisterCommand('walks', function(source, args, raw) WalksOnCommand() end)
 
 AddEventHandler('onResourceStop', function(resource)
   if resource == GetCurrentResourceName() then
@@ -132,7 +127,8 @@ function PtfxStart()
       PtfxAt = prop
     end
     UseParticleFxAssetNextCall(PtfxAsset)
-    Ptfx = StartParticleFxLoopedOnEntity(PtfxName, PtfxAt, Ptfx1, Ptfx2, Ptfx3, Ptfx4, Ptfx5, Ptfx6, PtfxScale, false, false, false)
+    Ptfx = StartNetworkedParticleFxLoopedOnEntityBone(PtfxName, PtfxAt, Ptfx1, Ptfx2, Ptfx3, Ptfx4, Ptfx5, Ptfx6, GetEntityBoneIndexByName(PtfxName, "VFX"), 1065353216, 0, 0, 0, 1065353216, 1065353216, 1065353216, 0)
+    SetParticleFxLoopedColour(Ptfx, 1.0, 1.0, 1.0)
     table.insert(PlayerParticles, Ptfx)
 end
 
@@ -244,7 +240,7 @@ function PtfxThis(asset)
   UseParticleFxAssetNextCall(asset)
 end
 
-DestroyAllProps = function()
+function DestroyAllProps()
   for _,v in pairs(PlayerProps) do
     DeleteEntity(v)
   end
@@ -252,7 +248,7 @@ DestroyAllProps = function()
   DebugPrint("Destroyed Props")
 end
 
-AddPropToPlayer = function(prop1, bone, off1, off2, off3, rot1, rot2, rot3)
+function AddPropToPlayer(prop1, bone, off1, off2, off3, rot1, rot2, rot3)
   local Player = PlayerPedId()
   local x,y,z = table.unpack(GetEntityCoords(Player))
 
@@ -264,6 +260,7 @@ AddPropToPlayer = function(prop1, bone, off1, off2, off3, rot1, rot2, rot3)
   AttachEntityToEntity(prop, Player, GetPedBoneIndex(Player, bone), off1, off2, off3, rot1, rot2, rot3, true, true, false, true, 1, true)
   table.insert(PlayerProps, prop)
   PlayerHasProp = true
+  SetModelAsNoLongerNeeded(prop1)
 end
 
 -----------------------------------------------------------------------------------------------------
@@ -273,7 +270,7 @@ end
 -- V -- in most cases its better to replace the scenario with an animation bundled with prop instead.
 -----------------------------------------------------------------------------------------------------
 
-CheckGender = function()
+function CheckGender()
   local hashSkinMale = GetHashKey("mp_m_freemode_01")
   local hashSkinFemale = GetHashKey("mp_f_freemode_01")
 
@@ -290,6 +287,12 @@ end
 -----------------------------------------------------------------------------------------------------
 
 function OnEmotePlay(EmoteName)
+
+  InVehicle = IsPedInAnyVehicle(PlayerPedId(), true)
+  if not Config.AllowedInCars and InVehicle == 1 then
+    return
+  end
+
   if not DoesEntityExist(GetPlayerPed(-1)) then
     return false
   end
@@ -312,9 +315,9 @@ function OnEmotePlay(EmoteName)
     return
   end
 
-  if ChosenDict == "MaleScenario" or "Scenario" then
+  if ChosenDict == "MaleScenario" or "Scenario" then 
     CheckGender()
-    if ChosenDict == "MaleScenario" then
+    if ChosenDict == "MaleScenario" then if InVehicle then return end
       if PlayerGender == "male" then
         ClearPedTasks(GetPlayerPed(-1))
         TaskStartScenarioInPlace(GetPlayerPed(-1), ChosenAnimation, 0, true)
@@ -323,14 +326,14 @@ function OnEmotePlay(EmoteName)
       else
         EmoteChatMessage(Config.Languages[lang]['maleonly'])
       end return
-    elseif ChosenDict == "ScenarioObject" then
+    elseif ChosenDict == "ScenarioObject" then if InVehicle then return end
       BehindPlayer = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 0 - 0.5, -0.5);
       ClearPedTasks(GetPlayerPed(-1))
       TaskStartScenarioAtPosition(GetPlayerPed(-1), ChosenAnimation, BehindPlayer['x'], BehindPlayer['y'], BehindPlayer['z'], GetEntityHeading(PlayerPedId()), 0, 1, false)
       DebugPrint("Playing scenario = ("..ChosenAnimation..")")
       IsInAnimation = true
       return
-    elseif ChosenDict == "Scenario" then
+    elseif ChosenDict == "Scenario" then if InVehicle then return end
       ClearPedTasks(GetPlayerPed(-1))
       TaskStartScenarioInPlace(GetPlayerPed(-1), ChosenAnimation, 0, true)
       DebugPrint("Playing scenario = ("..ChosenAnimation..")")
@@ -359,30 +362,17 @@ function OnEmotePlay(EmoteName)
     MovementType = 0
   end
 
+  if InVehicle == 1 then
+    MovementType = 51
+  end
+
   if EmoteName.AnimationOptions then
     if EmoteName.AnimationOptions.EmoteDuration == nil then 
       EmoteName.AnimationOptions.EmoteDuration = -1
+      AttachWait = 0
     else
       AnimationDuration = EmoteName.AnimationOptions.EmoteDuration
-    end
-
-    if EmoteName.AnimationOptions.Prop then
-      PropName = EmoteName.AnimationOptions.Prop
-      PropBone = EmoteName.AnimationOptions.PropBone
-      PropPl1, PropPl2, PropPl3, PropPl4, PropPl5, PropPl6 = table.unpack(EmoteName.AnimationOptions.PropPlacement)
-      if EmoteName.AnimationOptions.SecondProp then
-        SecondPropName = EmoteName.AnimationOptions.SecondProp
-        SecondPropBone = EmoteName.AnimationOptions.SecondPropBone
-        SecondPropPl1, SecondPropPl2, SecondPropPl3, SecondPropPl4, SecondPropPl5, SecondPropPl6 = table.unpack(EmoteName.AnimationOptions.SecondPropPlacement)
-        SecondPropEmote = true
-      else
-        SecondPropEmote = false
-      end
-
-      AddPropToPlayer(PropName, PropBone, PropPl1, PropPl2, PropPl3, PropPl4, PropPl5, PropPl6)
-      if SecondPropEmote then
-        AddPropToPlayer(SecondPropName, SecondPropBone, SecondPropPl1, SecondPropPl2, SecondPropPl3, SecondPropPl4, SecondPropPl5, SecondPropPl6)
-      end
+      AttachWait = EmoteName.AnimationOptions.EmoteDuration
     end
 
     if EmoteName.AnimationOptions.PtfxAsset then
@@ -403,27 +393,70 @@ function OnEmotePlay(EmoteName)
       DebugPrint("Ptfx = none")
       PtfxPrompt = false
     end
-
-  else
-      DebugPrint("AnimationOptions = False")
-  end
-  
-  DebugPrint ("--- Main Animations")
-  DebugPrint ("ChosenDict = " ..ChosenDict.. "")
-  DebugPrint ("ChosenAnimation = " ..ChosenAnimation.. "")
-  DebugPrint ("MovementType = " ..MovementType.. "")
-  DebugPrint ("AnimationDuration = " ..AnimationDuration.. "")
-
-  if EmoteName.AnimationOptions then
-    DebugPrint ("--- AnimationOptions")
-    DebugPrint ("AnimationOption.EmoteLoop = " ..tostring(EmoteName.AnimationOptions.EmoteLoop).. "")
-    DebugPrint ("AnimationOption.EmoteMoving = " ..tostring(EmoteName.AnimationOptions.EmoteMoving).. "")
-    DebugPrint ("AnimationOption.EmoteDuration = " ..tostring(EmoteName.AnimationOptions.EmoteDuration).. "")
   end
 
   TaskPlayAnim(GetPlayerPed(-1), ChosenDict, ChosenAnimation, 2.0, 2.0, AnimationDuration, MovementType, 0, false, false, false)
+  RemoveAnimDict(ChosenDict)
   IsInAnimation = true
   MostRecentDict = ChosenDict
   MostRecentAnimation = ChosenAnimation
+
+  if EmoteName.AnimationOptions then
+    if EmoteName.AnimationOptions.Prop then
+        PropName = EmoteName.AnimationOptions.Prop
+        PropBone = EmoteName.AnimationOptions.PropBone
+        PropPl1, PropPl2, PropPl3, PropPl4, PropPl5, PropPl6 = table.unpack(EmoteName.AnimationOptions.PropPlacement)
+        if EmoteName.AnimationOptions.SecondProp then
+          SecondPropName = EmoteName.AnimationOptions.SecondProp
+          SecondPropBone = EmoteName.AnimationOptions.SecondPropBone
+          SecondPropPl1, SecondPropPl2, SecondPropPl3, SecondPropPl4, SecondPropPl5, SecondPropPl6 = table.unpack(EmoteName.AnimationOptions.SecondPropPlacement)
+          SecondPropEmote = true
+        else
+          SecondPropEmote = false
+        end
+        Wait(AttachWait)
+        AddPropToPlayer(PropName, PropBone, PropPl1, PropPl2, PropPl3, PropPl4, PropPl5, PropPl6)
+        if SecondPropEmote then
+          AddPropToPlayer(SecondPropName, SecondPropBone, SecondPropPl1, SecondPropPl2, SecondPropPl3, SecondPropPl4, SecondPropPl5, SecondPropPl6)
+        end
+    end
+  end
   return true
 end
+
+
+-- Arnedo5 | Call emotes
+local enableMap = false
+
+AddEventHandler('dmpemotes:emote', function(emote)
+	if emote ~= nil then
+    local name = string.lower(emote)
+    if name == "c" then
+        if IsInAnimation then
+            EmoteCancel()
+        else
+            EmoteChatMessage(Config.Languages[lang]['nocancel'])
+        end
+      return
+    elseif name == "help" then
+      EmotesOnCommand()
+    return end
+
+    if DP.Emotes[name] ~= nil then
+      if OnEmotePlay(DP.Emotes[name]) then end return
+    elseif DP.Dances[name] ~= nil then
+      if OnEmotePlay(DP.Dances[name]) then end return
+    elseif DP.PropEmotes[name] ~= nil then
+      if OnEmotePlay(DP.PropEmotes[name]) then end return
+    else
+      EmoteChatMessage("'"..name.."' "..Config.Languages[lang]['notvalidemote'].."")
+    end
+  end
+end)
+
+AddEventHandler('dmpemotes:cancel', function()
+	EmoteCancel()
+end)
+
+
+

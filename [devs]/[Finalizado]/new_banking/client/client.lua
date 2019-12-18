@@ -18,6 +18,7 @@ local banks = {
 }
 
 local atms = {
+  {name="ATM", id=277, x=146.8,    y=-1035.45, z=29.34},
   {name="ATM", id=277, x=-386.733, y=6045.953, z=31.501},
   {name="ATM", id=277, x=-284.037, y=6224.385, z=31.187},
   {name="ATM", id=277, x=-284.037, y=6224.385, z=31.187},
@@ -118,7 +119,7 @@ if bankMenu then
 	while true do
 		Wait(0)
 	if nearBank() or nearATM() then
-			DisplayHelpText("Presione ~INPUT_PICKUP~ para acceder a la cuenta ~b~")
+			DisplayHelpText("~INPUT_PICKUP~ para acceder a la cuenta ~b~")
 
 		if IsControlJustPressed(1, 38) then
 			inMenu = true

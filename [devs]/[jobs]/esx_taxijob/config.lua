@@ -46,10 +46,10 @@ Config.Zones = {
 	},
 
 	TaxiActions = {
-		Pos   = {x = 903.32, y = -170.55, z = 74.0},
+		Pos   = {x = 903.32, y = -170.55, z = 73.1},
 		Size  = {x = 1.0, y = 1.0, z = 1.0},
 		Color = {r = 204, g = 204, b = 0},
-		Type  = 20, Rotate = false
+		Type  = 25, Rotate = false
 	},
 --[[
 	Cloakroom = {

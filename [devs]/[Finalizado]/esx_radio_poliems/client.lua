@@ -29,7 +29,9 @@ Citizen.CreateThread(function()
 		Wait( 0 )
 
 		local ped = PlayerPedId()
-		if PlayerData.job ~= nil and PlayerData.job.name == 'police' and not IsEntityDead( ped ) then
+		if PlayerData.job ~= nil and PlayerData.job.name == 'police' and not IsEntityDead( ped )  
+		or PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' and not IsEntityDead( ped )
+		then
 		-- if DoesEntityExist( ped ) and not IsEntityDead( ped ) and CheckSkin(ped) then
 			if not IsPauseMenuActive() then 
 				loadAnimDict( "random@arrests" )
@@ -45,6 +47,40 @@ Citizen.CreateThread(function()
 					elseif IsControlJustPressed( 0, 303 ) and IsPlayerFreeAiming(PlayerId()) then -- INPUT_CHARACTER_WHEEL (LEFT ALT)
 						TriggerServerEvent('InteractSound_SV:PlayOnSource', 'on', 0.1)
 						TaskPlayAnim(ped, "random@arrests", "radio_chatter", 8.0, 2.0, -1, 50, 2.0, 0, 0, 0 )
+						SetEnableHandcuffs(ped, true)
+					end 
+					if IsEntityPlayingAnim(GetPlayerPed(PlayerId()), "random@arrests", "generic_radio_enter", 3) then
+						DisableActions(ped)
+					elseif IsEntityPlayingAnim(GetPlayerPed(PlayerId()), "random@arrests", "radio_chatter", 3) then
+						DisableActions(ped)
+					end
+				end
+			end 
+		end 
+	end
+end )
+
+Citizen.CreateThread(function()
+	while true do
+		Wait( 0 )
+
+		local ped = PlayerPedId()
+		if PlayerData.job ~= nil and PlayerData.job.name ~= 'police' and not IsEntityDead( ped ) then
+		-- if DoesEntityExist( ped ) and not IsEntityDead( ped ) and CheckSkin(ped) then
+			if not IsPauseMenuActive() then 
+				loadAnimDict( "random@arrests" )
+				if IsControlJustReleased( 0, 303 ) then -- INPUT_CHARACTER_WHEEL (LEFT ALT)
+					TriggerServerEvent('InteractSound_SV:PlayOnSource', 'off', 0.1)
+					ClearPedTasks(ped)
+					SetEnableHandcuffs(ped, false)
+				else
+					if IsControlJustPressed( 0, 303 ) and not IsPlayerFreeAiming(PlayerId()) then -- INPUT_CHARACTER_WHEEL (LEFT ALT)
+						TriggerServerEvent('InteractSound_SV:PlayOnSource', 'on', 0.1)
+						TaskPlayAnim(ped, "cellphone@", "cellphone_call_listen_base", 8.0, 2.0, -1, 50, 2.0, 0, 0, 0 )
+						SetEnableHandcuffs(ped, true)
+					elseif IsControlJustPressed( 0, 303 ) and IsPlayerFreeAiming(PlayerId()) then -- INPUT_CHARACTER_WHEEL (LEFT ALT)
+						TriggerServerEvent('InteractSound_SV:PlayOnSource', 'on', 0.1)
+						TaskPlayAnim(ped, "cellphone@", "cellphone_call_listen_base", 8.0, 2.0, -1, 50, 2.0, 0, 0, 0 )
 						SetEnableHandcuffs(ped, true)
 					end 
 					if IsEntityPlayingAnim(GetPlayerPed(PlayerId()), "random@arrests", "generic_radio_enter", 3) then

@@ -142,7 +142,7 @@ function MenuVehicleSpawner()
 			elements = elements
 		},
 		function(data, menu)
-			ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(vehicle)
+			ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 296.3, function(vehicle)
 				platenum = math.random(10000, 99999)
 				SetVehicleNumberPlateText(vehicle, "WAL"..platenum)
                 MissionLivraisonSelect()
@@ -150,7 +150,7 @@ function MenuVehicleSpawner()
 				xPlayer.removeAccountMoney('black_money', '500') -- Cost $500 Dirty Money
 
 				if data.current.value == 'phantom3' then
-					ESX.Game.SpawnVehicle("trailers2", Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(trailer)
+					ESX.Game.SpawnVehicle("trailers2", Config.Zones.VehicleSpawnPoint.Pos, 296.3, function(trailer)
 					    AttachVehicleToTrailer(vehicle, trailer, 1.1)
 					end)
 				end

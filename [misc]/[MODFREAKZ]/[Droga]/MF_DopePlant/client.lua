@@ -75,9 +75,9 @@ function MFD:InputHandler()
         local plyPed = GetPlayerPed(-1)
         TaskTurnPedToFaceEntity(plyPed, self.Plants[self.CurKey].Object, -1)
         Citizen.Wait(1000)
-        exports['progressBars']:startUI(20000, "Recolectando..")
+        exports['progressBars']:startUI(6000, "Recolectando..") 	-- tiempo aparece en la barra de recolecta
         TaskStartScenarioInPlace(plyPed, "PROP_HUMAN_BUM_BIN", 0, true)
-        Wait(20000)
+        Wait(6000)													-- tiempo de recolecta
         TaskStartScenarioInPlace(plyPed, "PROP_HUMAN_BUM_BIN", 0, false)
         Wait(1000)
         ClearPedTasksImmediately(plyPed)

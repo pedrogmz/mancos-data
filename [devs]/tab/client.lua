@@ -6,11 +6,15 @@ function REQUEST_NUI_FOCUS(bool)
     SetNuiFocus(bool, bool) -- focus, cursor
     if bool == true then
         SendNUIMessage({showtab = true})
+
+        TriggerEvent('dmpemotes:emote', 'tablet2') -- Arnedo5 | Animación para la tablet
     else
         SendNUIMessage({hidetab = true})
+        TriggerEvent('dmpemotes:cancel')
     end
     return bool
 end
+
 
 RegisterNUICallback(
     "tablet-bus",
@@ -19,10 +23,13 @@ RegisterNUICallback(
         if data.load then
             --print("Loaded the tablet")
             tabLoaded = true
+
         elseif data.hide then
             --print("Hiding the tablet")
             SetNuiFocus(false, false) -- Don't REQUEST_NUI_FOCUS here
             tabEnabled = false
+
+            TriggerEvent('dmpemotes:cancel')
         elseif data.click then
         -- if u need click events
         end
@@ -52,6 +59,8 @@ Citizen.CreateThread(
         print("::The client lua for tablet loaded::")
 
         REQUEST_NUI_FOCUS(false) -- This is just in case the resources restarted whilst the NUI is focused.
+
+
 
         while true do
              -- Control ID 20 is the 'Z' key by default
@@ -162,3 +171,10 @@ RegisterNUICallback("getIdentifiers", function()
     -- Obtenemos el steam id / id de bbdd
     TriggerServerEvent('getIdentifiers')
 end)
+
+function loadAnimDict(dict)
+	RequestAnimDict(dict)
+	while not HasAnimDictLoaded(dict) do
+		Citizen.Wait(500)
+	end
+end

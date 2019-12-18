@@ -108,7 +108,7 @@ Citizen.CreateThread(function()
 	
 	for k,v in pairs(Config.Zones) do
 		for i = 1, #v.Pos, 1 do				
-			if k ~= 'GrowShop' and k ~= 'Bar'  then
+			if k ~= 'GrowShopBallas' and k ~= 'GrowShopTheLost' and k ~= 'Bar'  then
 				local blip = AddBlipForCoord(v.Pos[i].x, v.Pos[i].y, v.Pos[i].z)
 				SetBlipSprite (blip, 52)
 				SetBlipDisplay(blip, 4)
@@ -194,7 +194,7 @@ Citizen.CreateThread(function()
 			if IsControlJustReleased(0, Keys['E'])  then
 				if CurrentAction == 'shop_menu' then
 					TriggerServerEvent('esx_shops:ComprobarServicio')
-					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShop' then
+					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShopBallas' or CurrentActionData.zone == 'GrowShopTheLost'then
 						OpenShopMenu(CurrentActionData.zone)
 					
 					elseif CurrentActionData.zone == 'Badulake' and employ < 1 then

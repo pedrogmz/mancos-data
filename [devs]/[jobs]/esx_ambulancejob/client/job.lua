@@ -23,16 +23,6 @@ Citizen.CreateThread(function()
 end)
 
 
-
-
-
-
-
-
-
-
-
-
 --outfit
 function OutfitsMenu()
 	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)
@@ -996,23 +986,28 @@ function OpenVehicleSpawnerMenu(hospital, partNum)
 		end
 	end
 
-
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_garage',
 	{
 		title		= _U('spawn_veh'),
 		align		= 'top-left',
 		elements	= shopElements
 	}, function(data, menu)
-
+		
 		menu.close()
 		DeleteSpawnedVehicles()
 	
+		print(partNum)
 		local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(hospital, 'Vehicles', partNum)
 
 		if foundSpawn then
-			--menu.close()
 
-			ESX.Game.SpawnVehicle(data.current.model, spawnPoint.coords, spawnPoint.heading, function(vehicle)
+			if data.current.model == 'firetruk' then
+				coords =  spawnPoint.firetruk
+			else 
+				coords = spawnPoint.coords
+			end
+
+			ESX.Game.SpawnVehicle(data.current.model, coords, spawnPoint.heading, function(vehicle)
 				table.insert(spawnedVehicles, vehicle)
 				local playerPed = PlayerPedId()
 				TaskWarpPedIntoVehicle(playerPed, vehicle, -1)

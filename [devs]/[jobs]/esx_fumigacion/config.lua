@@ -43,7 +43,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},
 	-- a cot� des flic
 	Delivery2LS = {
@@ -52,7 +52,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},
 	-- vers la plage
 	Delivery3LS = {
@@ -61,7 +61,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},
 	Delivery4LS = {
 			Pos   = {x = 2531.19, y = 4354.49, z = 134.41},
@@ -69,7 +69,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},	
 	Delivery5LS = {
 			Pos   = {x = 2848.45, y = 4621.68, z = 134.41},
@@ -77,7 +77,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},		
 
 ------------------------------------------- Blaine County
@@ -88,7 +88,7 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},
 	-- route 68
 	Delivery2BC = {
@@ -97,24 +97,24 @@ Config.Livraison = {
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},
 	-- Algonquin boulevard et cholla springs avenue
 	Delivery3BC = {
-			Pos   = {x = 2573.36, y = 4475.62, z = 54.320533752441},
+			Pos   = {x = 2573.36, y = 44100.62, z = 54.3205331002441},
 			Color = {r = 139, g = 208, b = 255},
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},
 	Delivery4BC = {
-			Pos   = {x = 2633.72, y = 4433.26, z = 154.320533752441},
+			Pos   = {x = 2633.72, y = 4433.26, z = 154.3205331002441},
 			Color = {r = 139, g = 208, b = 255},
 			Size  = {x = 30.0, y = 30.0, z = 30.0},
 			Color = {r = 139, g = 208, b = 255},
 			Type  = 6,
-			Paye = 7
+			Paye = 13
 		},	
 		
 	RetourCamion = {

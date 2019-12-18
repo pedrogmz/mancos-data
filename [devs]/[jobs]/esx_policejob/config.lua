@@ -67,11 +67,11 @@ Config.PoliceStations = {
 		},
 
 		Cloakrooms = {
-			vector3(452.6, -992.8, 30.6)
+			vector3(452.6, -992.8, 29.71)
 		},
 
 		Armories = {
-			vector3(451.7, -980.1, 30.6)
+			vector3(451.7, -980.1, 29.71)
 		},
 
 		Vehicles = {
@@ -107,7 +107,7 @@ Config.PoliceStations = {
 		},
 
 		BossActions = {
-			vector3(448.4, -973.2, 30.6)
+			vector3(465.04, -1009.11, 34.96)
 		}
 
 	}
@@ -686,7 +686,7 @@ Config.Uniforms = {
 			['bproof_1'] = 13,  ['bproof_2'] = 0,
 			['bags_1'] = 52,	['bags_2'] = 9,
 			['pants_1'] = 35,   ['pants_2'] = 0,
-			['shoes_1'] = 51,   ['shoes_2'] = 0,                    
+			['shoes_1'] = 51,   ['shoes_2'] = 0,                   
 			['helmet_1'] = -1,  ['helmet_2'] = 0,
 			['chain_1'] = 6,    ['chain_2'] = 0,
 			['ears_1'] = -1,     ['ears_2'] = 0,

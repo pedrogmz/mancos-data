@@ -14,7 +14,7 @@ local Keys = {
 local r,g,b,a = 166,166,255,255 -- rgba color
 
 -- ranges
-local voice = {default = 5.0, shout = 21.0, whisper = 1.0, current = 0}
+local voice = {default = 6.0, shout = 21.0, whisper = 1.0, current = 0}
 
 AddEventHandler('onClientMapStart', function()
 	if voice.current == 0 then
@@ -25,6 +25,8 @@ AddEventHandler('onClientMapStart', function()
 		NetworkSetTalkerProximity(voice.whisper)
 	end
 end)
+
+
 
 AddEventHandler('playerSpawned', function()
 	NetworkSetTalkerProximity(voice.default)		
@@ -87,11 +89,11 @@ Citizen.CreateThread(function()
             Citizen.Wait(0)
 				if NetworkIsPlayerTalking(PlayerId()) then
 					if voice.current == 0 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz: ~b~Normal", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz:~b~ Normal", 255, 255, 255, 255)
 					elseif voice.current == 1 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz: ~b~Gritando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz:~r~ Gritando", 255, 255, 255, 255)
 					elseif voice.current == 2 then
-						drawTxt(0.164, 0.868, 1.5,1.0,0.4, "Voz: ~b~Susurrando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.868, 1.5,1.0,0.4, "Voz:~g~ Susurrando", 255, 255, 255, 255)
 					end
 				else
 					if voice.current == 0 then
@@ -118,10 +120,52 @@ function drawTxt(x,y ,width,height,scale, text, r,g,b,a)
     SetTextEntry("STRING")
     AddTextComponentString(text)
     DrawText(x, y)
+	
+	SetTextFont(4)
+	SetTextProportional(1)
+	SetTextDropShadow(0, 0, 0, 0,255)
+	SetTextEdge(0, 0, 0, 0, 255)
+	SetTextScale(0.4, 0.4)
+	SetTextColour(255, 255, 255, 255)
+	SetTextDropShadow()
+	SetTextOutline()
+	SetTextEntry("STRING")
+	AddTextComponentString("ID: ~b~" .. tostring(GetPlayerServerId(PlayerId())))
+	DrawText(0.164, 0.840)	
 end
+
+
 
 
 -- Marker function, don't touch. 
 function Marker(type, x, y, z, voiceS)
 	DrawMarker(type, x, y, z - 1.2, 0.0, 0.0, 0.0, 0, 0.0, 0.0, voiceS, voiceS, 1.0, r, g, b, a, false, true, 2, false, false, false, false)
 end
+
+local talking  = {}
+
+Citizen.CreateThread(function()
+    RequestAnimDict("facials@gen_male@variations@normal")
+    while not HasAnimDictLoaded("facials@gen_male@variations@normal") do
+        Wait(10)
+    end
+
+    RequestAnimDict("mp_facial")
+    while not HasAnimDictLoaded("mp_facial") do
+        Wait(10)
+    end
+
+    while true do
+        for _, player in pairs(GetActivePlayers()) do
+            if NetworkIsPlayerTalking(player) then
+                talking[player] = true
+                PlayFacialAnim(GetPlayerPed(player), "mic_chatter", "mp_facial")
+            elseif (not NetworkIsPlayerTalking(player) and talking[player]) then
+                talking[player] = false
+                PlayFacialAnim(GetPlayerPed(player), "mood_normal_1", "facials@gen_male@variations@normal")
+            end
+        end
+        Wait(500)
+    end
+end)
+

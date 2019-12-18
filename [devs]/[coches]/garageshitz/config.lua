@@ -2,7 +2,7 @@ Config = {}
 
 Config.VehicleMenu = true -- enable this if you wan't a vehicle menu.
 Config.VehicleMenuButton = 344 -- change this to the key you want to open the menu with. buttons: https://docs.fivem.net/game-references/controls/
-Config.RangeCheck = 25.0 -- this is the change you will be able to control the vehicle.
+Config.RangeCheck = 100.0 -- this is the change you will be able to control the vehicle.
 
 Config.Garages = {
     ["Central"] = {
@@ -25,6 +25,26 @@ Config.Garages = {
         }
     },
 
+	["PRIVADO: Motor Club"] = {
+        ["positions"] = {
+            ["menu"] = {
+                ["position"] = vector3(964.9, -113.77, 74.38)
+            },
+            ["vehicle"] = {
+                ["position"] = vector3(965.1, -108.05, 74.38), 
+                ["heading"] = 223.0
+            }
+        },
+        ["camera"] = { 
+            ["x"] = 964.6, 
+            ["y"] = -103.84, 
+            ["z"] = 76.38, 
+            ["rotationX"] = -12.637795701623, 
+            ["rotationY"] = 0.0, 
+            ["rotationZ"] = 195.73228356242 
+        }
+    },
+	
     ["Occupation Av."] = {
         ["positions"] = {
             ["menu"] = {

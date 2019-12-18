@@ -68,23 +68,23 @@ Locales['fr'] = {
     ['craft']                    = '~g~ est prêt',
 	
 	-- Alimentos
-	['bread']                 	 = 'Pan PVP 2$',
-	['water']                 	 = 'Agua PVP 1$',
-	['hamburger']                = 'Hamburgesa PVP 4$',
-	['pasteldecarne']              = 'Pastel de carne PVP 4$',	
-	['potatoes']                 = 'Patatas fritas PVP 3$',
-	['sopa']                	 = 'Sopa de pollo PVP 3$',
-	['ecola']                    = 'eCola PVP 2$',
-	['sprunk']                   = 'Sprunk PVP 2$',
-	['fishingrod']                 = 'Caña de pescar PVP 300$',
+	['bread']                 	 = 'Pan PVP 5$',
+	['water']                 	 = 'Agua PVP 3$',
+	['hamburger']                = 'Hamburgesa PVP 20$',
+	['pasteldecarne']            = 'Pastel de carne PVP 20$',	
+	['potatoes']                 = 'Patatas fritas PVP 10$',
+	['sopa']                	 = 'Sopa de pollo PVP 10$',
+	['ecola']                    = 'eCola PVP 15$',
+	['sprunk']                   = 'Sprunk PVP 15$',
+	['fishingrod']               = 'Caña de pescar PVP 300$',
 	['fishbait']                 = 'Cebo de pescados PVP 1$',
-	['turtlebait']                 = 'Cebo de tortugas PVP 3$',
-	['phone']                 = 'Teléfono PVP 600$',
+	['turtlebait']               = 'Cebo de tortugas PVP 3$',
+	['phone']                    = 'Teléfono PVP 600$',
 	['jumelles']                 = 'Binoculares PVP 400$',
-	['condon']                 = 'Condon PVP 2$',
-	['dildo']                 = 'Dildo rosa PVP 26$',
-	['cigarrett']                 = 'Cigarro PVP 1$',
-	
+	['condon']                   = 'Condon PVP 5$',
+	['dildo']                    = 'Dildo rosa PVP 26$',
+	['cigarrett']                = 'Cigarro PVP 1$',
+	['dopebag']					 = 'Bolsa con cremallera X$',
 	
 	
 	

@@ -18,10 +18,10 @@ Config.Jobs.lumberjack = {
 	Zones = {
 
 		CloakRoom = {
-			Pos = {x = 1200.63, y = -1276.87, z = 34.38},
-			Size = {x = 3.0, y = 3.0, z = 1.0},
+			Pos = {x = 1200.63, y = -1276.87, z = 35.38},
+			Size = {x = 1.0, y = 1.0, z = 1.0},
 			Color = {r = 204, g = 204, b = 0},
-			Marker = 1,
+			Marker = 39,
 			Blip = true,
 			Name = _U("lj_locker_room"),
 			Type = "cloakroom",
@@ -30,9 +30,9 @@ Config.Jobs.lumberjack = {
 
 		Wood = {
 			Pos = {x = -534.32, y = 5373.79, z = 69.50},
-			Size = {x = 3.0, y = 3.0, z = 1.0},
-			Color = {r = 204, g = 204, b = 0},
-			Marker = 1,
+			Size = {x = 1.0, y = 1.0, z = 1.0},
+			Color = {r = 255, g = 0, b = 0},
+			Marker = 11,
 			Blip = true,
 			Name = _U("lj_mapblip"),
 			Type = "work",
@@ -53,10 +53,10 @@ Config.Jobs.lumberjack = {
 		},
 
 		CuttedWood = {
-			Pos = {x = -565.4, y = 5294.63, z = 69.50},
-			Size = {x = 3.0, y = 3.0, z = 1.0},
-			Color = {r = 204, g = 204, b = 0},
-			Marker = 1,
+			Pos = {x = -551.19, y = 5331.24, z = 75.08},
+			Size = {x = 1.0, y = 1.0, z = 1.0},
+			Color = {r = 255, g = 0, b = 0},
+			Marker = 12,
 			Blip = true,
 			Name = _U("lj_cutwood"),
 			Type = "work",
@@ -65,9 +65,9 @@ Config.Jobs.lumberjack = {
 					name = _U("lj_cutwood"),
 					db_name = "cutted_wood",
 					time = 5000,
-					max = 100,
+					max = 50,
 					add = 1,
-					remove = 1,
+					remove = 2,
 					requires = "wood",
 					requires_name = _U("lj_wood"),
 					drop = 100
@@ -77,10 +77,10 @@ Config.Jobs.lumberjack = {
 		},
 
 		Planks = {
-			Pos = {x = -501.38, y = 5280.53, z = 79.61},
-			Size = {x = 3.0, y = 3.0, z = 1.0},
-			Color = {r = 204, g = 204, b = 0},
-			Marker = 1,
+			Pos = {x = -501.75, y = 5281.29, z = 80.62},
+			Size = {x = 1.0, y = 1.0, z = 1.0},
+			Color = {r = 255, g = 0, b = 0},
+			Marker = 13,
 			Blip = true,
 			Name = _U("lj_board"),
 			Type = "work",
@@ -89,9 +89,9 @@ Config.Jobs.lumberjack = {
 					name = _U("lj_planks"),
 					db_name = "packaged_plank",
 					time = 5000,
-					max = 500,
-					add = 5,
-					remove = 1,
+					max = 25,
+					add = 1,
+					remove = 2,
 					requires = "cutted_wood",
 					requires_name = _U("lj_cutwood"),
 					drop = 100
@@ -101,10 +101,10 @@ Config.Jobs.lumberjack = {
 		},
 
 		VehicleSpawner = {
-			Pos = {x = 1191.96, y = -1261.77, z = 34.17},
-			Size = {x = 3.0, y = 3.0, z = 1.0},
-			Color = {r = 204, g = 204, b = 0},
-			Marker = 1,
+			Pos = {x = 1212.71, y = -1262.61, z = 35.23},
+			Size = {x = 1.0, y = 1.0, z = 1.0},
+			Color = {r = 0, g = 255, b = 0},
+			Marker = 39,
 			Blip = true,
 			Name = _U("spawn_veh"),
 			Type = "vehspawner",
@@ -114,21 +114,21 @@ Config.Jobs.lumberjack = {
 		},
 
 		VehicleSpawnPoint = {
-			Pos = {x = 1194.62, y = -1286.95, z = 34.12},
+			Pos = {x = 1207.75, y = -1260.95, z = 34.04},
 			Size = {x = 3.0, y = 3.0, z = 1.0},
 			Marker = -1,
 			Blip = true,
 			Name = _U("service_vh"),
 			Type = "vehspawnpt",
 			Spawner = 1,
-			Heading = 264.40
+			Heading = 175.36
 		},
 
 		VehicleDeletePoint = {
-			Pos = {x = 1216.89, y = -1229.23, z = 34.40},
-			Size = {x = 5.0, y = 5.0, z = 1.0},
+			Pos = {x = 1195.74, y = -1261.51, z = 34.25},
+			Size = {x = 4.0, y = 4.0, z = 1.0},
 			Color = {r = 255, g = 0, b = 0},
-			Marker = 1,
+			Marker = 25,
 			Blip = true,
 			Name = _U("return_vh"),
 			Type = "vehdelete",
@@ -140,10 +140,10 @@ Config.Jobs.lumberjack = {
 		},
 
 		Delivery = {
-			Pos = {x = 1201.35, y = -1327.51, z = 34.22},
-			Color = {r = 204, g = 204, b = 0},
-			Size = {x = 5.0, y = 5.0, z = 3.0},
-			Marker = 1,
+			Pos = {x = 1218.55, y = -1267.0, z = 36.42},
+			Color = {r = 3, g = 145, b = 232},
+			Size = {x = 1.0, y = 1.0, z = 1.0},
+			Marker = 29,
 			Blip = true,
 			Name = _U("delivery_point"),
 			Type = "delivery",
@@ -154,7 +154,7 @@ Config.Jobs.lumberjack = {
 					time = 500,
 					remove = 1,
 					max = 100, -- if not present, probably an error at itemQtty >= item.max in esx_jobs_sv.lua
-					price = 3,
+					price = 33,
 					requires = "packaged_plank",
 					requires_name = _U("lj_planks"),
 					drop = 100

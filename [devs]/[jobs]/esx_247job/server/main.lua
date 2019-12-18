@@ -173,8 +173,9 @@ AddEventHandler('esx_247job:craft247', function(itemValue)
 			local jumellesQuantity   = xPlayer.getInventoryItem('jumelles').count
 			local condonQuantity     = xPlayer.getInventoryItem('condon').count
 			local dildoQuantity      = xPlayer.getInventoryItem('dildo').count
-			local cigarrettQuantity = xPlayer.getInventoryItem('cigarrett').count
-			local pasteldecarneQuantity = xPlayer.getInventoryItem('pasteldecarne ').count
+			local cigarrettQuantity  = xPlayer.getInventoryItem('cigarrett').count
+			local dopebagQuantity    = xPlayer.getInventoryItem('dopebag').count
+			local pasteldecarneQuantity = xPlayer.getInventoryItem('pasteldecarne').count
 			
 			
 			
@@ -210,7 +211,9 @@ AddEventHandler('esx_247job:craft247', function(itemValue)
 			elseif cigarretteQuantity < 1 then
                 TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('cigarrett') .. '~w~')		
 			elseif pasteldecarneQuantity < 1 then
-                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('pasteldecarne') .. '~w~')			
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('pasteldecarne') .. '~w~')
+			elseif dopebagQuantity < 1 then
+                TriggerClientEvent('esx:showNotification', _source, _U('not_enough') .. _U('dopebag') .. '~w~')				
 --[[            else
                 local chanceToMiss = math.random(100)
                 if chanceToMiss <= Config.MissCraft then

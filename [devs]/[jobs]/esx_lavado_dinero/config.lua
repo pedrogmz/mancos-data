@@ -5,13 +5,13 @@ Config.TruckPrice	= 500
 Config.Locale       = 'en'
 
 Config.Trucks = {
-	"burrito3",
-	"boxville"	
+--	"burrito3",
+	"paradise"	
 }
 
 Config.Cloakroom = {
 	CloakRoom = {
-			Pos   = {x = 976.0, y = -95.09, z = 74.85},
+			Pos   = {x = 1137.95, y = -3194.25, z = -40.4},
 			Size  = {x = 1.0, y = 1.0, z = 1.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 20
@@ -20,14 +20,14 @@ Config.Cloakroom = {
 
 Config.Zones = {
 	VehicleSpawner = {
-			Pos   = {x = 965.51, y = -118.83, z = 74.35},
-			Size  = {x = 1.0, y = 1.0, z = 0.0},
+			Pos   = {x = 480.46, y = -1323.54, z = 29.21},
+			Size  = {x = 1.0, y = 1.0, z = 1.0},
 			Color = {r = 204, g = 204, b = 0},
-			Type  = 27
+			Type  = 36
 		},
 
 	VehicleSpawnPoint = {
-			Pos   = {x = 967.16, y = -129.11, z = 74.39},
+			Pos   = {x = 480.91, y = -1317.49, z = 29.22},
 			Size  = {x = 3.0, y = 3.0, z = 0.0},
 			Type  = -1
 		},
@@ -42,7 +42,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 2500
+			Paye = 500
 		},
 	-- a coté des flic
 	Delivery2LS = {
@@ -51,7 +51,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- vers la plage
 	Delivery3LS = {
@@ -60,7 +60,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- studio 1
 	Delivery4LS = {
@@ -69,7 +69,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- popular street et el rancho boulevard
 	Delivery5LS = {
@@ -78,7 +78,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	--Alta street et las lagunas boulevard
 	Delivery6LS = {
@@ -87,7 +87,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	--Rockford Drive Noth et boulevard del perro
 	Delivery7LS = {
@@ -96,7 +96,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	--Rockford Drive Noth et boulevard del perro
 	Delivery8LS = {
@@ -105,7 +105,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	--New empire way (airport)
 	Delivery9LS = {
@@ -114,7 +114,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	--Rockford drive south
 	Delivery10LS = {
@@ -123,7 +123,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 ------------------------------------------- Blaine County
 	-- panorama drive
@@ -133,7 +133,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- route 68
 	Delivery2BC = {
@@ -142,7 +142,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Algonquin boulevard et cholla springs avenue
 	Delivery3BC = {
@@ -151,7 +151,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Joshua road
 	Delivery4BC = {
@@ -160,7 +160,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- East joshua road
 	Delivery5BC = {
@@ -169,7 +169,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Seaview road
 	Delivery6BC = {
@@ -178,7 +178,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Paleto boulevard
 	Delivery7BC = {
@@ -187,7 +187,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Paleto boulevard et Procopio drive
 	Delivery8BC = {
@@ -196,7 +196,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Marina drive et joshua road
 	Delivery9BC = {
@@ -205,7 +205,7 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	-- Pyrite Avenue
 	Delivery10BC = {
@@ -214,25 +214,25 @@ Config.Livraison = {
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
 			Type  = 27,
-			Paye = 3500
+			Paye = 500
 		},
 	
 	RetourCamion = {
-			Pos   = {x = 956.65, y = -129.11, z = 74.38},
-			Color = {r = 204, g = 204, b = 0},
-			Size  = {x = 5.0, y = 5.0, z = 3.0},
-			Color = {r = 204, g = 204, b = 0},
-			Type  = 27,
-			Paye = 3500
+			Pos   = {x = 494.7, y = -1330.21, z = 29.34},
+			Color = {r = 0, g = 255, b = 0},
+			Size  = {x = 2.0, y = 2.0, z = 2.0},
+			Color = {r = 0, g = 202554, b = 0},
+			Type  = 36,
+			Paye = 500
 		},
 	
 	AnnulerMission = {
-			Pos   = {x = 950.81, y = -122.87, z = 74.35},
+			Pos   = {x = 485.751, y = -1308.36, z = 29.26},
 			Color = {r = 204, g = 204, b = 0},
-			Size  = {x = 5.0, y = 5.0, z = 3.0},
+			Size  = {x = 3.0, y = 3.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
-			Type  = 27,
-			Paye = 3500
+			Type  = 36,
+			Paye = 0
 		},
 }
 --------------------------------------------------------------------------

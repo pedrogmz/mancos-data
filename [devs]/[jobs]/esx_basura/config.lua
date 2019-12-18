@@ -3,7 +3,7 @@ Config.DrawDistance = 100.0
 Config.MaxDelivery	= 10
 Config.TruckPrice	= 0     -- old config from orginal script not used in this version.
 Config.Locale       = 'en'
-Config.BagPay       = 6    -- Pay per bag pulled from bin.
+Config.BagPay       = 8    -- Pay per bag pulled from bin.
 Config.MulitplyBags = true   -- Multiplies BagPay by number of workers - 4 max.
 Config.TruckPlateNumb = 0
 
@@ -102,7 +102,7 @@ Config.Livraison = {
 		},
 	--littleseoul
 	Delivery6LS = {
-			Pos   = {x = 481.36560058594, y = -1274.8297119141, z = 28.64475440979},
+			Pos   = {x = 481.36560058594, y = -1274.8297119141, z = 28.644100440979},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -111,7 +111,7 @@ Config.Livraison = {
 		},
 	--grovestreetgas
 	Delivery7LS = {
-			Pos   = {x = 254.70010375977, y = -985.32482910156, z = 28.196590423584},
+			Pos   = {x = 254.700103100977, y = -985.32482910156, z = 28.196590423584},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -138,7 +138,7 @@ Config.Livraison = {
 		},
 	--Senora Way Fuel Depot
 	Delivery10LS = {
-			Pos   = {x = 462.17517089844, y = -949.51434326172, z = 26.959424972534},
+			Pos   = {x = 462.110017089844, y = -949.51434326172, z = 26.959424972534},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -157,7 +157,7 @@ Config.Livraison = {
 		},
 	-- El Burro Oil plain
 	Delivery2BC = {
-			Pos   = {x = 410.22503662109, y = -795.30517578125, z = 29.20943069458},
+			Pos   = {x = 410.22503662109, y = -795.305110078125, z = 29.20943069458},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},
@@ -223,7 +223,7 @@ Config.Livraison = {
 		},
 	-- Miriam Turner Overpass
 	Delivery9BC = {
-			Pos   = {x = 455.46835327148, y = -66.485572814941, z = 73.154975891113},
+			Pos   = {x = 455.46835327148, y = -66.485572814941, z = 73.1549100891113},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 5.0, y = 5.0, z = 3.0},
 			Color = {r = 204, g = 204, b = 0},

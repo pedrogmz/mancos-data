@@ -3,8 +3,8 @@
 
 local MFM = MF_MobileMeth
 
-MFM.MinCashReward = 5000
-MFM.MaxCashReward = 10000
+MFM.MinCashReward = 1000
+MFM.MaxCashReward = 1800
 MFM.MinMethReward = 10
 MFM.MaxMethReward = 50
 MFM.AccountRewardType = 'black_money'
@@ -13,8 +13,8 @@ MFM.ItemRewardName = 'meth'
 function MFM:RewardPlayers(plyA,plyB)
   local xPlayer = ESX.GetPlayerFromId(plyA)
   while not xPlayer do xPlayer = ESX.GetPlayerFromId(plyA) Citizen.Wait(0); end
-  math.randomseed(GetGameTimer()*math.random(999999,99999999))
-  xPlayer.addAccountMoney(self.AccountRewardType, math.random(self.MinCashReward,self.MaxCashReward))
+ -- math.randomseed(GetGameTimer()*math.random(999999,99999999))
+ -- xPlayer.addAccountMoney(self.AccountRewardType, math.random(self.MinCashReward,self.MaxCashReward))
   math.randomseed(GetGameTimer()*math.random(999999,99999999))
   xPlayer.addInventoryItem(self.ItemRewardName, math.random(self.MinMethReward,self.MaxMethReward))
 
@@ -22,8 +22,8 @@ function MFM:RewardPlayers(plyA,plyB)
   while not xPlayer do xPlayer = ESX.GetPlayerFromId(plyB) Citizen.Wait(0); end
   math.randomseed(GetGameTimer()*math.random(999999,99999999))
   xPlayer.addAccountMoney(self.AccountRewardType, math.random(self.MinCashReward,self.MaxCashReward))
-  math.randomseed(GetGameTimer()*math.random(999999,99999999))
-  xPlayer.addInventoryItem(self.ItemRewardName, math.random(self.MinMethReward,self.MaxMethReward))
+ -- math.randomseed(GetGameTimer()*math.random(999999,99999999))
+ -- xPlayer.addInventoryItem(self.ItemRewardName, math.random(self.MinMethReward,self.MaxMethReward))
 end
 
 function MFM:Awake(...)

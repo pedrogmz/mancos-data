@@ -2,7 +2,7 @@ Config              = {}
 Config.DrawDistance = 100.0
 Config.CopsRequired = 2
 Config.BlipUpdateTime = 5000 --In milliseconds. I used it on 3000. If you want instant update, 50 is more than enough. Even 100 is good. I hope it doesn't kill FPS and the server.
-Config.CooldownMinutes = 180
+Config.CooldownMinutes = 1800 -- en segundos
 Config.Locale = 'es'
 
 Config.Zones = {
@@ -29,7 +29,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'zentorno','t20','reaper'},
 	},
 	--2 Faro Sandy Shore # VALIDO
@@ -39,7 +39,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'sultanrs','osiris','cyclone'},
 	},
 	--3 Oeste Paleto Pueblo # VALIDO
@@ -49,7 +49,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'entityxf','sheava'},
 	},
 	--4 Autovia Oeste # VALIDO
@@ -59,7 +59,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'nero','seven70'},
 	},
 	--5 Granero Rojo Sur Sandy Shore # VALIDO
@@ -69,7 +69,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'specter','xa21','vagner'},
 	},
 	--6 Casa roja # VALIDO
@@ -79,7 +79,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'pfister811','gp1'},
 	},
 	--7 Garaje Roto Sandy Shore pegado al lago # VALIDO
@@ -89,7 +89,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'turismor','italigtb'},
 	},
 	--8 Granja de vacas # VALIDO
@@ -99,7 +99,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'neon','tempesta'},
 	},
 	--9 Garaje centro Paleto Bay # VALIDO
@@ -109,7 +109,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'raiden','nightshade'},
 	},
 	--10 Tienda Ropa 14 # VALIDO
@@ -119,7 +119,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'banshee2','ruston'},
 	},
 	--11 Casa Lago Norte # VALIDO
@@ -129,7 +129,7 @@ Config.Delivery = {
 		Size  = {x = 3.0, y = 3.0, z = 1.0},
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
-		Payment  = math.random(5000,25000),
+		Payment  = math.random(5000,10000),
 		Cars = {'sc1','comet5'},
 	},
 }

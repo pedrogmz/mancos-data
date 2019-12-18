@@ -3,7 +3,7 @@ local lastWeather = CurrentWeather
 Time = {}
 Time.h = 12
 Time.m = 0
-local freezeTime = false
+local freezeTime = true
 local blackout = false
 
 RegisterNetEvent('vSync:updateWeather')
