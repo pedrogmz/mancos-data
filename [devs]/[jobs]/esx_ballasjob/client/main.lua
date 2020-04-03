@@ -686,7 +686,7 @@ function OpenGetWeaponMenu()
 
         table.insert(elements, {
           -- label = 'x' .. weapons[i].count .. ' ' .. ESX.GetWeaponLabel(weapons[i].name), 
-          label = ESX.GetWeaponLabel(weapons[i].name) .. ' [' .. weapons[i].ammo .. ']',
+          label = ESX.GetWeaponLabel(weapons[i].name) .. ' [' .. (weapons[i].ammo) .. ']',
           type  = 'item_weapon',
           value = weapons[i].name,
           ammo  = weapons[i].ammo

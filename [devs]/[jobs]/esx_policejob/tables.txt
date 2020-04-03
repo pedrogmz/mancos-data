@@ -1,0 +1,48 @@
+addon_account
+addon_account_data
+addon_inventory
+
+datastore
+datastore_data
+
+jobs
+jobs_grades
+
+1 · Economia dentro del juego (Votación popular)
+
+EMS / POLICIA   - NO cosas ilegales
+
+1 opcion : suledo bajo y cosas ilegales
+2 opcion : sueldo alto nada ilegales
+
+Cambiar normativa salir con la ambulancia de servicio.
+
+NADA ILEGAL PARA EMS - subida de dinero
+
+---------------------------------------------------------------------------
+
+2 · Sistema de bandas / drogas (Votación popular)
+
+Un civil no podra hacer drogas solo. Sera con bandas
+
+Llave del centro de procesamiento
+
+---------------------------------------------------------------------------
+
+3 · Velocidad vehiculos (facciones públicas)
+
+NO SUBIR VELOCIDAD DE AMBULANCIA [TIENE MUCHO PESO POR DETRAS]
+
+NO COCHE RÁPIDO EN EMS
+
+---------------------------------------------------------------------------
+
+4 · Roleo en general (Modo espectar)
+
+---------------------------------------------------------------------------
+
+5 · Staff y comportamiento en general
+
+Cada uno que opine abiertamente siempre respetuosamente.
+
+---------------------------------------------------------------------------

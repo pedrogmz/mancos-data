@@ -40,9 +40,9 @@ AddEventHandler("dmv:ttcharge", function()
   local _source = source
   local xPlayer = ESX.GetPlayerFromId(_source)
 
-  if (tonumber(xPlayer.getBank()) >= tonumber(200)) then
+  if (tonumber(xPlayer.getBank()) >= tonumber(100)) then
     
-    xPlayer.removeAccountMoney('bank', 200)
+    xPlayer.removeAccountMoney('bank', 100)
 
     TriggerClientEvent('esx:showNotification', _source, "~g~FLEECA INFORMA: ~s~ 200$ retirados por [pago test teorico]")
 
@@ -60,9 +60,9 @@ AddEventHandler("dmv:dtcharge", function()
   local _source = source
   local xPlayer = ESX.GetPlayerFromId(_source)
 
-  if (tonumber(xPlayer.getBank()) >= tonumber(500)) then
+  if (tonumber(xPlayer.getBank()) >= tonumber(200)) then
     
-    xPlayer.removeAccountMoney('bank', 500)
+    xPlayer.removeAccountMoney('bank', 200)
 
     TriggerClientEvent('esx:showNotification', _source, "~g~FLEECA INFORMA: ~s~200$ retirados por [pago test práctico]")
 

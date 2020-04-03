@@ -65,6 +65,9 @@ end)
 				
 RegisterNetEvent('fishing:catch')
 AddEventHandler('fishing:catch', function(bait)
+
+	-- Arnedo5 | Subimos stress
+	TriggerClientEvent('esx_status:add', source, 'stress', 50000)
 	
 	_source = source
 	local weight = 2

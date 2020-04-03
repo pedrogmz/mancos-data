@@ -1,9 +1,15 @@
-ESX             = nil
-local myJob     = nil
-local selling   = false
-local has       = false
---local inZoneBarrioNegro, inZonePier, inZoneZonaRica    = false, false, false
-local inZoneBarrioNegro, inZonePier    = false, false
+ESX                                   = nil
+local myJob                           = nil
+local selling                         = false
+local has                             = false
+local copsc                           = false
+local HasAlreadyEnteredMarker         = false
+local isInDrugZone, hasExitedDrugZone = false
+local currentZone                     = nil
+local currentZoneName                 = nil
+local inDeal                          = false
+
+
 
 Citizen.CreateThread(function()
   while ESX == nil do
@@ -12,84 +18,119 @@ Citizen.CreateThread(function()
   end
 end)
 
-
-
---Zonas
-Citizen.CreateThread(function()
-  while true do
-    Wait(10)
-    local plyCoords = GetEntityCoords(PlayerPedId())
-    local dstCheckEnter = GetDistanceBetweenCoords(plyCoords, -1488.81, -1337.68, 53.26, true)
-    local player = GetPlayerPed(-1)
-    local playerLoc = GetEntityCoords(player)
-      DrawMarker(1, -1488.81, -1337.68, 53.26, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 300.00, 300.00, 0.25, 124, 252, 119, 100, false, true, 2, false, false, false, false)
-      if dstCheckEnter <= 150.00 then
-        inZoneBarrioNegro = true
-        DrawTxt("~y~Estás en zona de trapicheo...", 0.85, 0.96)
-        end
-      if dstCheckEnter >= 150.00 then
-        inZoneBarrioNegro = false
-      end
-    end
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function()
+  TriggerServerEvent('fetchjob')
 end)
 
-Citizen.CreateThread(function()
-  while true do
-    Wait(10)
-    local plyCoords = GetEntityCoords(PlayerPedId())
-    local dstCheckEnter = GetDistanceBetweenCoords(plyCoords, -1637.23, -1044.42, 13.15, true)
-    local player = GetPlayerPed(-1)
-    local playerLoc = GetEntityCoords(player)
-      DrawMarker(-1, -1637.23, -1044.42, 13.15, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 280.00, 280.00, 0.25, 124, 252, 119, 100, false, true, 2, false, false, false, false)
-      if dstCheckEnter <= 140.00 then
-        inZonePier = true
-        DrawTxt("~y~Estás en zona con gente de gustos raros...", 0.80, 0.95)
-        end
-      if dstCheckEnter >= 140.00 then
-        inZonePier = false
-      end
-    end
+-- RETURN NUMBER OF ITEMS FROM SERVER
+RegisterNetEvent('getjob')
+AddEventHandler('getjob', function(jobName)
+  myJob = jobName
 end)
 
---[[
+-- Arnedo5 - Configuración por zonas
 Citizen.CreateThread(function()
+
   while true do
-    Wait(10)
-    local plyCoords = GetEntityCoords(PlayerPedId())
-    local dstCheckEnter = GetDistanceBetweenCoords(plyCoords, -979.77, 169.08, 65.00, true)
-    local player = GetPlayerPed(-1)
-    local playerLoc = GetEntityCoords(player)
-      DrawMarker(1, -979.77, 169.08, 65.45, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 240.00, 250.00, 0.25, 124, 250, 250, 150, false, true, 2, false, false, false, false)
-      if dstCheckEnter <= 120.00 then
-        inZoneZonaRica = true
-        DrawTxt("~y~Estás en zona con gente muy sensible...", 0.80, 0.95)
-        end
-      if dstCheckEnter >= 120.00 then
-        inZoneZonaRica = false
+    Citizen.Wait(500)
+
+    local playerPed = PlayerPedId()
+		local coords    = GetEntityCoords(playerPed)
+    isInDrugZone, hasExitedDrugZone = false;
+
+    for k,v in pairs(Config.Zones) do
+      local distance = GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true)
+
+      if distance < v.Dist then
+        -- isInMarker, currentZone = true, k
+        --print (k)
+        currentZone, currentZoneName = v, k
+        isInDrugZone = true
       end
     end
-end)
-]]
 
-function DrawTxt(text, x, y)
-  SetTextFont(4)
-  SetTextProportional(1)
-  SetTextScale(0.0, 0.55)
-  SetTextDropshadow(1, 0, 0, 0, 255)
-  SetTextEdge(1, 0, 0, 0, 255)
-  SetTextDropShadow()
-  SetTextOutline()
-  SetTextEntry("STRING")
-  AddTextComponentString(text)
-  DrawText(x, y)
+    -- Enter zone
+    
+    if isInDrugZone and not HasAlreadyEnteredMarker then
+      HasAlreadyEnteredMarker = true
+
+      ESX.TriggerServerCallback('esx_npcdrugsales:checkDrugs', function(hasDrugs)
+            
+       if hasDrugs == true then
+        has = true
+--        ESX.ShowNotification(_U('enter_zone')) -- Raspu
+      else 
+        has = false
+      end
+      
+      end, currentZoneName)
+
+
+    end
+
+    -- Exit zoone
+    if not hasExitedDrugZone and not isInDrugZone and HasAlreadyEnteredMarker then
+      HasAlreadyEnteredMarker = false
+
+      ESX.TriggerServerCallback('esx_npcdrugsales:checkDrugs', function(hasDrugs)
+            
+        if hasDrugs == true then
+         has = true
+--         ESX.ShowNotification(_U('exit_zone')) -- Raspu
+        else 
+          has = false
+        end
+       
+      end, currentZoneName)
+
+    end
+
+  end
+
+end)
+
+function CreateBlipCircle(coords, text, radius, color, sprite)
+	local blip = AddBlipForRadius(coords, radius)
+
+	SetBlipHighDetail(blip, true)
+	SetBlipColour(blip, 5)
+	SetBlipAlpha (blip, 128)
+
+	-- create a blip in the middle
+	blip = AddBlipForCoord(coords)
+
+	SetBlipHighDetail(blip, true)
+	SetBlipSprite (blip, sprite)
+	SetBlipScale  (blip, 1.0)
+	SetBlipColour (blip, color)
+	SetBlipAsShortRange(blip, true)
+
+	BeginTextCommandSetBlipName("STRING")
+	AddTextComponentString(text)
+  EndTextCommandSetBlipName(blip)
+
 end
 
-currentped = nil
-
-
+-- Mostrar Zonas de Venta [For Deevs]
 Citizen.CreateThread(function()
+
+  if Config.EnableBlipCircle == true then
+
+    for k,zone in pairs(Config.Zones) do
+      CreateBlipCircle(zone.Coords, k, zone.Dist, 25, 496)
+    end
+
+  end
+end)
+
+-- END Arnedo5
+currentped = nil
+local animacion  = false
+Citizen.CreateThread(function()
+
 while true do
-  Wait(10)
+  Wait(0)
   local player = GetPlayerPed(-1)
   local playerloc = GetEntityCoords(player, 0)
   local handle, ped = FindFirstPed()
@@ -97,44 +138,40 @@ while true do
     success, ped = FindNextPed(handle)
     local pos = GetEntityCoords(ped)
     local distance = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
-    --if inZoneBarrioNegro or inZonePier or inZoneZonaRica then
-    if inZoneBarrioNegro or inZonePier then
-      if distance <= 1 and ped  ~= GetPlayerPed(-1) and ped ~= oldped then
-        if IsPedInAnyVehicle(GetPlayerPed(-1)) == false then
-          if DoesEntityExist(ped)then
-            if IsPedInAnyVehicle(ped) == false then
-              local pedType = GetPedType(ped)
-              if pedType ~= 28 and IsPedAPlayer(ped) == false then
-                currentped = pos
-                  TriggerServerEvent('checkD')
-                if has == true then
-                  ESX.ShowHelpNotification("Presiona ~INPUT_CONTEXT~ para vender.")
+    if IsPedInAnyVehicle(GetPlayerPed(-1)) == false then
+      if DoesEntityExist(ped)then
+        if IsPedDeadOrDying(ped) == false then
+          if IsPedInAnyVehicle(ped) == false then
+            local pedType = GetPedType(ped)
+            if pedType ~= 28 and IsPedAPlayer(ped) == false then
+              currentped = pos
+              if distance <= 3 and ped  ~= GetPlayerPed(-1) and ped ~= oldped then
+
+                -- En caso de tener ...
+                if has == true and HasAlreadyEnteredMarker then
+
+                  drawTxt(0.955, 1.40, 1.0,1.0,0.5, _U('sale_drugs'), 255, 255, 255, 255)
                   if IsControlJustPressed(1, 86) then
+                      animacion = true
                       oldped = ped
                       SetEntityAsMissionEntity(ped)
                       TaskStandStill(ped, 9.0)
                       pos1 = GetEntityCoords(ped)
-                      if inZoneBarrioNegro then
-                        TriggerServerEvent('drugs:triggerBarrioNegro')
-                        Citizen.Wait(2500)
-                        TriggerEvent('sellBarrioNegro')
-                      end
-                      if inZonePier then
-                        TriggerServerEvent('drugs:triggerPier')
-                        Citizen.Wait(2500)
-                        TriggerEvent('sellPier')
-                      end
-                      --[[
-                      if inZoneZonaRica then
-                        TriggerServerEvent('drugs:triggerZonaRica')
-                        Citizen.Wait(2500)
-                        TriggerEvent('sellZonaRica')
-                      end
-                      ]]
-                      Citizen.Wait(3500)
+                      TriggerServerEvent('drugs:trigger')
+					  exports['progressBars']:startUI(5000, "Acordando precio") -- Raspu añadida barra de progreso durante el intento de venta
+					  
+                      TriggerEvent('dmpemotes:emote', "crossarms2")
+
+                      Citizen.Wait(5000) -- Tiempo de espera de venta 5 segundos
+					 
+
+                      TriggerEvent('dmpemotes:cancel')
+                      TriggerEvent('sell')
                       SetPedAsNoLongerNeeded(oldped)
+					  animacion = false
                   end
                 end
+
               end
             end
           end
@@ -146,68 +183,30 @@ while true do
 end
 end)
 
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        local playerPed = PlayerPedId()
 
-RegisterNetEvent('sellBarrioNegro')
-AddEventHandler('sellBarrioNegro', function()
+        if animacion then         
+			DisableControlAction(0, 73, true)
+		end
+    end
+end)
+
+RegisterNetEvent('sell')
+AddEventHandler('sell', function()
     local player = GetPlayerPed(-1)
     local playerloc = GetEntityCoords(player, 0)
     local distance = GetDistanceBetweenCoords(pos1.x, pos1.y, pos1.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
 
-    local percent = math.random(0, 5)
-
-	if inZoneBarrioNegro then
-	  if percent == 0 or percent == 1 or percent == 2 or percent == 3 or percent == 5 then
-	  	TriggerServerEvent('drugs:sellBarrioNegro')
-	  end
-	  if percent == 4 then
-	  	TriggerServerEvent('sell_dis')
-	end
-end
+    if distance <= 3 then
+      TriggerServerEvent('drugs:sell', currentZoneName)
+    elseif distance > 4 then
+      TriggerServerEvent('sell_dis')
+    end
 end)
 
-RegisterNetEvent('sellPier')
-AddEventHandler('sellPier', function()
-    local player = GetPlayerPed(-1)
-    local playerloc = GetEntityCoords(player, 0)
-    local distance = GetDistanceBetweenCoords(pos1.x, pos1.y, pos1.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
-
-    local percent = math.random(1, 5)
-
-	if inZonePier then
-	  if percent == 1 or percent == 2 or percent == 3 then
-	  	TriggerServerEvent('drugs:sellPier')
-	  end
-	  if percent == 4 or percent == 5 then
-	  	TriggerServerEvent('sell_dis')
-	end
-end
-end)
---[[
-RegisterNetEvent('sellZonaRica')
-AddEventHandler('sellZonaRica', function()
-    local player = GetPlayerPed(-1)
-    local playerloc = GetEntityCoords(player, 0)
-    local distance = GetDistanceBetweenCoords(pos1.x, pos1.y, pos1.z, playerloc['x'], playerloc['y'], playerloc['z'], true)
-
-    local percent = math.random(1, 5)
-
-	if inZoneZonaRica then
-	  if percent == 1 or percent == 2 or percent == 3 then
-	  	TriggerServerEvent('drugs:sellZonaRica')
-	  end
-	  if percent == 4 or percent == 5 then
-	  	TriggerServerEvent('sell_dis')
-	end
-end
-end)
-]]
-
-
-
-RegisterNetEvent('checkR')
-AddEventHandler('checkR', function(test)
-  has = test
-end)
 
 RegisterNetEvent('notifyc')
 AddEventHandler('notifyc', function()
@@ -217,46 +216,27 @@ AddEventHandler('notifyc', function()
     local streetName, crossing = Citizen.InvokeNative( 0x2EB41072B4C1E4C0, plyPos.x, plyPos.y, plyPos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt() )
     local streetName, crossing = GetStreetNameAtCoord(x, y, z)
     streetName = GetStreetNameFromHashKey(streetName)
-	   crossing = GetStreetNameFromHashKey(crossing)
-	
-    if crossing ~= nil then
-
-      local coords      = GetEntityCoords(GetPlayerPed(-1))
-
-      TriggerServerEvent('esx_phone:send', "police", 'Una persona me está intentando vender drogas en ' .. streetName .. " y " .. crossing, true, {
-        x = coords.x,
-        y = coords.y,
-        z = coords.z
-      })
-    else
-      TriggerServerEvent('esx_phone:send', "police", "Una persona me está intentado vender drogas en " .. streetName, true, {
-        x = coords.x,
-        y = coords.y,
-        z = coords.z
-      })
-    end
+	  crossing = GetStreetNameFromHashKey(crossing)
+  
+   
+    local coords      = GetEntityCoords(GetPlayerPed(-1))
+    -- Send entorno
+    TriggerServerEvent('comprobarEntorno', "Alguien me está ofreciendo drogas en".. streetName, coords.x, coords.y, coords.z, "NPC RANDOM")
+    
 end)
 
-function playAnim(animDict, animName, duration)
-    RequestAnimDict(animDict)
-    while not HasAnimDictLoaded(animDict) do Citizen.Wait(0) end
-    TaskPlayAnim(PlayerPedId(), animDict, animName, 1.0, -1.0, duration, 49, 1, false, false, false)
-    RemoveAnimDict(animDict)
-end
-
+-- Animación al vender
 RegisterNetEvent('animation')
-AddEventHandler('animation', function()
-  local pid = PlayerPedId()
-  RequestAnimDict("amb@prop_human_bum_bin@idle_b")
-  while (not HasAnimDictLoaded("amb@prop_human_bum_bin@idle_b")) do Citizen.Wait(0) end
-    --TaskPlayAnim(pid,"amb@prop_human_bum_bin@idle_b","idle_d",100.0, 200.0, 0.3, 120, 0.2, 0, 0, 0)
-    playAnim('mp_common', 'givetake1_a', 2500)
-    Wait(2500)
-    StopAnimTask(pid, "amb@prop_human_bum_bin@idle_b","idle_d", 1.0)
+AddEventHandler('animation', function(type)
+
+  TriggerEvent('dmpemotes:emote', type) -- Arnedo5 | Animación para la tablet
+  Wait(1500)
+  TriggerEvent('dmpemotes:cancel')
+
 end)
 
 function drawTxt(x,y ,width,height,scale, text, r,g,b,a, outline)
-    SetTextFont(0)
+    SetTextFont(4)
     SetTextProportional(0)
     SetTextScale(scale, scale)
     SetTextColour(r, g, b, a)
@@ -270,3 +250,9 @@ function drawTxt(x,y ,width,height,scale, text, r,g,b,a, outline)
     AddTextComponentString(text)
     DrawText(x - width/2, y - height/2 + 0.005)
 end
+
+-- Arnedo5 | Mostrar nueva notificación encima del mapa
+RegisterNetEvent('npcgrugsales:shownotification')
+AddEventHandler('npcgrugsales:shownotification', function(msg)
+  ESX.ShowNotification(msg)
+end)

@@ -15,6 +15,7 @@ local PlayerData              = {}
 local training = false
 local resting = false
 local membership = false
+local streesVal = 0
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -212,7 +213,7 @@ Citizen.CreateThread(function()
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, gym[k].x, gym[k].y, gym[k].z)
 
             if dist <= 0.5 then
-				hintToDisplay('Press ~INPUT_CONTEXT~ to open the ~b~gym~w~ menu')
+				hintToDisplay('~INPUT_CONTEXT~ para abrir el menú de ~b~gimnasio~w~')
 				
 				if IsControlJustPressed(0, Keys['E']) then
 					OpenGymMenu()
@@ -232,13 +233,13 @@ Citizen.CreateThread(function()
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, arms[k].x, arms[k].y, arms[k].z)
 
             if dist <= 0.5 then
-				hintToDisplay('Press ~INPUT_CONTEXT~ to exercise your ~g~arms')
+				hintToDisplay('~INPUT_CONTEXT~ para ejercitar tus ~g~brazos')
 				
 				if IsControlJustPressed(0, Keys['E']) then
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparando el ~g~ejercicio~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then
@@ -246,16 +247,24 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_muscle_free_weights", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							ESX.ShowNotification("You need to rest ~r~60 seconds ~w~before doing another exercise.")
-							
+							ESX.ShowNotification("Necesitas descansar ~r~60 segundos ~w~antes de empezar otro ejercicio.")
+							-- Raspu - añadida bajada de Estrés
+							TriggerEvent('esx_status:getStatus', 'stress', function(status)
+								stressVal = status.val
+							end)
+
+							if stressVal > 0 then
+								TriggerEvent('esx_status:remove', 'stress', 40000)
+								TriggerEvent('esx_basicneeds:removeStress')
+							end
 							--TriggerServerEvent('esx_gym:trainArms') ## COMING SOON...
 							
 							training = true
 						elseif membership == false then
-							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
+							ESX.ShowNotification("Necesitas ser ~g~miembro~ para hacer ~r~ejercicio~w~.")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("Necesitas ~r~descansar~w~...")
 						
 						resting = true
 						
@@ -277,13 +286,13 @@ Citizen.CreateThread(function()
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, chins[k].x, chins[k].y, chins[k].z)
 
             if dist <= 0.5 then
-				hintToDisplay('Press ~INPUT_CONTEXT~ to do some ~g~pull-ups')
+				hintToDisplay('~INPUT_CONTEXT~ para hacer ~g~dominadas')
 				
 				if IsControlJustPressed(0, Keys['E']) then
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Preparando el ~g~ejercicio~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then
@@ -291,16 +300,24 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "prop_human_muscle_chin_ups", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							ESX.ShowNotification("You need to rest ~r~60 seconds ~w~before doing another exercise.")
-							
+							ESX.ShowNotification("Necesitas descansar ~r~60 segundos ~w~antes de empezar otro ejercicio.")
+							-- Raspu - añadida bajada de Estrés
+							TriggerEvent('esx_status:getStatus', 'stress', function(status)
+								stressVal = status.val
+							end)
+
+							if stressVal > 0 then
+								TriggerEvent('esx_status:remove', 'stress', 40000)
+								TriggerEvent('esx_basicneeds:removeStress')
+							end
 							--TriggerServerEvent('esx_gym:trainChins') ## COMING SOON...
 							
 							training = true
 						elseif membership == false then
-							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
+							ESX.ShowNotification("Necesitas ser ~g~miembro~w~ para hacer ~r~ejercicio~w~.")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("Necesitas ~r~descansar~w~...")
 						
 						resting = true
 						
@@ -322,13 +339,13 @@ Citizen.CreateThread(function()
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, pushup[k].x, pushup[k].y, pushup[k].z)
 
             if dist <= 0.5 then
-				hintToDisplay('Press ~INPUT_CONTEXT~ to do some ~g~pushups')
+				hintToDisplay('~INPUT_CONTEXT~ para hacer ~g~flexiones')
 				
 				if IsControlJustPressed(0, Keys['E']) then
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Realizando el ~g~ejercicio~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then				
@@ -336,16 +353,24 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_push_ups", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							ESX.ShowNotification("You need to rest ~r~60 seconds ~w~before doing another exercise.")
-						
+							ESX.ShowNotification("Necesitas descansar ~r~60 segundos ~w~antes de empezar otro ejercicio.")
+							-- Raspu - añadida bajada de Estrés
+							TriggerEvent('esx_status:getStatus', 'stress', function(status)
+								stressVal = status.val
+							end)
+
+							if stressVal > 0 then
+								TriggerEvent('esx_status:remove', 'stress', 40000)
+								TriggerEvent('esx_basicneeds:removeStress')
+							end
 							--TriggerServerEvent('esx_gym:trainPushups') ## COMING SOON...
 							
 							training = true
 						elseif membership == false then
-							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
+							ESX.ShowNotification("Necesitas ser ~g~miembro~w~ para hacer ~r~ejercicio~w~.")
 						end							
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("Necesitas ~r~descansar~w~...")
 						
 						resting = true
 						
@@ -367,13 +392,13 @@ Citizen.CreateThread(function()
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, yoga[k].x, yoga[k].y, yoga[k].z)
 
             if dist <= 0.5 then
-				hintToDisplay('Press ~INPUT_CONTEXT~ to do some ~g~yoga')
+				hintToDisplay('~INPUT_CONTEXT~ para hacer ~g~yoga')
 				
 				if IsControlJustPressed(0, Keys['E']) then
 					if training == false then
 					
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Realizando el ~g~ejercicio~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then	
@@ -381,16 +406,24 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_yoga", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							ESX.ShowNotification("You need to rest ~r~60 seconds ~w~before doing another exercise.")
-						
+							ESX.ShowNotification("Necesitas descansar ~r~60 segundos ~w~antes de empezar otro ejercicio.")
+							-- Raspu - añadida bajada de Estrés
+							TriggerEvent('esx_status:getStatus', 'stress', function(status)
+								stressVal = status.val
+							end)
+
+							if stressVal > 0 then
+								TriggerEvent('esx_status:remove', 'stress', 40000)
+								TriggerEvent('esx_basicneeds:removeStress')
+							end
 							--TriggerServerEvent('esx_gym:trainYoga') ## COMING SOON...
 							
 							training = true
 						elseif membership == false then
-							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
+							ESX.ShowNotification("Necesitas ser ~g~miembro~w~ para hacer ~r~ejercicio~w~.")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("Necesitas ~r~descansar~w~...")
 						
 						resting = true
 						
@@ -412,13 +445,13 @@ Citizen.CreateThread(function()
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, situps[k].x, situps[k].y, situps[k].z)
 
             if dist <= 0.5 then
-				hintToDisplay('Press ~INPUT_CONTEXT~ to do some ~g~pushups')
+				hintToDisplay('~INPUT_CONTEXT~ para hacer ~g~abdominales')
 				
 				if IsControlJustPressed(0, Keys['E']) then
 					if training == false then
 
 						TriggerServerEvent('esx_gym:checkChip')
-						ESX.ShowNotification("Preparing the ~g~exersice~w~...")
+						ESX.ShowNotification("Realizando el ~g~ejercicio~w~...")
 						Citizen.Wait(1000)					
 					
 						if membership == true then	
@@ -426,16 +459,24 @@ Citizen.CreateThread(function()
 							TaskStartScenarioInPlace(playerPed, "world_human_sit_ups", 0, true)
 							Citizen.Wait(30000)
 							ClearPedTasksImmediately(playerPed)
-							ESX.ShowNotification("You need to rest ~r~60 seconds ~w~before doing another exercise.")
-						
+							ESX.ShowNotification("Necesitas descansar ~r~60 segundos ~w~antes de empezar otro ejercicio.")
+							-- Raspu - añadida bajada de Estrés
+							TriggerEvent('esx_status:getStatus', 'stress', function(status)
+								stressVal = status.val
+							end)
+
+							if stressVal > 0 then
+								TriggerEvent('esx_status:remove', 'stress', 40000)
+								TriggerEvent('esx_basicneeds:removeStress')
+							end
 							--TriggerServerEvent('esx_gym:trainSitups') ## COMING SOON...
 							
 							training = true
 						elseif membership == false then
-							ESX.ShowNotification("You need a membership in order to do a ~r~exercise")
+							ESX.ShowNotification("Necesitas ser ~g~miembro~w~ para hacer ~r~ejercicio~w~.")
 						end
 					elseif training == true then
-						ESX.ShowNotification("You need to rest...")
+						ESX.ShowNotification("Necesitas ~r~descansar~w~...")
 						
 						resting = true
 						
@@ -449,7 +490,7 @@ end)
 
 function CheckTraining()
 	if resting == true then
-		ESX.ShowNotification("You are resting...")
+		ESX.ShowNotification("Estás descansando...")
 		
 		resting = false
 		Citizen.Wait(60000)
@@ -457,7 +498,7 @@ function CheckTraining()
 	end
 	
 	if resting == false then
-		ESX.ShowNotification("You can now exercise again...")
+		ESX.ShowNotification("Ya puedes seguir haciendo ejercicio...")
 	end
 end
 

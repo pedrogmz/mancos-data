@@ -93,7 +93,7 @@ Config.Jobs.miner = {
 					name = _U("m_copper"),
 					db_name = "copper",
 					time = 4000,
-					max = 56,
+					max = 100,
 					add = 4,
 					remove = 1,
 					requires = "washed_stone",
@@ -103,21 +103,21 @@ Config.Jobs.miner = {
 				{
 					name = _U("m_iron"),
 					db_name = "iron",
-					max = 42,
+					max = 100,
 					add = 3,
 					drop = 100
 				},
 				{
 					name = _U("m_gold"),
 					db_name = "minigold",
-					max = 21,
+					max = 50,
 					add = 2,
 					drop = 100
 				},
 				{
 					name = _U("m_diamond"),
 					db_name = "minidiamond",
-					max = 50,
+					max = 5,
 					add = 1,
 					drop = 5
 				}
@@ -182,7 +182,7 @@ Config.Jobs.miner = {
 					time = 500,
 					remove = 1,
 					max = 56, -- if not present, probably an error at itemQtty >= item.max in esx_jobs_sv.lua
-					price = 5,
+					price = 3,
 					requires = "copper",
 					requires_name = _U("m_copper"),
 					drop = 100
@@ -208,7 +208,7 @@ Config.Jobs.miner = {
 					time = 500,
 					remove = 1,
 					max = 42, -- if not present, probably an error at itemQtty >= item.max in esx_jobs_sv.lua
-					price = 10,
+					price = 6,
 					requires = "iron",
 					requires_name = _U("m_iron"),
 					drop = 100
@@ -234,7 +234,7 @@ Config.Jobs.miner = {
 					time = 500,
 					remove = 1,
 					max = 21, -- if not present, probably an error at itemQtty >= item.max in esx_jobs_sv.lua
-					price = 15,
+					price = 9,
 					requires = "minigold",
 					requires_name = _U("m_gold"),
 					drop = 100

@@ -15,19 +15,6 @@ Config.AuthorizedVehicles = {
     { name = 'youga2',  label = 'Furgoneta Steel Thieves' },
 }
 
---[[ 
-Config.Blips = {
-    
-    Blip = {
-      Pos     = { x = -710.53, y = -911.18, z = 19.22 },
-      Sprite  = 106,
-      Display = 4,
-      Scale   = 0.0,
-      Colour  = 59,
-    },
-
-}
-]]--33, 145, 232
 
 Config.Warehouse = {
     Warehouse_in = {
@@ -183,4 +170,31 @@ Config.Uniforms = {
 			['chain_1'] = 0,    ['chain_2'] = 0
 		}
 	}
+}
+
+
+
+-- Arnedo5 | Entrada de vehiculos
+Config.DrawDistance = 100.0
+
+Config.Marker = {
+	Type = 23,
+	x = 3.5, y = 3.5, z = 0.5,
+	r = 255, g = 55, b = 55
+}
+
+Config.Pads = {
+
+	MartinHouseIn = {
+		Text = 'Presiona ~INPUT_CONTEXT~ para acceder al procesado.',
+		Marker = { x = 494.73, y = -1329.56, z = 29.34 },
+		TeleportPoint = { x = -40.634, y = 42.128, z = 100.51, h = 0.77 }
+	},
+
+	MartinHouseOut = {
+		Text = 'Press ~INPUT_CONTEXT~ para salir.',
+		Marker = { x = 1400.49, y = 1129.61, z = 113.30 },
+		TeleportPoint = { x = 1400.25, y = 1123.59, z = 20.84, h = 180.0 }
+	}
+
 }

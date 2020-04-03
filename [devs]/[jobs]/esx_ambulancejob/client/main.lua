@@ -116,8 +116,8 @@ Citizen.CreateThread(function()
 			DisableControlAction(0, Keys['X'], true)
 			DisableControlAction(0, Keys['B'], true)
 			DisableControlAction(0, 182, true)
-			DisableControlAction(0, Keys['H'], true)
-			DisableControlAction(0, 288, true)
+			--DisableControlAction(0, Keys['H'], true)
+			--DisableControlAction(0, 288, true)
 			DisableControlAction(0, Keys['F2'], true)
 			DisableControlAction(0, Keys['F3'], true)
 			DisableControlAction(0, Keys['F4'], true)
@@ -357,21 +357,21 @@ function StartDeathTimer()
 			if not Config.EarlyRespawnFine then
 				text = text .. _U('respawn_bleedout_prompt')
 
-				if IsControlPressed(0, Keys['E']) and timeHeld > 60 then
+				if IsControlPressed(0, Keys['H']) and timeHeld > 60 then
 					RemoveItemsAfterRPDeath()
 					break
 				end
 			elseif Config.EarlyRespawnFine and canPayFine then
 				text = text .. _U('respawn_bleedout_fine', ESX.Math.GroupDigits(Config.EarlyRespawnFineAmount))
 
-				if IsControlPressed(0, Keys['E']) and timeHeld > 60 then
+				if IsControlPressed(0, Keys['H']) and timeHeld > 60 then
 					TriggerServerEvent('esx_ambulancejob:payFine')
 					RemoveItemsAfterRPDeath()
 					break
 				end
 			end
 
-			if IsControlPressed(0, Keys['E']) then
+			if IsControlPressed(0, Keys['H']) then
 				timeHeld = timeHeld + 1
 			else
 				timeHeld = 0

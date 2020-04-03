@@ -330,3 +330,16 @@ end)
 --    BeginTextCommandSetBlipName("STRING")
 --    EndTextCommandSetBlipName(info.blip)
 --end)
+
+-- Arnedo5 | Avisar policia
+RegisterNetEvent('esx_carthief:notifyPolice')
+AddEventHandler('esx_carthief:notifyPolice', function()
+
+	-- Arnedo5 | Notificamos a la policia
+	local coords      = GetEntityCoords(GetPlayerPed(-1))
+
+	TriggerServerEvent('comprobarEntorno', "Se ha visto un vehiculo de alta gamma a toda velocidad por el polígono.".._U('car_stealing_in_progress'), coords.x, coords.y, coords.z, "NPC RANDOM")
+
+	TriggerEvent('esx_status:add', 'stress', 100000) -- Subimos stress 
+
+end)

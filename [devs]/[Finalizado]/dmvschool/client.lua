@@ -1050,8 +1050,8 @@ function VehLicenseMenu()
     ClearMenu()
     options.menu_title = "Permiso de circulación"
 	Menu.addButton("Introducción    Gratis","startintro", nil)
-	Menu.addButton("Examen teórico    200$","startttest", nil)
-	Menu.addButton("Examen práctico   500$","startptest",nil)
+	Menu.addButton("Examen teórico    100$","startttest", nil)
+	Menu.addButton("Examen práctico   200$","startptest",nil)
     Menu.addButton("Menu anterior","DMVMenu", nil) 
 end
 

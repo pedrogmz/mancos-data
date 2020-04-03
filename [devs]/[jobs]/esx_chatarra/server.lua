@@ -9,6 +9,10 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 RegisterServerEvent("Farmcyc:recoleccion1")
 AddEventHandler("Farmcyc:recoleccion1", function()
 
+	-- Arnedo5 | Subimos stress
+	TriggerClientEvent('esx_status:add', source, 'stress', 5000)
+
+
     local _source = source	
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local recoleccionsuerte = math.random(1,100)
@@ -61,6 +65,10 @@ else
 					Citizen.Wait(1000)
 					xPlayer.addInventoryItem('cajaconplastico', 1) 
 
+					
+	-- Arnedo5 | Subimos stress
+	--TriggerClientEvent('esx_status:add', source, 'stress', 100000)
+
 					cb(true)
 
 				else
@@ -75,6 +83,8 @@ end)
 -- procesado metal
 
 ESX.RegisterServerCallback('Farmcyc:empaquetado:metal', function (source, cb)
+
+	
 	
 	local _source = source
 	
@@ -93,6 +103,9 @@ else
 					xPlayer.removeInventoryItem('metal', 4) 
 					Citizen.Wait(1000)
 					xPlayer.addInventoryItem('cajaconmetal', 1) 
+
+					-- Arnedo5 | Subimos stress
+	--TriggerClientEvent('esx_status:add', source, 'stress', 100000)
 
 					cb(true)
 
@@ -115,11 +128,17 @@ AddEventHandler('Ventademetal', function()
     local PrecioMetal = Config.PMetal
    
 
+	-- Arnedo5 | Subimos stress
+	--TriggerClientEvent('esx_status:add', source, 'stress', 5000)
+
 if metal > 0 then
 
 
     xPlayer.removeInventoryItem('cajaconmetal', 1)
-    xPlayer.addMoney(PrecioMetal)
+	xPlayer.addMoney(PrecioMetal)
+	
+		-- Arnedo5 | Subimos stress
+		--TriggerClientEvent('esx_status:add', source, 'stress', 100000)
 elseif metal < 1 then
 	TriggerClientEvent('esx:showNotification', source, '~r~No tienes Cajas con metal para vender')
 
@@ -131,6 +150,8 @@ end)
 
 RegisterNetEvent('Ventadeplastico')
 AddEventHandler('Ventadeplastico', function()
+
+
 	local _source = source 
     local xPlayer = ESX.GetPlayerFromId(_source)
     local plastico = xPlayer.getInventoryItem('cajaconplastico').count
@@ -141,7 +162,12 @@ if plastico > 0 then
 
     xPlayer.removeInventoryItem('cajaconplastico', 1)
     Citizen.Wait(500)
-    xPlayer.addMoney(PrecioPlastico)
+	xPlayer.addMoney(PrecioPlastico)
+	
+		-- Arnedo5 | Subimos stress
+		--TriggerClientEvent('esx_status:add', source, 'stress', 100000)
+	
+
 elseif plastico < 1 then
 	TriggerClientEvent('esx:showNotification', source, '~r~No tienes Cajas con plastico para vender')
 

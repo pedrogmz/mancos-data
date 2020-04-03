@@ -416,7 +416,7 @@ Citizen.CreateThread(function()
 				local lastZone    = nil
 
 				for k,v in pairs(zones) do
-					if GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x then
+					if GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < 3 then
 						isInMarker  = true
 						currentZone = k
 						zone        = v

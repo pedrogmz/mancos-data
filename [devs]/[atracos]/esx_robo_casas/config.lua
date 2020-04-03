@@ -10,7 +10,7 @@ Config.Items = {
     {Label = 'Semillas macho+', Name = 'highgrademaleseed', math.random (0,2)},
     {Label = 'Lingote de oro', Name = 'gold', Amount = math.random (0,1)},
     {Label = 'Caña de pescar', Name = 'fishingrod', Amount = math.random (0,1)},
-	{Label = 'Diamantes', Name = 'fishbait', Amount = math.random (0,1)},
+    {Label = 'Diamantes', Name = 'fishbait', Amount = math.random (0,1)},
 } 
 
 
@@ -22,7 +22,7 @@ Config.GhettoPeds = { -- https://wiki.gt-mp.net/index.php/Peds
 }
 
 Config.GhettoWeapons = { -- armas de los spawns NPC
-    "WEAPON_MINISMG" 
+    "WEAPON_PISTOL" 
 	}
 
 Config.WeaponChance = 70 -- % de que lleven armas
@@ -31,9 +31,9 @@ Config.Burglary = {
     [1] = {
         Door = {Object = "v_ilev_fa_frontdoor", Coords = vector3(-14.36, -1441.58, 30.22), Frozen = true, Heading = 180.0, Health = 1000}, -- estado de la puerta
         Type = 'ghetto',
-        Cops = 4,
+        Cops = 2,
         Peds = {
-            vector3(16.12, -1445.77, 30.54),
+			vector3(16.12, -1445.77, 30.54),
 			vector3(-6.72, -1482.03, -30.33),
 			vector3(-16.78, -1492.03, -30.33),
 			vector3(-15.81, -1491.45, -30.33),
@@ -41,7 +41,7 @@ Config.Burglary = {
 			vector3(-1.66, -1442.97, 30.96),
 			vector3(4.71,  -1445.34, 30.55),
 			vector3(4.63,  -1448.24, 35.55),
-            vector3(-58.67, -1482.44, 32.06),
+			vector3(-58.67, -1482.44, 32.06),
 			vector3(-36.797, -1492.05, 31.22)			
         },
         MultipleSearch = {

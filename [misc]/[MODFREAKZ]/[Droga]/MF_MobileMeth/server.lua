@@ -24,6 +24,9 @@ function MFM:RewardPlayers(plyA,plyB)
   xPlayer.addAccountMoney(self.AccountRewardType, math.random(self.MinCashReward,self.MaxCashReward))
  -- math.randomseed(GetGameTimer()*math.random(999999,99999999))
  -- xPlayer.addInventoryItem(self.ItemRewardName, math.random(self.MinMethReward,self.MaxMethReward))
+
+  -- Arnedo5 | Stress
+  TriggerClientEvent('esx_status:add', source, 'stress', 400000)
 end
 
 function MFM:Awake(...)

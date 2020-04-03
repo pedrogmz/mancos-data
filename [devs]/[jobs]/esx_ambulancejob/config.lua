@@ -5,22 +5,22 @@ Config.DrawDistance               = 100.0
 Config.Marker                     = { type = 25, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
 Config.MarkerSize                 = { x = 3.0, y = 3.0, z = 1.5 }
 
-Config.ReviveReward               = 25  -- revive reward, set to 0 if you don't want it enabled
+Config.ReviveReward               = 8  -- revive reward, set to 0 if you don't want it enabled
 Config.AntiCombatLog              = true -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
 -- Revivir en camilla
-Config.Payrevive				  = 200
+Config.Payrevive				  = 70
 Config.RevivirCamillaMax		  = 0	
 Config.EMS						  = 0
-Config.MaxDistance				  = 1.5
+Config.MaxDistance = 1.5
 
 Config.EnableESXIdentity          = true
 
 Config.Locale                     = 'es'
 
-local second 					  = 1000
-local minute				  	  = 60 * second
+local second = 1000
+local minute = 60 * second
 
 Config.EarlyRespawnTimer          = 10 * minute  -- Time til respawn is available
 Config.BleedoutTimer              = 10 * minute -- Time til the player bleeds out
@@ -36,15 +36,15 @@ Config.RemoveItemsAfterRPDeath    = true
 Config.EarlyRespawnFine           = false
 Config.EarlyRespawnFineAmount     = 5000
 
-Config.RemoveTattooCost 		  = 200
+Config.RemoveTattooCost = 200
 
-Config.RespawnPoint = { coords = vector3(353.19, -565.13, 28.79), heading = 48.13 }
+Config.RespawnPoint = { coords = vector3(-496.65, -336.09, 34.5), heading = 262.47 }
 
 Config.BedList = {
 	{
-		text = '[E] para ser atendido.',
+		text = '[~g~E~w~] para ser atendido.',
 		heading = 80.0,
-		objCoords  = {x = 333.69, y = -578.51, z = 43.02},---pillbox bed
+		objCoords  = {x = 334.02, y = -578.48, z = 42.60},---pillbox bed
 	}
 }
 

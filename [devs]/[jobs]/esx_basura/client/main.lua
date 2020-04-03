@@ -50,6 +50,8 @@ local plaquevehiculeactuel = ""
 local CurrentAction           = nil
 local CurrentActionMsg        = ''
 local CurrentActionData       = {}
+local stressVal = 0
+
 --------------------------------------------------------------------------------
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -321,8 +323,6 @@ AddEventHandler('esx_garbagejob:hasEnteredMarker', function(zone)
 		MenuCloakRoom()
 	end
 
-	print("ZONE")
-	print (zone)
 	if zone == 'VehicleSpawner' then
 		if isInService and IsJobgarbage() then
 			if MissionRetourCamion or MissionLivraison then
@@ -709,11 +709,18 @@ Citizen.CreateThread(function()
 					SetVehicleDoorOpen(work_truck,5,false, false)
 
 				end
-				print ("ACCTION")
-				print(CurrentAction)
 
                 if CurrentAction == 'retourcamion' then
-                    retourcamion_oui()
+					retourcamion_oui()
+					
+					-- Arnedo 5 | Sistema de estrés
+					TriggerEvent('esx_status:getStatus', 'stress', function(status)
+						stressVal = status.val
+					end)
+					
+					if stressVal >= 0 then
+						TriggerEvent('esx_status:add', 'stress', 150000)
+					end
                 end
 
                 if CurrentAction == 'retourcamionperdu' then

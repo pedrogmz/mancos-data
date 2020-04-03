@@ -1176,3 +1176,22 @@ Citizen.CreateThread(function()
 
   end
 end)
+
+-- Arnedo5 | Entrada de vehiculos
+-- Draw marker
+--[[
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		
+		local playerPed = PlayerPedId()
+		local coords = GetEntityCoords(playerPed)
+
+		for pad, padData in pairs(Config.Pads) do
+			if GetDistanceBetweenCoords(coords, padData.Marker.x, padData.Marker.y, padData.Marker.z,  true) < Config.DrawDistance then
+				DrawMarker(Config.Marker.Type, padData.Marker.x, padData.Marker.y, padData.Marker.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, 100, false, true, 2, false, false, false, false)
+			end
+		end
+	end
+end)
+]]--

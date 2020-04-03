@@ -40,3 +40,12 @@ ESX.RegisterUsableItem('bagofdope', function(source)
 			TriggerClientEvent('esx:showNotification', source, "~r~Necesitas minimo dos papeles para hacer un porro")
 		end
 end)
+
+ESX.RegisterUsableItem('porros', function(source)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+
+	xPlayer.removeInventoryItem('porros', 1)
+
+	TriggerClientEvent('esx_venta:onPot', _source)
+end)

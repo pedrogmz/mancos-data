@@ -10,6 +10,8 @@ local Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
+local secure = false;
+
 -- colors
 local r,g,b,a = 166,166,255,255 -- rgba color
 
@@ -57,6 +59,27 @@ Citizen.CreateThread(function()
             end
             Marker(1, coords.x, coords.y, coords.z, voiceS * 2.0)
         end
+
+        -- Arnedo5 | Seguro [Bloquear el click izquierdo y derecho]
+        if IsControlPressed(0, Keys['~']) and IsControlPressed(0, Keys['LEFTSHIFT']) then
+
+            secure = not secure
+            Citizen.Wait(1000)
+          
+        end
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+
+        if secure then
+            DisableControlAction(0, 24, true) -- Attack
+			DisableControlAction(0, 257, true) -- Attack 2
+			DisableControlAction(0, 25, true) -- Aim
+			DisableControlAction(0, 263, true) -- Melee Attack 1
+        end
     end
 end)
 
@@ -87,23 +110,48 @@ Citizen.CreateThread(function()
                 end
             end
             Citizen.Wait(0)
+
+                -- Raspu Print id
+                drawTxt(0.164, 0.840, 1.0,1.0,0.4, "ID: ~b~" .. tostring(GetPlayerServerId(PlayerId())), 255, 255, 255, 255)
+
 				if NetworkIsPlayerTalking(PlayerId()) then
 					if voice.current == 0 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz:~b~ Normal", 255, 255, 255, 255)
+						drawTxt(0.164, 0.870, 1.0,1.0,0.4, "Voz:~b~ Normal", 255, 255, 255, 255)
 					elseif voice.current == 1 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "Voz:~r~ Gritando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.870, 1.0,1.0,0.4, "Voz:~r~ Gritando", 255, 255, 255, 255)
 					elseif voice.current == 2 then
-						drawTxt(0.164, 0.868, 1.5,1.0,0.4, "Voz:~g~ Susurrando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.870, 1.5,1.0,0.4, "Voz:~g~ Susurrando", 255, 255, 255, 255)
 					end
 				else
 					if voice.current == 0 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~Voz: Normal", 255, 255, 255, 255)
+						drawTxt(0.164, 0.870, 1.0,1.0,0.4, "~w~Voz: Normal", 255, 255, 255, 255)
 					elseif voice.current == 1 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~Voz: Gritando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.870, 1.0,1.0,0.4, "~w~Voz: Gritando", 255, 255, 255, 255)
 					elseif voice.current == 2 then
-						drawTxt(0.164, 0.868, 1.0,1.0,0.4, "~w~Voz: Susurrando", 255, 255, 255, 255)
+						drawTxt(0.164, 0.870, 1.0,1.0,0.4, "~w~Voz: Susurrando", 255, 255, 255, 255)
 					end
-				end
+                end
+                
+                -- Arnedo5 | Stress
+                TriggerEvent('esx_status:getStatus', 'stress', function(status)
+
+                    if status.val == 0 then
+                        stressPercent =   math.floor((status.val / 1000000) * 100)
+                    else
+                        stressPercent =   math.floor((status.val / 1000000) * 100  + 0.5)
+                    end
+                   
+                    drawTxt(0.225, 0.870, 1.0,1.0,0.4, "~p~Estrés: ~w~" .. stressPercent..'%', 255, 255, 255, 255)
+                end)
+
+                -- Arnedo5 | Seguro [Bloquear el click izquierdo y derecho]
+                if secure then
+                    drawTxt(0.270, 0.870, 1.0,1.0,0.4, "~w~Seguro: ~g~ON", 255, 255, 255, 255)
+                else
+                    drawTxt(0.270, 0.870, 1.0,1.0,0.4, "~w~Seguro: ~r~OFF", 255, 255, 255, 255)
+                end
+                
+  
         end
     end
 end)
@@ -119,23 +167,8 @@ function drawTxt(x,y ,width,height,scale, text, r,g,b,a)
     SetTextOutline()
     SetTextEntry("STRING")
     AddTextComponentString(text)
-    DrawText(x, y)
-	
-	SetTextFont(4)
-	SetTextProportional(1)
-	SetTextDropShadow(0, 0, 0, 0,255)
-	SetTextEdge(0, 0, 0, 0, 255)
-	SetTextScale(0.4, 0.4)
-	SetTextColour(255, 255, 255, 255)
-	SetTextDropShadow()
-	SetTextOutline()
-	SetTextEntry("STRING")
-	AddTextComponentString("ID: ~b~" .. tostring(GetPlayerServerId(PlayerId())))
-	DrawText(0.164, 0.840)	
+    DrawText(x, y)    
 end
-
-
-
 
 -- Marker function, don't touch. 
 function Marker(type, x, y, z, voiceS)
@@ -169,3 +202,16 @@ Citizen.CreateThread(function()
     end
 end)
 
+-- Arnedo5 | Esc Menu
+Citizen.CreateThread(function()
+    AddTextEntry('FE_THDR_GTAO', '~f~Bienvenidos a Mancos ~r~RP')
+    AddTextEntry('PM_PANE_LEAVE', '~o~Volver a la lista de servidores')
+    AddTextEntry('PM_PANE_QUIT', '~r~Salir de Mancos RP')
+    AddTextEntry('PM_SCR_MAP', '~b~GPS 🗺️')
+    AddTextEntry('PM_SCR_GAM', '~r~Coger el avión ✈️')
+    AddTextEntry('PM_SCR_INF', '~b~Registros 📝')
+    AddTextEntry('PM_SCR_SET', '~b~Configuración ⚙️')
+    AddTextEntry('PM_SCR_STA', '~r~Estadísticas 📊')
+    AddTextEntry('PM_SCR_RPL', '~y~Editor Rockstar ∑')
+  end)
+  

@@ -11,7 +11,7 @@ local function blackout()
 		isBlackedOut = true
 		-- This thread will black out the user's screen for the specified time
 		Citizen.CreateThread(function()
-			print("La vitesse d'impacte est ", impact) -- Print impact speed for F8 console ... in french
+			--print("La vitesse d'impacte est ", impact) -- Print impact speed for F8 console ... in french
 			TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 50.0, 'crash01', 0.5) -- Trigger crash sound around yourself, works with InteractiveSound
 			if impact <= 50 then -- Shakycam on impact
 				ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.4)

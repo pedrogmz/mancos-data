@@ -5,6 +5,9 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local function Work(source, item)
 
+	-- Arnedo5 | Subimos stress
+	TriggerClientEvent('esx_status:add', source, 'stress', 5000)
+
 	SetTimeout(item[1].time, function()
 
 		if PlayersWorking[source] == true then
@@ -100,6 +103,7 @@ AddEventHandler('esx_jobs:caution', function(cautionType, cautionAmount, spawnPo
 			xPlayer.addAccountMoney('bank', toGive)
 			account.removeMoney(toGive)
 			TriggerClientEvent('esx:showNotification', source, _U('bank_deposit_returned', ESX.Math.GroupDigits(toGive)))
+
 		end)
 	end
 end)

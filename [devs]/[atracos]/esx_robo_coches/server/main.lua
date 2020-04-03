@@ -39,6 +39,8 @@ AddEventHandler('esx_carthief:registerActivity', function(value)
 	activity = value
 	if value == 1 then
 		activitySource = source
+
+		--[[
 		--Send notification to cops
 		local xPlayers = ESX.GetPlayers()
 		for i=1, #xPlayers, 1 do
@@ -47,6 +49,12 @@ AddEventHandler('esx_carthief:registerActivity', function(value)
 				TriggerClientEvent('esx_carthief:setcopnotification', xPlayers[i])
 			end
 		end
+]]--
+			
+		-- Arnedo5 | Send notification police
+		TriggerClientEvent('esx_carthief:notifyPolice', _source)
+
+		
 	else
 		activitySource = 0
 	end

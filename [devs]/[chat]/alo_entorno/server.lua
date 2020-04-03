@@ -21,9 +21,14 @@ AddEventHandler('comprobarEntorno', function(msg, x, y, z, name, ped)
 			end
 		end
 	end)
-
-	TriggerClientEvent("sendProximityMessageEntorno", -1, _source)
-	TriggerEvent('DiscordBot:ToDiscord', 'chat', name .. ' [ID: ' .. source .. '] Server: '..server, '**ENTORNO: **' .. msg, 'steam', true, source)
+	
+	if string.match(msg, "Alguien me está ofreciendo drogas") or string.match(msg, "Hay un vehiculo circulando") or string.match(msg, "Se ha visto alguien") or string.match(msg, "Estan robando") or string.match(msg, "Alguien ha reportado") or string.match(msg, "Alguien ha visto un sujeto") then
+		TriggerEvent('DiscordBot:ToDiscord', 'chat', name .. ' [ID: ' .. source .. '] Server: '..server, '**ENTORNO: **' .. msg, 'steam', true, source)
+	else 
+		TriggerClientEvent("sendProximityMessageEntorno", -1, _source)
+		TriggerEvent('DiscordBot:ToDiscord', 'chat', name .. ' [ID: ' .. source .. '] Server: '..server, '**ENTORNO: **' .. msg, 'steam', true, source)
+	end
+	
 end)
 
 function stringsplit(inputstr, sep)

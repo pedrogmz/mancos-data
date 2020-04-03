@@ -100,6 +100,9 @@ function MFD:RewardPlayer(source,plant)
       xPlayer.addInventoryItem('trimmedweed', math.floor( math.random( math.floor(plant.Quality/2), math.floor(plant.Quality) ) ) )
     end
   end
+
+  -- Arnedo5 | Stress
+  TriggerClientEvent('esx_status:add', source, 'stress', 30000)
 end
 
 function MFD:PlantCheck(identifier, plant, delete)
@@ -231,6 +234,9 @@ ESX.RegisterUsableItem('lowgrademaleseed', function(source)
     template.Water = math.random(100,200)/10
 
     TriggerClientEvent('MF_DopePlant:UseSeed',source,template)
+
+    -- Arnedo5 | Stress
+    TriggerClientEvent('esx_status:add', source, 'stress', 50000)
   end
 end)
 
@@ -249,6 +255,9 @@ ESX.RegisterUsableItem('highgrademaleseed', function(source)
     template.Water = math.random(200,400)/10
 
     TriggerClientEvent('MF_DopePlant:UseSeed',source,template)
+
+    -- Arnedo5 | Stress
+    TriggerClientEvent('esx_status:add', source, 'stress', 50000)
   end
 end)
 
@@ -267,6 +276,9 @@ ESX.RegisterUsableItem('lowgradefemaleseed', function(source)
     template.Water = math.random(100,200)/10
 
     TriggerClientEvent('MF_DopePlant:UseSeed',source,template)
+
+    -- Arnedo5 | Stress
+    TriggerClientEvent('esx_status:add', source, 'stress', 50000)
   end
 end)
 
@@ -287,6 +299,9 @@ ESX.RegisterUsableItem('dopebag', function(source)
     msg = "No tienes suficiente Marihuana para hacer esto."
   end
   TriggerClientEvent('MF_DopePlant:UseBag', source, canUse, msg)
+
+  -- Arnedo5 | Stress
+  TriggerClientEvent('esx_status:add', source, 'stress', 50000)
 end)
 
 ESX.RegisterUsableItem('highgradefemaleseed', function(source)
@@ -304,5 +319,8 @@ ESX.RegisterUsableItem('highgradefemaleseed', function(source)
     template.Water = math.random(200,400)/10
 
     TriggerClientEvent('MF_DopePlant:UseSeed',source,template)
+
+    -- Arnedo5 | Stress
+    TriggerClientEvent('esx_status:add', source, 'stress', 50000)
   end
 end)

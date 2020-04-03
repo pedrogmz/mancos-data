@@ -130,13 +130,16 @@ Citizen.CreateThread(function()
                 TriggerEvent('loffe_burglary:text', '~r~Puerta~w~: ' .. math.floor(d.Health)/10 .. '%' , 0.5, 0.97, 75)
                 if d.Health ~= GetEntityHealth(door) then
                     if GetSelectedPedWeapon(player) == GetHashKey("WEAPON_CROWBAR") or 
-					   GetSelectedPedWeapon(player) == GetHashKey("WEAPON_BAT") or
-					   GetSelectedPedWeapon(player) == GetHashKey("WEAPON_HATCHET") then
+		                GetSelectedPedWeapon(player) == GetHashKey("WEAPON_BAT") or
+		                GetSelectedPedWeapon(player) == GetHashKey("WEAPON_HATCHET") then
                         TriggerServerEvent('loffe_burglary:setDoorHealth', i, GetEntityHealth(door))
                         if GetEntityHealth(door) <= 0.0 then
                             --TriggerServerEvent('esx_phone:send', 'police', 'Inbrott', true, {x = d.Coords.x, y = d.Coords.y, z = d.Coords.z}, true)
                             --TriggerServerEvent('roboCasaProgressPos', d.Coords.x, d.Coords.y, d.Coords.z)
                             --blipEntornoRoboHouse(d.Coords.x, d.Coords.y, d.Coords.z)
+
+                            -- Arnedo5 | Notify cops
+                            TriggerServerEvent('comprobarEntorno', "Alguien ha visto un sujeto intentanto forzar la cerradura de una casa.", d.Coords.x, d.Coords.y, d.Coords.z, "NPC RANDOM")
                             
                             TriggerServerEvent('roboCasaProgress', d.Coords)
                             if v.Type == 'ghetto' then

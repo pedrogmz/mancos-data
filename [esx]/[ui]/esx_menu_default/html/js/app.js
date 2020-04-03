@@ -1,379 +1,401 @@
-(function(){
+(function() {
 
-	let MenuTpl =
-		'<div id="menu_{{_namespace}}_{{_name}}" class="menu align-bottom-right">' +
-			'<div class="head"><span>{{{title}}}</span></div>' +
-				'<div class="menu-items">' + 
-					'{{#elements}}' +
-						'<div class="menu-item {{#selected}}selected{{/selected}}">' +
-							'{{{label}}}{{#isSlider}} : &lt;{{{sliderLabel}}}&gt;{{/isSlider}}' +
-						'</div>' +
-					'{{/elements}}' +
-				'</div>'+
-			'</div>' +
-		'</div>'
-	;
+    let MenuTpl =
+        '<div id="menu_{{_namespace}}_{{_name}}" class="menu align-bottom-right">' +
+        '<div class="head"><span>{{{title}}}</span></div>' +
+        '<div class="menu-items">' +
+        '{{#elements}}' +
+        '<div class="menu-item {{#selected}}selected{{/selected}}">' +
+        '{{{label}}}{{#isSlider}} : &lt;{{{sliderLabel}}}&gt;{{/isSlider}}' +
+        '</div>' +
+        '{{/elements}}' +
+        '</div>' +
+        '</div>' +
+        '</div>';
 
-	window.ESX_MENU       = {};
-	ESX_MENU.ResourceName = 'esx_menu_default';
-	ESX_MENU.opened       = {};
-	ESX_MENU.focus        = [];
-	ESX_MENU.pos          = {};
+    window.ESX_MENU = {};
+    ESX_MENU.ResourceName = 'esx_menu_default';
+    ESX_MENU.opened = {};
+    ESX_MENU.focus = [];
+    ESX_MENU.pos = {};
 
-	ESX_MENU.open = function(namespace, name, data){
+    ESX_MENU.open = function(namespace, name, data) {
 
-		if(typeof ESX_MENU.opened[namespace] == 'undefined')
-			ESX_MENU.opened[namespace] = {};
 
-		if(typeof ESX_MENU.opened[namespace][name] != 'undefined')
-			ESX_MENU.close(namespace, name);
+        if (typeof ESX_MENU.opened[namespace] == 'undefined')
+            ESX_MENU.opened[namespace] = {};
 
-		if(typeof ESX_MENU.pos[namespace] == 'undefined')
-			ESX_MENU.pos[namespace] = {};
+        if (typeof ESX_MENU.opened[namespace][name] != 'undefined')
+            ESX_MENU.close(namespace, name);
 
-		for(let i=0; i<data.elements.length; i++)
-			if(typeof data.elements[i].type == 'undefined')
-				data.elements[i].type = 'default';
+        if (typeof ESX_MENU.pos[namespace] == 'undefined')
+            ESX_MENU.pos[namespace] = {};
 
-		data._index     = ESX_MENU.focus.length;
-		data._namespace = namespace;
-		data._name      = name;
+        for (let i = 0; i < data.elements.length; i++)
+            if (typeof data.elements[i].type == 'undefined')
+                data.elements[i].type = 'default';
 
-		for(let i=0; i<data.elements.length; i++){
-			data.elements[i]._namespace = namespace;
-			data.elements[i]._name      = name;
-		}
+        data._index = ESX_MENU.focus.length;
+        data._namespace = namespace;
+        data._name = name;
 
-		ESX_MENU.opened[namespace][name] = data;
-		ESX_MENU.pos   [namespace][name] = 0;
+        for (let i = 0; i < data.elements.length; i++) {
+            data.elements[i]._namespace = namespace;
+            data.elements[i]._name = name;
+        }
 
-		for(let i=0; i<data.elements.length; i++){
-			if(data.elements[i].selected)
-				ESX_MENU.pos[namespace][name] = i;
-			else
-				data.elements[i].selected = false
-		}
+        ESX_MENU.opened[namespace][name] = data;
+        ESX_MENU.pos[namespace][name] = 0;
 
-		ESX_MENU.focus.push({
-			namespace: namespace,
-			name     : name
-		});
-		
-		ESX_MENU.render();
+        for (let i = 0; i < data.elements.length; i++) {
+            if (data.elements[i].selected)
+                ESX_MENU.pos[namespace][name] = i;
+            else
+                data.elements[i].selected = false
+        }
 
-		$('#menu_' + namespace + '_' + name).find('.menu-item.selected')[0].scrollIntoView();
-	}
+        ESX_MENU.focus.push({
+            namespace: namespace,
+            name: name
+        });
 
-	ESX_MENU.close = function(namespace, name){
-		
-		delete ESX_MENU.opened[namespace][name];
+        ESX_MENU.render();
 
-		for(let i=0; i<ESX_MENU.focus.length; i++){
-			if(ESX_MENU.focus[i].namespace == namespace && ESX_MENU.focus[i].name == name){
-				ESX_MENU.focus.splice(i, 1);
-				break;
-			}
-		}
+        $('#menu_' + namespace + '_' + name).find('.menu-item.selected')[0].scrollIntoView();
+    }
 
-		ESX_MENU.render();
+    ESX_MENU.close = function(namespace, name) {
 
-	}
+        delete ESX_MENU.opened[namespace][name];
 
-	ESX_MENU.render = function(){
+        for (let i = 0; i < ESX_MENU.focus.length; i++) {
+            if (ESX_MENU.focus[i].namespace == namespace && ESX_MENU.focus[i].name == name) {
+                ESX_MENU.focus.splice(i, 1);
+                break;
+            }
+        }
 
-		let menuContainer       = document.getElementById('menus');
-		let focused             = ESX_MENU.getFocused();
-		menuContainer.innerHTML = '';
+        ESX_MENU.render();
 
-		$(menuContainer).hide();
+    }
 
-		for(let namespace in ESX_MENU.opened){
-			for(let name in ESX_MENU.opened[namespace]){
+    ESX_MENU.render = function() {
 
-				let menuData = ESX_MENU.opened[namespace][name];
-				let view     = JSON.parse(JSON.stringify(menuData))
+        let menuContainer = document.getElementById('menus');
+        let focused = ESX_MENU.getFocused();
+        menuContainer.innerHTML = '';
 
-				for(let i=0; i<menuData.elements.length; i++){
+        $(menuContainer).hide();
 
-					let element = view.elements[i];
+        for (let namespace in ESX_MENU.opened) {
+            for (let name in ESX_MENU.opened[namespace]) {
 
-					switch(element.type){
+                let menuData = ESX_MENU.opened[namespace][name];
+                let view = JSON.parse(JSON.stringify(menuData))
 
-						case 'default' : break;
+                for (let i = 0; i < menuData.elements.length; i++) {
 
-						case 'slider' : {
-							
-							element.isSlider    = true;
-							element.sliderLabel = (typeof element.options == 'undefined') ? element.value : element.options[element.value];
+                    let element = view.elements[i];
 
-							break;
-						}
+                    switch (element.type) {
 
-						default : break;
+                        case 'default':
+                            break;
 
-					}
+                        case 'slider':
+                            {
 
-					if(i == ESX_MENU.pos[namespace][name])
-						element.selected = true;
-				}
+                                element.isSlider = true;
+                                element.sliderLabel = (typeof element.options == 'undefined') ? element.value : element.options[element.value];
 
-				let menu = $(Mustache.render(MenuTpl, view))[0];
+                                break;
+                            }
 
-				$(menu).hide();
+                        default:
+                            break;
 
-				menuContainer.appendChild(menu);
-			}
-		}
+                    }
 
-		if(typeof focused != 'undefined')
-			$('#menu_' + focused.namespace + '_' + focused.name).show();
+                    if (i == ESX_MENU.pos[namespace][name])
+                        element.selected = true;
+                }
 
-		$(menuContainer).show();
+                let menu = $(Mustache.render(MenuTpl, view))[0];
 
-	}
+                $(menu).hide();
 
-	ESX_MENU.submit = function(namespace, name, data){
-		SendMessage(ESX_MENU.ResourceName, 'menu_submit', {
-			_namespace: namespace,
-			_name     : name,
-			current   : data,
-			elements  : ESX_MENU.opened[namespace][name].elements
-		});
-	}
+                //console.log(JSON.stringify(view));
+                //console.log(JSON.stringify(view)['title']);
 
-	ESX_MENU.cancel = function(namespace, name){
-		SendMessage(ESX_MENU.ResourceName, 'menu_cancel', {
-			_namespace: namespace,
-			_name     : name
-		});
-	}
+                menuContainer.appendChild(menu);
+            }
+        }
 
-	ESX_MENU.change = function(namespace, name, data){
-		SendMessage(ESX_MENU.ResourceName, 'menu_change', {
-			_namespace: namespace,
-			_name     : name,
-			current   : data,
-			elements  : ESX_MENU.opened[namespace][name].elements
-		});
-	}
+        if (typeof focused != 'undefined')
+            $('#menu_' + focused.namespace + '_' + focused.name).show();
 
-	ESX_MENU.getFocused = function(){
-		return ESX_MENU.focus[ESX_MENU.focus.length - 1];
-	}
+        $(menuContainer).show();
 
-	window.onData = (data) => {
+    }
 
-		switch(data.action){
+    ESX_MENU.submit = function(namespace, name, data) {
+        SendMessage(ESX_MENU.ResourceName, 'menu_submit', {
+            _namespace: namespace,
+            _name: name,
+            current: data,
+            elements: ESX_MENU.opened[namespace][name].elements
+        });
+    }
 
-			case 'openMenu' : {
-				ESX_MENU.open(data.namespace, data.name, data.data);
-				break;
-			}
+    ESX_MENU.cancel = function(namespace, name) {
+        SendMessage(ESX_MENU.ResourceName, 'menu_cancel', {
+            _namespace: namespace,
+            _name: name
+        });
+    }
 
-			case 'closeMenu' : {
-				ESX_MENU.close(data.namespace, data.name);
-				break;
-			}
+    ESX_MENU.change = function(namespace, name, data) {
+        SendMessage(ESX_MENU.ResourceName, 'menu_change', {
+            _namespace: namespace,
+            _name: name,
+            current: data,
+            elements: ESX_MENU.opened[namespace][name].elements
+        });
+    }
 
-			case 'controlPressed' : {
+    ESX_MENU.getFocused = function() {
+        return ESX_MENU.focus[ESX_MENU.focus.length - 1];
+    }
 
-				switch(data.control){
+    window.onData = (data) => {
 
-					case 'ENTER' : {
+        switch (data.action) {
 
-						let focused = ESX_MENU.getFocused();
+            case 'openMenu':
+                {
+                    ESX_MENU.open(data.namespace, data.name, data.data);
+                    break;
+                }
 
-						if(typeof focused != 'undefined') {
+            case 'closeMenu':
+                {
+                    ESX_MENU.close(data.namespace, data.name);
+                    break;
+                }
 
-							let menu    = ESX_MENU.opened[focused.namespace][focused.name];
-							let pos     = ESX_MENU.pos[focused.namespace][focused.name];
-							let elem    = menu.elements[pos];
+            case 'controlPressed':
+                {
 
-							if(menu.elements.length > 0)
-								ESX_MENU.submit(focused.namespace, focused.name, elem);
+                    switch (data.control) {
 
-						}
+                        case 'ENTER':
+                            {
 
-						break;
-					}
+                                let focused = ESX_MENU.getFocused();
 
-					case 'BACKSPACE' : {
+                                if (typeof focused != 'undefined') {
 
-						let focused = ESX_MENU.getFocused();
+                                    let menu = ESX_MENU.opened[focused.namespace][focused.name];
+                                    let pos = ESX_MENU.pos[focused.namespace][focused.name];
+                                    let elem = menu.elements[pos];
 
-						if(typeof focused != 'undefined') {
+                                    if (menu.elements.length > 0)
+                                        ESX_MENU.submit(focused.namespace, focused.name, elem);
 
-							ESX_MENU.cancel(focused.namespace, focused.name);
+                                }
 
-						}
+                                break;
+                            }
 
-						break;
-					}
+                        case 'BACKSPACE':
+                            {
 
-					case 'TOP' : {
+                                let focused = ESX_MENU.getFocused();
 
-						let focused = ESX_MENU.getFocused();
+                                if (typeof focused != 'undefined') {
 
-						if(typeof focused != 'undefined') {
+                                    ESX_MENU.cancel(focused.namespace, focused.name);
 
-							let menu    = ESX_MENU.opened[focused.namespace][focused.name];
-							let pos     = ESX_MENU.pos[focused.namespace][focused.name];
+                                }
 
-							if(pos > 0)
-								ESX_MENU.pos[focused.namespace][focused.name]--;
-							else
-								ESX_MENU.pos[focused.namespace][focused.name] = menu.elements.length - 1;
+                                break;
+                            }
 
-							let elem = menu.elements[ESX_MENU.pos[focused.namespace][focused.name]];
+                        case 'TOP':
+                            {
 
-							for(let i=0; i<menu.elements.length; i++){
-								if(i == ESX_MENU.pos[focused.namespace][focused.name])
-									menu.elements[i].selected = true
-								else
-									menu.elements[i].selected = false
-							}
+                                let focused = ESX_MENU.getFocused();
 
-							ESX_MENU.change(focused.namespace, focused.name, elem)
-							ESX_MENU.render();
+                                if (typeof focused != 'undefined') {
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+                                    let menu = ESX_MENU.opened[focused.namespace][focused.name];
+                                    let pos = ESX_MENU.pos[focused.namespace][focused.name];
 
-						}
+                                    if (pos > 0)
+                                        ESX_MENU.pos[focused.namespace][focused.name]--;
+                                    else
+                                        ESX_MENU.pos[focused.namespace][focused.name] = menu.elements.length - 1;
 
-						break;
+                                    let elem = menu.elements[ESX_MENU.pos[focused.namespace][focused.name]];
 
-					}
+                                    for (let i = 0; i < menu.elements.length; i++) {
+                                        if (i == ESX_MENU.pos[focused.namespace][focused.name])
+                                            menu.elements[i].selected = true
+                                        else
+                                            menu.elements[i].selected = false
+                                    }
 
-					case 'DOWN' : {
+                                    ESX_MENU.change(focused.namespace, focused.name, elem)
+                                    ESX_MENU.render();
 
-						let focused = ESX_MENU.getFocused();
+                                    $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
 
-						if(typeof focused != 'undefined') {
+                                }
 
-							let menu    = ESX_MENU.opened[focused.namespace][focused.name];
-							let pos     = ESX_MENU.pos[focused.namespace][focused.name];
-							let length  = menu.elements.length;
+                                break;
 
-							if(pos < length - 1)
-								ESX_MENU.pos[focused.namespace][focused.name]++;
-							else
-								ESX_MENU.pos[focused.namespace][focused.name] = 0;
+                            }
 
-							let elem = menu.elements[ESX_MENU.pos[focused.namespace][focused.name]];
+                        case 'DOWN':
+                            {
 
-							for(let i=0; i<menu.elements.length; i++){
-								if(i == ESX_MENU.pos[focused.namespace][focused.name])
-									menu.elements[i].selected = true
-								else
-									menu.elements[i].selected = false
-							}
+                                let focused = ESX_MENU.getFocused();
 
-							ESX_MENU.change(focused.namespace, focused.name, elem)
-							ESX_MENU.render();
+                                if (typeof focused != 'undefined') {
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+                                    let menu = ESX_MENU.opened[focused.namespace][focused.name];
+                                    let pos = ESX_MENU.pos[focused.namespace][focused.name];
+                                    let length = menu.elements.length;
 
-						}
+                                    if (pos < length - 1)
+                                        ESX_MENU.pos[focused.namespace][focused.name]++;
+                                    else
+                                        ESX_MENU.pos[focused.namespace][focused.name] = 0;
 
-						break;
-					}
+                                    let elem = menu.elements[ESX_MENU.pos[focused.namespace][focused.name]];
 
-					case 'LEFT' : {
+                                    for (let i = 0; i < menu.elements.length; i++) {
+                                        if (i == ESX_MENU.pos[focused.namespace][focused.name])
+                                            menu.elements[i].selected = true
+                                        else
+                                            menu.elements[i].selected = false
+                                    }
 
-						let focused = ESX_MENU.getFocused();
+                                    ESX_MENU.change(focused.namespace, focused.name, elem)
+                                    ESX_MENU.render();
 
-						if(typeof focused != 'undefined') {
+                                    $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
 
-							let menu    = ESX_MENU.opened[focused.namespace][focused.name];
-							let pos     = ESX_MENU.pos[focused.namespace][focused.name];
-							let elem    = menu.elements[pos];
+                                }
 
-							switch(elem.type){
+                                break;
+                            }
 
-								case 'default': break;
+                        case 'LEFT':
+                            {
 
-								case 'slider' : {
-								
-									let min = (typeof elem.min == 'undefined') ? 0 : elem.min;
+                                let focused = ESX_MENU.getFocused();
 
-									if(elem.value > min){
-										elem.value--;
-										ESX_MENU.change(focused.namespace, focused.name, elem)
-									}
+                                if (typeof focused != 'undefined') {
 
-									ESX_MENU.render();
+                                    let menu = ESX_MENU.opened[focused.namespace][focused.name];
+                                    let pos = ESX_MENU.pos[focused.namespace][focused.name];
+                                    let elem = menu.elements[pos];
 
-									break;
-								}
+                                    switch (elem.type) {
 
-								default: break;
+                                        case 'default':
+                                            break;
 
-							}
+                                        case 'slider':
+                                            {
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+                                                let min = (typeof elem.min == 'undefined') ? 0 : elem.min;
 
-						}
+                                                if (elem.value > min) {
+                                                    elem.value--;
+                                                    ESX_MENU.change(focused.namespace, focused.name, elem)
+                                                }
 
-						break;
-					}
+                                                ESX_MENU.render();
 
-					case 'RIGHT' : {
+                                                break;
+                                            }
 
-						let focused = ESX_MENU.getFocused();
+                                        default:
+                                            break;
 
-						if(typeof focused != 'undefined') {
+                                    }
 
-							let menu    = ESX_MENU.opened[focused.namespace][focused.name];
-							let pos     = ESX_MENU.pos[focused.namespace][focused.name];
-							let elem    = menu.elements[pos];
+                                    $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
 
-							switch(elem.type){
+                                }
 
-								case 'default': break;
+                                break;
+                            }
 
-								case 'slider' : {
-								
-									if(typeof elem.options != 'undefined' && elem.value < elem.options.length - 1){
-										elem.value++;
-										ESX_MENU.change(focused.namespace, focused.name, elem)
-									}
+                        case 'RIGHT':
+                            {
 
-									if(typeof elem.max != 'undefined' && elem.value < elem.max){
-										elem.value++;
-										ESX_MENU.change(focused.namespace, focused.name, elem)
-									}
+                                let focused = ESX_MENU.getFocused();
 
-									ESX_MENU.render();
+                                if (typeof focused != 'undefined') {
 
-									break;
-								}
+                                    let menu = ESX_MENU.opened[focused.namespace][focused.name];
+                                    let pos = ESX_MENU.pos[focused.namespace][focused.name];
+                                    let elem = menu.elements[pos];
 
-								default: break;
+                                    switch (elem.type) {
 
-							}
+                                        case 'default':
+                                            break;
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+                                        case 'slider':
+                                            {
 
-						}
+                                                if (typeof elem.options != 'undefined' && elem.value < elem.options.length - 1) {
+                                                    elem.value++;
+                                                    ESX_MENU.change(focused.namespace, focused.name, elem)
+                                                }
 
-						break;
-					}
+                                                if (typeof elem.max != 'undefined' && elem.value < elem.max) {
+                                                    elem.value++;
+                                                    ESX_MENU.change(focused.namespace, focused.name, elem)
+                                                }
 
-					default : break;
+                                                ESX_MENU.render();
 
-				}
+                                                break;
+                                            }
 
-				break;
-			}
+                                        default:
+                                            break;
 
-		}
+                                    }
 
-	}
+                                    $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
 
-	window.onload = function(e){
-		window.addEventListener('message', (event) => {
-			onData(event.data)
-		});
-	}
+                                }
+
+                                break;
+                            }
+
+                        default:
+                            break;
+
+                    }
+
+                    break;
+                }
+
+        }
+
+    }
+
+    window.onload = function(e) {
+        window.addEventListener('message', (event) => {
+            onData(event.data)
+        });
+    }
 
 })()
