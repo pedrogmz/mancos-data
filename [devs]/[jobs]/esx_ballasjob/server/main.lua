@@ -239,13 +239,15 @@ ESX.RegisterServerCallback('esx_ballasjob:keycount', function(source, cb)
   local count = xPlayer.getInventoryItem('key_ballas')
 
   if count.count == 0 then
-    local count = xPlayer.getInventoryItem('key_orden')
+    count  = xPlayer.getInventoryItem('key_orden')
   end
-
+  
   if count then count = count.count; end
 
   cb(count)
 
 end)
+
+
 
 

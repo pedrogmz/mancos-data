@@ -237,7 +237,8 @@ ESX.RegisterServerCallback('esx_steeljob:keycount', function(source, cb)
   local xPlayer = ESX.GetPlayerFromId(_source)
   while not xPlayer do Citizen.Wait(0); xPlayer = ESX.GetPlayerFromId(_source); end
   local count = xPlayer.getInventoryItem('key_steel')
-if count.count == 0 then
+
+  if count.count == 0 then
   count = xPlayer.getInventoryItem('key_orden')
 
 end

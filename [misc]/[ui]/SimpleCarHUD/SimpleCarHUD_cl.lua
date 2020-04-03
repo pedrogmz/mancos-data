@@ -28,6 +28,9 @@ local cruiseColorOff = {255, 96, 96}        -- Color used when seatbelt is off
  
 -- LOCATION PARAMETERS
 local locationColorText = {255, 255, 255}   -- Color used to display location string
+
+-- STRESS
+local stressVal = 0
  
 -- Lookup tables for direction and zone
 local directions = { [0] = 'N', [1] = 'W', [2] = 'S', [3] = 'E', [4] = 'N' }
@@ -151,3 +154,45 @@ function drawTxt(content, font, colour, scale, x, y)
     AddTextComponentString(content)
     DrawText(x, y)
 end
+
+-- Arnedo5 | Stress system
+Citizen.CreateThread(function()
+	while true do
+        Citizen.Wait(1000)
+
+        if cruiseIsOn == true then
+            TriggerEvent('esx_status:getStatus', 'stress', function(status)
+                stressVal = status.val
+            end)
+
+            local playerPed = GetPlayerPed(-1)
+            local playerCar = GetVehiclePedIsIn(playerPed, false)
+            local SpeedKMM = GetEntitySpeed(playerPed)*3.6
+            local SpeedKM = math.floor(SpeedKMM)
+
+            if SpeedKM > 0 and SpeedKM <= 125 then
+                if IsPedInAnyVehicle(playerPed, false) then
+                    if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then	
+
+                         -- Up stress
+                         if stressVal > 0 then
+                            if stressVal >= 10000 then
+                                TriggerEvent('esx_status:remove', 'stress', 10000)
+                                TriggerEvent('esx_basicneeds:removeStress')
+                                Citizen.Wait(60000)
+                            elseif stressVal < 10000 then
+                                TriggerEvent('esx_status:remove', 'stress', 10000)
+                                TriggerEvent('esx_basicneeds:removeStress')
+                                Citizen.Wait(60000)
+                            end
+                        end
+
+                    end
+                end
+            end
+
+        end
+        
+    end
+end)	
+

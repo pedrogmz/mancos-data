@@ -1,39 +1,4 @@
-
--- Error Check
-if DiscordWebhookSystemInfos == nil and DiscordWebhookKillinglogs == nil and DiscordWebhookChat == nil then
-	local Content = LoadResourceFile(GetCurrentResourceName(), 'config.lua')
-	Content = load(Content)
-	Content()
-end
-if DiscordWebhookSystemInfos == 'WEBHOOK_LINK_HERE' then
-	print('\n\nERROR\n' .. GetCurrentResourceName() .. ': Please add your "System Infos" webhook\n\n')
-else
-	PerformHttpRequest(DiscordWebhookSystemInfos, function(Error, Content, Head)
-		if Content == '{"code": 50027, "message": "Invalid Webhook Token"}' then
-			print('\n\nERROR\n' .. GetCurrentResourceName() .. ': "System Infos" webhook non-existing!\n\n')
-		end
-	end)
-end
-if DiscordWebhookKillinglogs == 'WEBHOOK_LINK_HERE' then
-	print('\n\nERROR\n' .. GetCurrentResourceName() .. ': Please add your "Killing Log" webhook\n\n')
-else
-	PerformHttpRequest(DiscordWebhookKillinglogs, function(Error, Content, Head)
-		if Content == '{"code": 50027, "message": "Invalid Webhook Token"}' then
-			print('\n\nERROR\n' .. GetCurrentResourceName() .. ': "Killing Log" webhook non-existing!\n\n')
-		end
-	end)
-end
-if DiscordWebhookChat == 'WEBHOOK_LINK_HERE' then
-	print('\n\nERROR\n' .. GetCurrentResourceName() .. ': Please add your "Chat" webhook\n\n')
-else
-	PerformHttpRequest(DiscordWebhookChat, function(Error, Content, Head)
-		if Content == '{"code": 50027, "message": "Invalid Webhook Token"}' then
-			print('\n\nERROR\n' .. GetCurrentResourceName() .. ': "Chat" webhook non-existing!\n\n')
-		end
-	end)
-end
-	
--- System Infos
+	-- System Infos
 PerformHttpRequest(DiscordWebhookSystemInfos, function(Error, Content, Head) end, 'POST', json.encode({username = SystemName, content = '**Resource DiscordBot iniciado.**'}), { ['Content-Type'] = 'application/json' })
 
 AddEventHandler('playerConnecting', function()
@@ -59,30 +24,6 @@ AddEventHandler('DiscordBot:playerDied', function(Message, Weapon)
 	end
 	TriggerEvent('DiscordBot:ToDiscord', DiscordWebhookKillinglogs, SystemName, Message .. ' `' .. date.day .. '.' .. date.month .. '.' .. date.year .. ' - ' .. date.hour .. ':' .. date.min .. ':' .. date.sec .. '`', SystemAvatar, false)
 end)
-
-function getAvatar(source)
-	--local AvatarURL = UserAvatar
-	local steamID = tonumber(GetIDFromSource('steam', source), 16)
-	print(steamID)
-	
-	--PerformHttpRequest('http://steamcommunity.com/profiles/' .. steamID .. '/?xml=1', function(Error, Content, Head)
-		--local SteamProfileSplitted = stringsplit(Content, '\n')
-		--for i, Line in ipairs(SteamProfileSplitted) do
-			--if Line:find('<avatarFull>') then
-				--AvatarURL = Line:gsub('<avatarFull><!%[CDATA%[', ''):gsub(']]></avatarFull>', '')
-				--return AvatarURL
-			--end
-		--end
-	--end)
-	
-	PerformHttpRequest('https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=0CF8BF782D91097F568751CEF1C56B81&steamids='..steamID, function(err, text, headers)
-		Citizen.Wait(100)
-		local image = string.match(text, '"avatarfull":"(.-)","')
-		return image
-	end)
-	
-	--return AvatarURL
-end
 
 -- Chat
 AddEventHandler('chatMessage', function(Source, Name, Message)
@@ -134,10 +75,7 @@ AddEventHandler('chatMessage', function(Source, Name, Message)
 		end
 		
 		local server = GetConvar("server_number", "1")
-
-		--Getting the steam avatar if available
-		local AvatarURL = getAvatar(Source)
-		TriggerEvent('DiscordBot:ToDiscord', Webhook, Name .. ' [ID: ' .. Source .. '] Server: '..server, '```'..Message..'```', AvatarURL, false, Source, TTS) --Sending the message to discord
+		TriggerEvent('DiscordBot:ToDiscord', 'chat', Name .. ' [ID: ' .. Source .. '] Server: '..server, '```'..Message..'```', 'steam', true, Source, TTS) --Sending the message to discord
 	end
 end)
 
@@ -157,15 +95,17 @@ AddEventHandler('DiscordBot:ToDiscord', function(WebHook, Name, Message, Image, 
 			WebHook = DiscordWebhookSystemInfos
 		elseif WebHook:lower() == 'kill' then
 			WebHook = DiscordWebhookKillinglogs
-		elseif WebHook:lower() == 'keys' then
-			WebHook = DiscordWebhookKeybindingLogs
 		elseif not Webhook:find('discordapp.com/api/webhooks') then
 			print('ToDiscord event called without a specified webhook!')
 			return nil
 		end
 		
 		if Image:lower() == 'steam' then
-			Image = getAvatar(Source)
+			local steamID = tonumber(GetIDFromSource('steam', Source), 16)
+			PerformHttpRequest('https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=0CF8BF782D91097F568751CEF1C56B81&steamids='..steamID, function(err, text, headers)
+				Image = string.match(text, '"avatarfull":"(.-)","')
+				return PerformHttpRequest(WebHook, function(Error, Content, Head) end, 'POST', json.encode({username = Name, content = Message, avatar_url = Image, tts = TTS}), {['Content-Type'] = 'application/json'})
+			end)
 		elseif Image:lower() == 'user' then
 			Image = UserAvatar
 		else

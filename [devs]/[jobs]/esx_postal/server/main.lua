@@ -6,4 +6,7 @@ AddEventHandler('esx_gopostaljob:pay', function(amount)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	xPlayer.addMoney(tonumber(amount))
+
+	-- Arnedo5 | Subimos stress
+	TriggerClientEvent('esx_status:add', source, 'stress', 150000)
 end)

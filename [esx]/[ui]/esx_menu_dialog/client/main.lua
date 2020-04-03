@@ -80,7 +80,7 @@ Citizen.CreateThread(function()
 			if post then
 				menu.submit(data, menu)
 			else
-				ESX.ShowNotification('That input is invalid!')
+				ESX.ShowNotification('¡Introduce un numero válido!')
 			end
 		end
 

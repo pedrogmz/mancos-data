@@ -113,3 +113,18 @@ AddEventHandler('esx_speedcamera:insert', function(id, description, total, term,
 	end
 
 end)
+
+
+-- Arnedo5 | Detector de radares
+ESX.RegisterServerCallback('esx_speedcamera:checkDetector', function(source, cb)
+	
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local total = xPlayer.getInventoryItem('radar_detector').count
+
+	if total >= 1 then
+		cb(true)
+	else
+		cb(false)
+	end
+
+end)

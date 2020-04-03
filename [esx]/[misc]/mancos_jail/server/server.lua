@@ -1,12 +1,11 @@
-ESX                = nil
+ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 -- jail command
-TriggerEvent('es:addGroupCommand', 'jail', 'mod', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'jail', 'admin', function(source, args, user)
 	
 	local jailPlayer = args[1]
-	local jailTime = tonumber(args[2])*60
 	local jailTimeMinutes = tonumber(args[2])
 	local jailReason = args
 	table.remove(jailReason, 1)
@@ -14,16 +13,16 @@ TriggerEvent('es:addGroupCommand', 'jail', 'mod', function(source, args, user)
 	
 	local Identifier = ESX.GetPlayerFromId(jailPlayer).identifier
 	local localIdentifier = ESX.GetPlayerFromId(source).identifier
-
-	if jailPlayer and GetPlayerName(jailPlayer) ~= nil and jailTime then
-		JailPlayer(jailPlayer, jailTime)
+	
+	if jailPlayer and jailTimeMinutes then
+		JailPlayer(jailPlayer, jailTimeMinutes)
 		
 		-- Para logging en la base de datos y luego poder crear un panel para visualizar los jails
 		MySQL.Async.execute(
 			'INSERT INTO jails (identifier, jail_time, reason, jailer) VALUES (@identifier, @jail_time, @reason, @jailer)', 
 			{
 				['@identifier'] = Identifier,
-				['@jail_time'] = tonumber(jailTime),
+				['@jail_time'] = tonumber(jailTimeMinutes),
 				['@reason'] = table.concat(jailReason, " "),
 				['@jailer'] = localIdentifier
 			}

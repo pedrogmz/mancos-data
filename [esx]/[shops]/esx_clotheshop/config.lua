@@ -6,7 +6,7 @@ Config.Price = 160
 Config.DrawDistance = 100.0
 Config.MarkerSize   = {x = 3.2, y = 3.2, z = 0.5}
 Config.MarkerColor  = {r = 102, g = 102, b = 204}
-Config.MarkerType   = 1
+Config.MarkerType   = 25
 
 Config.Shops = {
 	vector3(72.3, -1399.1, 28.4),

@@ -98,8 +98,8 @@ Locales['es'] = {
   -- Death
   ['respawn_available_in'] = 'Reaparición disponible en ~b~%s minutos %s segundos~s~',
   ['respawn_bleedout_in'] = 'Te desangrarás en ~b~%s minutos %s segundos~s~\n',
-  ['respawn_bleedout_prompt'] = 'Mantén presionado [~b~E~s~] para reaparecer',
-  ['respawn_bleedout_fine'] = 'mantén presionado [~b~E~s~] para reaparecer para ~g~$%s~s~',
+  ['respawn_bleedout_prompt'] = 'Mantén presionado [~b~H~s~] para reaparecer',
+  ['respawn_bleedout_fine'] = 'mantén presionado [~b~H~s~] para reaparecer para ~g~$%s~s~',
   ['respawn_bleedout_fine_msg'] = 'Tu pagaste ~r~$%s~s~ por reaparecer.',
   ['distress_send'] = '[~b~G~s~] enviar señal de socorro',
   ['distress_sent'] = '¡La señal de socorro ha sido enviada a las unidades disponibles!',

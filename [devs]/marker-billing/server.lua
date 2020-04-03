@@ -154,10 +154,10 @@ AddEventHandler('marker_billing:billing', function(id, date)
 
             if (tonumber(totalBilling) > 0) then
 
-                if (tonumber(xPlayer.getBank()) > tonumber(totalBilling)) then
+                if (tonumber(xPlayer.getBank()) > tonumber(totalBilling)) or 1 == 1 then
 
                     -- En caso de tener dinero en el  banco, retiramos el dinero
-                    xPlayer.removeAccountMoney('bank', totalBilling)
+                    --xPlayer.removeAccountMoney('bank', totalBilling)
 
                     removeMoney(_source, xPlayer, date)
 
@@ -165,12 +165,14 @@ AddEventHandler('marker_billing:billing', function(id, date)
                         local xPlayerr = ESX.GetPlayerFromId(xPlayers[i])
                         if xPlayerr.identifier == xPlayer.identifier then
                             TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..totalBilling.._U('success_'..ESX.GetPlayerFromId(_source).job.name).."")
+
+                            -- Arnedo5 | El dinero se guarda en la sociedad
+                            TriggerClientEvent('billingSocietyAdd', xPlayers[i], 'police', totalBilling) -- Le sacamos dinero y se lo ponemos a la sociedad
+
                         end
                     end
 
-                    -- Arnedo5 | El dinero se guarda en la sociedad
-                    TriggerClientEvent('billingSocietyAdd', _source, 'police', totalBilling)
-
+                   
                 else -- En caso de no tener dinero mostramos un mensaje de alerta por el terminal 
                     TriggerClientEvent("showData", _source,  _U('error_money'))
                 end 
@@ -212,10 +214,10 @@ AddEventHandler('marker_billing:billingMechanic', function(id, description, note
 
     if (xPlayer) then
        
-        if (tonumber(xPlayer.getBank()) >= tonumber(total)) then
+        if (tonumber(xPlayer.getBank()) >= tonumber(total)) or 1 == 1 then
 
-            -- En caso de tener dinero en el  banco, retiramos el dinero
-            xPlayer.removeAccountMoney('bank', tonumber(total))
+            --En caso de tener dinero en el  banco, retiramos el dinero
+            --xPlayer.removeAccountMoney('bank', tonumber(total))
          
             MySQL.Async.execute("INSERT INTO billing (id, identifier, sender, target_type, target, label, amount, term) VALUES (NULL, @identifier, @sender, 'society', 'society_mechanic', @description, @amount, 0)", {
 				['@identifier'] = xPlayer.identifier,
@@ -244,12 +246,14 @@ AddEventHandler('marker_billing:billingMechanic', function(id, description, note
 							for i=1, #xPlayers, 1 do
 								local xPlayerr = ESX.GetPlayerFromId(xPlayers[i])
 								if xPlayerr.identifier == xPlayer.identifier then
-									TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..total.."$ retirados por pago de factura en Mecánico ["..description.."]")
+                                    TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..total.."$ retirados por pago de factura en Mecánico ["..description.."]")
+                                    
+                                    -- Arnedo5 | El dinero se guarda en la sociedad
+                                    TriggerClientEvent('billingSocietyAdd', xPlayers[i], 'mechanic', tonumber(total)) -- Le sacamos dinero y se lo ponemos a la sociedad
 								end
                             end
 
-                              -- Arnedo5 | El dinero se guarda en la sociedad
-                            TriggerClientEvent('billingSocietyAdd', _source, 'mechanic', tonumber(total))
+                            
                             
                             -- Restart values form
                             TriggerClientEvent("marker_billing:exit", _source)

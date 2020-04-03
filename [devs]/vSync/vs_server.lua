@@ -16,7 +16,7 @@ admins = {
 }
 
 -- Set this to false if you don't want the weather to change automatically every 10 minutes.
-DynamicWeather = false
+DynamicWeather = true
 
 --------------------------------------------------
 debugprint = false -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.
@@ -46,13 +46,13 @@ AvailableWeatherTypes = {
     'XMAS', 
     'HALLOWEEN',
 }
-CurrentWeather = "XMAS"
+CurrentWeather = "SMOG"
 Time = {}
 Time.h = 12
 Time.m = 0
 local freezeTime = false
 local blackout = false
-local newWeatherTimer = 10 -- minutos para el cambio de clima
+local newWeatherTimer = 7 -- minutos para el cambio de clima
 
 RegisterServerEvent('vSync:requestSync')
 AddEventHandler('vSync:requestSync', function()

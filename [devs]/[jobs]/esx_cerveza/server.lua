@@ -9,6 +9,9 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 RegisterServerEvent("Farmcyc:recoleccion")
 AddEventHandler("Farmcyc:recoleccion", function()
 
+	-- Arnedo5 | Subimos stress
+	TriggerClientEvent('esx_status:add', source, 'stress', 5000)
+
     local _source = source	
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local recoleccionsuerte = math.random(1,100)
@@ -42,7 +45,8 @@ end)
 -- procesado trigo
 
 ESX.RegisterServerCallback('Farmcyc:empaquetado:trigo', function (source, cb)
-	
+
+
 	local _source = source
 	
 	local xPlayer  = ESX.GetPlayerFromId(_source)
@@ -61,6 +65,10 @@ else
 					Citizen.Wait(1000)
 					xPlayer.addInventoryItem('cajadetrigo', 1) 
 
+						-- Arnedo5 | Subimos stress
+	--TriggerClientEvent('esx_status:add', source, 'stress', 5000)
+	
+
 					cb(true)
 
 				else
@@ -75,6 +83,7 @@ end)
 -- procesado cebada
 
 ESX.RegisterServerCallback('Farmcyc:empaquetado:cebada', function (source, cb)
+
 	
 	local _source = source
 	
@@ -94,6 +103,10 @@ else
 					Citizen.Wait(1000)
 					xPlayer.addInventoryItem('cajadecebada', 1) 
 
+					
+	-- Arnedo5 | Subimos stress
+	--TriggerClientEvent('esx_status:add', source, 'stress', 5000)
+
 					cb(true)
 
 				else
@@ -109,6 +122,8 @@ end)
 
 RegisterNetEvent('Ventadecebada')
 AddEventHandler('Ventadecebada', function()
+
+
 	local _source = source 
     local xPlayer = ESX.GetPlayerFromId(_source)
     local cebada = xPlayer.getInventoryItem('cajadecebada').count
@@ -119,7 +134,11 @@ if cebada > 0 then
 
 
     xPlayer.removeInventoryItem('cajadecebada', 1)
-    xPlayer.addMoney(PrecioCebada)
+	xPlayer.addMoney(PrecioCebada)
+	
+	
+	-- Arnedo5 | Subimos stress
+	--TriggerClientEvent('esx_status:add', source, 'stress', 100000) 
 elseif cebada < 1 then
 	TriggerClientEvent('esx:showNotification', source, '~r~No tienes Cerveza Negra para vender')
 
@@ -131,6 +150,9 @@ end)
 
 RegisterNetEvent('Ventadetrigo')
 AddEventHandler('Ventadetrigo', function()
+
+
+
 	local _source = source 
     local xPlayer = ESX.GetPlayerFromId(_source)
     local trigo = xPlayer.getInventoryItem('cajadetrigo').count
@@ -141,7 +163,10 @@ if trigo > 0 then
 
     xPlayer.removeInventoryItem('cajadetrigo', 1)
     Citizen.Wait(500)
-    xPlayer.addMoney(PrecioTrigo)
+	xPlayer.addMoney(PrecioTrigo)
+	
+		-- Arnedo5 | Subimos stress
+		--TriggerClientEvent('esx_status:add', source, 'stress', 100000)
 elseif trigo < 1 then
 	TriggerClientEvent('esx:showNotification', source, '~r~No tienes Cerveza Rubia para vender')
 

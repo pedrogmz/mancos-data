@@ -2,6 +2,7 @@
 -- For support, previews and showcases, head to https://discord.gg/ukgQa5K
 
 local MFM = MF_MobileMeth
+local stressVal = 0
 
 function MFM:Awake(...)
   while not ESX do Citizen.Wait(0); end
@@ -45,7 +46,7 @@ function MFM:Update(...)
       local dist = Utils.GetVecDist(plyPos, self.HintLocation)
       if dist < self.DrawTextDist then
         local p = self.HintLocation
-        Utils.DrawText3D(p.x,p.y,p.z, "[~r~E~s~]  para llamar en la puerta")
+        Utils.DrawText3D(p.x,p.y,p.z, "[~g~E~s~] para buscar ~y~drogas~w~")
         if IsControlJustPressed(0, Keys["E"]) and GetGameTimer() - timer > 150 then    
           ESX.TriggerServerCallback('MF_MobileMeth:GetCops',function(count)
             if count and count >= self.MinPolCount then 
@@ -54,20 +55,20 @@ function MFM:Update(...)
               Wait(3000)
               ClearPedTasksImmediately(plyPed)
 
-              while not HasAnimDictLoaded("timetable@jimmy@doorknock@") do RequestAnimDict("timetable@jimmy@doorknock@"); Citizen.Wait(0); end
-              TaskPlayAnim( plyPed, "timetable@jimmy@doorknock@", "knockdoor_idle", 8.0, 8.0, -1, 4, 0, 0, 0, 0 )     
+              while not HasAnimDictLoaded("anim@heists@prison_heiststation@cop_reactions") do RequestAnimDict("anim@heists@prison_heiststation@cop_reactions"); Citizen.Wait(0); end
+              TaskPlayAnim( plyPed, "anim@heists@prison_heiststation@cop_reactions", "cop_b_idle", 8.0, 8.0, -1, 4, 0, 0, 0, 0 )     
               Citizen.Wait(0)
-              while IsEntityPlayingAnim(plyPed, "timetable@jimmy@doorknock@", "knockdoor_idle", 3) do Citizen.Wait(0); end          
+              while IsEntityPlayingAnim(plyPed, "anim@heists@prison_heiststation@cop_reactions", "cop_b_idle", 3) do Citizen.Wait(0); end          
 
               Citizen.Wait(1000)
 
-              TriggerEvent('chat:addMessage', {color = { 255, 0, 0}, multiline = true, args = {"Me", "Ves una pequeña nota debajo de la puerta."}})
+              TriggerEvent('chat:addMessage', {color = { 255, 0, 0}, multiline = true, args = {"Deep Web", "¡Has visto una web donde enseñan a fabricar Meta."}})
               ClearPedTasksImmediately(plyPed)
 
               local randNum = math.random(1,#self.TruckLocations)
               local spawnLoc = self.TruckLocations[randNum]
               local nearStreet = GetStreetNameFromHashKey(GetStreetNameAtCoord(spawnLoc.x,spawnLoc.y,spawnLoc.z))
-              noteTemplate.text = "Encuentra el vehículo cerca de "..nearStreet..".\nNo tardes."
+              noteTemplate.text = "El vehículo está cerca de "..nearStreet..".\nNo tardes."
 
               self.MissionStarted = {
                 TruckLoc = spawnLoc,
@@ -84,7 +85,7 @@ function MFM:Update(...)
                 Utils.DrawText(noteTemplate)
               end
             else
-              ESX.ShowNotification("No hay nadie dentro. ~r~Vuelve más tarde~w~")
+              ESX.ShowNotification("No hay nada de información. ~r~Tan vez más tarde...~w~")
             end
           end)          
         end
@@ -111,7 +112,7 @@ function MFM:Update(...)
             if not self.WaypointSet then
               self.WaypointSet = true
               SetNewWaypoint(self.MissionStarted.Dropoff.x,self.MissionStarted.Dropoff.y)
-              ESX.ShowNotification("Busca un compañero y que monte atrás para empezar a cocinar.")
+              ESX.ShowNotification("Busca un ~r~compañero~w~ y que monte atrás para empezar a cocinar.")
             end
 
             if not self.MethCook then
@@ -124,11 +125,11 @@ function MFM:Update(...)
               end
               if foundCook and foundCook ~= GetPlayerPed(-1) then
                 if GetEntitySpeed(self.TruckSpawned) * 3.6 > self.MinSpeedForCook then 
-                  ESX.ShowNotification("Tu compañero a empezado a cocinar la meta.")
+                  ESX.ShowNotification("Tu compañero ha empezado a cocinar la meta.")
                   self.MethCook = NetworkGetPlayerIndexFromPed(foundCook)
                   TriggerServerEvent('MF_MobileMeth:BeginCooking', GetPlayerServerId(self.MethCook))
                 else
-                  if not self.DidNotify then ESX.ShowNotification("Conduce a partir de 15KMH para empezar a cocinar."); self.DidNotify = true; end
+                  if not self.DidNotify then ESX.ShowNotification("Conduce a partir de ~g~15~w~ Km/h para empezar a cocinar."); self.DidNotify = true; end
                 end
               end
             else
@@ -160,7 +161,7 @@ function MFM:Update(...)
                     self.MethCook = false
                     self.SmokeActive = false
                     self.DidNotify = false
-                    ESX.ShowNotification("Has entregado la meta.")
+                    ESX.ShowNotification("Has ~g~entregado~w~ la meta.")
                   end
                 end
               end
@@ -173,8 +174,8 @@ function MFM:Update(...)
 end
 
 function MFM:BeginCooking(driver)
-  if self.MissionStarted or self.Driver then ESX.ShowNotification("Ya tienes una tanda acitva."); return; end
-  ESX.ShowNotification("Has empezado a cocinar la meta")
+  if self.MissionStarted or self.Driver then ESX.ShowNotification("Ya tienes una tanda ~r~acitva~w~."); return; end
+  ESX.ShowNotification("Has ~g~empezado~w~ a cocinar la meta")
   self.Driver = driver
   self.Truck = GetVehiclePedIsIn(GetPlayerPed(-1))
   local doCont = true
@@ -185,8 +186,8 @@ function MFM:BeginCooking(driver)
       local plyPed = GetPlayerPed(-1)
       local vehicle = GetVehiclePedIsIn(plyPed,false)
       if not IsPedInAnyVehicle(plyPed) then 
-        doBreak = "Has perdido al conductor." 
-        driverMsg = "El cocinero te ha perdido."
+        doBreak = "Has perdido al ~r~conductor~w~." 
+        driverMsg = "El cocinero te ha ~r~perdido~w~."
       else
         if GetEntitySpeed(vehicle) * 3.6 < self.MinSpeedForCook then
           if not self.CurrentlyStopped then
@@ -199,11 +200,32 @@ function MFM:BeginCooking(driver)
                 self.CanCont = true
                 --doBreak = "El vehículo está conduciendo muy lento para continuar." 
                 --driverMsg = "El vehículo está conduciendo muy lento para continuar." 
-                ESX.ShowNotification('Alguien te ha denunciado. ¡Muevete!.')
+
+                ESX.ShowNotification('Alguien te ha denunciado. ¡~r~Muevete~w~!.')
+                
                 Citizen.Wait(1000)
-                TriggerServerEvent('MF_MobileMeth:NotifyPolice', GetEntityCoords(GetPlayerPed(-1)))
-                TriggerServerEvent('MF_Trackables:Notify','911',coordsHere,'police')
-                TriggerServerEvent('MF_Trackables:Notify','Actividad sospechosa en proceso.',GetEntityCoords(GetPlayerPed(-1)),'police')
+
+                -- Arnedo5 | Avisamos a la policia
+
+                local plyPos = GetEntityCoords(GetPlayerPed(-1),  true)
+                local streetName, crossing = Citizen.InvokeNative( 0x2EB41072B4C1E4C0, plyPos.x, plyPos.y, plyPos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt() )
+                streetName = GetStreetNameFromHashKey(streetName)
+                local coords      = GetEntityCoords(GetPlayerPed(-1))
+
+                -- Send entorno
+                TriggerServerEvent('comprobarEntorno', "Hay un vehiculo circulando en ".. streetName.." soltando mucho humo...", coords.x, coords.y, coords.z, "NPC RANDOM")
+
+                TriggerEvent('esx_status:getStatus', 'stress', function(status)
+                  stressVal = status.val
+                end)
+                
+                if stressVal >= 0 then
+                  TriggerEvent('esx_status:add', 'stress', 100000)
+                end
+
+                --TriggerServerEvent('MF_MobileMeth:NotifyPolice', GetEntityCoords(GetPlayerPed(-1)))
+                --TriggerServerEvent('MF_Trackables:Notify','911',coordsHere,'police')
+                --TriggerServerEvent('MF_Trackables:Notify','Actividad sospechosa en proceso.',GetEntityCoords(GetPlayerPed(-1)),'police')
               else
                 self.CanCont = true
                 self.CurrentlyStopped = false
@@ -247,8 +269,8 @@ function MFM:BeginCooking(driver)
   else return; end
 
   if doCont then
-    ESX.ShowNotification("Has terminado de empaquetar la meta, ya puedes ir al destino.")
-    TriggerServerEvent('MF_MobileMeth:FinishCook', self.Driver, true, "Has terminado de empaquetar la meta, ya puedes ir al destino.")
+    ESX.ShowNotification("Has ~g~terminado~w~ de empaquetar la meta, ya puedes ir al ~r~destino~w~.")
+    TriggerServerEvent('MF_MobileMeth:FinishCook', self.Driver, true, "Has ~g~terminado~w~ de empaquetar la meta, ya puedes ir al ~r~destino~w~.")
     self.Driver = false
   end
 end

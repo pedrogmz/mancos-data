@@ -78,13 +78,12 @@ Citizen.CreateThread(function()
 	while true do
         local pos = GetEntityCoords(GetPlayerPed(-1), true)
         
-    
 		for k,v in pairs(Pointers)do
             local pos2 = v.position
             
 			if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 15.0)then
 				if not holdingup then
-                    DrawMarker(1, v.position.x, v.position.y, v.position.z - 1, 0, 0, 0, 0, 0, 0, 1.0001, 1.0001, 0.9, v.color.r, v.color.g, v.color.b,255, 0, 0, 0,0)
+                    DrawMarker(25, v.position.x, v.position.y, v.position.z - 1, 0, 0, 0, 0, 0, 0, 1.0001, 1.0001, 0.9, v.color.r, v.color.g, v.color.b,255, 0, 0, 0,0)
                     
 					if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 1.0)then
 						if (incircle == false) then
@@ -158,10 +157,6 @@ end)
 -- Tramitar facturacion / multa (Mechanic)
 RegisterNUICallback("billingMechanic", function(data)
     TriggerServerEvent('marker_billing:billingMechanic', data.strId, data.strDescription, data.strNote, data.strTotal, data.date)
-end)
-
-RegisterNUICallback("billingSocietyAdd", function(society, total)
-    
 end)
 
 RegisterNetEvent("billingSocietyAdd")

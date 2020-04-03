@@ -20,6 +20,7 @@ files {
 	'html/js/app.js',
 	'html/fonts/pdown.ttf',
 	'html/fonts/bankgothic.ttf',
+	'html/fonts/gta-ui.ttf',
 	'html/img/cursor.png',
 	'html/img/keys/enter.png',
 	'html/img/keys/return.png',

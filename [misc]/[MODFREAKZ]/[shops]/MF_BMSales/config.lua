@@ -20,7 +20,7 @@ MFS.NotificationTime = 5.0
 MFS.PoliceNotifyCountdown = 0.3 -- minutes from reaching dealer until police are notified.
 MFS.NotifyPoliceTimer = 10
 MFS.PoliceJobName = "police"
-MFS.MinPoliceOnline = 2
+MFS.MinPoliceOnline = 1
 
 -- The door.
 MFS.HintLocation      =   vector4(167.8,-2221.99,7.24,359.23)
@@ -46,9 +46,9 @@ MFS.DrugItems = {
 }
 
 MFS.DrugPrices = {
-  ['gold'] = 1000,
-  ['rolex'] = 900,
-  ['diamond'] = 1600,
+  ['gold'] = 450, -- 1000
+  ['rolex'] = 300, -- 900
+  ['diamond'] = 600, -- 1800
 }
 
 MFS.MaxPriceVariance = 30.0 --%

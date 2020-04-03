@@ -98,8 +98,8 @@ Citizen.CreateThread(function()
 				local veh = GetVehiclePedIsIn(playerPed)
 				local SpeedKMM = GetEntitySpeed(playerPed)*3.6
 				local SpeedKM = math.floor(SpeedKMM)
-				local maxSpeed = 81.0 -- THIS IS THE MAX SPEED IN KM/H
-				local maxSpeed2 = 121.0
+				local maxSpeed = 85.0 -- THIS IS THE MAX SPEED IN KM/H
+				local maxSpeed2 = 125.0
 				local plate = GetVehicleNumberPlateText(veh) 						-- Nurambo | Obtenemos la matrícula
 				local vehicle = GetDisplayNameFromVehicleModel(GetEntityModel(veh)) -- Arnedo5 | modelo del vehiculo
 
@@ -136,7 +136,7 @@ Citizen.CreateThread(function()
 
 				if SpeedKM > maxSpeed2 then
 						
-						if IsPedInAnyVehicle(playerPed, false) then
+					if IsPedInAnyVehicle(playerPed, false) then
 						if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then					
 							if hasBeenCaught == false then
 
@@ -185,8 +185,8 @@ Citizen.CreateThread(function()
 				local veh = GetVehiclePedIsIn(playerPed)
 				local SpeedKMM = GetEntitySpeed(playerPed)*3.6
 				local SpeedKM = math.floor(SpeedKMM)
-				local maxSpeed = 121.0 -- THIS IS THE MAX SPEED IN KM/H
-				local maxSpeed2= 161.0
+				local maxSpeed = 122.0 -- THIS IS THE MAX SPEED IN KM/H
+				local maxSpeed2= 162.0
 				local plate = GetVehicleNumberPlateText(veh) 						-- Nurambo | Obtenemos la matrícula
 				local vehicle = GetDisplayNameFromVehicleModel(GetEntityModel(veh)) -- Arnedo5 | modelo del vehiculo
 				
@@ -294,3 +294,81 @@ AddEventHandler("ex_speedcamera:shownotification", function(zone, SpeedKM, total
 	end
 
 end) 
+
+-- Arnedo 5 | Entrando en zona de radar
+local HasAlreadyEnteredMarker         = false
+local isInRadarZone, hasExitedRadarZone = false
+local currentZone                     = nil
+local currentZoneName                 = nil
+
+Citizen.CreateThread(function()
+
+	while true do
+	  Citizen.Wait(500)
+  
+	  local playerPed = PlayerPedId()
+	  local coords    = GetEntityCoords(playerPed)
+	  local playerPed = GetPlayerPed(-1)
+	  local playerCar = GetVehiclePedIsIn(playerPed, false)
+	  isInRadarZone, hasExitedRadarZone = false;
+  
+	  for k,v in pairs(Speedcamera80Zone) do
+		local distance = GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true)
+  
+		if distance < 100 then
+		  currentZone, currentZoneName = v, "80"
+		  isInRadarZone = true
+		end
+	  end
+
+	  for k,v in pairs(Speedcamera120Zone) do
+		local distance = GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true)
+  
+		if distance < 100 then
+
+		  currentZone, currentZoneName = v, "120"
+		  isInRadarZone = true
+		end
+	  end
+  
+	  -- Enter zone
+	  
+	  if isInRadarZone and not HasAlreadyEnteredMarker then
+		HasAlreadyEnteredMarker = true
+  
+		ESX.TriggerServerCallback('esx_speedcamera:checkDetector', function(hasRadar)
+		 
+			if hasRadar == true then
+				if IsPedInAnyVehicle(playerPed, false) then
+					if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then 
+						ESX.ShowNotification("~g~Entrando~w~ en zona de radar de tramo: máx ~r~"..currentZoneName.."km/h")
+					end
+				end
+			end
+		
+		end)
+  
+  
+	  end
+  
+	  -- Exit zoone
+	  if not hasExitedRadarZone and not isInRadarZone and HasAlreadyEnteredMarker then
+		HasAlreadyEnteredMarker = false
+  
+		ESX.TriggerServerCallback('esx_speedcamera:checkDetector', function(hasRadar)			  
+		  
+			if hasRadar == true then
+				if IsPedInAnyVehicle(playerPed, false) then
+					if (GetPedInVehicleSeat(playerCar, -1) == playerPed) then 
+						ESX.ShowNotification("~r~Saliendo~w~ en zona de radar de tramo.")
+					end
+				end
+			  end
+			  
+		end)
+  
+	  end
+  
+	end
+  
+  end)

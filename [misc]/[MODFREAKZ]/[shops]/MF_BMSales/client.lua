@@ -124,7 +124,10 @@ function MFS:MissionStart()
         end
         Utils.DrawText3D(tPos.x,tPos.y,tPos.z, "[~r~E~s~] para hablar.")
         if IsControlJustPressed(0,38) then
+          
+          -- Arnedo5 | De momento lo comentamos
           self:PoliceNotifyTimer(tPos)
+
           ESX.TriggerServerCallback('MF_BMSales:GetDrugCount', function(counts)
             ESX.UI.Menu.CloseAll()
             local elements = {}
@@ -193,10 +196,10 @@ function MFS:PoliceNotifyTimer(pos)
   Citizen.CreateThread(function(...)
     Citizen.Wait(self.PoliceNotifyCountdown * 60 * 1000)
     TriggerServerEvent('MF_BMSales:NotifyPolice',pos)
-    TriggerServerEvent('MF_Trackables:Notify','911',coordsHere,'police')
-    TriggerServerEvent('MF_Trackables:Notify','Actividad sospechosa.',GetEntityCoords(GetPlayerPed(-1)),'police')
-    local nearStreet = GetStreetNameFromHashKey(GetStreetNameAtCoord(pos.x,pos.y,pos.z))
-    ESX.ShowNotification("La policía ha sido alertada de actividad sospechosa "..nearStreet..".")
+    --TriggerServerEvent('MF_Trackables:Notify','911',coordsHere,'police')
+    --TriggerServerEvent('MF_Trackables:Notify','Actividad sospechosa.',GetEntityCoords(GetPlayerPed(-1)),'police')
+    --local nearStreet = GetStreetNameFromHashKey(GetStreetNameAtCoord(pos.x,pos.y,pos.z))
+    --ESX.ShowNotification("La policía ha sido alertada de actividad sospechosa "..nearStreet..".")
   end)
 end
 
@@ -204,12 +207,18 @@ function MFS:DoNotifyPolice(pos)
   Citizen.CreateThread(function(...)
     local timer = GetGameTimer()
     local street = GetStreetNameAtCoord(pos.x,pos.y,pos.z)
+    local coords      = GetEntityCoords(GetPlayerPed(-1))
+
+    -- Arnedo5 | Avisar policia
     if street then
       local nearStreet = GetStreetNameFromHashKey(street)
-      ESX.ShowNotification("Alguien ha reportado actividad sospechosa en "..nearStreet..". [~g~F10~s~]")
+      ESX.ShowNotification("Alguien ha reportado actividad sospechosa en "..nearStreet..".")
     else
-      ESX.ShowNotification("Alguien ha reportado actividad sospechosa. [~g~F10~s~]")
+      ESX.ShowNotification("Alguien ha reportado actividad sospechosa.")
     end
+
+    TriggerEvent('esx_status:add', 'stress', 100000) -- Subimos 30 de estres
+
     local blip = AddBlipForRadius(pos.x,pos.y,pos.z, 100.0)
     SetBlipHighDetail(blip, fa)
     SetBlipColour(blip, 1)

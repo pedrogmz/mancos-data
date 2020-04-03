@@ -117,7 +117,7 @@ Citizen.CreateThread(function()
 		
 			for k in pairs(locations) do
 				if GetDistanceBetweenCoords(locations[k].x, locations[k].y, locations[k].z, GetEntityCoords(GetPlayerPed(-1))) < 150 then			
-					DrawMarker(2, locations[k].x, locations[k].y, locations[k].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.3, 228, 71, 12, 10, 0, 1, 0, 0)	-- Marker Recogida 
+					DrawMarker(28, locations[k].x, locations[k].y, locations[k].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.3, 228, 71, 12, 40, 0, 1, 0, 0)	-- Marker Recogida 
 				  --DrawMarker(type, posX,           posY,         posZ,         dirX, dirY, dirZ, rotX, rotY, rotZ, scaleX, scaleY, scaleZ, colorR, colorG, colorB, alpha, bobUpAndDown, faceCamera, unknown, rotate, *textureDict, *textureName, drawOnEnts)
 					
 					if GetDistanceBetweenCoords(locations[k].x, locations[k].y, locations[k].z, GetEntityCoords(GetPlayerPed(-1)), false) < 2 then			
@@ -159,9 +159,9 @@ Citizen.CreateThread(function()
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-
+				
 				if GetDistanceBetweenCoords(Config.cebada.x, Config.cebada.y, Config.cebada.z, GetEntityCoords(GetPlayerPed(-1))) < 150 then			
-					DrawMarker(-1, Config.cebada.x, Config.cebada.y, Config.cebada.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.3, 1.3, 1.0, 228, 71, 12, 110, 1, 1, 0, 1)	-- Marker Procesado Cebada
+					--DrawMarker(-1, Config.cebada.x, Config.cebada.y, Config.cebada.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.3, 1.3, 1.0, 228, 71, 12, 110, 1, 1, 0, 1)	-- Marker Procesado Cebada
 					
 					if GetDistanceBetweenCoords(Config.cebada.x, Config.cebada.y, Config.cebada.z, GetEntityCoords(GetPlayerPed(-1)), true) < 2 then			
 						---Draw3DText( Config.Processing.x, Config.Processing.y, Config.Processing.z , "~w~Produccion de cangrejos~y~\nPresiona [~b~E~y~] para comenzar el empaquetado",4,0.15,0.1)

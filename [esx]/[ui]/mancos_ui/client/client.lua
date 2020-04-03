@@ -120,3 +120,5 @@ RegisterNetEvent('mancos_ui:toggle')
 AddEventHandler('mancos_ui:toggle', function(show)
 	SendNUIMessage({action = "toggle", show = show})
 end)
+
+

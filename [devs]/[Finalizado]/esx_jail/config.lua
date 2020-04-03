@@ -30,13 +30,13 @@ Config.PrisonWork = {
 }
 
 Config.Teleports = {
-	["Prison Work"] = { 
+	["Trabajo"] = { 
 		["x"] = 992.51770019531, 
 		["y"] = -3097.8413085938, 
 		["z"] = -38.995861053467, 
 		["h"] = 81.15771484375, 
 		["goal"] = { 
-			"Jail" 
+			"Prisión" 
 		} 
 	},
 
@@ -46,40 +46,40 @@ Config.Teleports = {
 		["z"] = 45.672061920166, 
 		["h"] = 92.469093322754, 
 		["goal"] = { 
-			"Security" 
+			"Seguridad" 
 		} 
 	},
 
-	["Jail"] = { 
+	["Prisión"] = { 
 		["x"] = 1800.6979980469, 
 		["y"] = 2483.0979003906, 
 		["z"] = -122.68814849854, 
 		["h"] = 271.75274658203, 
 		["goal"] = { 
-			"Prison Work", 
-			"Security", 
-			"Visitor" 
+			"Trabajo", 
+			"Seguridad", 
+			"Visitas" 
 		} 
 	},
 
-	["Security"] = { 
+	["Seguridad"] = { 
 		["x"] = 1706.7625732422,
 		["y"] = 2581.0793457031, 
 		["z"] = -69.407371520996, 
 		["h"] = 267.72802734375, 
 		["goal"] = { 
-			"Jail",
+			"Prisión",
 			"Boiling Broke"
 		} 
 	},
 
-	["Visitor"] = {
+	["Visitas"] = {
 		["x"] = 1699.7196044922, 
 		["y"] = 2574.5314941406, 
 		["z"] = -69.403930664063, 
 		["h"] = 169.65020751953, 
 		["goal"] = { 
-			"Jail" 
+			"Prisión" 
 		} 
 	}
 }

@@ -117,7 +117,7 @@ Citizen.CreateThread(function()
 		
 			for k in pairs(locations) do
 				if GetDistanceBetweenCoords(locations[k].x, locations[k].y, locations[k].z, GetEntityCoords(GetPlayerPed(-1))) < 150 then			
-					DrawMarker(28, locations[k].x, locations[k].y, locations[k].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.2, 33, 145, 232, 20, 0, 1, 0, 0)	-- Marker Recogida 
+					DrawMarker(28, locations[k].x, locations[k].y, locations[k].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.2, 33, 145, 232, 40, 0, 1, 0, 0)	-- Marker Recogida 
 				  --DrawMarker(type, posX,           posY,         posZ,         dirX, dirY, dirZ, rotX, rotY, rotZ, scaleX, scaleY, scaleZ, colorR, colorG, colorB, alpha, bobUpAndDown, faceCamera, unknown, rotate, *textureDict, *textureName, drawOnEnts)
 					
 					if GetDistanceBetweenCoords(locations[k].x, locations[k].y, locations[k].z, GetEntityCoords(GetPlayerPed(-1)), false) < 2 then			

@@ -8,7 +8,7 @@ var penalty = {
     term: 0
 }
 
-$(function () {
+$(function() {
 
     $(document).ready(() => {
         $('.container-loader').fadeOut('fast');
@@ -55,7 +55,7 @@ $(function () {
 
         // Restart data
         if (item.type === "restart") {
-            
+
             penalty = {
                 description: [],
                 amount: 0,
@@ -74,14 +74,14 @@ $(function () {
         }
     })
 
-    $("#close").click(function () {
+    $("#close").click(function() {
         $.post('http://esx_policejob/exit', JSON.stringify({}));
         return
     })
 
 
     // if the person uses the escape key, it will exit the resource
-    document.onkeyup = function (data) {
+    document.onkeyup = function(data) {
         if (data.which == 27) {
             $.post('http://esx_policejob/exit', JSON.stringify({}));
             return
@@ -90,13 +90,13 @@ $(function () {
 
 
     function printPenal(data) {
-        
+
         var obj = JSON.parse(data);
         var name;
 
         obj.forEach(function(element) {
 
-            var item =  {
+            var item = {
                 tablargename: element['TABANAME'] + " - " + element['TABADESCRIPTION'],
                 id: element['id'],
                 tabaidchapter: element['TABAIDCHAPTER'],
@@ -106,7 +106,7 @@ $(function () {
                 tabaterm: element['TABATERM'],
                 tabalastupdate: element['TABALASTUPDATE']
             }
-            
+
             arrayArticle.push(item);
 
             name = element['TABANAME'] + " - " + element['TABADESCRIPTION'];
@@ -114,10 +114,10 @@ $(function () {
 
             //  inputUsers.<?php echo (str_replace(' ', '',$row['firstname'])."_".str_replace(' ', '', $row['lastname'])); ?> = 'views/images/uploads/police/' + "<?php echo $image; ?>";
         });
-    
+
         $('input.autocomplete').autocomplete({
             data: inputPenal,
-            onAutocomplete: function (value, callback) {
+            onAutocomplete: function(value, callback) {
                 $('#autocomplete-input').val("");
 
                 addPenal(value);
@@ -125,7 +125,7 @@ $(function () {
                 $('#autocomplete-input').focus()
             }
         });
-        
+
     }
 
     // Add penal element
@@ -150,10 +150,10 @@ $(function () {
             penalty.term = parseInt(penalty.term) + parseInt(article.tabaterm);
 
             // Añadir elemento al html
-            $('<li class="collection-item grey darken-3 penal""><p><span class="new badge teal darken-3" data-badge-caption="" style="float: left; margin: 0px 15px 0px 0px;">' + split[0] + '</span><div>' + split[1]+ '<a href="#!" class="secondary-content"><i id="' + article.id + '" class="material-icons white-text" onclick="delElement(this)">close</i></a></div></li>').appendTo('.collection');
+            $('<li class="collection-item grey darken-3 penal""><p><span class="new badge teal darken-3" data-badge-caption="" style="float: left; margin: 0px 15px 0px 0px;">' + split[0] + '</span><div>' + split[1] + '<a href="#!" class="secondary-content"><i id="' + article.id + '" class="material-icons white-text" onclick="delElement(this)">close</i></a></div></li>').appendTo('.collection');
 
             $('#totalAmount').text("Total : " + penalty.amount + "€");
-            
+
             // Mensaje ok!
             $('#msgError').text("Artículo añadido!");
 
@@ -170,14 +170,14 @@ $(function () {
 
 })
 
-  // Delete penal element
-  function delElement(element) {
+// Delete penal element
+function delElement(element) {
 
     var id = $(element).attr('id');
 
     var penal = arrayArticle.find(function(obj) {
         return obj.id == id;
-      });
+    });
 
     var pos = penalty.description.map(function(e) { return e.id; }).indexOf(id);
 
@@ -191,9 +191,9 @@ $(function () {
 
     // Add total amount / mostrar total
     $('#totalAmount').text("Total : " + penalty.amount + "€");
-    
-     // Mensaje ok!
-     $('#msgError').text("Artículo eliminado!");
+
+    // Mensaje ok!
+    $('#msgError').text("Artículo eliminado!");
 
     // Ocultar lista
     if (penalty.description.length == 0) {
@@ -202,7 +202,7 @@ $(function () {
             $('#totalAmount').fadeOut("fast");
         });
     }
-     
+
 }
 
 // Aplicar multas / delitos
@@ -221,17 +221,18 @@ function processPenal() {
 
 // Get Format date
 function GetFormatDate(strDate) {
-	var date = new Date(strDate);
-	
-	var month = date.getMonth() + 1; 
-	  
-	return (
-    date.getFullYear() + '-' +
-    (month.length = 1 ? '0' + month : month) + '-' +
-	(date.getDate().toString().length == 1 ? '0' + date.getDate() :  date.getDate()) + ' ' + 
-    (date.getHours().toString().length == 1 ? '0' + date.getHours() :  date.getHours()) + ":" + 
-    (date.getMinutes().toString().length == 1 ? '0' + date.getMinutes() :  date.getMinutes()));
+    var date = new Date(strDate);
+
+    var month = date.getMonth() + 1;
+
+    return (
+        date.getFullYear() + '-' +
+        (month.length == 1 ? '0' + month : month) + '-' +
+        (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + ' ' +
+        (date.getHours().toString().length == 1 ? '0' + date.getHours() : date.getHours()) + ":" +
+        (date.getMinutes().toString().length == 1 ? '0' + date.getMinutes() : date.getMinutes()));
 }
+
 
 
 

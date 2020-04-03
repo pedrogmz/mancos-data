@@ -16,8 +16,8 @@ Config.pedemp2 = {x = 452.95 , y = -1305.26, z = 29.12, h = 234.09} -- Ped metal
 
 Config.Blipnombrecyc = "Ventacyc"
 
-Config.PMetal = 37
-Config.PPlastico = 37
+Config.PMetal = 40
+Config.PPlastico = 40
 
 
 

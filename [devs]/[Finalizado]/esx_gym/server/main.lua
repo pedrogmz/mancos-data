@@ -106,11 +106,11 @@ AddEventHandler('esx_gym:buyMembership', function()
 		xPlayer.removeMoney(800)
 		
 		xPlayer.addInventoryItem('gym_membership', 1)		
-		notification("You purchased a ~g~membership")
+		notification("Has comprado el ~g~Carné de miembro")
 		
 		TriggerClientEvent('esx_gym:trueMembership', source) -- true
 	else
-		notification("You do not have enough ~r~money")
+		notification("No tienes suficiente ~r~dinero")
 	end	
 end)
 

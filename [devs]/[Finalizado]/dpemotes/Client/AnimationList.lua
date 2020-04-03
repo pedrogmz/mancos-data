@@ -512,7 +512,7 @@ DP.Emotes = {
    }},
    ["crossarms2"] = {"amb@world_human_hang_out_street@male_c@idle_a", "idle_b", "Brazos cruzados 2", AnimationOptions =
    {
-       EmoteMoving = true,
+       EmoteMoving = false,
    }},
    ["crossarms3"] = {"anim@heists@heist_corona@single_team", "single_team_loop_boss", "Brazos cruzados 3", AnimationOptions =
    {
