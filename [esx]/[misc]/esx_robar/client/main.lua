@@ -94,7 +94,14 @@ function OpenCuffMenu()
                             ESX.TriggerServerCallback('esx_thief:getItemQ', function(quantity)
                                 if quantity > 0 then
                                     IsAbleToSearch = true
-                                    TriggerServerEvent('cuffServer', GetPlayerServerId(player))
+                                    ---
+									playerheading = GetEntityHeading(GetPlayerPed(-1))
+									playerlocation = GetEntityForwardVector(PlayerPedId())
+									playerCoords = GetEntityCoords(GetPlayerPed(-1))
+									handcuffed = true
+									---
+									
+									TriggerServerEvent('mancos_arrest:request_arrest', target_id, playerheading, playerCoords, playerlocation)
                                 else
                                     ESX.ShowNotification(_U('no_handcuffs'))
                                 end
@@ -113,7 +120,15 @@ function OpenCuffMenu()
                     ESX.TriggerServerCallback('esx_thief:getItemQ', function(quantity)
                         if quantity > 0 then
                             IsAbleToSearch = false
-                            TriggerServerEvent('unCuffServer', GetPlayerServerId(player))
+                            ---
+							playerheading = GetEntityHeading(GetPlayerPed(-1))
+							playerlocation = GetEntityForwardVector(PlayerPedId())
+							playerCoords = GetEntityCoords(GetPlayerPed(-1))
+							target_id = GetPlayerServerId(closestPlayer)
+							handcuffed = false
+							---
+							
+							TriggerServerEvent('mancos_arrest:requestrelease', target_id, playerheading, playerCoords, playerlocation)
                         else
                             ESX.ShowNotification(_U('no_handcuffs'))
                         end

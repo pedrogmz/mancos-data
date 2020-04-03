@@ -6,6 +6,7 @@ files {
 	'html/static/css/app.css',
 	'html/static/js/app.js',
 	'html/static/js/manifest.js',
+	'html/static/js/battery.js',
 	'html/static/js/vendor.js',
 
 	'html/static/config/config.json',
@@ -59,7 +60,8 @@ client_script {
 	"client/photo.lua",
 	"client/app_tchat.lua",
 	"client/bank.lua",
-	"client/twitter.lua"
+	"client/twitter.lua",
+	"client/battery.lua"
 }
 
 server_script {

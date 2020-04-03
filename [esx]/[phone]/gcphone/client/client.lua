@@ -28,26 +28,6 @@ local PhoneInCall = {}
 local currentPlaySound = false
 local soundDistanceMax = 8.0
 
-
---====================================================================================
---  Check si le joueurs poséde un téléphone
---  Callback true or false
---====================================================================================
---[[function hasPhone (cb)
-  cb(true)
-end
---====================================================================================
---  Que faire si le joueurs veut ouvrir sont téléphone n'est qu'il en a pas ?
---====================================================================================
-function ShowNoPhoneWarning ()
-end]]
-
---[[
-  Ouverture du téphone lié a un item
-  Un solution ESC basé sur la solution donnée par HalCroves
-  https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
---]]
-
 ESX = nil
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -56,60 +36,61 @@ Citizen.CreateThread(function()
   end
 end)
 
-function hasPhone (cb)
-  if (ESX == nil) then return cb(0) end
-  ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
-    cb(qtty > 0)
-  end, 'phone')
+function hasPhone(cb)
+	if (ESX == nil) then return cb(0) end
+	ESX.TriggerServerCallback('gcphone:getItemAmount', function(qtty)
+		cb(qtty > 0)
+	end, 'phone')
 end
+
 function ShowNoPhoneWarning () 
-  if (ESX == nil) then return end
-  ESX.ShowNotification("No tienes ningún ~r~teléfono~s~.")
+	if (ESX == nil) then return end
+	ESX.ShowNotification("No tienes ningún ~r~teléfono~s~.")
 end
-
-
 
 --====================================================================================
 --  
 --====================================================================================
 Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(0)
-    if takePhoto ~= true then
-      if IsControlJustPressed(1, KeyOpenClose) then
-        hasPhone(function (hasPhone)
-          if hasPhone == true then
-            TooglePhone()
-          else
-            ShowNoPhoneWarning()
-          end
-        end)
-      end
-      if menuIsOpen == true then
-        for _, value in ipairs(KeyToucheCloseEvent) do
-          if IsControlJustPressed(1, value.code) then
-            SendNUIMessage({keyUp = value.event})
-          end
-        end
-        if useMouse == true and hasFocus == ignoreFocus then
-          local nuiFocus = not hasFocus
-          SetNuiFocus(nuiFocus, nuiFocus)
-          hasFocus = nuiFocus
-        elseif useMouse == false and hasFocus == true then
-          SetNuiFocus(false, false)
-          hasFocus = false
-        end
-      else
-        if hasFocus == true then
-          SetNuiFocus(false, false)
-          hasFocus = false
-        end
-      end
-    end
-  end
+	while true do
+		Citizen.Wait(0)
+		if takePhoto ~= true then
+			if IsControlJustPressed(1, KeyOpenClose) then
+				hasPhone(function (hasPhone)
+					if hasPhone == true and batteryLevel > 0 then
+						TooglePhone()
+						ESX.ShowNotification("~r~Batería~s~ restante: "..colorbat..""..batteryLevel.."%~w~")
+					elseif hasPhone == true and batteryLevel == 0 then
+						ShowNoBatteryWarning()
+					else
+						ShowNoPhoneWarning()
+						hasPhone = false
+					end
+				end)
+			end
+			if menuIsOpen == true then
+				for _, value in ipairs(KeyToucheCloseEvent) do
+					if IsControlJustPressed(1, value.code) then
+						SendNUIMessage({keyUp = value.event})
+					end
+				end
+				if useMouse == true and hasFocus == ignoreFocus then
+					local nuiFocus = not hasFocus
+					SetNuiFocus(nuiFocus, nuiFocus)
+					hasFocus = nuiFocus
+				elseif useMouse == false and hasFocus == true then
+					SetNuiFocus(false, false)
+					hasFocus = false
+				end
+			else
+				if hasFocus == true then
+					SetNuiFocus(false, false)
+					hasFocus = false
+				end
+			end
+		end
+	end
 end)
-
-
 
 --====================================================================================
 --  Active ou Deactive une application (appName => config.json)

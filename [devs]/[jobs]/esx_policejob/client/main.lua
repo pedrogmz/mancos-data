@@ -994,6 +994,7 @@ function OpenPoliceActionsMenu()
 				{label = _U('id_card'), value = 'identity_card'},
 				{label = _U('search'), value = 'body_search'},
 				{label = _U('handcuff'), value = 'handcuff'},
+				{label = _U('uncuff'), value = 'uncuff'},
 				{label = _U('drag'), value = 'drag'},
 				{label = _U('put_in_vehicle'), value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
@@ -1023,10 +1024,27 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
-
-						TriggerServerEvent('esx_policejob:wives', GetPlayerServerId(closestPlayer)) -- Arnedo 5 | Poner esposas ropa
+						---
+						playerheading = GetEntityHeading(GetPlayerPed(-1))
+						playerlocation = GetEntityForwardVector(PlayerPedId())
+						playerCoords = GetEntityCoords(GetPlayerPed(-1))
+						target_id = GetPlayerServerId(closestPlayer)
+						---isHandcuffed = true
+						---
 						
-						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('mancos_arrest:request_arrest', target_id, playerheading, playerCoords, playerlocation)
+						TriggerServerEvent('esx_policejob:wives', target_id)  -- Arnedo 5 | Poner esposas ropa
+					elseif action == 'uncuff' then
+						---
+						playerheading = GetEntityHeading(GetPlayerPed(-1))
+						playerlocation = GetEntityForwardVector(PlayerPedId())
+						playerCoords = GetEntityCoords(GetPlayerPed(-1))
+						target_id = GetPlayerServerId(closestPlayer)
+						---isHandcuffed = false
+						---
+						
+						TriggerServerEvent('mancos_arrest:request_release', target_id, playerheading, playerCoords, playerlocation)
+						TriggerServerEvent('esx_policejob:wives', target_id)  -- Arnedo 5 | Poner esposas ropa
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
@@ -2443,7 +2461,7 @@ end)
 
 AddEventHandler('playerSpawned', function(spawn)
 	isDead = false
-	TriggerEvent('esx_policejob:unrestrain')
+	--TriggerEvent('esx_policejob:unrestrain')
 
 	if not hasAlreadyJoined then
 		TriggerServerEvent('esx_policejob:spawned')
@@ -2457,7 +2475,7 @@ end)
 
 AddEventHandler('onResourceStop', function(resource)
 	if resource == GetCurrentResourceName() then
-		TriggerEvent('esx_policejob:unrestrain')
+		--TriggerEvent('esx_policejob:unrestrain')
 		TriggerEvent('esx_phone:removeSpecialContact', 'police')
 
 		if Config.MaxInService ~= -1 then
@@ -2494,8 +2512,6 @@ function ImpoundVehicle(vehicle)
 	ESX.ShowNotification(_U('impound_successful'))
 	currentTask.busy = false
 end
-
-
 
 -- *********************************************
 -- Derath / Arnedo 5 - Pago Directo
@@ -2592,9 +2608,7 @@ RegisterNetEvent("esx_policejob:wiv")
 AddEventHandler("esx_policejob:wiv", function(data)
 
 	if wives == true then
-
 		setUniform("wives_clean", playerped)
-
 		wives = false
 	else 
 		local playerPed = PlayerPedId()
@@ -2603,4 +2617,10 @@ AddEventHandler("esx_policejob:wiv", function(data)
 		wives = true
 	end
 
-end) 
+end)
+
+-- Pedro | Nuevo arrestar
+RegisterNetEvent("mancos_arrest:toggleHandcuffed")
+AddEventHandler("mancos_arrest:toggleHandcuffed", function(_isHandcuffed)
+	isHandcuffed = _isHandcuffed
+end)

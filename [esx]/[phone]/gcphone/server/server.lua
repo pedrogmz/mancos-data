@@ -13,18 +13,6 @@ function getPhoneRandomNumber()
 	return num
 end
 
---- Exemple pour les numero du style 06XXXXXXXX
--- function getPhoneRandomNumber()
---     return '0' .. math.random(600000000,699999999)
--- end
-
-
---[[
-  Ouverture du téphone lié a un item
-  Un solution ESC basé sur la solution donnée par HalCroves
-  https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
---]]
-
 local ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) 
     ESX = obj 
@@ -38,9 +26,6 @@ TriggerEvent('esx:getSharedObject', function(obj)
         end
     end)
 end)
-
-
-
 
 --====================================================================================
 --  Utils
@@ -56,6 +41,7 @@ function getSourceFromIdentifier(identifier, cb)
     end)
     cb(nil)
 end
+
 function getNumberPhone(identifier)
     local result = MySQL.Sync.fetchAll("SELECT users.phone_number FROM users WHERE users.identifier = @identifier", {
         ['@identifier'] = identifier
@@ -86,7 +72,6 @@ function getIdentifiant(id)
         return v
     end
 end
-
 
 function getOrGeneratePhoneNumber (sourcePlayer, identifier, cb)
     local sourcePlayer = sourcePlayer
@@ -518,47 +503,6 @@ AddEventHandler('gcPhone:appelsDeleteAllHistorique', function ()
     appelsDeleteAllHistorique(srcIdentifier)
 end)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --====================================================================================
 --  OnLoad
 --====================================================================================
@@ -569,6 +513,7 @@ AddEventHandler('es:playerLoaded',function(source)
         TriggerClientEvent("gcPhone:myPhoneNumber", sourcePlayer, myPhoneNumber)
         TriggerClientEvent("gcPhone:contactList", sourcePlayer, getContacts(identifier))
         TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(identifier))
+        TriggerClientEvent("gcPhone:batteryLevel", sourcePlayer, getBattery(identifier))
     end)
 end)
 
@@ -585,11 +530,6 @@ AddEventHandler('gcPhone:allUpdate', function()
     sendHistoriqueCall(sourcePlayer, num)
 end)
 
-
-AddEventHandler('onMySQLReady', function ()
-    -- MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")
-end)
-
 --====================================================================================
 --  App bourse
 --====================================================================================
@@ -601,7 +541,6 @@ function getBourse()
     --      -- price type number      | Prix actuelle
     --      -- difference type number | Evolution 
     -- 
-    -- local result = MySQL.Sync.fetchAll("SELECT * FROM `recolt` LEFT JOIN `items` ON items.`id` = recolt.`treated_id` WHERE fluctuation = 1 ORDER BY price DESC",{})
     local result = {
         {
             libelle = 'Google',
@@ -623,25 +562,8 @@ function getBourse()
 end
 
 --====================================================================================
---  App ... WIP
+--  Calls
 --====================================================================================
-
-
--- SendNUIMessage('ongcPhoneRTC_receive_offer')
--- SendNUIMessage('ongcPhoneRTC_receive_answer')
-
--- RegisterNUICallback('gcPhoneRTC_send_offer', function (data)
-
-
--- end)
-
-
--- RegisterNUICallback('gcPhoneRTC_send_answer', function (data)
-
-
--- end)
-
-
 
 function onCallFixePhone (source, phone_number, rtcOffer, extraData)
     local indexCall = lastIndexCall
@@ -695,7 +617,7 @@ function onAcceptFixePhone(source, infoCall, rtcAnswer)
         TriggerClientEvent('gcPhone:notifyFixePhoneChange', -1, PhoneFixeInfo)
         TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].transmitter_src, AppelsEnCours[id], true)
 	SetTimeout(1000, function() -- change to +1000, if necessary.
-       		TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
+		TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
 	end)
         saveAppels(AppelsEnCours[id])
     end
@@ -712,3 +634,32 @@ function onRejectFixePhone(source, infoCall, rtcAnswer)
     AppelsEnCours[id] = nil
     
 end
+
+
+--====================================================================================
+--  Battery
+--====================================================================================
+batteryLevel = 100
+
+function getBattery(identifier)
+    local result = MySQL.Sync.fetchAll("SELECT users.phone_battery FROM users WHERE users.identifier = @identifier", {
+        ['@identifier'] = identifier
+    })
+    if result[1] ~= nil then
+        return result[1].phone_battery
+    end
+    return nil
+end
+
+AddEventHandler('esx:playerDropped', function(source)
+	local identifier = getPlayerID(source)
+	MySQL.Async.execute("UPDATE users SET phone_battery = @batteryLevel WHERE identifier = @identifier", { 
+		['@batteryLevel'] = batteryLevel,
+		['@identifier'] = identifier
+	})
+end)
+
+RegisterServerEvent("gcPhone:batteryLevel")
+AddEventHandler("gcPhone:batteryLevel", function(_batteryLevel)
+	batteryLevel = _batteryLevel
+end)

@@ -73,6 +73,7 @@ Locales['es'] = {
   ['pagodirecto'] = 'Multa directa',
   ['search'] = 'Buscar',
   ['handcuff'] = 'Poner/quitar Esposas',
+  ['uncuff'] = 'Quitar Esposas',
   ['drag'] = 'escoltar',
   ['put_in_vehicle'] = 'Meter en el vehículo',
   ['out_the_vehicle'] = 'Sacar del vehículo',
