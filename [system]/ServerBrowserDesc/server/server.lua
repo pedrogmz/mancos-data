@@ -15,10 +15,11 @@ Citizen.CreateThread(function()
 		SetConvarServerInfo('Discord', 'https://discord.mancos.games')
 		SetConvarServerInfo('Description', 'Para reportar errores, unete a nuestro discord!')
 		SetConvarServerInfo('Website', 'https://rp.mancos.games')
-		SetConvarServerInfo('Foro', 'https://rp.mancos.games/foro/')
+		SetConvarServerInfo('Foro', 'https://board.mancos.games')
 		SetConvarServerInfo('Twitter', '@MancosGames')
+		SetConvarServerInfo('Reinicios diarios', '11:00 y 21:00')
 
-		SetMapName("La Isla de las Sombras")
+		SetMapName("Los Santos")
 		SetGameType("Roleplay")
 
 		TriggerClientEvent('uptime:tick', -1, uptime)

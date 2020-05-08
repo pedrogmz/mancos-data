@@ -83,7 +83,7 @@ Locales['es'] = {
   ['command_playerid_param'] = 'Especifica el player id o dejalo en blanco para ti',
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ',',
-  ['locale_currency'] = '%s€',
+  ['locale_currency'] = '$%s',
 
   -- Weapons
   ['weapon_knife'] = 'Cuchillo',

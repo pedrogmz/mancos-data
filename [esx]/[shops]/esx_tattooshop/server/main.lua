@@ -42,10 +42,9 @@ end)
 
 ESX.RegisterServerCallback('esx_tattooshop:removeTattoo', function(source, cb, tattooList)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local coins = xPlayer.getAccount('coins')
 
-	if coins.money >= 500 then
-		xPlayer.removeAccountMoney('coins', 500)
+	if xPlayer.getMoney() >= 500 then
+		xPlayer.removeMoney('500')
 
 		MySQL.Async.execute('UPDATE users SET tattoos = @tattoos WHERE identifier = @identifier', {
 			['@tattoos'] = json.encode(tattooList),
@@ -55,7 +54,7 @@ ESX.RegisterServerCallback('esx_tattooshop:removeTattoo', function(source, cb, t
 		--TriggerClientEvent('esx:showNotification', source, _U('bought_tattoo', ESX.Math.GroupDigits(price)))
 		cb(true)
 	else
-		local missingMoney = 500 - coins.money
+		local missingMoney = 500 - xPlayer.getMoney()
 		TriggerClientEvent('esx:showNotification', source, _U('not_enough_money', ESX.Math.GroupDigits(missingMoney)))
 
 

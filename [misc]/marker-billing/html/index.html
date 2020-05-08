@@ -1,0 +1,77 @@
+<html>
+	<head>
+
+      <link rel="stylesheet" href="css/reset.css" type="text/css">
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Google icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/index.css" type="text/css">
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	</head>
+	<body>
+
+    <div class="container" id="container">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+              <div class="card grey darken-3">
+                <div class="card-content white-text">
+                  <span class="card-title">Indique el identificador de usuario</span>
+                  <br>
+                  <div class="input-field">
+                      <input placeholder="ej: 15" id="strId" type="number" class="white-text">
+                      <label for="input">Identificador</label>
+                  </div>
+
+                  <div class="cont-mechanic" style="display: none;">
+                    <div class="input-field">
+                        <input placeholder="Motor al 4, suspensión..." id="strDescription" type="text" class="white-text">
+                        <label for="input">Descripción </label>
+                    </div>
+                    <div class="input-field">
+                      <input placeholder="" id="strNote" type="text" class="white-text">
+                      <label for="input">Nota de la factura (Opcional)</label>
+                    </div>
+                    <div class="input-field">
+                      <input placeholder="1000$ ..." id="strTotal" type="number" class="white-text">
+                      <label for="input">Total factura:</label>
+                    </div>
+                  </div>
+                  <p id="msgData"></p>
+                </div>
+
+                <div class="card-action">
+                  <a href="#" id="check" style="color: #00baac;">Mostrar multas pendientes</a>
+                  <a href="#" id="billing" style="color: #00baac;">Tramitar</a>
+                  <a href="#" id="close" style="color: #00baac;">Cancelar</a>
+                </div>
+
+                <!-- Preloader -->
+                <div class="container-loader">
+                    <h6 class="white-text" style="padding-bottom: 50px;">Tramitando</h6>
+                    <div class="ball-loader">
+                      
+                        <div class="ball-loader-ball ball1"></div>
+                        <div class="ball-loader-ball ball2"></div>
+                        <div class="ball-loader-ball ball3"></div>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+        
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script src="js/index.js" type="text/javascript"></script>       
+	</body>
+</html>
+
+<script>
+
+
+</script>

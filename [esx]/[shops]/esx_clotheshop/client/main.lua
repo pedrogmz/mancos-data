@@ -103,13 +103,14 @@ function OpenShopMenu()
 		'pants_1', 'pants_2',
 		'shoes_1', 'shoes_2',
 		'chain_1', 'chain_2',
---		'bproof_1', 'bproof_2', -- CHALECO
+		'bproof_1', 'bproof_2', -- CHALECO
 		'watches_1', 'watches_2',
 		'bracelets_1', 'bracelets_2',
+		'ears_1', 'ears_2', -- OREJA
 		'bags_1', 'bags_2', -- BOLSA
---		'helmet_1', 'helmet_2', -- CASCO
---		'mask_1', 'mask_2',  -- MASCARA
---		'glasses_1', 'glasses_2' -- GAFAS
+		'helmet_1', 'helmet_2',
+		'mask_1', 'mask_2',
+		'glasses_1', 'glasses_2'
 	})
 end
 

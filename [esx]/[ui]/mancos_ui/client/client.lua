@@ -85,7 +85,7 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 	SendNUIMessage({action = "setValue", key = "job", value = job.grade_label, icon = job.name})
 
 	-- Money
-	SendNUIMessage({action = "setValue", key = "money", value = data.money.."$"})
+	SendNUIMessage({action = "setValue", key = "money", value = "$"..data.money})
 end)
 
 RegisterNetEvent('esx:setAccountMoney')
@@ -108,7 +108,7 @@ end)
 
 RegisterNetEvent('es:activateMoney')
 AddEventHandler('es:activateMoney', function(e)
-	SendNUIMessage({action = "setValue", key = "money", value = e.."$"})
+	SendNUIMessage({action = "setValue", key = "money", value = "$"..e})
 end)
 
 RegisterNetEvent('mancos_ui:updateStatus')
