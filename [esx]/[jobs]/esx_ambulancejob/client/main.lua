@@ -106,28 +106,10 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 
 		if IsDead then
-			--DisableAllControlActions(0)		
+			DisableAllControlActions(0)		
 			EnableControlAction(0, Keys['T'], true)
+			EnableControlAction(0, Keys['H'], true)
 			EnableControlAction(0, Keys['E'], true)
-			DisableControlAction(0, Keys['M'], true)
-			DisableControlAction(0, Keys['Y'], true)
-			DisableControlAction(0, 249, true)
-			DisableControlAction(0, Keys['Z'], true)
-			DisableControlAction(0, Keys['X'], true)
-			DisableControlAction(0, Keys['B'], true)
-			DisableControlAction(0, 182, true)
-			--DisableControlAction(0, Keys['H'], true)
-			--DisableControlAction(0, 288, true)
-			DisableControlAction(0, Keys['F2'], true)
-			DisableControlAction(0, Keys['F3'], true)
-			DisableControlAction(0, Keys['F4'], true)
-			DisableControlAction(0, Keys['F6'], true)
-			DisableControlAction(0, Keys['F7'], true)			
-			DisableControlAction(0, Keys['F9'], true)
-			DisableControlAction(0, Keys['F10'], true)
-			DisableControlAction(0, 344, true)
-			DisableControlAction(0, Keys['F12'], true)
-			
 		else
 			Citizen.Wait(500)
 		end
@@ -181,7 +163,7 @@ function setRagdollDead(flag)
 			  --if ragdoll then
 				  --ClearPedSecondaryTask(playerPed)
 				  setRagdollDead(true)
-				  ragdol = false
+				  ragdoll = false
 				  
 			  --[[
 				else
@@ -473,7 +455,6 @@ AddEventHandler('esx_ambulancejob:revive', function()
 
 		StopScreenEffect('DeathFailOut')
 		DoScreenFadeIn(800)
-		TriggerEvent('deadanrev')
 		
 	end)
 end)

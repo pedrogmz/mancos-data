@@ -95,7 +95,7 @@ RegisterCommand('ad', function(source, args, rawCommand)
 	local _source = source
 	if playerRank(source) ~= '^9[JEFE] ^7' then
     	TriggerClientEvent('chat:addMessage', -1, {
-    	    template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgba(214, 168, 0, 1); border-radius: 3px;"><i class="fas fa-ad"></i> Advertisement:<br> {1}<br></div>',
+    	    template = '<div style="padding: 0.1vw; margin: 0.1vw; border-radius: 3px;"><i class="fas fa-ad"></i>^3 [Noticia]^0 {1}</div>',
 	        args = { _name, msg }
 		})
 		--sendToDiscord(source, "Anuncio",mensaje)
