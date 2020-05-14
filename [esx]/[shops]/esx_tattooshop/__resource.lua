@@ -33,3 +33,5 @@ dependencies {
 	'skinchanger',
 	'skincreator'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

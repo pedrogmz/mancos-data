@@ -53,10 +53,8 @@ Citizen.CreateThread( function()
 		end
     players = {}
     local localplayers = {}
-    for i = 0, 255 do -- infinite sluts!!!
-      if NetworkIsPlayerActive( i ) then
-        table.insert( localplayers, GetPlayerServerId(i) )
-      end
+	for _, player in ipairs(GetActivePlayers()) do
+        table.insert( localplayers, GetPlayerServerId(player) )
     end
     table.sort(localplayers)
     for i,thePlayer in ipairs(localplayers) do
@@ -64,6 +62,7 @@ Citizen.CreateThread( function()
     end
   end
 end)
+
 
 AddEventHandler('EasyAdmin:requestSpectate', function(playerId)
 	spectatePlayer(GetPlayerPed(playerId),playerId,GetPlayerName(playerId))

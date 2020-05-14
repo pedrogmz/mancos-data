@@ -9,9 +9,8 @@ RegisterServerEvent('esx_garbagejob:pay')
 AddEventHandler('esx_garbagejob:pay', function(amount)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
-	local payamount = math.ceil(amount)
-	xPlayer.addMoney(tonumber(payamount))
-	TriggerClientEvent('esx:showNotification', source, '~s~Has recibido~g~ '..payamount..' ~s~por esta parada~s~!')
+	xPlayer.addMoney(tonumber(amount))
+	TriggerClientEvent('esx:showNotification', source, '~s~Has recibido~g~ '..amount..' ~s~por esta parada~s~!')
 end)
 
 RegisterServerEvent('esx_garbagejob:binselect')

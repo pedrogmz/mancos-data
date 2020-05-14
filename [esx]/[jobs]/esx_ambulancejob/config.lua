@@ -6,7 +6,7 @@ Config.Marker                     = { type = 25, x = 1.5, y = 1.5, z = 0.5, r = 
 Config.MarkerSize                 = { x = 3.0, y = 3.0, z = 1.5 }
 
 Config.ReviveReward               = 8  -- revive reward, set to 0 if you don't want it enabled
-Config.AntiCombatLog              = true -- enable anti-combat logging?
+Config.AntiCombatLog              = false -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
 -- Revivir en camilla

@@ -229,41 +229,6 @@ Citizen.CreateThread(function()
 					end
 				end
 			end
-
-			if SpeedKM >= 180 and xPlayer.job.name ~= 'police' and xPlayer.job.name ~= 'ambulance' then
-
-				-- Send notification police
-				DecorSetInt(GetPlayerPed(-1), "IsOutlaw", 2)
-
-				-- Coords
-				local plyPos = GetEntityCoords(GetPlayerPed(-1),  true)
-				
-				-- Vehicle
-				local veh = GetVehiclePedIsIn(GetPlayerPed(-1))
-				local vehName2 = GetDisplayNameFromVehicleModel(GetEntityModel(veh))
-				vehName2 = Config.VehicleType[tostring(GetVehicleClass(veh))] -- Typo de vehiculo en esp
-
-				local plate = GetVehicleNumberPlateText(veh)
-				local primary, secondary = GetVehicleColours(veh)
-				primary = Config.Colornames[tostring(primary)]
-				secondary = Config.Colornames[tostring(secondary)]
-
-				local streetName, crossing = Citizen.InvokeNative( 0x2EB41072B4C1E4C0, plyPos.x, plyPos.y, plyPos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt() )
-				local streetName, crossing = GetStreetNameAtCoord(x, y, z)
-				streetName = GetStreetNameFromHashKey(streetName)
-
-				-- Sexo
-				local msg = "Se ha visto vehiculo ["..vehName2.."], matrícula ["..plate.."], color ["..primary.."] a altas velocidades, cerca de ["..streetName.."]";
-				
-				if streetName ~= nil then
-
-					-- Send entorno
-					TriggerServerEvent('comprobarEntorno', msg, plyPos.x, plyPos.y, plyPos.z, "NPC RANDOM")
-
-					Citizen.Wait(120000)
-				end
-			end
-
 		end
 	end
 end)	

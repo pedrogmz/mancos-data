@@ -1,5 +1,14 @@
 local RechargePoints = {
 	{x = 298.76, y = -793.82, z = 28.48},
+	{x = 441.32, y = -987.99, z = 29.69},
+	{x = 316.53, y = -588.55, z = 42.29},
+	{x = -338.10, y = -142.34, z = 38.01},
+	{x = 903.24, y = -166.90, z = 73.08},
+	{x = -34.32, y = -1106.94, z = 25.42},
+	{x = -700.47, y = -917.58, z = 18.21},
+	{x = -553.57, y = 289.80, z = 81.18},
+	{x = -1073.90, y = -398.17, z = 35.96},
+	{x = 58.91, y = -1734.00, z = 28.31},
 }
 
 batteryLevel = 100
@@ -36,7 +45,7 @@ Citizen.CreateThread(function()
 			Citizen.Wait(1000)
 			batteryLevel = batteryLevel+1
 		else
-			if batteryLevel ~= 0 then
+			if batteryLevel >= 1 and movilon then
 				Citizen.Wait(DischargeTime)
 				batteryLevel = batteryLevel-1
 			end

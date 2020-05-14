@@ -34,3 +34,5 @@ dependencies {
 	'cron',
 	'esx_addonaccount'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -15,14 +15,15 @@ body{
 }
 
 #container {
-	margin-top: 20vh;
-	margin-left: 20vw; /*25*/
-	width: 1258px; /*958px;*/
-	height: 592px;
-	color: white;
-	border-radius: 40px;
-	border: 1px solid #333;
-	background-color: rgba(0,0,0,0.5);
+	    margin-top: 5vh;
+    margin-left: 5vw;
+    width: 1258px;
+    height: 592px;
+    display: flex;
+    color: white;
+    border-radius: 40px;
+    border: 1px solid #333;
+    background-color: rgba(0,0,0,0.5);
 	display: none;
 	
 }

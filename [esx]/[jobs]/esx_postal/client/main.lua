@@ -653,16 +653,12 @@ end)
 -------------------------------------------------
 -- Fonction selection nouvelle mission livraison
 function MissionLivraisonSelect()
-    TriggerServerEvent('esx:clientLog', "MissionLivraisonSelect num")
-    TriggerServerEvent('esx:clientLog', MissionRegion)
 	if MissionRegion == 0 then
 
-            TriggerServerEvent('esx:clientLog', "MissionLivraisonSelect 1")
 		MissionRegion = math.random(1,2)
 	end
 	
 	if MissionRegion == 1 then -- Los santos
-            TriggerServerEvent('esx:clientLog', "MissionLivraisonSelect 2")
 		MissionNum = math.random(1, 10)
 	
 		if MissionNum == 1 then destination = Config.Livraison.Delivery1LS namezone = "Delivery1LS" namezonenum = 1 namezoneregion = 1
@@ -679,7 +675,6 @@ function MissionLivraisonSelect()
 		
 	elseif MissionRegion == 2 then -- Blaine County
 
-            TriggerServerEvent('esx:clientLog', "MissionLivraisonSelect 3")
 		MissionNum = math.random(1, 10)
 	
 		if MissionNum == 1 then destination = Config.Livraison.Delivery1BC namezone = "Delivery1BC" namezonenum = 1 namezoneregion = 2

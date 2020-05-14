@@ -16,3 +16,5 @@ files
     'client/fonts/roboto-regular.ttf',
     'client/fonts/roboto-condensed.ttf',
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

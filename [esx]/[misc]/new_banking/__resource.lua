@@ -20,3 +20,5 @@ files {
     'client/html/media/img/logo-big.png',
     'client/html/media/img/logo-top.png'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

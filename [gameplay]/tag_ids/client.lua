@@ -1,4 +1,4 @@
-local playerNamesDist = 2
+local playerNamesDist = 9
 local displayIDHeight = 1.2 --Height of ID above players head (Starts at center body mass)
 
 prefixes = {}

@@ -5,3 +5,4 @@ description "Show Coords (Development Tool)"
 client_scripts {
 	"client/main.lua"
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

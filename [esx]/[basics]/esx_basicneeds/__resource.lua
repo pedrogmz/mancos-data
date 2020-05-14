@@ -36,3 +36,5 @@ dependencies {
 	'es_extended',
 	'esx_status'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

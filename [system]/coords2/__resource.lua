@@ -6,3 +6,5 @@ client_scripts {
 	"coords.lua"
 }
 
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

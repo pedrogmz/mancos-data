@@ -17,8 +17,8 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 TriggerEvent('es:addCommand', 'notes', function(source, args, user)
   local _source = source
   local xPlayer = ESX.GetPlayerFromId(_source)
-  local item    = xPlayer.getInventoryItem('notepad').count
-if item > 0 then
+  local item    = xPlayer.getInventoryItem('notepad')
+if item ~= nil then
     TriggerClientEvent('lkrp_notepad:note', _source)
     TriggerClientEvent('lkrp_notepad:OpenNotepadGui', _source)
     TriggerEvent('server:LoadsNote')

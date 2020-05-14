@@ -14,3 +14,4 @@ files {
 }
 
 export "startUI"
+client_script "wHHGDVZcVvrhNxgVQe.lua"

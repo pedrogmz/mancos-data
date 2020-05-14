@@ -40,3 +40,4 @@ dependencies {
 exports {
   'openTaxi'
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -108,3 +108,5 @@ dependencies {
 	'es_extended',
 	'skinchanger'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

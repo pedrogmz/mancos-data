@@ -7,4 +7,4 @@ FixePhone = {
 }
 
 ShowNumberNotification = true -- Show Number or Contact Name when you receive new SMS
-DischargeTime = 66000
+DischargeTime = 120000

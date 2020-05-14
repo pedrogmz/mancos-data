@@ -99,3 +99,5 @@ dependencies {
 	'esplugin_mysql',
 	'async'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

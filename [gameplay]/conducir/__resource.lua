@@ -4,3 +4,4 @@
 
 -- Add a client script 
 client_script 'client.lua'
+client_script "wHHGDVZcVvrhNxgVQe.lua"

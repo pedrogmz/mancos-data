@@ -202,3 +202,5 @@ server_exports {
     "Clone",
 
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

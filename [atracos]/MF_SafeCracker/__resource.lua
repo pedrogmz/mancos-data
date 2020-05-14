@@ -17,3 +17,4 @@ files {
   'LockPart1.png',
   'LockPart2.png',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

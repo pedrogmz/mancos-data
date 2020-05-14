@@ -25,3 +25,4 @@ client_script {
 	'client.lua',
 	'GUI.lua'
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

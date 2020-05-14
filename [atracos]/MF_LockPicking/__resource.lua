@@ -18,3 +18,4 @@ files {
   'LockPick2.png',
   'LockPick3.png',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

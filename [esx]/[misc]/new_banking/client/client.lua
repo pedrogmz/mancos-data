@@ -225,7 +225,7 @@ end)
 --==         Transfer Event                    ==
 --===============================================
 RegisterNUICallback('transfer', function(data)
-	TriggerServerEvent('bank:transfer', data.to, data.amountt)
+	TriggerServerEvent('bank:transfer', data.to, tonumber(data.amountt))
 	TriggerServerEvent('bank:balance')
 end)
 

@@ -49,6 +49,7 @@ AddEventHandler('bank:transfer', function(to, amountt)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local zPlayer = ESX.GetPlayerFromId(to)
 	local balance = 0
+	amountt = tonumber(amountt)
 	balance = xPlayer.getAccount('bank').money
 	zbalance = zPlayer.getAccount('bank').money
 	

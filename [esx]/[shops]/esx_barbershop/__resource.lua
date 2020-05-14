@@ -32,3 +32,5 @@ dependencies {
 	'es_extended',
 	'skincreator'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -10,7 +10,7 @@ local Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-local secure = false;
+local secure = true
 
 -- colors
 local r,g,b,a = 166,166,255,255 -- rgba color
@@ -78,6 +78,10 @@ Citizen.CreateThread(function()
             DisableControlAction(0, 24, true) -- Attack
 			DisableControlAction(0, 257, true) -- Attack 2
 			DisableControlAction(0, 25, true) -- Aim
+			DisableControlAction(0, 263, true) -- Melee Attack 1
+			DisableControlAction(0, 45, true) -- Melee Attack 1
+			DisableControlAction(0, 80, true) -- Melee Attack 1
+			DisableControlAction(0, 140, true) -- Melee Attack 1
 			DisableControlAction(0, 263, true) -- Melee Attack 1
         end
     end
@@ -213,5 +217,5 @@ Citizen.CreateThread(function()
     AddTextEntry('PM_SCR_SET', '~b~Configuración ⚙️')
     AddTextEntry('PM_SCR_STA', '~r~Estadísticas 📊')
     AddTextEntry('PM_SCR_RPL', '~y~Editor Rockstar ∑')
-  end)
+end)
   

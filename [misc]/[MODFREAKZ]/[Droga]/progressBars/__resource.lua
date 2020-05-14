@@ -13,3 +13,4 @@ exports {
   'startUI',
   'closeUI',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

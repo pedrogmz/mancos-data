@@ -167,6 +167,10 @@ end)
 
 ESX.RegisterServerCallback('esx_thief:getItemQ', function(source, cb, item)
     local xPlayer = ESX.GetPlayerFromId(source)
-    local quantity = xPlayer.getInventoryItem(item).count
-    cb(quantity)
+    local quantity = xPlayer.getInventoryItem(item)
+	if quantity == nil then
+		cb(0)
+	else
+		cb(quantity.count)
+	end
 end)

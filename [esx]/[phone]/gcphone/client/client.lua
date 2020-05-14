@@ -23,6 +23,8 @@ local useMouse = false
 local ignoreFocus = false
 local takePhoto = false
 local hasFocus = false
+local movilon = true
+local moviloff = false
 
 local PhoneInCall = {}
 local currentPlaySound = false
@@ -43,9 +45,14 @@ function hasPhone(cb)
 	end, 'phone')
 end
 
-function ShowNoPhoneWarning () 
+function ShowNoPhoneWarning() 
 	if (ESX == nil) then return end
 	ESX.ShowNotification("No tienes ningún ~r~teléfono~s~.")
+end
+
+function ShowPhoneOffWarning() 
+	if (ESX == nil) then return end
+	ESX.ShowNotification("Tienes el ~r~teléfono~s~ apagado.")
 end
 
 --====================================================================================
@@ -57,7 +64,9 @@ Citizen.CreateThread(function()
 		if takePhoto ~= true then
 			if IsControlJustPressed(1, KeyOpenClose) then
 				hasPhone(function (hasPhone)
-					if hasPhone == true and batteryLevel > 0 then
+					if moviloff then
+						ShowPhoneOffWarning()
+					elseif hasPhone == true and batteryLevel > 0 then
 						TooglePhone()
 						ESX.ShowNotification("~r~Batería~s~ restante: "..colorbat..""..batteryLevel.."%~w~")
 					elseif hasPhone == true and batteryLevel == 0 then
@@ -751,4 +760,19 @@ RegisterNUICallback('takePhoto', function(data, cb)
   end
   Citizen.Wait(1000)
   PhonePlayAnim('text', false, true)
+end)
+
+RegisterNetEvent('gcPhone:movilon')
+AddEventHandler('gcPhone:movilon', function()
+	movilon = true
+	moviloff = false
+	ESX.ShowNotification("Has encendido el telefono.")
+end)
+
+
+RegisterNetEvent('gcPhone:moviloff')
+AddEventHandler('gcPhone:moviloff', function()
+	moviloff = true
+	movilon = false
+	ESX.ShowNotification("Has apagado el telefono.")
 end)

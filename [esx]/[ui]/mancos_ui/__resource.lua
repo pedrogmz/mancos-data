@@ -39,3 +39,4 @@ client_script {
     'client/client.lua',
     'config.lua',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

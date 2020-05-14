@@ -122,82 +122,56 @@ function setRagdollDead(flag)
 	ragdoll = flag
   end
   
-  Citizen.CreateThread(function()
-	  while true do
+Citizen.CreateThread(function()
+	while true do
 		Citizen.Wait(0)
 		if ragdoll then
-		  SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
+			SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
 		end
-	  end
-	end)
-  -- Respawn
-  Citizen.CreateThread(function()
-	  while true do
-		  Wait(500)
-		  local ped = GetPlayerPed(-1)
-		  local plyPos = GetEntityCoords(ped,  true)
-		  local player = PlayerId()
-		  if IsEntityDead(ped) then
-			  NetworkResurrectLocalPlayer(plyPos, true, true, false)
-			  SetEntityHealth(ped, 110)
-			  TriggerEvent('esx_basicneeds:healPlayerDead')
-			  --TriggerClientEvent('esx_status:add', ped, 'hunger', 1000000)
-			  SetPlayerInvincible(player, true)
-			  ClearPedTasks(ped)
-			  Citizen.Wait(500)			
-			  TriggerEvent('deadan')
-			  TriggerEvent("chatMessage", "[System]", { 255,0,0}, "Has muerto.")		
-		  end
-	  end	
-  end)
+	end
+end)
+	
+
   -- Animacion de morir
-  RegisterNetEvent("deadan")
-  AddEventHandler("deadan", function()
-	  
-	  local playerPed = GetPlayerPed(-1)
-	  
-	  if DoesEntityExist(playerPed) then
-		  Citizen.CreateThread(function()			
-			  GivePlayerRagdollControl(PlayerId(), false)	
-			  
-			  --if ragdoll then
-				  --ClearPedSecondaryTask(playerPed)
-				  setRagdollDead(true)
-				  ragdoll = false
-				  
-			  --[[
-				else
-				  setRagdollDead(false)
-				  ragdol = true
-				  
-				  print('1212')
-				  --TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
-				  --GivePlayerRagdollControl(PlayerId(), false)
-			  end		
-			  ]]--
-		  end)
-	  end
-  end)
-  RegisterNetEvent("deadanrev")
-  AddEventHandler("deadanrev", function()
-	  
+RegisterNetEvent("deadan")
+AddEventHandler("deadan", function()
 	local playerPed = GetPlayerPed(-1)
-	  
-	  	if DoesEntityExist(playerPed) then
-			  Citizen.CreateThread(function()
-				Citizen.Wait(5000)			
-			  	GivePlayerRagdollControl(PlayerId(), false)				  
-				setRagdollDead(false)
-				ragdoll = true
-				  
-				
-				  --TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
-				  --GivePlayerRagdollControl(PlayerId(), false)
-			  	
+	if DoesEntityExist(playerPed) then
+		Citizen.CreateThread(function()			
+		GivePlayerRagdollControl(PlayerId(), false)	
+		  --if ragdoll then
+			  --ClearPedSecondaryTask(playerPed)
+		setRagdollDead(true)
+		ragdoll = false
 			  
-		  	end)
-	  end
-  end)
+		  --[[
+			else
+			  setRagdollDead(false)
+			  ragdol = true
+			  
+			  print('1212')
+			  --TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
+			  --GivePlayerRagdollControl(PlayerId(), false)
+		  end		
+		  ]]--
+	  end)
+  end
+end)
+  
+RegisterNetEvent("deadanrev")
+AddEventHandler("deadanrev", function()
+	local playerPed = GetPlayerPed(-1)
+	if DoesEntityExist(playerPed) then
+		Citizen.CreateThread(function()
+			Citizen.Wait(5000)			
+			GivePlayerRagdollControl(PlayerId(), false)				  
+			setRagdollDead(false)
+			ragdoll = true
+			TaskPlayAnim(PlayerPedId(), "dead", "dead_e", 8.0, 1.0, -1, 2, 0, 0, 0, 0)
+			  --GivePlayerRagdollControl(PlayerId(), false)
+		end)
+	end
+end)
 
 
 

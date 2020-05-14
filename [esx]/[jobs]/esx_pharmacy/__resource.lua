@@ -15,3 +15,4 @@ client_scripts {
     'locales/es.lua',
     'config.lua'
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

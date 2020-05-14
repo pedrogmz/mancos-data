@@ -18,3 +18,5 @@ server_scripts {
     'server/main.lua',
     'server/cron.lua'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

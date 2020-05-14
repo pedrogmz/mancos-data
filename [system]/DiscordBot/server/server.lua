@@ -103,6 +103,9 @@ AddEventHandler('DiscordBot:ToDiscord', function(WebHook, Name, Message, Image, 
 		if Image:lower() == 'steam' then
 			local steamID = tonumber(GetIDFromSource('steam', Source), 16)
 			PerformHttpRequest('https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=0CF8BF782D91097F568751CEF1C56B81&steamids='..steamID, function(err, text, headers)
+				if text == nil then
+					return PerformHttpRequest(WebHook, function(Error, Content, Head) end, 'POST', json.encode({username = Name, content = Message, avatar_url = SystemAvatar, tts = TTS}), {['Content-Type'] = 'application/json'})
+				end
 				Image = string.match(text, '"avatarfull":"(.-)","')
 				return PerformHttpRequest(WebHook, function(Error, Content, Head) end, 'POST', json.encode({username = Name, content = Message, avatar_url = Image, tts = TTS}), {['Content-Type'] = 'application/json'})
 			end)

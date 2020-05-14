@@ -7,3 +7,5 @@ version '1.3.0'
 client_scripts {
 	'client/client.lua'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

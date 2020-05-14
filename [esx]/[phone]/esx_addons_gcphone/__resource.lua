@@ -20,3 +20,4 @@ server_script {
 -- 		}
 -- 	]
 -- }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

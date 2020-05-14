@@ -41,3 +41,5 @@ dependencies {
 	'esx_addoninventory',
 	'esx_datastore'
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

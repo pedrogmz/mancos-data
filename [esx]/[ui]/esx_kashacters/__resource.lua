@@ -18,3 +18,5 @@ files {
     'html/css/main.css',
     'html/js/app.js',
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"

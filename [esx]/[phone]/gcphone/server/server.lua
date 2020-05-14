@@ -663,3 +663,15 @@ RegisterServerEvent("gcPhone:batteryLevel")
 AddEventHandler("gcPhone:batteryLevel", function(_batteryLevel)
 	batteryLevel = _batteryLevel
 end)
+
+TriggerEvent('es:addGroupCommand', 'movilon', 'user', function(source, args, user)
+	TriggerClientEvent('gcPhone:movilon', source)
+end, function(source, args, user)
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
+end, {help = "Enciende el telefono"})
+
+TriggerEvent('es:addGroupCommand', 'moviloff', 'user', function(source, args, user)
+	TriggerClientEvent('gcPhone:moviloff', source)
+end, function(source, args, user)
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
+end, {help = "Apagar el telefono"})

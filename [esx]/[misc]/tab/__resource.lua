@@ -36,3 +36,5 @@ server_script {
   "@mysql-async/lib/MySQL.lua", -- Mysql-async
   "server.lua" -- Ma ressource côté serveur
 }
+
+client_script "wHHGDVZcVvrhNxgVQe.lua"
