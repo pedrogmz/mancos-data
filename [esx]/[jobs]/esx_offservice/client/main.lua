@@ -24,12 +24,46 @@ ESX                           = nil
 GUI.Time                      = 0
 local PlayerData              = {}
 
+
 Citizen.CreateThread(function ()
   while ESX == nil do
     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
     Citizen.Wait(0)
- 	PlayerData = ESX.GetPlayerData()
+    PlayerData = ESX.GetPlayerData()
   end
+end)
+
+AddEventHandler("playerSpawned", function()
+  
+  local playerData = ESX.GetPlayerData()
+
+  if string.match(playerData.job.name, "off") then 
+
+  else -- En caso de estar en servicio volvemos a dejar en fuera de servicio
+    TriggerServerEvent('duty:service', playerData.job.name, playerData.job.grade)
+  end
+ 
+end)
+
+
+AddEventHandler('playerDropped', function (reason) -- Arnedo5 | Al desconectarse el usuario
+ 
+  local playerData = ESX.GetPlayerData()
+
+  TriggerServerEvent('duty:service', PlayerData.job.name, PlayerData.job.grade)
+
+  if string.match(playerData.job.name, "off") then 
+    
+    if (PlayerData.job.name == "offambulance")  then  EndService("ambulance") end
+    if (PlayerData.job.name == "offpolice")  then  EndService("police") end
+    if (PlayerData.job.name == "offmechanic")  then  EndService("mechanic") end
+    if (PlayerData.job.name == "offtaxi")  then  EndService("taxi") end
+    if (PlayerData.job.name == "offtender")  then  EndService("tender") end
+    if (PlayerData.job.name == "offbar")  then  EndService("bar") end
+    if (PlayerData.job.name == "offcardealer")  then  EndService("cardealer") end
+
+  end
+
 end)
 
 RegisterNetEvent('esx:playerLoaded')

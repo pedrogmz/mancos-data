@@ -152,18 +152,8 @@ end
 
 function MFF:GetLockpickCount(source)
 
-  local xPlayers = ESX.GetPlayers()
 
-  -- Arnedo5 min de police = 4
-  local cops = 0
-  for i=1, #xPlayers, 1 do
-   local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-   if xPlayer.job.name == 'police' then
-      cops = cops + 1
-    end
-  end
-
-  if (cops >= 4) then
+  if (self.OnlinePolice >= 4) then
     local xPlayer = ESX.GetPlayerFromId(source)
     while not xPlayer do Citizen.Wait(0); xPlayer = ESX.GetPlayerFromId(source); end
     local item = xPlayer.getInventoryItem('lockpick')

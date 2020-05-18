@@ -9,6 +9,13 @@ Config.ReviveReward               = 8  -- revive reward, set to 0 if you don't w
 Config.AntiCombatLog              = false -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
+local getServerType = GetConvar("server_number", "Mancos01")
+if getServerType == "MancosWL" then
+	Config.isPublicServer = false
+else
+	Config.isPublicServer = true
+end
+
 -- Revivir en camilla
 Config.Payrevive				  = 70
 Config.RevivirCamillaMax		  = 0	

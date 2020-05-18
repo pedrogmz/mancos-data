@@ -31,8 +31,23 @@ Config.LoterieBonusPoints = 25
 
 -- Accès prioritaires / Priority access
 Config.Points = {
-	-- {'steamID', points},
-	-- {'steam:0123456789', 1000}
+--staff
+	-- {'steam:11000010555edd1', 1000}, --pedro
+	-- {'steam:1100001098568fe', 1000}, --sergio
+	-- {'steam:1100001003f07e3', 1000}, --raspu
+	-- {'steam:11000010780ae68', 1000}, --pacucho
+	-- {'steam:11000013cd4d084', 1000}, --conexion
+	-- {'steam:11000010f6672cb', 1000}, --elektrica
+	-- {'steam:110000108344fed', 1000}, --rio
+	--policia
+	-- {'steam:1100001026f2bd6', 500}, --Jack Daniels
+	-- {'steam:110000115c84fa4', 500}, --NotAl3x
+	-- {'steam:110000134a36c25', 500}, --Quimllonun_TeMisilo
+	-- {'steam:1100001036ce405', 500}, --Flisin
+	-- {'steam:110000132235d97', 500}, --docaoneer
+	--ems
+	-- {'steam:1100001040dcfab', 500}, --Davidoff
+	-- {'steam:11000013be17870', 500}, --bonsii
 }
 
 ----------------------------------------------------
@@ -52,7 +67,7 @@ Config.PointsRP = "kilometros"
 -- Config.PointsRP = "kilometers"
 
 -- Position dans la file / position in the queue
-Config.Position = "Estas en cola"
+Config.Position = "Estas en cola "
 -- Config.Position = "You are in position "
 
 -- Texte avant les emojis / Text before emojis

@@ -9,7 +9,7 @@ class Logger {
     this.output = output;
     this.fileStream = null;
     if (this.output === 'file' || this.output === 'both') {
-      this.fileStream = fs.createWriteStream('./mysql-async.log');
+      this.fileStream = fs.createWriteStream('./logs/mysql-async.log');
     }
     this.writeConsole = writeConsole;
   }

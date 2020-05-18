@@ -13,7 +13,9 @@ AddEventHandler('playerConnecting', function(name, setCallback, deferrals)
     local Identifiers = GetPlayerIdentifiers(source)
     
     if not has_value(Whitelist, Identifiers[1]) and not has_value(Whitelist, Identifiers[2]) then
-        deferrals.done(_U('not_whitelisted'))
+		msg = _U('not_whitelisted') .. "\n"
+		msg = msg .. "Mancos: Visita nuestro discord https://discord.mancos.games/ para más información."
+        deferrals.done(msg)
         CancelEvent()
         return
     else
@@ -22,20 +24,20 @@ AddEventHandler('playerConnecting', function(name, setCallback, deferrals)
 end)
 
 -- Add Whitelist Command
-TriggerEvent('es:addGroupCommand', 'addwl', "mod", function(source, args, user)
+--[[TriggerEvent('es:addGroupCommand', 'addwl', "mod", function(source, args, user)
     addToWhitelist(args, source, false)
 end, function(source, args, user)
     TriggerClientEvent('chat:addMessage', source, {args = {"^1SYSTEM ", _U('permissions')}})
 end, {help = _U('addwl_help_text'), params = {
     {name = "identifier", help = _U('wl_help_text_param')}, {name = "Nombre", help = _U('wl_help_text_param_name')}    }
-})
+})]]
 
 -- Remove Whitelist Command
-TriggerEvent('es:addGroupCommand', 'removewl', "mod", function(source, args, user)
+--[[TriggerEvent('es:addGroupCommand', 'removewl', "mod", function(source, args, user)
     removeFromWhitelist(args, source, false)
 end, function(source, args, user)
     TriggerClientEvent('chat:addMessage', source, {args = {"^1SYSTEM ", "Insufficienct permissions!"}})
-end, {help = _U('removewl_help_text'), params = {{name = "identifier", help = _U('wl_help_text_param')}}})
+end, {help = _U('removewl_help_text'), params = {{name = "identifier", help = _U('wl_help_text_param')}}})]]
 
 -- Reload Whitelist Command
 TriggerEvent('es:addGroupCommand', 'reloadwl', "mod", function(source, args, user)

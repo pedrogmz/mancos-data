@@ -1,5 +1,5 @@
 Locales['en'] = {
-	['not_whitelisted'] = 'No estás en la lista blanca',
+	['not_whitelisted'] = 'Parece ser que usted no ha pasado nuestra WHITELIST o bien no has sido invitado.',
 	['whitelist_check'] = 'Comprobación del estado de la lista blanca',
 
 	['permissions'] = 'Permisos insuficientes!',

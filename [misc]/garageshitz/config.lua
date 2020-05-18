@@ -24,6 +24,26 @@ Config.Garages = {
             ["rotationZ"] = -243.40157422423 
         }
     },
+
+	["PRIVADO: Motor Club"] = {
+        ["positions"] = {
+            ["menu"] = {
+                ["position"] = vector3(964.9, -113.77, 74.38)
+            },
+            ["vehicle"] = {
+                ["position"] = vector3(965.1, -108.05, 74.38), 
+                ["heading"] = 223.0
+            }
+        },
+        ["camera"] = { 
+            ["x"] = 964.6, 
+            ["y"] = -103.84, 
+            ["z"] = 76.38, 
+            ["rotationX"] = -12.637795701623, 
+            ["rotationY"] = 0.0, 
+            ["rotationZ"] = 195.73228356242 
+        }
+    },
 	
     ["Occupation Av."] = {
         ["positions"] = {

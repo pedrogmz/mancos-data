@@ -286,6 +286,8 @@ function GetMessage(steamID)
 		msg = Config.EnRoute .. " " .. GetPoints(steamID) .." " .. Config.PointsRP ..".\n"
 
 		msg = msg .. Config.Position .. GetPlace(steamID) .. "/".. #waiting .. " " .. ".\n"
+		
+		msg = msg .. "MANCOS: Si no deseas esperar, ven a nuestro discord https://discord.mancos.games/ para ver la lista de servidores.\n"
 
 		msg = msg .. "[ " .. Config.EmojiMsg
 

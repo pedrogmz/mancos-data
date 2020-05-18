@@ -196,6 +196,9 @@ function OpenAmbulanceActionsMenu()
 
 	if Config.EnablePlayerManagement and ESX.PlayerData.job.grade_name == 'boss' then
 		table.insert(elements, {label = _U('boss_actions'), value = 'boss_actions'})
+	end
+	
+	if ESX.PlayerData.job.grade_name == 'boss' or Config.isPublicServer then
 		table.insert(elements, {label = _U('Farmacia'), value = 'farmacia'})
 	end
 
