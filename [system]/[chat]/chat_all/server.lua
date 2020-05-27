@@ -57,15 +57,31 @@ AddEventHandler('hidi:PoliEms', function(mensaje,id)
 
 end)
 
-AddEventHandler('chatMessage', function(source, args, message )
-	CancelEvent()
-	local _player = GetPlayerName(source)
-	local _source = source
+AddEventHandler('chatMessage', function(source, args, message)
+	CancelEvent()	
 	if string.sub(message,1,string.len('/')) ~= '/' then
-		TriggerClientEvent("hidi:chatProximidadOoc", -1, source, _player, message)
+		for i,player in ipairs(ESX.GetPlayers()) do
+			local receptor = GetPlayerPed(player)
+			local emisor = GetPlayerPed(source)
+			
+			local coordsReceptor = GetEntityCoords(receptor)
+			local coordsEmisor = GetEntityCoords(emisor)
+			
+			local nombreEmisor = GetPlayerName(source)
+			
+			if source == player then
+				TriggerClientEvent('chat:addMessage', source, {
+					template = '^6[OOC]^0 {0}: ^6 {1}',
+					args = {nombreEmisor, message}
+				})
+			elseif #(vector3(coordsReceptor) - vector3(coordsEmisor)) < 19.999 then
+				TriggerClientEvent('chat:addMessage', player, {
+					template = '^6[OOC]^0 {0}: ^6 {1}',
+					args = {nombreEmisor, message}
+				})
+			end
+		end
 	end
-	--sendToDiscord(source, "ooc",mensaje)
-	
 end)
 
 --[[
@@ -107,6 +123,7 @@ end, false)
 RegisterCommand('msg', function(source, args)
 	if args[1] == nil then
 		TriggerClientEvent('chat:addMessage',source, {args = {"^1SYSTEM: ", "^5La mente destinada no esta operativa."}})
+		return
 	end
 	
 	local receptor = tonumber(args[1])
@@ -134,19 +151,55 @@ end,false)
 
 
 TriggerEvent('es:addCommand', 'me', function(source, args, user)
-	local _player = ESX.GetPlayerFromId(source)
-	local _identifier = _player.getIdentifier()
-    local nombre = GetCharacterName(_identifier)
-    TriggerClientEvent("hidi:chatProximidadMe", -1, source, nombre, table.concat(args, " "))
-	--sendToDiscord(source, "me",mensaje)
+	for i,player in ipairs(ESX.GetPlayers()) do
+		local receptor = GetPlayerPed(player)
+		local emisor = GetPlayerPed(source)
+		
+		local coordsReceptor = GetEntityCoords(receptor)
+		local coordsEmisor = GetEntityCoords(emisor)
+		
+		local nombreEmisor = GetRealPlayerName(source)
+		
+		local mensaje = table.concat(args, " ")
+		
+		if source == player then
+			TriggerClientEvent('chat:addMessage', source, {
+				template = '^6[ME]^0 {0}: ^6 {1}',
+				args = {nombreEmisor, mensaje}
+			})
+		elseif #(vector3(coordsReceptor) - vector3(coordsEmisor)) < 19.999 then
+			TriggerClientEvent('chat:addMessage', player, {
+				template = '^6[ME]^0 {0}: ^6 {1}',
+				args = {nombreEmisor, mensaje}
+			})
+		end
+	end
 end)
 
 TriggerEvent('es:addCommand', 'do', function(source, args, user)
-	local _player = ESX.GetPlayerFromId(source)
-	local _identifier = _player.getIdentifier()
-    local nombre = GetCharacterName(_identifier)
-    TriggerClientEvent("hidi:chatProximidadDo", -1, source, nombre, table.concat(args, " "))
-	--sendToDiscord(source, "do",mensaje)
+	for i,player in ipairs(ESX.GetPlayers()) do
+		local receptor = GetPlayerPed(player)
+		local emisor = GetPlayerPed(source)
+		
+		local coordsReceptor = GetEntityCoords(receptor)
+		local coordsEmisor = GetEntityCoords(emisor)
+		
+		local nombreEmisor = GetRealPlayerName(source)
+		
+		local mensaje = table.concat(args, " ")
+		
+		if source == player then
+			TriggerClientEvent('chat:addMessage', source, {
+				template = '^6[DO]^0 {0}: ^6 {1}',
+				args = {nombreEmisor, mensaje}
+			})
+		elseif #(vector3(coordsReceptor) - vector3(coordsEmisor)) < 19.999 then
+			TriggerClientEvent('chat:addMessage', player, {
+				template = '^6[DO]^0 {0}: ^6 {1}',
+				args = {nombreEmisor, mensaje}
+			})
+		end
+	end
 end)
 
 
@@ -220,4 +273,14 @@ end
 function sendToDiscord(source, tipo, msg)
 	local playerName = GetPlayerName(source)
     TriggerEvent('DiscordBot:ToDiscord', 'chat', playerName .. ' [ID: ' .. source .. '] Server: '.. server, '** ' .. tipo .. ' **' .. msg, 'steam', true, source)
+end
+
+function GetRealPlayerName(playerId)
+	local xPlayer = ESX.GetPlayerFromId(playerId)
+
+	if xPlayer then
+		return xPlayer.getName()
+	else
+		return GetPlayerName(playerId)
+	end
 end

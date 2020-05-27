@@ -166,9 +166,13 @@ end)
 --====================================================================================
 --  Messages
 --====================================================================================
-function getMessages(identifier)
-    local result = MySQL.Sync.fetchAll("SELECT phone_messages.* FROM phone_messages LEFT JOIN users ON users.identifier = @identifier WHERE phone_messages.receiver = users.phone_number", {
+--function getMessages(identifier)
+function getMessages(phone_number)
+    --[[local result = MySQL.Sync.fetchAll("SELECT phone_messages.* FROM phone_messages LEFT JOIN users ON users.identifier = @identifier WHERE phone_messages.receiver = users.phone_number", {
          ['@identifier'] = identifier
+    })]]
+	local result = MySQL.Sync.fetchAll("SELECT * FROM phone_messages WHERE receiver = @phone", {
+         ['@phone'] = phone_number
     })
     return result
     --return MySQLQueryTimeStamp("SELECT phone_messages.* FROM phone_messages LEFT JOIN users ON users.identifier = @identifier WHERE phone_messages.receiver = users.phone_number", {['@identifier'] = identifier})
@@ -224,6 +228,20 @@ function deleteMessage(msgId)
     MySQL.Sync.execute("DELETE FROM phone_messages WHERE `id` = @id", {
         ['@id'] = msgId
     })
+end
+
+function deleteOldMessages(identifier)
+    local mePhoneNumber = getNumberPhone(identifier)
+	local getServerType = GetConvar("server_number", "Mancos01")
+	if getServerType == "MancosWL" then
+    MySQL.Sync.execute("DELETE FROM phone_messages WHERE `receiver` = @mePhoneNumber and time < NOW() - INTERVAL 10 DAY", {
+        ['@mePhoneNumber'] = mePhoneNumber
+    })
+	else
+		MySQL.Sync.execute("DELETE FROM phone_messages WHERE `receiver` = @mePhoneNumber and time < NOW() - INTERVAL 6 HOUR", {
+			['@mePhoneNumber'] = mePhoneNumber
+		})
+	end
 end
 
 function deleteAllMessageFromPhoneNumber(source, identifier, phone_number)
@@ -510,9 +528,10 @@ AddEventHandler('es:playerLoaded',function(source)
     local sourcePlayer = tonumber(source)
     local identifier = getPlayerID(source)
     getOrGeneratePhoneNumber(sourcePlayer, identifier, function (myPhoneNumber)
+		deleteOldMessages(identifier)
         TriggerClientEvent("gcPhone:myPhoneNumber", sourcePlayer, myPhoneNumber)
         TriggerClientEvent("gcPhone:contactList", sourcePlayer, getContacts(identifier))
-        TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(identifier))
+        TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(myPhoneNumber))
         TriggerClientEvent("gcPhone:batteryLevel", sourcePlayer, getBattery(identifier))
     end)
 end)
@@ -525,7 +544,7 @@ AddEventHandler('gcPhone:allUpdate', function()
     local num = getNumberPhone(identifier)
     TriggerClientEvent("gcPhone:myPhoneNumber", sourcePlayer, num)
     TriggerClientEvent("gcPhone:contactList", sourcePlayer, getContacts(identifier))
-    TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(identifier))
+    TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(num))
     TriggerClientEvent('gcPhone:getBourse', sourcePlayer, getBourse())
     sendHistoriqueCall(sourcePlayer, num)
 end)

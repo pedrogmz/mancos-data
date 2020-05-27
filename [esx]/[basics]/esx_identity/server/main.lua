@@ -217,6 +217,17 @@ AddEventHandler('es:playerLoaded', function(source)
 	end)
 end)
 
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(playerId, xPlayer)
+	getIdentity(playerId, function(data)
+		if data.firstname ~= '' then
+			xPlayer.setName(('%s %s'):format(data.firstname, data.lastname))
+			xPlayer.set('firstName', data.firstname)
+			xPlayer.set('lastName', data.lastname)
+		end
+	end)
+end)
+
 AddEventHandler('onResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Citizen.Wait(3000)

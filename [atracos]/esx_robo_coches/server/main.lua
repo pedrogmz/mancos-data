@@ -52,7 +52,7 @@ AddEventHandler('esx_carthief:registerActivity', function(value)
 ]]--
 			
 		-- Arnedo5 | Send notification police
-		TriggerClientEvent('esx_carthief:notifyPolice', _source)
+		TriggerClientEvent('esx_carthief:notifyPolice', source)
 
 		
 	else

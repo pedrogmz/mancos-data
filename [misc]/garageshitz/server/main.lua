@@ -35,15 +35,19 @@ ESX.RegisterServerCallback("garage:fetchPlayerVehicles", function(source, callba
 			["@garage"] = garage
 		}, function(responses)
 			local playerVehicles = {}
+			
+			if #responses > 0 then
+				for key, vehicleData in ipairs(responses) do
+					table.insert(playerVehicles, {
+						["plate"] = vehicleData["plate"],
+						["props"] = json.decode(vehicleData["vehicle"])
+					})
+				end
 
-			for key, vehicleData in ipairs(responses) do
-				table.insert(playerVehicles, {
-					["plate"] = vehicleData["plate"],
-					["props"] = json.decode(vehicleData["vehicle"])
-				})
+				callback(playerVehicles)
+			else
+				callback(false)
 			end
-
-			callback(playerVehicles)
 		end)
 	else
 		callback(false)

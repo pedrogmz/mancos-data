@@ -28,21 +28,21 @@ Config.Garages = {
 	["PRIVADO: Motor Club"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(964.9, -113.77, 74.38)
+                ["position"] = vector3(988.23, -140.96, 73.05)
             },
             ["vehicle"] = {
-                ["position"] = vector3(965.1, -108.05, 74.38), 
-                ["heading"] = 223.0
+                ["position"] = vector3(985.64, -138.51, 73.03), 
+                ["heading"] = 55.49
             }
         },
-        ["camera"] = { 
-            ["x"] = 964.6, 
-            ["y"] = -103.84, 
-            ["z"] = 76.38, 
-            ["rotationX"] = -12.637795701623, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 195.73228356242 
-        }
+        -- ["camera"] = { 
+            -- ["x"] = 988.06, 
+            -- ["y"] = -142.11, 
+            -- ["z"] = 76.38, 
+            -- ["rotationX"] = -12.637795701623, 
+            -- ["rotationY"] = 0.0, 
+            -- ["rotationZ"] = 195.73228356242 
+        -- }
     },
 	
     ["Occupation Av."] = {

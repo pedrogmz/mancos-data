@@ -2,52 +2,59 @@ OpenGarageMenu = function()
     local currentGarage = cachedData["currentGarage"]
 
     if not currentGarage then return end
+	
+	HandleCamera(currentGarage, true)
 
-    HandleCamera(currentGarage, true)
+    ESX.TriggerServerCallback("garage:fetchPlayerVehicles", function(fetchedVehicles)	
+		if not fetchedVehicles then 
+			HandleCamera(currentGarage, false)
+			return
+		end
+		
+		local menuElements = {}
+		
+		inMenu = true
 
-    ESX.TriggerServerCallback("garage:fetchPlayerVehicles", function(fetchedVehicles)
-        local menuElements = {}
+		for key, vehicleData in ipairs(fetchedVehicles) do
+			local vehicleProps = vehicleData["props"]
 
-        for key, vehicleData in ipairs(fetchedVehicles) do
-            local vehicleProps = vehicleData["props"]
+			table.insert(menuElements, {
+				["label"] = "Usar " .. GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"])) .. " con matrícula - " .. vehicleData["plate"],
+				["vehicle"] = vehicleData
+			})
+		end
 
-            table.insert(menuElements, {
-                ["label"] = "Usar " .. GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"])) .. " con matrícula - " .. vehicleData["plate"],
-                ["vehicle"] = vehicleData
-            })
-        end
+		if #menuElements == 0 then
+			table.insert(menuElements, {
+				["label"] = "No tienes ningún vehículo aparcado en este garaje."
+			})
+		elseif #menuElements > 0 then
+			SpawnLocalVehicle(menuElements[1]["vehicle"]["props"], currentGarage)
+		end
 
-        if #menuElements == 0 then
-            table.insert(menuElements, {
-                ["label"] = "No tienes ningún vehículo aparcado en este garaje."
-            })
-        elseif #menuElements > 0 then
-            SpawnLocalVehicle(menuElements[1]["vehicle"]["props"], currentGarage)
-        end
+		ESX.UI.Menu.Open("default", GetCurrentResourceName(), "main_garage_menu", {
+			["title"] = "Garage - " .. currentGarage,
+			["align"] = Config.AlignMenu,
+			["elements"] = menuElements
+		}, function(menuData, menuHandle)
+			local currentVehicle = menuData["current"]["vehicle"]
 
-        ESX.UI.Menu.Open("default", GetCurrentResourceName(), "main_garage_menu", {
-            ["title"] = "Garage - " .. currentGarage,
-            ["align"] = Config.AlignMenu,
-            ["elements"] = menuElements
-        }, function(menuData, menuHandle)
-            local currentVehicle = menuData["current"]["vehicle"]
+			if currentVehicle then
+				menuHandle.close()
+				inMenu = false
+				SpawnVehicle(currentVehicle["props"])
+			end
+		end, function(menuData, menuHandle)
+			HandleCamera(currentGarage, false)
+			inMenu = false
+			menuHandle.close()
+		end, function(menuData, menuHandle)
+			local currentVehicle = menuData["current"]["vehicle"]
 
-            if currentVehicle then
-                menuHandle.close()
-
-                SpawnVehicle(currentVehicle["props"])
-            end
-        end, function(menuData, menuHandle)
-            HandleCamera(currentGarage, false)
-
-            menuHandle.close()
-        end, function(menuData, menuHandle)
-            local currentVehicle = menuData["current"]["vehicle"]
-
-            if currentVehicle then
-                SpawnLocalVehicle(currentVehicle["props"])
-            end
-        end)
+			if currentVehicle then
+				SpawnLocalVehicle(currentVehicle["props"])
+			end
+		end)
     end, currentGarage)
 end
 

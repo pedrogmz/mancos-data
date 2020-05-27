@@ -1,6 +1,7 @@
 ESX = nil
 
 cachedData = {}
+inMenu = false
 
 Citizen.CreateThread(function()
 	while not ESX do
@@ -32,6 +33,29 @@ end)
 RegisterNetEvent("esx:setJob")
 AddEventHandler("esx:setJob", function(newJob)
 	ESX.PlayerData["job"] = newJob
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		
+		if DoesCamExist(cachedData["cam"]) and (IsControlJustPressed(0, 322) or IsControlJustPressed(0, 73) or IsControlJustPressed(0, 70)) then
+			HandleCamera(cachedData["currentGarage"], false)
+		end
+
+		if inMenu then
+			DisableAllControlActions(0)		
+			EnableControlAction(0, 27, true)
+			EnableControlAction(0, 70, true)
+			EnableControlAction(0, 18, true)
+			EnableControlAction(0, 173, true)
+			EnableControlAction(0, 177, true)
+			EnableControlAction(0, 178, true)
+			EnableControlAction(0, 322, true)
+		else
+			Citizen.Wait(100)
+		end
+	end
 end)
 
 Citizen.CreateThread(function()

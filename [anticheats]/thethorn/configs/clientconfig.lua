@@ -24,7 +24,7 @@ ChocoHaxCc.AutomaticMDPeds = true
 
 --//Anti Cheat Engine//--
 ChocoHaxCc.AntiDamageModifier = true -- Detects if a player tries to modify his damage or defence value
-ChocoHaxCc.BlacklistedWeaponDelete = false -- This will detect CLIENT SIDED weapons and automatically delete them (NO LOGS)
+ChocoHaxCc.BlacklistedWeaponDelete = true -- This will detect CLIENT SIDED weapons and automatically delete them (NO LOGS)
 ChocoHaxCc.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modifier
     ChocoHaxCc.AntiWeaponDamageModifier = false -- Detects if a player tried to modify the weapon damage
     ChocoHaxCc.AntiExplosiveWeapons = false -- Detects if a player modified his weapon to shoot explosive bullets, or explosive punch
