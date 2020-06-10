@@ -36,7 +36,8 @@ ChocoHaxANBM.BlacklistedWeapons = {
 	"WEAPON_REVOLVER_MK2",
 	"WEAPON_FIREWORK",
 	"WEAPON_HOMINGLAUNCHER", 
-	"WEAPON_SMG_MK2"
+	"WEAPON_SMG_MK2",
+	"WEAPON_MOLOTOV"
 }
 
 ChocoHaxANBM.BlacklistedVehicles = { -- Vehicles

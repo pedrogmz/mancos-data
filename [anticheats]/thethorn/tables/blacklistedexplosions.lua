@@ -6,9 +6,9 @@ ChocoHaxBExplosion = {}
 ChocoHaxBExplosion.ExplosionsList = {
     [0] = { name = "Grenade", log = true, ban = true },
     [1] = { name = "GrenadeLauncher", log = true, ban = true },
-    [3] = { name = "Molotov", log = true, ban = true },
+    [3] = { name = "Molotov", log = true, ban = false },
     [4] = { name = "Rocket", log = true, ban = true },
-    [5] = { name = "TankShell", log = true, ban = true},
+    [5] = { name = "TankShell", log = true, ban = false},
     [6] = { name = "Hi_Octane", log = false, ban = false },
     [7] = { name = "Car", log = false, ban = false },
     [8] = { name = "Plance", log = false, ban = false },
