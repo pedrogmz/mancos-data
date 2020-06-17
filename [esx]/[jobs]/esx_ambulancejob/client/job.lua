@@ -84,16 +84,17 @@ function BaulAbrirMenu(station)
 end
 
 function OpenGetStocksMenu()
-
 	ESX.TriggerServerCallback('esx_ambulancejob:getStockItems', function(items)
 
 		local elements = {}
 
 		for i=1, #items, 1 do
-			table.insert(elements, {
-				label = 'x' .. items[i].count .. ' ' .. items[i].label,
-				value = items[i].name
-			})
+			if items[i].count > 0 then
+				table.insert(elements, {
+					label = 'x' .. items[i].count .. ' ' .. items[i].label,
+					value = items[i].name
+				})
+			end
 		end
 
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'stocks_menu',
@@ -1527,8 +1528,8 @@ function OpenPharmacyMenu()
 		elements = {
 			{label = _U('pharmacy_take', _U('medikit')), value = 'medikit'},
 			{label = _U('pharmacy_take', _U('bandage')), value = 'bandage'},			
-			{label = _U('pharmacy_take', _U('water')), value = 'water'},
-			{label = _U('pharmacy_take', _U('bread')), value = 'bread'},
+			--{label = _U('pharmacy_take', _U('water')), value = 'water'},
+			--{label = _U('pharmacy_take', _U('bread')), value = 'bread'},
 --			{label = _U('pharmacy_take', 'Taser'), value = 'WEAPON_STUNGUN'},
 		}
 	}, function(data, menu)

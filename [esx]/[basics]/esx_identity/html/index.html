@@ -30,17 +30,18 @@
           <form method="POST" id="signup-form" class="signup-form">
             <h2>Crea tu personaje </h2>
             <p>Rellena los campos para tener una información básica de tu personaje</p>
+            <p>Si el boton no sirve, recuerda revisar los campos en rojo.</p>
             <div class="form-group">
-              <input type="text" class="form-input" name="firstname" id="firstname" placeholder="Primer Nombre"/>
+              <input type="text" class="form-input" name="firstname" id="firstname" onKeyUp="checkFirstName()" placeholder="Primer Nombre"/>
             </div>
             <div class="form-group">
-              <input type="text" class="form-input" name="lastname" id="lastname" placeholder="Apellidos"/>
+              <input type="text" class="form-input" name="lastname" id="lastname" onKeyUp="checkLastName()" placeholder="Apellido"/>
             </div>
             <div class="form-group">
               <input type="number" class="form-input" name="height" id="height" placeholder="Altura(cm)"/>
             </div>
             <div class="form-group">
-              <input type="date" class="form-input" name="dob" id="dob" placeholder="Fecha de Nacimiento(AAAA-MM-DD)"/>
+              <input type="date" class="form-input" name="dob" id="dob" placeholder="Fecha de Nacimiento"/>
             </div>
             <div class="group">
               <input type="radio" name="sex" value="f" id="sexf" />
@@ -62,6 +63,41 @@
 
   <!-- JS -->
   <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+  <script>
+		var myFirstName = document.getElementById('firstname');
+		var myLastName = document.getElementById('lastname');
+
+		function checkFirstName() {
+			var value = myFirstName.value;
+			if(value.trim().match(/^[A-Z][a-zA-Z]*$/) == null) {
+				myFirstName.style.backgroundColor = '#E06666';
+			} else {
+				if(value.length > 4 && value.length < 17) {
+					myFirstName.style.borderColor = '#B6D7A8';
+					myFirstName.style.backgroundColor = 'transparent';
+				} else {
+					myFirstName.style.backgroundColor = '#E06666';
+				}
+			}
+		}
+
+		function checkLastName() {
+			var value = myLastName.value;
+			if(value.trim().match(/^[A-Z][a-zA-Z]*$/) == null) {
+				myLastName.style.backgroundColor = '#E06666';
+			}
+			else {
+				if(value.length > 4 && value.length < 17) {
+					myLastName.style.borderColor = '#B6D7A8';
+					myLastName.style.backgroundColor = 'transparent';
+				}
+				else {
+					myLastName.style.backgroundColor = '#E06666';
+				}
+			}
+		}
+  </script>
+  
   <script src="js/script.js"></script>
 
 </body>

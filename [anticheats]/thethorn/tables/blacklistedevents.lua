@@ -117,4 +117,5 @@ ChocoHaxBE.Events = {
   "mellotrainer:adminTempBan",
   "mellotrainer:adminKick",
   "esx_society:putVehicleInGarage",
+  "redst0nia:checking",
 }

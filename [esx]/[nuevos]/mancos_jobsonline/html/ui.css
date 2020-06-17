@@ -1,0 +1,273 @@
+@font-face {
+  font-family: 'gta-ui';
+  src: url('./fonts/gta-ui.ttf');
+}
+
+body {
+  overflow: hidden;
+  width:100%;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-top {
+  margin: 5px 0px;
+}
+
+.margin-bottom {
+  margin-bottom: 0px;
+}
+
+.taskbar {
+    position: absolute;
+    background-image: url(images/Taskbar_vacia.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    bottom: 0px;
+    left: 0px;
+    height: 48px;
+    width: 100%;
+}
+
+/* JOBS ONLINE */
+.jobs-online {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 48px;
+	background: rgba(24, 27, 32, 0.3);
+	border-radius: 10px;
+	width: 278px;
+    padding: 5px !important;
+}
+
+.job {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.job_count {
+  /*background-image: url(images/barra_empleo.png);*/
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  height: 50;
+  background-color: #fa2f2f;
+  border-radius: 100%;
+  height: 20px;
+  text-align: center;
+  width: 20px;
+  bottom: 3px;
+  right: 3px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "gta-ui", Verdana, Tahoma;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+#police { background-image: url(images/policia.png); }
+#ambulance { background-image: url(images/doctor.png); }
+#taxi { background-image: url(images/taxista.png); }
+#mechanic { background-image: url(images/mecanico.png); }
+#barman { background-image: url(images/barman.png); }
+#cardealer { background-image: url(images/vendedor_coches.png); }
+#tendero { background-image: url(images/dependiente.png); }
+
+/* INFO PANEl RIGHT */
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.barra {
+  height: 25px;
+  width: 30%;
+  text-align: center;
+  background-image: url(images/barra_empleo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.barra span {
+  font-size: 23px;
+  line-height: 24px;
+  color: white;
+	font-family: "gta-ui", Verdana, Tahoma;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+
+.barra#job { background-image: url(images/barra_empleo.png); }
+.barra#money { background-image: url(images/barra_dinero.png); }
+.barra#coins { background-image: url(images/barra_coins.png); }
+
+/* RIGHT PANEL BUTTONS*/
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+}
+
+.action{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0% 2%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.action .marker {
+  position: absolute;
+  color: white;
+  top: -5px;
+  left: -10px;
+  font-size: 10px;
+}
+
+#phone { background-image: url(images/telefono_1.png) }
+#phone.active { background-image: url(images/telefono_2.png) }
+#inventory { background-image: url(images/mochila_1.png) }
+#inventory.active { background-image: url(images/mochila_2.png) }
+#social { background-image: url(images/social_1.png) }
+#social.active { background-image: url(images/social_2.png) }
+#animations { background-image: url(images/emociones_1.png) }
+#animations.active { background-image: url(images/emociones_2.png) }
+
+.container  {
+	display: flex;
+	position: absolute;
+	    top: 8px;
+	width: 100%;
+	max-width: 100%;
+}
+
+.container .row {
+  margin: 0 auto;
+  margin-right: 5px;
+}
+
+
+/* Media queries */
+@media only screen and (min-device-width: 1920px) {
+
+  .taskbar {
+    height: 48px;
+  }
+
+  .info {
+    padding-right: 10%;
+  }
+
+  .barra span {
+    font-size: 23px;
+  }
+  
+}
+
+@media (min-width: 1025px) and (max-width: 1600px)  {
+  
+
+  /* BARS */
+  .health_bar {
+    height: 12px;
+  }
+
+  .health_bar_empty {
+    height: 12px;
+  }
+
+  
+.hunger_bar{
+  height: 12px;
+}
+
+.hunger_bar_empty{
+  height: 12px;
+}
+
+.thirst_bar{
+  height: 12px;
+}
+
+.thirst_bar_empty{
+  height: 12px;
+}
+
+.stamina_bar{
+  height: 12px;
+}
+
+.stamina_bar_empty{
+  height: 12px;
+}
+
+/* JOBS */
+
+  .taskbar {
+    height: 35px;
+  }
+
+  .job {
+    width: 25px;
+    height: 25px;
+  }
+
+  .job_count {
+    font-size: 11px;
+    width: 13px;
+    height: 13px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  .jobs-online {
+    height: 30px;
+  }
+
+  .info {
+    padding-left: 0%;
+    height: 35px;
+  }
+
+  .barra span {
+	font-size: 18px;
+  }
+
+  /* ACTIONS */
+  .actions {
+    height: 35px;
+    
+  }
+
+  .action {
+    width: 30px;
+    height: 30px;
+  }
+  
+}

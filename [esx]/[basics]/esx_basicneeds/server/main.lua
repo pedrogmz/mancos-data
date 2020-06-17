@@ -2,27 +2,12 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
---SHOPS
-ESX.RegisterUsableItem('cigarrett', function(source) --Cigarro
-	local xPlayer = ESX.GetPlayerFromId(source)
-
-	xPlayer.removeInventoryItem('cigarrett', 1)
-	TriggerClientEvent('esx_status:add', source, 'thirst', -200000)
-	TriggerClientEvent('esx_basicneeds:OnSmokeCigarett', source)
-	TriggerClientEvent('esx:showNotification', source, _U('used_cigar'))
-
-	-- Stress system
-	TriggerClientEvent('esx_status:remove', source, 'stress', 100000)
-	TriggerClientEvent('esx_basicneeds:removeStress', source)
-end)
-
-
-ESX.RegisterUsableItem('bread', function(source)  -- Pan
+ESX.RegisterUsableItem('bread', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('bread', 1)
 
-	TriggerClientEvent('esx_status:add', source, 'hunger', 150000)
+	TriggerClientEvent('esx_status:add', source, 'hunger', 200000)
 	TriggerClientEvent('esx_basicneeds:onEat', source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_bread'))
 end)
@@ -67,13 +52,12 @@ ESX.RegisterUsableItem('pasteldecarne', function(source)  -- Pastel de carne
 	TriggerClientEvent('esx:showNotification', source, _U('used_bread'))
 end)
 
-
-ESX.RegisterUsableItem('water', function(source)  -- Agua
+ESX.RegisterUsableItem('water', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	xPlayer.removeInventoryItem('water', 1)
 
-	TriggerClientEvent('esx_status:add', source, 'thirst', 150000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 200000)
 	TriggerClientEvent('esx_basicneeds:onDrink', source)
 	TriggerClientEvent('esx:showNotification', source, _U('used_water'))
 end)
@@ -97,42 +81,6 @@ ESX.RegisterUsableItem('sprunk', function(source) -- Sprunk
 	TriggerClientEvent('esx:showNotification', source, _U('used_sprunk'))
 end)
 
--- Alcohol
-ESX.RegisterUsableItem('whisky', function(source) -- Whisky
-
-	local xPlayer = ESX.GetPlayerFromId(source)
-
-	xPlayer.removeInventoryItem('whisky', 1)
-
-	TriggerClientEvent('esx_status:add', source, 'drunk', 250000)
-    TriggerClientEvent('esx_status:remove', source, 'hunger', 10000)
-    TriggerClientEvent('esx_status:remove', source, 'thirst', 70000)
-    TriggerClientEvent('esx_basicneeds:onDrinkAlcohol', source) -- Animaciómn de beber alcohol
-	TriggerClientEvent('esx:showNotification', source, _U('used_whisky'))
-
-	-- Stress system
-	TriggerClientEvent('esx_status:remove', source, 'stress', 150000)
-	TriggerClientEvent('esx_basicneeds:removeStress', source)
-end)
-
--- Arnedo5 | Adrenaline
-ESX.RegisterUsableItem('adrenaline_shot', function(source)
-    local xPlayer = ESX.GetPlayerFromId(source)
-
-	xPlayer.removeInventoryItem('adrenaline_shot', 1)
-	TriggerClientEvent('esx:showNotification', source, _U('used_adrenaline'))
-	TriggerClientEvent('esx_basicneeds:onAdrenaline', source)
-end)
-
--- Arnedo5 | Gas Mask
-ESX.RegisterUsableItem('gas_mask', function(source)
-    local xPlayer = ESX.GetPlayerFromId(source)
-
-	-- xPlayer.removeInventoryItem('used_gas_mask', 1) -- En este caso no eliminamos el item
-	TriggerClientEvent('esx:showNotification', source, _U('used_gas_mask'))
-	TriggerClientEvent('esx_basicneeds:onGasMask', source)
-end)
-
 TriggerEvent('es:addGroupCommand', 'heal', 'admin', function(source, args, user)
 	-- heal another player - don't heal source
 	if args[1] then
@@ -144,17 +92,17 @@ TriggerEvent('es:addGroupCommand', 'heal', 'admin', function(source, args, user)
 			if GetPlayerName(playerId) then
 				print(('esx_basicneeds: %s healed %s'):format(GetPlayerIdentifier(source, 0), GetPlayerIdentifier(playerId, 0)))
 				TriggerClientEvent('esx_basicneeds:healPlayer', playerId)
-				TriggerClientEvent('chat:addMessage', source, { args = { '^5HEAL', 'Has sido curado.' } })
+				TriggerClientEvent('chat:addMessage', source, { args = { '^5HEAL', 'You have been healed.' } })
 			else
-				TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'El jugador no esta online' } })
+				TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Player not online.' } })
 			end
 		else
-			TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Id de jugador no valida.' } })
+			TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Invalid player id.' } })
 		end
 	else
 		print(('esx_basicneeds: %s healed self'):format(GetPlayerIdentifier(source, 0)))
 		TriggerClientEvent('esx_basicneeds:healPlayer', source)
 	end
 end, function(source, args, user)
-	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Permisos insuficientes.' } })
-end, {help = 'Cura a un jugador o a ti mismo: restaura la sed, el hambre y la salud.', params = {{name = 'playerId', help = '(Opcional) player id'}}})
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
+end, {help = 'Heal a player, or yourself - restores thirst, hunger and health.', params = {{name = 'playerId', help = '(optional) player id'}}})

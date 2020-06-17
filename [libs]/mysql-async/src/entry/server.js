@@ -2,7 +2,9 @@ const MySQL = require('../server/mysql.js');
 const Logger = require('../server/logger.js');
 const Profiler = require('../server/profiler.js');
 const parseSettings = require('../server/settings.js');
-const { prepareQuery, typeCast, safeInvoke } = require('../server/utils.js');
+const {
+  prepareQuery, typeCast, safeInvoke, sanitizeTransactionInput,
+} = require('../server/utils.js');
 
 let logger = null;
 let profiler = null;
@@ -14,7 +16,8 @@ global.exports('mysql_execute', (query, parameters, callback) => {
   const sql = prepareQuery(query, parameters);
   mysql.execute({ sql, typeCast }, invokingResource).then((result) => {
     safeInvoke(callback, (result) ? result.affectedRows : 0);
-  });
+    return true;
+  }).catch(() => false);
 });
 
 global.exports('mysql_fetch_all', (query, parameters, callback) => {
@@ -22,7 +25,8 @@ global.exports('mysql_fetch_all', (query, parameters, callback) => {
   const sql = prepareQuery(query, parameters);
   mysql.execute({ sql, typeCast }, invokingResource).then((result) => {
     safeInvoke(callback, result);
-  });
+    return true;
+  }).catch(() => false);
 });
 
 global.exports('mysql_fetch_scalar', (query, parameters, callback) => {
@@ -30,7 +34,8 @@ global.exports('mysql_fetch_scalar', (query, parameters, callback) => {
   const sql = prepareQuery(query, parameters);
   mysql.execute({ sql, typeCast }, invokingResource).then((result) => {
     safeInvoke(callback, (result && result[0]) ? Object.values(result[0])[0] : null);
-  });
+    return true;
+  }).catch(() => false);
 });
 
 global.exports('mysql_insert', (query, parameters, callback) => {
@@ -38,11 +43,31 @@ global.exports('mysql_insert', (query, parameters, callback) => {
   const sql = prepareQuery(query, parameters);
   mysql.execute({ sql, typeCast }, invokingResource).then((result) => {
     safeInvoke(callback, (result) ? result.insertId : 0);
+    return true;
+  }).catch(() => false);
+});
+
+global.exports('mysql_transaction', (querys, values, callback) => {
+  const invokingResource = global.GetInvokingResource();
+  let sqls = [];
+  let cb = callback;
+  [sqls, cb] = sanitizeTransactionInput(querys, values, cb);
+  mysql.beginTransaction((connection) => {
+    if (!connection) safeInvoke(cb, false);
+    const promises = [];
+    sqls.forEach((sql) => {
+      promises.push(mysql.execute({ sql }, invokingResource, connection));
+    });
+    mysql.commitTransaction(promises, connection, (result) => {
+      safeInvoke(cb, result);
+    });
   });
 });
 
 let isReady = false;
-global.on('onServerResourceStart', (resourcename) => {
+global.exports('is_ready', () => isReady);
+
+global.on('onResourceStart', (resourcename) => {
   if (resourcename === 'mysql-async') {
     const trace = global.GetConvarInt('mysql_debug', 0);
     const slowQueryWarningTime = global.GetConvarInt('mysql_slow_query_warning', 200);
@@ -53,19 +78,21 @@ global.on('onServerResourceStart', (resourcename) => {
     // needs to move to a new file
     const connectionString = global.GetConvar('mysql_connection_string', 'Empty');
     if (connectionString === 'Empty') {
-      logger.Error('Empty mysql_connection_string detected.');
-      throw new Error('Empty mysql_connection_string detected.');
-    }
-    config = parseSettings(connectionString);
+      logger.error('Empty mysql_connection_string detected.');
+    } else {
+      config = parseSettings(connectionString);
 
-    mysql = new MySQL(config, logger, profiler);
-    global.emit('onMySQLReady'); // avoid ESX bugs
-    isReady = true;
-  }
-  if (isReady) {
-    global.emit('MySQLReady'); // avoid ESX bugs
+      mysql = new MySQL(config, logger, profiler);
+      global.emit('onMySQLReady'); // avoid old ESX bugs
+      isReady = true;
+    }
   }
 });
+
+global.RegisterCommand('mysql:debug', () => {
+  profiler.config.trace = !profiler.config.trace;
+  console.log(`\x1b[36m[mysql-async]\x1b[0m display debug: ${profiler.config.trace}`);
+}, true);
 
 global.onNet('mysql-async:request-data', () => {
   if (isReady) {

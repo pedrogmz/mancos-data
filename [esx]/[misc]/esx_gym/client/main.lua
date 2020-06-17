@@ -127,53 +127,23 @@ end) ]]--
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        for k in pairs(arms) do
-            DrawMarker(21, arms[k].x, arms[k].y, arms[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        for k in pairs(pushup) do
-            DrawMarker(21, pushup[k].x, pushup[k].y, pushup[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        for k in pairs(yoga) do
-            DrawMarker(21, yoga[k].x, yoga[k].y, yoga[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        for k in pairs(situps) do
-            DrawMarker(21, situps[k].x, situps[k].y, situps[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        for k in pairs(gym) do
-            DrawMarker(21, gym[k].x, gym[k].y, gym[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 153, 255, 255, 0, 0, 0, 0)
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
         for k in pairs(chins) do
             DrawMarker(21, chins[k].x, chins[k].y, chins[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
+        end
+		for k in pairs(situps) do
+            DrawMarker(21, situps[k].x, situps[k].y, situps[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
+        end
+		for k in pairs(gym) do
+            DrawMarker(21, gym[k].x, gym[k].y, gym[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 153, 255, 255, 0, 0, 0, 0)
+        end
+		for k in pairs(yoga) do
+            DrawMarker(21, yoga[k].x, yoga[k].y, yoga[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
+        end
+		for k in pairs(pushup) do
+            DrawMarker(21, pushup[k].x, pushup[k].y, pushup[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
+        end
+		for k in pairs(arms) do
+            DrawMarker(21, arms[k].x, arms[k].y, arms[k].z, 0, 0, 0, 0, 0, 0, 0.301, 0.301, 0.3001, 0, 255, 50, 200, 0, 0, 0, 0)
         end
     end
 end)

@@ -1,21 +1,22 @@
 const fs = require('fs');
 
-function writeConsole(msg) {
-  console.log(msg);
-}
-
 class Logger {
   constructor(output) {
     this.output = output;
     this.fileStream = null;
+    this.writeConsole = (msg) => console.log(msg);
+    this.getTimeStamp = () => {
+      const date = new Date();
+      return date.toISOString();
+    };
+
     if (this.output === 'file' || this.output === 'both') {
-      this.fileStream = fs.createWriteStream('./logs/mysql-async.log');
+      this.fileStream = fs.createWriteStream(`./logs/mysql-async-${Date.now()}.log`);
     }
-    this.writeConsole = writeConsole;
   }
 
   writeFile(msg) {
-    this.fileStream.write(`${msg}\n`);
+    this.fileStream.write(`${this.getTimeStamp()}: ${msg}\n`);
   }
 
   log(msg) {
@@ -36,7 +37,7 @@ class Logger {
 
   error(msg) {
     let errorMsg = msg;
-    if (this.output === 'console') {
+    if (this.output !== 'file') {
       errorMsg = `\x1b[31m${msg}\x1b[0m`;
     }
     this.log(errorMsg);

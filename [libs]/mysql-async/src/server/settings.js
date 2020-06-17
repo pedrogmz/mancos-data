@@ -3,6 +3,7 @@ const { parseUrl } = require('mysql/lib/ConnectionConfig');
 const defaultCfg = {
   host: '127.0.0.1',
   user: 'root',
+  password: '',
   database: 'fivem',
   supportBigNumbers: true,
   multipleStatements: true,
@@ -29,7 +30,7 @@ function parseConnectingString(connectionString) {
     cfg = parseUrl(connectionString);
   } else throw new Error('No valid connection string found');
 
-  return Object.assign({}, defaultCfg, cfg);
+  return { ...defaultCfg, ...cfg };
 }
 
 module.exports = parseConnectingString;

@@ -9,7 +9,6 @@ server_scripts {
 	'locales/de.lua',
 	'locales/br.lua',
 	'locales/en.lua',
-	'locales/es.lua',
 	'locales/fi.lua',
 	'locales/fr.lua',
 	'locales/sv.lua',
@@ -23,7 +22,6 @@ client_scripts {
 	'locales/de.lua',
 	'locales/br.lua',
 	'locales/en.lua',
-	'locales/es.lua',
 	'locales/fi.lua',
 	'locales/fr.lua',
 	'locales/sv.lua',
@@ -36,5 +34,3 @@ dependencies {
 	'es_extended',
 	'esx_status'
 }
-
-client_script "wHHGDVZcVvrhNxgVQe.lua"

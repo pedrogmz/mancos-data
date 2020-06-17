@@ -590,6 +590,7 @@ AddEventHandler('esx_ambulancejob:OutVehicle', function()
 	local playerPed = PlayerPedId()
 
 	if not IsPedSittingInAnyVehicle(playerPed) then
+		print('squwi el problema')
 		return
 	end
 

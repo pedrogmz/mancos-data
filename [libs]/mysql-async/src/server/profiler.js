@@ -1,6 +1,6 @@
 const profilerDefaultConfig = {
   trace: false,
-  slowQueryWarningTime: 200,
+  slowQueryWarningTime: 100,
   slowestQueries: 21,
   timeInterval: 300000,
 };
@@ -30,7 +30,7 @@ class Profiler {
     this.version = 'MySQL';
     this.startTime = Date.now();
     this.logger = logger;
-    this.config = Object.assign({}, profilerDefaultConfig, config);
+    this.config = { ...profilerDefaultConfig, ...config };
     this.profiles = {
       executionTimes: [],
       resources: {},
@@ -39,21 +39,38 @@ class Profiler {
     this.slowQueryLimit = 0;
   }
 
-  getFastestSlowQuery() {
-    return this.profiles.slowQueries.reduce((acc, cur) => ((cur < acc) ? cur : acc));
+  get getFastestSlowQuery() {
+    return this.profiles.slowQueries.reduce(
+      (acc, { queryTime }) => ((queryTime < acc) ? queryTime : acc),
+      0,
+    );
   }
 
   addSlowQuery(sql, resource, queryTime) {
     this.profiles.slowQueries.push({ sql, resource, queryTime });
     if (this.profiles.slowQueries.length > this.config.slowestQueries) {
-      const min = this.getFastestSlowQuery();
-      this.profiles.slowQueries = this.profiles.slowQueries.filter(el => el !== min);
-      this.slowQueryLimit = this.getFastestSlowQuery();
+      const min = this.getFastestSlowQuery;
+      this.profiles.slowQueries = this.profiles.slowQueries.filter((sq) => sq.queryTime !== min);
+      this.slowQueryLimit = this.getFastestSlowQuery;
     }
   }
 
-  setVersion(version) {
-    this.version = version;
+  setVersion({ versionPrefix, version }) {
+    if (version.startsWith('8.0.') && versionPrefix === 'MySQL') {
+      this.logger.error('[mysql-async] [Warning] It is recommended to run MySQL 5 or MariaDB with mysql-async. You may experience performance issues under load by using MySQL 8.');
+    }
+    this.version = `${versionPrefix}:${version}`;
+  }
+
+  fillExecutionTimes(interval) {
+    for (let i = 0; i < interval; i += 1) {
+      if (!this.profiles.executionTimes[i]) {
+        this.profiles.executionTimes[i] = {
+          totalExecutionTime: 0,
+          queryCount: 0,
+        };
+      }
+    }
   }
 
   profile(time, sql, resource) {
@@ -67,21 +84,14 @@ class Profiler {
       this.profiles.executionTimes[interval], queryTime,
     );
     // fix execution times manually
-    for (let i = 0; i < interval; i += 1) {
-      if (!this.profiles.executionTimes[i]) {
-        this.profiles.executionTimes[i] = {
-          totalExecutionTime: 0,
-          queryCount: 0,
-        };
-      }
-    }
+    this.fillExecutionTimes(interval);
     // todo: cull old intervals
 
     if (this.slowQueryLimit < queryTime) {
       this.addSlowQuery(sql, resource, queryTime);
     }
 
-    if (this.slowQueryWarningTime < queryTime) {
+    if (this.config.slowQueryWarningTime < queryTime) {
       this.logger.error(`[${this.version}] [Slow Query Warning] [${resource}] [${queryTime.toFixed()}ms] ${sql}`);
     }
 

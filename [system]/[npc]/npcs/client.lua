@@ -1,19 +1,19 @@
 -- Remove weapon drops on NPC death
 local pedindex = {}
 
-function SetWeaponDrops() -- This function will set the closest entity to you as the variable entity.
+function SetWeaponDrops()
     local handle, ped = FindFirstPed()
-    local finished = false -- FindNextPed will turn the first variable to false when it fails to find another ped in the index
+    local finished = false
     repeat 
         if not IsEntityDead(ped) then
 			pedindex[ped] = {}
         end
-        finished, ped = FindNextPed(handle) -- first param returns true while entities are found
+        finished, ped = FindNextPed(handle)
     until not finished
     EndFindPed(handle)
 
     for peds,_ in pairs(pedindex) do
-        if peds ~= nil then -- set all peds to not drop weapons on death.
+        if peds ~= nil then 
             SetPedDropsWeaponsWhenDead(peds, false) 
         end
     end
@@ -23,9 +23,9 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         SetWeaponDrops()
-		RemoveAllPickupsOfType(0xDF711959) -- carbine rifle
-		RemoveAllPickupsOfType(0xF9AFB48F) -- pistol
-		RemoveAllPickupsOfType(0xA9355DCD) -- pumpshotgun
+		RemoveAllPickupsOfType(0xDF711959)
+		RemoveAllPickupsOfType(0xF9AFB48F)
+		RemoveAllPickupsOfType(0xA9355DCD)
     end
 end)
 
@@ -39,18 +39,18 @@ SetRelationshipBetweenGroups(1, GetHashKey("COP"), GetHashKey('PLAYER'))
 
 -- Remove vehicles and NPC from map
 Citizen.CreateThread(function()
-	local iPlayer = GetEntityCoords(PlayerPedId())	-- Your Ped as an Entity. Vector3 (x,y,z)
-	local iPlayerID = GetPlayerServerId()			-- Your Ped's ID.
+	local iPlayer = GetEntityCoords(PlayerPedId())
+	local iPlayerID = GetPlayerServerId()
 	
-	DisablePlayerVehicleRewards(iPlayerID)		-- Call it once.
+	DisablePlayerVehicleRewards(iPlayerID)
 	
-	while true do				-- Call it all...
-		Citizen.Wait(1)							-- Every Frame!
-		for i = 0, 15 do						-- For all gangs and emergancy services.	
-			EnableDispatchService(i, Config.Dispatch)		-- Disable responding/dispatch.
+	while true do
+		Citizen.Wait(1)
+		for i = 0, 15 do
+			EnableDispatchService(i, Config.Dispatch)
 		end			
-		SetVehicleDensityMultiplierThisFrame(0.0)
-		SetPedDensityMultiplierThisFrame(0.0)
+		SetVehicleDensityMultiplierThisFrame(0.1)
+		SetPedDensityMultiplierThisFrame(0.1)
 		SetRandomVehicleDensityMultiplierThisFrame(0.0)
 		SetParkedVehicleDensityMultiplierThisFrame(0.0)
 		SetScenarioPedDensityMultiplierThisFrame(0.0)

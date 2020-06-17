@@ -1,5 +1,14 @@
 const mysql = require('mysql');
 
+function formatVersion(versionString) {
+  let versionPrefix = 'MariaDB';
+  const version = versionString;
+  if (version[0] === '5' || version[0] === '8') {
+    versionPrefix = 'MySQL';
+  }
+  return { versionPrefix, version };
+}
+
 class MySQL {
   constructor(mysqlConfig, logger, profiler) {
     this.pool = null;
@@ -8,17 +17,13 @@ class MySQL {
     if (typeof mysqlConfig === 'object') {
       this.pool = mysql.createPool(mysqlConfig);
     } else {
-      this.logger.error(`[ERROR] [MySQL] Unexpected configuration of type ${typeof mysqlconfig} received.`);
+      this.logger.error(`[ERROR] [MySQL] Unexpected configuration of type ${typeof mysqlConfig} received.`);
     }
 
     this.pool.query('SELECT VERSION()', (error, result) => {
-      let versionPrefix = 'MariaDB';
       if (!error) {
-        const version = result[0]['VERSION()'];
-        if (version[0] === '5' || version[0] === '8') {
-          versionPrefix = 'MySQL';
-        }
-        profiler.setVersion(`${versionPrefix}:${version}`);
+        const formattedVersion = formatVersion(result[0]['VERSION()']);
+        profiler.setVersion(formattedVersion);
         logger.log('\x1b[32m[mysql-async]\x1b[0m Database server connection established.');
       } else {
         logger.error(`[ERROR] ${error.message}`);
@@ -53,13 +58,49 @@ class MySQL {
         if (error) reject(error);
         resolve(result);
       });
-    });
-
-    queryPromise.catch((error) => {
+    }).catch((error) => {
       this.logger.error(`[ERROR] [MySQL] [${invokingResource}] An error happens on MySQL for query "${sql.sql}": ${error.message}`);
+      // We should not catch this error when doing a transaction, throw new error instead.
+      if (connection) throw new Error('This error might result from a transaction and be deliberate.');
     });
 
     return queryPromise;
+  }
+
+  onTransactionError(error, connection, callback) {
+    connection.rollback(() => {
+      this.logger.error(error.message);
+      callback(false);
+    });
+  }
+
+  beginTransaction(callback) {
+    this.pool.getConnection((connectionError, connection) => {
+      if (connectionError) {
+        this.logger.error(connectionError.message);
+        callback(false);
+        return;
+      }
+      connection.beginTransaction((transactionError) => {
+        if (transactionError) this.onTransactionError(transactionError, connection, callback);
+        else callback(connection);
+      });
+    });
+  }
+
+  commitTransaction(promises, connection, callback) {
+    Promise.all(promises).then(() => {
+      connection.commit((commitError) => {
+        if (commitError) this.onTransactionError(commitError, connection, callback);
+        else callback(true);
+      });
+      // Otherwise catch the error from the execution
+    }).catch((executeError) => {
+      this.onTransactionError(executeError, connection, callback);
+    }).then(() => {
+      // terminate connection
+      connection.release();
+    });
   }
 }
 

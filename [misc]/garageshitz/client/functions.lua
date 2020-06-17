@@ -507,6 +507,8 @@ HandleCamera = function(garage, toggle)
 		if DoesEntityExist(cachedData["vehicle"]) then
 			DeleteEntity(cachedData["vehicle"])
 		end
+		
+		DeleteEntity(cachedData["vehicle"])
 
 		RenderScriptCams(0, 1, 750, 1, 0)
 

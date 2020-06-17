@@ -45,9 +45,12 @@ ESX.SetPlayerData = function(key, val)
 end
 
 ESX.ShowNotification = function(msg)
+	TriggerEvent('hud:toggleui', false)
 	SetNotificationTextEntry('STRING')
 	AddTextComponentSubstringPlayerName(msg)
 	DrawNotification(false, true)
+	Citizen.Wait(1200)
+	TriggerEvent('hud:toggleui', true)
 end
 
 ESX.ShowAdvancedNotification = function(title, subject, msg, icon, iconType)

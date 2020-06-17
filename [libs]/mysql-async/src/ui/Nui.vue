@@ -1,5 +1,5 @@
 <template>
-  <v-app v-if="showInterface">
+  <v-app v-if="showInterface" class="v-app-background">
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
@@ -50,7 +50,12 @@
                       align-end
                       :headers="headers"
                       :items="slowqueries"
-                      :rows-per-page-items="[7]"
+                      :items-per-page="7"
+                      :footer-props="{
+                        'items-per-page-options': [7],
+                        prevIcon: 'chevron_left',
+                        nextIcon: 'chevron_right'
+                      }"
                     >
                       <template v-slot:items="props">
                         <td>{{ props.item.resource }}</td>
@@ -190,64 +195,21 @@ export default {
   mounted() {
     this.listener = window.addEventListener('message', (event) => {
       const item = event.data || event.detail;
-      if (this[item.type]) this[item.type](item);
+      if (item && this[item.type]) this[item.type](item);
     });
   },
   name: 'app',
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Fira Sans', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="scss">
+@import './styles/_mixins';
+
+html {
+  overflow-y: auto;
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  display: inline !important;
-}
-
-.app-background, .theme--light.application {
-  background: rgb(0, 0, 0, 0.5) !important;
-}
-
-/* fira-sans-regular - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Fira Sans Regular'), local('FiraSans-Regular'),
-       url('./assets/fonts/fira-sans-v9-latin-regular.woff2') format('woff2'),
-       url('./assets/fonts/fira-sans-v9-latin-regular.woff') format('woff');
-}
-
-/* fira-sans-italic - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Fira Sans Italic'), local('FiraSans-Italic'),
-       url('./assets/fonts/fira-sans-v9-latin-italic.woff2') format('woff2'),
-       url('./assets/fonts/fira-sans-v9-latin-italic.woff') format('woff');
-}
-
-/* fira-sans-700 - latin */
-@font-face {
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Fira Sans Bold'), local('FiraSans-Bold'),
-       url('./assets/fonts/fira-sans-v9-latin-700.woff2') format('woff2'),
-       url('./assets/fonts/fira-sans-v9-latin-700.woff') format('woff');
-}
-
-* {
-  font-family: 'Fira Sans', 'sans-serif';
-}
-
-.display-1, .display-2, .headline, .title, .subheading {
-  font-family: 'Alegreya Sans', 'sans-serif'!important;
-}
+@include font-face('Fira Sans', './assets/fonts/fira-sans-v9-latin-regular', 400, normal, woff woff2);
+@include font-face('Fira Sans', './assets/fonts/fira-sans-v9-latin-italic', 400, italic, woff woff2);
+@include font-face('Fira Sans', './assets/fonts/fira-sans-v9-latin-700', 700, normal, woff woff2);
 </style>

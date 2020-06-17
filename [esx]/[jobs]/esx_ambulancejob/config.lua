@@ -246,19 +246,19 @@ Config.AuthorizedVehicles = {
 		
 	},
 	cirujano = {
-		{ model = 'ems2', label = 'Vehículo rápido'}	
+		--{ model = 'ems2', label = 'Vehículo rápido'}	
 	},
 	
 	psicologo = {
-		{ model = 'ems2', label = 'Vehículo rápido'}	
+		--{ model = 'ems2', label = 'Vehículo rápido'}	
 	},
 	
 	viceboss = {
-		{ model = 'ems2', label = 'Vehículo rápido'}	
+		--{ model = 'ems2', label = 'Vehículo rápido'}	
 	},
 
 	boss = {
-		{ model = 'ems2', label = 'Vehículo rápido'}
+		--{ model = 'ems2', label = 'Vehículo rápido'}
 	}
 }
 

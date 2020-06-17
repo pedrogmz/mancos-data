@@ -202,53 +202,40 @@ AddEventHandler('fishing:startSelling', function(item)
 	local _source = source
 	
 	local xPlayer  = ESX.GetPlayerFromId(_source)
-			if item == "fish" then
-					local FishQuantity = xPlayer.getInventoryItem('fish').count
-						if FishQuantity <= 4 then
-						TriggerClientEvent('esx:showNotification', source, 'No tienes mas ~r~peces~w~.')			
-					else   
-						xPlayer.removeInventoryItem('fish', 1)
-						local payment = Config.FishPrice.a
-						payment = math.random(Config.FishPrice.a, Config.FishPrice.b) 
-						xPlayer.addMoney(payment)
-						
-						
-			end
-				
+	if item == "fish" then
+		local FishQuantity = xPlayer.getInventoryItem('fish').count
+		if FishQuantity <= 4 then
+			TriggerClientEvent('esx:showNotification', source, 'No tienes mas ~r~peces~w~.')			
+		else   
+			xPlayer.removeInventoryItem('fish', 1)
+			local payment = Config.FishPrice.a
+			payment = math.random(Config.FishPrice.a, Config.FishPrice.b) 
+			xPlayer.addMoney(payment)
+		end
+	end
+	if item == "turtle" then
+		local FishQuantity = xPlayer.getInventoryItem('turtle').count
 
-				
+		if FishQuantity <= 0 then
+			TriggerClientEvent('esx:showNotification', source, 'No tienes mas ~r~tortugas~w~.')			
+		else   
+			xPlayer.removeInventoryItem('turtle', 1)
+			local payment = Config.TurtlePrice.a
+			payment = math.random(Config.TurtlePrice.a, Config.TurtlePrice.b) 
+			xPlayer.addAccountMoney('black_money', payment)
+		end
+	end
+	if item == "shark" then
+		local FishQuantity = xPlayer.getInventoryItem('shark').count
 
-				
-			end
-			if item == "turtle" then
-				local FishQuantity = xPlayer.getInventoryItem('turtle').count
-
-				if FishQuantity <= 0 then
-					TriggerClientEvent('esx:showNotification', source, 'No tienes mas ~r~tortugas~w~.')			
-				else   
-					xPlayer.removeInventoryItem('turtle', 1)
-					local payment = Config.TurtlePrice.a
-					payment = math.random(Config.TurtlePrice.a, Config.TurtlePrice.b) 
-					xPlayer.addAccountMoney('black_money', payment)
-					
-					
-				end
-			end
-			if item == "shark" then
-				local FishQuantity = xPlayer.getInventoryItem('shark').count
-
-				if FishQuantity <= 0 then
-					TriggerClientEvent('esx:showNotification', source, 'No tienes mas ~r~tiburones~w~.')			
-				else   
-					xPlayer.removeInventoryItem('shark', 1)
-					local payment = Config.SharkPrice.a
-					payment = math.random(Config.SharkPrice.a, Config.SharkPrice.b)
-					xPlayer.addMoney(payment)
-					
-					
-				end
-			end
-			
-	
+		if FishQuantity <= 0 then
+			TriggerClientEvent('esx:showNotification', source, 'No tienes mas ~r~tiburones~w~.')			
+		else   
+			xPlayer.removeInventoryItem('shark', 1)
+			local payment = Config.SharkPrice.a
+			payment = math.random(Config.SharkPrice.a, Config.SharkPrice.b)
+			xPlayer.addMoney(payment)
+		end
+	end
 end)
 

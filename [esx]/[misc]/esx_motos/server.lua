@@ -8,9 +8,3 @@ AddEventHandler("esx:bike:lowmoney:moto", function(money)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	xPlayer.removeMoney(money)
 end)
-
-Citizen.CreateThread(function()
-	Citizen.Wait(5000)
-	local ver = "5.0"
-	print("ESX Bike Rental started v"..ver)
-end)
