@@ -1,6 +1,6 @@
 Config = {}
 
-Config.VehicleMenu = false -- enable this if you wan't a vehicle menu. 
+Config.VehicleMenu = true -- enable this if you wan't a vehicle menu. 
 --Above disabled by DeadlyEmu#0001 This function is buggy and i CBA to fix it. there is better resources out there which does this job
 Config.VehicleMenuButton = 344 -- change this to the key you want to open the menu with. buttons: https://docs.fivem.net/game-references/controls/
 Config.RangeCheck = 25.0 -- this is the change you will be able to control the vehicle.
@@ -14,7 +14,7 @@ Config.AutoBanMessage = "You have been banned for exploiting the the impound sys
 
 Config.LockGarage = true --True restrict garage(store in one cnat take it out the other) False can take all cars out of all garages
 Config.OneBlipName = true
-Config.GarageName = "Garage"
+Config.GarageName = "Garage - " .. GetConvar("server_number", "Mancos01")
 
 
 --Logging
