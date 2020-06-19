@@ -102,4 +102,4 @@ client_script "dlc_doomsday/facility.lua"
 -- DLC After Hours
 client_script "dlc_afterhours/nightclubs.lua"
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

@@ -19,4 +19,4 @@ server_scripts {
     'server/cron.lua'
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

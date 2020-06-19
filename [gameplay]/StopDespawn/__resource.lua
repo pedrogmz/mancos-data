@@ -6,4 +6,4 @@ client_scripts {
 	'config.lua',
 	'client.lua'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

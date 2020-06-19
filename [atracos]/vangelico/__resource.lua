@@ -16,4 +16,4 @@ server_scripts {
 dependencies {
   'MF_SafeCracker',
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

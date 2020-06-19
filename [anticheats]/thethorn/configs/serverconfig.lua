@@ -28,11 +28,6 @@ ChocoHaxCs.KickMessage = "Valiste verga, onii-chan." -- You can edit this UwU
 --//Anti Explosion System (tables are in tables folder)//--
 ChocoHaxCs.DetectExplosions = true -- Automatically detect blacklisted explosions from (tables/blacklistedexplosions.lua)
 
---//Anti Blacklisted Models//--
-ChocoHaxCs.BlacklistedWeapons = true
-ChocoHaxCs.KawaiiFuckMethod = false
-
-
 --//Permission System//-- DO NOT TOUCH IF YOU DON'T KNOW WHAT ARE U DOING 
 ChocoHaxCs.Bypass = {"chocohaxadministrator","chocohaxmoderator"} -- This will allow the user with these perms to bypass Violation detections such as mod menus/weapons/godmode, etc.
 ChocoHaxCs.AdminMenu = {"chocohaxadministrator"} -- This will allow the user with these perms to load the ChocoMenu.

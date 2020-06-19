@@ -22,4 +22,4 @@ client_scripts {
 	"client.lua",
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

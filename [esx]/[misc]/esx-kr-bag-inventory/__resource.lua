@@ -12,4 +12,4 @@ server_scripts {
   '@mysql-async/lib/MySQL.lua'
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

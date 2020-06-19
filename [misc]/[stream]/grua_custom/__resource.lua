@@ -17,4 +17,4 @@ data_file 'DLC_ITYP_REQUEST' 'stream/def_flatbed3_props.ytyp'
 
 client_script 'flatbed.lua'
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

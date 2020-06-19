@@ -20,7 +20,7 @@ ChocoHaxCc.AntiSpectate = true -- Detects a user that is spectating someone else
 ChocoHaxCc.AutomaticMDModel = true
 ChocoHaxCc.AutomaticMDEntity = true
 ChocoHaxCc.AutomaticMDPeds = true
-    ChocoHaxCc.AutomaticMDTimer = 10000 -- Timer default: 7500 / 7.5 seconds (lower the timer/higher the load aka. lag)
+    ChocoHaxCc.AutomaticMDTimer = 7500 -- Timer default: 7500 / 7.5 seconds (lower the timer/higher the load aka. lag)
 
 --//Anti Cheat Engine//--
 ChocoHaxCc.AntiDamageModifier = true -- Detects if a player tries to modify his damage or defence value

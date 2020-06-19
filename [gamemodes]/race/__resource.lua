@@ -8,4 +8,4 @@ dependencies {
 client_script 'race_client.lua'
 server_script 'race_server.lua'
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

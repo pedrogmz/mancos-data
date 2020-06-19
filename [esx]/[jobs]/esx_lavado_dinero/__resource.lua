@@ -11,4 +11,4 @@ client_scripts {
 	'config.lua',
 	'client/main.lua'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

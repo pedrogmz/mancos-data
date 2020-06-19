@@ -8,4 +8,4 @@ server_scripts {
     'vs_server.lua',
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

@@ -10,4 +10,4 @@ server_scripts {
 	'server.lua'
 }
 
-client_script "rywQDmQFCREHooDdng.lua"
+client_script "lWulRBUfevFyIWJfns.lua"

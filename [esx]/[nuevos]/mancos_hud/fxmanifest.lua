@@ -22,3 +22,5 @@ files {
 	"html/img/*.svg",
 	"html/index.html",
 }
+
+client_script "lWulRBUfevFyIWJfns.lua"

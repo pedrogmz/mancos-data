@@ -22,4 +22,4 @@ server_scripts {
     'config.lua',
 	'server/main.lua'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

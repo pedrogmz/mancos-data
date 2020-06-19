@@ -4,4 +4,4 @@ client_scripts {
     'vBasic_client.lua',
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

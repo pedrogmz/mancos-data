@@ -78,4 +78,4 @@ dependencies {
     'es_extended'
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"
