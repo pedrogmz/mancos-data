@@ -1595,13 +1595,11 @@ Citizen.CreateThread(function()
             if distance < Config.MaxDistance and InAction == false then
 
                 ESX.Game.Utils.DrawText3D({ x = bedID.objCoords.x, y = bedID.objCoords.y, z = bedID.objCoords.z + 1 }, bedID.text, 0.6)
-				ESX.TriggerServerCallback('esx_ambulancejob:getDeathStatus', function(isDead)
-					if IsControlJustReleased(0, Keys['E']) and isDead == false then
+					if IsControlJustReleased(0, Keys['E']) and IsDead == false then
 						bedActive(bedID.objCoords.x, bedID.objCoords.y, bedID.objCoords.z, bedID.heading, bedID)
-					elseif IsControlJustReleased(0, Keys['E']) and isDead == true then                    						
+					elseif IsControlJustReleased(0, Keys['E']) and IsDead == true then                    						
 						TriggerServerEvent('esx_ambulancejob:checkemsservicerevive',ped,isdeadparam)						
 					end
-				end)
 
             end
         end

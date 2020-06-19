@@ -5,6 +5,23 @@ Citizen.CreateThread(function()
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
+	
+	if IsPauseMenuActive() then
+		SendNUIMessage({action = "toggle", show = false})
+	else
+		SendNUIMessage({action = "toggle", show = true})
+	end
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(100)
+		if IsPauseMenuActive() then
+			SendNUIMessage({action = "toggle", show = false})
+		else
+			SendNUIMessage({action = "toggle", show = true})
+		end
+	end
 end)
 
 emsonline = 0

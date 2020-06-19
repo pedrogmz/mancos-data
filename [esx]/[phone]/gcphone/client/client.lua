@@ -23,8 +23,8 @@ local useMouse = false
 local ignoreFocus = false
 local takePhoto = false
 local hasFocus = false
-local movilon = true
-local moviloff = false
+movilon = false
+moviloff = true
 
 local PhoneInCall = {}
 local currentPlaySound = false

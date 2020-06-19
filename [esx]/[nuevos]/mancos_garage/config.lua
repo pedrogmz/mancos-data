@@ -8,7 +8,7 @@ Config.RangeCheck = 25.0 -- this is the change you will be able to control the v
 Config.Impound = true --Enable/Disable impound feature
 Config.ImpoundPrice = 2000 --Price it will cost player to recover vehicle
 Config.ImpoundName = "Impound" --Name to show on blip
-Config.RebootRestore = false --send all cars back to the garage on restart of the resource?
+Config.RebootRestore = true --send all cars back to the garage on restart of the resource?
 Config.ImpoundAutoBan = true --Autoban player if exploit is discovered? (Trying to put car in garage via lua executor) Requires EasyAdmin
 Config.AutoBanMessage = "You have been banned for exploiting the the impound system" -- Ban message to show
 
@@ -80,6 +80,26 @@ Config.Garages = {
 			["rotationX"] = -31.401574149728, 
 			["rotationY"] = 0.0, 
 			["rotationZ"] = -243.40157422423 
+        }
+    },
+	
+	["PRIVADO: Motor Club"] = {
+        ["positions"] = {
+            ["menu"] = {
+                ["position"] = vector3(988.23, -140.96, 73.05)
+            },
+            ["vehicle"] = {
+                ["position"] = vector3(985.64, -138.51, 73.03), 
+                ["heading"] = 55.49
+            }
+        },
+        ["camera"] = { 
+            ["x"] = 988.06, 
+            ["y"] = -142.11, 
+            ["z"] = 76.38, 
+            ["rotationX"] = -12.637795701623, 
+            ["rotationY"] = 0.0, 
+            ["rotationZ"] = 195.73228356242 
         }
     },
 	

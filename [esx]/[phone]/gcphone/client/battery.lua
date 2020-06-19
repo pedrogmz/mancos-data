@@ -47,7 +47,7 @@ Citizen.CreateThread(function()
 		else
 			if batteryLevel >= 1 and movilon then
 				Citizen.Wait(DischargeTime)
-				batteryLevel = batteryLevel-1
+				batteryLevel = batteryLevel - 1
 			end
 		end
 		TriggerEvent("gcPhone:batteryLevel", batteryLevel)

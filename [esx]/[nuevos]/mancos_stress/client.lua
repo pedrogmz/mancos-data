@@ -374,7 +374,7 @@ Citizen.CreateThread(function()
 			TriggerEvent('esx_status:getStatus', 'stress', function(status)
 				if status.val >= 10000 or status.val < 10000 then
 					TriggerEvent('esx_status:remove', 'stress', MFS.Zones[currentZoneName].Stress)
-					ESX.ShowNotification(_U('down_level'))
+					--ESX.ShowNotification("Te sientes más ~g~relajado")
 					Citizen.Wait(MFS.Zones[currentZoneName].Whait)
 				end
 			end)

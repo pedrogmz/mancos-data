@@ -27,10 +27,10 @@ MFS.JointRelief     = 20 -- from smoking joint
 MFS.AlchoholRelief  = 20 -- from drinking alchohol beverage
 MFS.DrinkingRelief  = 10 -- from drinking non-alchoholic beverage
 
-MFS.StaticRelief    = 0.1 -- % stress relieved over time from events like swimming, riding bikes, etc.
+MFS.StaticRelief    = 0.2 -- % stress relieved over time from events like swimming, riding bikes, etc.
 MFS.StaticAdder     = 1.0 -- % stress gained over time from things like driving too fast.
 MFS.CombatAdder     = 1.0 -- % stress gained while in combat
-MFS.ShootingAdder   = 1.0 -- % stress gained while shooting
+MFS.ShootingAdder   = 0.7 -- % stress gained while shooting
 MFS.StressAtSpeed   = 150 -- kph
 MFS.RelaxAtSpeed    = 20  -- kph
 

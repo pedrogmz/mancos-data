@@ -49,7 +49,7 @@ ESX.ShowNotification = function(msg)
 	SetNotificationTextEntry('STRING')
 	AddTextComponentSubstringPlayerName(msg)
 	DrawNotification(false, true)
-	Citizen.Wait(1200)
+	Citizen.Wait(7000)
 	TriggerEvent('hud:toggleui', true)
 end
 

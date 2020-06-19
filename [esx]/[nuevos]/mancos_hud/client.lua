@@ -1,5 +1,5 @@
 local toghud = true
-local toggps = false
+local toggps = true
 
 RegisterNetEvent('mancos_hud:updateStatus')
 AddEventHandler('mancos_hud:updateStatus', function(status)

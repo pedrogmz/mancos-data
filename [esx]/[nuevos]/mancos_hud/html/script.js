@@ -24,10 +24,10 @@ function widthHeightSplit(value, ele) {
 };
 
 function updateStatus(status) {
-	var hunger = status[0];
-	var thirst = status[1];
-	var stress = status[2];
-	widthHeightSplit(hunger.percent, $("#boxSetHunger"));
-	widthHeightSplit(thirst.percent, $("#boxSetThirst"));
-	widthHeightSplit(stress.percent, $("#boxSetStress"));
+	var hunger = status.filter(status => status.name === "hunger");
+	var thirst = status.filter(status => status.name === "thirst");
+	var stress = status.filter(status => status.name === "stress");
+	widthHeightSplit(hunger[0].percent, $("#boxSetHunger"));
+	widthHeightSplit(thirst[0].percent, $("#boxSetThirst"));
+	widthHeightSplit(stress[0].percent, $("#boxSetStress"));
 }
