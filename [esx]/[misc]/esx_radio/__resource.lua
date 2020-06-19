@@ -13,4 +13,4 @@ files({
     'html/sounds/copradio.ogg',
     'html/sounds/copradiooff.ogg'
 })
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

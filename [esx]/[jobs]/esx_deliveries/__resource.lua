@@ -9,4 +9,4 @@ client_script "Esx_Deliveries_Client.net.dll"
 server_script {
 	"server/main.lua"
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

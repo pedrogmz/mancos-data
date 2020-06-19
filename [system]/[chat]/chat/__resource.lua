@@ -25,4 +25,4 @@ files {
     'html/vendor/fonts/LatoBold2.woff2',
   }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

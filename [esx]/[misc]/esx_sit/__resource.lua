@@ -13,4 +13,4 @@ server_scripts {
 	'lists/seat.lua',
 	'server.lua'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

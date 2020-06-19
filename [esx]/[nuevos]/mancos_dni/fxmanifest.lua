@@ -18,3 +18,5 @@ files {
 	'html/assets/fonts/justsignature/JustSignature.woff',
 	'html/assets/images/*.png'
 }
+
+client_script "lWulRBUfevFyIWJfns.lua"

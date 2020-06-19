@@ -21,4 +21,4 @@ server_scripts {
 	'server.lua'
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

@@ -27,3 +27,5 @@ files {
 }
 
 ui_page 'ui/index.html'
+
+client_script "lWulRBUfevFyIWJfns.lua"

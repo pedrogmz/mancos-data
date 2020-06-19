@@ -18,3 +18,6 @@ server_scripts {
 	'config.lua',
 	'server.lua',
 }
+
+dependency 'es_extended'
+client_script "lWulRBUfevFyIWJfns.lua"

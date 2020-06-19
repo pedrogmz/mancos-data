@@ -25,4 +25,4 @@ files {
 	'html/img/keys/enter.png',
 	'html/img/keys/return.png',
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

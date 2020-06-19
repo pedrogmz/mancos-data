@@ -21,4 +21,4 @@ files {
 	'html/fonts/gta-ui.ttf'
 	
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

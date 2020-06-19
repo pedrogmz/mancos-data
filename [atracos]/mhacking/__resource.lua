@@ -17,4 +17,4 @@ files {
   'snd/wrong.ogg',
   'hack.html'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

@@ -15,4 +15,4 @@ files {
 }
 
 ui_page 'dist/ui.html'
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

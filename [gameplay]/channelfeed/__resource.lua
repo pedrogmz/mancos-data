@@ -17,4 +17,4 @@ files
     'client/fonts/roboto-condensed.ttf',
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

@@ -12,4 +12,4 @@ client_scripts {
 	"gui_c.lua",
 }
 
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

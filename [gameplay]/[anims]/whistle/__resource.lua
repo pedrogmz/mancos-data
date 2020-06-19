@@ -5,4 +5,4 @@ server_script 'server.lua'
 exports {
     'getSurrenderStatus',
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"

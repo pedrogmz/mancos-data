@@ -23,4 +23,4 @@ files {
 	'html/css/app.css',
 	'html/scripts/app.js'
 }
-client_script "wHHGDVZcVvrhNxgVQe.lua"
+client_script "TalJDiXcmrWuOdRetV.lua"
