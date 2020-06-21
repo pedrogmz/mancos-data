@@ -49,14 +49,14 @@ Citizen.CreateThread(function()
 		for i = 0, 15 do
 			EnableDispatchService(i, Config.Dispatch)
 		end			
-		SetVehicleDensityMultiplierThisFrame(0.1)
-		SetPedDensityMultiplierThisFrame(0.1)
+		SetVehicleDensityMultiplierThisFrame(0.3)
+		SetPedDensityMultiplierThisFrame(0.3)
 		SetRandomVehicleDensityMultiplierThisFrame(0.0)
 		SetParkedVehicleDensityMultiplierThisFrame(0.0)
-		SetScenarioPedDensityMultiplierThisFrame(0.0)
+		SetScenarioPedDensityMultiplierThisFrame(0.1)
 		ClearAreaOfCops(iPlayer.x, iPlayer.y, iPlayer.z, 5000.0)
-		ClearAreaOfVehicles(iPlayer.x, iPlayer.y, iPlayer.z, 1000, false, false, false, false, false)
-		RemoveVehiclesFromGeneratorsInArea(iPlayer.x - 500.0, iPlayer.y - 500.0, iPlayer.z - 500.0, iPlayer.x + 500.0, iPlayer.y + 500.0, iPlayer.z + 500.0);
+		--ClearAreaOfVehicles(iPlayer.x, iPlayer.y, iPlayer.z, 1000, false, false, false, false, false)
+		--RemoveVehiclesFromGeneratorsInArea(iPlayer.x - 500.0, iPlayer.y - 500.0, iPlayer.z - 500.0, iPlayer.x + 500.0, iPlayer.y + 500.0, iPlayer.z + 500.0);
 		SetGarbageTrucks(0)
 		SetRandomBoats(0)
 	end

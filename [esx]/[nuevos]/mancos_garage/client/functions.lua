@@ -420,13 +420,13 @@ SetVehicleProperties = function(vehicle, vehicleProps)
     SetVehicleBodyHealth(vehicle, vehicleProps["bodyHealth"] and vehicleProps["bodyHealth"] + 0.0 or 1000.0)
     SetVehicleFuelLevel(vehicle, vehicleProps["fuelLevel"] and vehicleProps["fuelLevel"] + 0.0 or 1000.0)
 
-    if vehicleProps["windows"] then
+    --[[if vehicleProps["windows"] then
         for windowId = 1, 13, 1 do
             if vehicleProps["windows"][windowId] == false then
                 SmashVehicleWindow(vehicle, windowId)
             end
         end
-    end
+    end]]
 
     if vehicleProps["tyres"] then
         for tyreId = 1, 7, 1 do

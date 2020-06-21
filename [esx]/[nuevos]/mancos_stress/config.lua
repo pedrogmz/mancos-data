@@ -14,15 +14,15 @@ Citizen.CreateThread(function(...)
   end
 end)
 
-MFS.GetSickAt       = 40 -- only change the first value (percent player gets sick at)
-MFS.ExtremelySickAt = 70 -- only change the first value (percent player vomits at)
+MFS.GetSickAt       = 60 -- only change the first value (percent player gets sick at)
+MFS.ExtremelySickAt = 90 -- only change the first value (percent player vomits at)
 
 MFS.CoughTimer      = 30 -- seconds between cough
 MFS.VomitTimer      = 45 -- seconds between vomit
 MFS.VomitHealthLoss = 10 -- from vomiting
 
 MFS.DrugsTimer      = 60 -- how long drugs last (seconds)
-MFS.SmokeRelief     = 10 -- from smoking cigarette
+MFS.SmokeRelief     = 100 -- from smoking cigarette
 MFS.JointRelief     = 20 -- from smoking joint
 MFS.AlchoholRelief  = 20 -- from drinking alchohol beverage
 MFS.DrinkingRelief  = 10 -- from drinking non-alchoholic beverage

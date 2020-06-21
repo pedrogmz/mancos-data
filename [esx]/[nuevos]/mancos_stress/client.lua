@@ -29,7 +29,7 @@ function MFS:Update(...)
     local plyPed = GetPlayerPed(-1)
 
     -- Vehicles
-    if IsPedInAnyVehicle(plyPed,false) then
+    if IsPedInAnyVehicle(plyPed,false)  then
       self.IsDriving = true
       local speed = GetEntitySpeed(GetVehiclePedIsIn(plyPed,true)) * 3.6
       local onBike = IsPedOnAnyBike(plyPed)
@@ -40,12 +40,12 @@ function MFS:Update(...)
         if speed > self.RelaxAtSpeed and speed < self.StressAtSpeed then
           self.DoRelax = math.min((self.DoRelax or 0) + (self.StaticRelief * 10000),1000000)
           Citizen.Wait(1000)
-        elseif speed > self.StressAtSpeed then
+        elseif speed > self.StressAtSpeed and self.PlayerData.job.name ~= 'police' then
           TriggerEvent('esx_status:add','stress',(self.StaticAdder * 10000)*multiplier)
           Citizen.Wait(1000)
         end
       else
-        if speed > self.StressAtSpeed then
+        if speed > self.StressAtSpeed and self.PlayerData.job.name ~= 'police' then
           TriggerEvent('esx_status:add','stress',(self.StaticAdder * 10000)*multiplier)
           Citizen.Wait(1000)
         end

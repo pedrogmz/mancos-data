@@ -22,8 +22,22 @@ AddEventHandler('esx:setJob', function(job)
   SendNUIMessage({action = "setJob", job = job.name, grade = job.grade_label})
 end)
 
+AddEventHandler('mancos_dni:show_dni', function()
+	if not open then
+		SendNUIMessage({
+			action = "open"
+		})
+		open = true
+	elseif open then
+		SendNUIMessage({
+			action = "close"
+		})
+		open = false
+	end
+end)
+
 -- Key events
-Citizen.CreateThread(function()
+--[[Citizen.CreateThread(function()
 	while true do
 		Wait(0)
 		if IsControlJustReleased(0, 57) and not open then
@@ -38,4 +52,4 @@ Citizen.CreateThread(function()
 			open = false
 		end
 	end
-end)
+end)]]

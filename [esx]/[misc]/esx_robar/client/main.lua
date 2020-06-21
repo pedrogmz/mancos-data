@@ -53,7 +53,8 @@ function OpenCuffMenu()
         {label = _U('drag'), value = 'drag'},
 		{label = "Meter en el vehiculo", value = 'put_in_vehicle'},
 		{label = "Sacar del vehiculo", value = 'out_the_vehicle'},
-		{label = _U('search'), value = 'search'}
+		{label = _U('search'), value = 'search'},
+		{label = "Ver DNI", value = 'ver_dni'},
 	}
 
 	ESX.UI.Menu.CloseAll()
@@ -75,6 +76,10 @@ function OpenCuffMenu()
 					ESX.ShowNotification("No tienes el saco")
 				end
 			end, 'blindfold')
+		end
+		
+		if data2.current.value == 'ver_dni' then
+			TriggerEvent('mancos_dni:show_dni')
 		end
 			
 		local player, distance = ESX.Game.GetClosestPlayer()
