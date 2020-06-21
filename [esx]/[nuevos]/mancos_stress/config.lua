@@ -28,10 +28,10 @@ MFS.AlchoholRelief  = 20 -- from drinking alchohol beverage
 MFS.DrinkingRelief  = 10 -- from drinking non-alchoholic beverage
 
 MFS.StaticRelief    = 0.2 -- % stress relieved over time from events like swimming, riding bikes, etc.
-MFS.StaticAdder     = 1.0 -- % stress gained over time from things like driving too fast.
+MFS.StaticAdder     = 0.3 -- % stress gained over time from things like driving too fast.
 MFS.CombatAdder     = 1.0 -- % stress gained while in combat
 MFS.ShootingAdder   = 0.7 -- % stress gained while shooting
-MFS.StressAtSpeed   = 150 -- kph
+MFS.StressAtSpeed   = 190 -- kph
 MFS.RelaxAtSpeed    = 20  -- kph
 
 -- Stress Zones [Zonas de descanso]
@@ -40,14 +40,14 @@ MFS.Zones = {
 		Pos = {x = -705.7, y = -911.33, z = 19.22},
 		Coords = vector3(-705.7,-911.33, 19.22),
 		Dist = 50.0, -- Rango de la zona,
-		Stress = 30000, -- Total de estrés a quitar cada x tiempo
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	},
 	Vanilla = {
 		Pos = {x = 115.8, y = -1292.39, z = 28.26},
 		Coords = vector3(115.8, -1292.39, 28.26),
 		Dist = 25.0, -- Rango de la zona,
-		Stress = 30000, -- Total de estrés a quitar cada x tiempo
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	}
 }

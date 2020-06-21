@@ -1,9 +1,8 @@
---BY BNJ-- 𝑯𝒐𝒎𝒎𝒆-𝒆𝒇𝒇𝒊𝒄𝒂𝒔𝒆
+--BY BNJ--
 ESX = nil
 cooldown = false
 
 Citizen.CreateThread(function()
-Citizen.Trace("\n\nbnj_plaque")
 	while ESX == nil do
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
@@ -132,5 +131,3 @@ function DrawText3D(x, y, z, text)
     AddTextComponentString(text)
     DrawText(_x,_y)
 end
-
-Citizen.Trace("\nHomme_efficace\n\n")

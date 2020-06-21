@@ -16,7 +16,7 @@ function ReturnCars()
 		['@stored']      = false
 	}, function (rowsChanged)
 		if rowsChanged > 0 then
-			print(('GarageShitz: %s vehicle(s) have been returned to their garage!'):format(rowsChanged))
+			print(('mancos_garage: %s vehicle(s) have been returned to their garage!'):format(rowsChanged))
 		end
 	end)
 end

@@ -305,10 +305,17 @@ SpawnLocalVehicle = function(vehicleProps)
 		DeleteEntity(cachedData["vehicle"])
 	end
 	
-	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then 
-		ESX.ShowNotification("Mueve el vehículo que está en el camino.")
-		HandleCamera(cachedData["currentGarage"], false)
-		return
+	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then
+		
+		--ESX.ShowNotification("Mueve el vehículo que está en el camino.")
+		
+		---HandleCamera(cachedData["currentGarage"], false)
+		
+		for _,v in ipairs(ESX.Game.GetVehiclesInArea(spawnpoint["position"], 3.0)) do
+			ESX.Game.DeleteVehicle(v)
+		end
+		
+		--return
 	end
 	
 	if not IsModelValid(vehicleProps["model"]) then
@@ -331,10 +338,14 @@ SpawnVehicle = function(vehicleProps)
 
 	if DoesEntityExist(cachedData["vehicle"]) then
 		DeleteEntity(cachedData["vehicle"])
+		DeleteVehicle(cachedData["vehicle"])
 	end
 	
-	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then 
+	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then
+
+		
 		ESX.ShowNotification("Mueve el vehículo que está en el camino.")
+		
 		HandleCamera(cachedData["currentGarage"], false)
 		return
 	end
