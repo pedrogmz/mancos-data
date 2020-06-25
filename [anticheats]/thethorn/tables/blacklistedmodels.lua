@@ -42,6 +42,7 @@ ChocoHaxANBM.BlacklistedWeapons = {
 
 ChocoHaxANBM.BlacklistedVehicles = { -- Vehicles
 	"cargoplane",
+	"policeb"
 }
 
 ChocoHaxANBM.BlacklistedObjects = { -- Entities
@@ -86,7 +87,7 @@ ChocoHaxANBM.BlacklistedObjects = { -- Entities
 	"prop_ld_toilet_01",
 	"prop_cs_dildo_01",
 	"prop_beach_fire",
-	"stt_prop_stunt_track_slope30",
+	"stt_prop_stunt_track_slope30"
 }
 
 ChocoHaxANBM.BlacklistedPeds = { -- Peds, animals, etc.
