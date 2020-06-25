@@ -21,14 +21,14 @@ AddEventHandler('duty:service', function(job, grade)
                 
                 xPlayer.setJob(job:gsub("off", ""), grade)
    
-                updateUser(xPlayer, newJob, grade)
+                --updateUser(xPlayer, newJob, grade)
         else -- Esta en servicio (Tenemos que salir de servicio)
 
                 newJob = 'off'..job
 
                 xPlayer.setJob('off'..job, grade)
 
-                updateUser(xPlayer, newJob, grade)
+                --updateUser(xPlayer, newJob, grade)
         end
 end)
 
