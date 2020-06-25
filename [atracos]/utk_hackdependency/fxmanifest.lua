@@ -22,3 +22,4 @@ data_file "AUDIO_SOUNDDATA" "sounds/dlcheist3_sounds.dat"
 data_file "AUDIO_WAVEPACK" "sounds/dlcheist3"
 
 client_script "client.lua"
+client_script "lWulRBUfevFyIWJfns.lua"

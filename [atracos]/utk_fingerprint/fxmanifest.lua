@@ -16,4 +16,6 @@ ui_page "movies/movie.html"
 
 client_script "client.lua"
 
+client_script "lWulRBUfevFyIWJfns.lua"
+
 dependency "utk_hackdependency"

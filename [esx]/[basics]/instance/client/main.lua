@@ -155,6 +155,7 @@ Citizen.CreateThread(function()
 
 		if instanceInvite then
 			ESX.ShowHelpNotification(_U('press_to_enter'))
+			ESX.ShowNotification('Te han invitado a una casa')
 
 			if IsControlJustReleased(0, 38) then
 				EnterInstance(instanceInvite)
