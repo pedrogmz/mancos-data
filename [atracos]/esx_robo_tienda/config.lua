@@ -16,7 +16,7 @@ Config.GiveBlackMoney = true -- give black money? If disabled it will give cash 
 Stores = {
 		["littleseoul_twentyfourseven"] = {
 		position = { x = -709.59, y = -904.18, z = 19.50 },
-		reward = math.random(6000, 8000),
+		reward = math.random(8000, 10000),
 		nameOfStore = "24/7 (Tienda)",
 		secondsRemaining = 200, -- seconds
 		lastRobbed = 0

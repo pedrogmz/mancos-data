@@ -6,21 +6,18 @@ RegisterServerEvent('comprobarAuxilio')
 AddEventHandler('comprobarAuxilio', function(msg, x, y, z, name, ped)
 	local _source = source
 	local xPlayers = ESX.GetPlayers()
-	local xPlayer = ESX.GetPlayerFromId(source)
 	local ped = GetPlayerPed(_source)
 	
-	TriggerEvent('es:getPlayers', function(players)
 	for i=1, #xPlayers, 1 do
-		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-			if xPlayer.job.name == 'ambulance' then
-				TriggerClientEvent('auxilio:setBlip', xPlayers[i], name, x, y, z)
-				TriggerClientEvent('chat:addMessage', xPlayers[i], { args = {"^1AUXILIO ", tonumber(_source) .. " ^1" .. msg} }) --Hidita: Se añade el contenido del mensaje en el chat
-				TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], 'EMS', '', '~r~Alerta EMS ~n~~w~'.. tonumber(_source) .. ' - ' .. msg, 'CHAR_CHAT_CALL', 1)
+	local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'ambulance' then
+			TriggerClientEvent('auxilio:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('chat:addMessage', xPlayers[i], { args = {"^1AUXILIO ", tonumber(_source) .. " ^1" .. msg} }) --Hidita: Se añade el contenido del mensaje en el chat
+			TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], 'EMS', '', '~r~Alerta EMS ~n~~w~'.. tonumber(_source) .. ' - ' .. msg, 'CHAR_CHAT_CALL', 1)
 
-				TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(_source), 'ambulance', msg, x, y, z) -- Arnedo 5 | Nuevo aviso policia
-			end
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(_source), 'ambulance', msg, x, y, z) -- Arnedo 5 | Nuevo aviso policia
 		end
-	end)
+	end
 	TriggerClientEvent("sendProximityMessageAuxilio", -1, _source)
 	TriggerEvent('DiscordBot:ToDiscord', 'chat', name .. ' [ID: ' .. source .. '] Server: '..server, '**AUXILIO: **' .. msg, 'steam', true, source)
 end)

@@ -10,12 +10,9 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 ]]
 RegisterServerEvent('hidi:chatFaccion')
 AddEventHandler('hidi:chatFaccion', function(mensaje,id)
-	--local xJugadores = ESX.GetPlayers()
 	local checkJob = ESX.GetPlayerFromId(source)
-	local _source = source
 	local job = checkJob.job.name
-	local _identifier = checkJob.getIdentifier()
-	local nombre = GetCharacterName(_identifier)
+	local nombre = GetRealPlayerName(source)
 
 	if job == 'ambulance' then
 		sendChat('ambulance', "#F52785", nombre, mensaje,'Ambulancia')
@@ -32,7 +29,7 @@ AddEventHandler('hidi:chatFaccion', function(mensaje,id)
 	elseif job == 'police' then
 		sendChat('police', "#179CE3", nombre, mensaje,'Policia')
 	else
-		TriggerClientEvent('chat:addMessage',_source, {args = {"^1SYSTEM: ", "^5No perteneces a ninguna facción."}})
+		TriggerClientEvent('chat:addMessage',source, {args = {"^1SYSTEM: ", "^5No perteneces a ninguna facción."}})
 	end
 	--sendToDiscord(source, "Chat Faccion",mensaje)
 end)
@@ -40,10 +37,8 @@ end)
 RegisterServerEvent('hidi:PoliEms')
 AddEventHandler('hidi:PoliEms', function(mensaje,id)
 	local _player = ESX.GetPlayerFromId(source)
-	local _source = source
 	local _job = _player.job.name
-	local _identifier = _player.getIdentifier()
-	local _name = GetCharacterName(_identifier)
+	local _name = GetRealPlayerName(source)
 	if _job == 'ambulance' or _job == 'police' then
 		if _job == 'ambulance' then
 			EmsPol('ambulance', "#A86DEB", _name, mensaje,'EMPL: EMS')
@@ -52,7 +47,7 @@ AddEventHandler('hidi:PoliEms', function(mensaje,id)
 		end
 		--sendToDiscord(source, "Chat entre EMS y LSPD",mensaje)
 	else
-		TriggerClientEvent('chat:addMessage',_source, {args = {"^1SYSTEM: ", "^5No tienes permisos para usar esto."}})
+		TriggerClientEvent('chat:addMessage',source, {args = {"^1SYSTEM: ", "^5No tienes permisos para usar esto."}})
 	end
 
 end)
@@ -103,21 +98,14 @@ RegisterCommand('a', function(source, args, rawCommand)
 end, false)
 
 RegisterCommand('ad', function(source, args, rawCommand)
-    local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(4)
 	local _player = ESX.GetPlayerFromId(source)
-	local _identifier = _player.getIdentifier()
-	local _name = GetCharacterName(_identifier)
-	local _source = source
-	if playerRank(source) ~= '^9[JEFE] ^7' then
+	local _name = GetRealPlayerName(source)
     	TriggerClientEvent('chat:addMessage', -1, {
     	    template = '<div style="padding: 0.1vw; margin: 0.1vw; border-radius: 3px;"><i class="fas fa-ad"></i>^3 [Noticia]^0 [{2}] {1}</div>',
-	        args = { _name, msg, _source }
+	        args = { _name, msg, source }
 		})
 		--sendToDiscord(source, "Anuncio",mensaje)
-	else
-		TriggerClientEvent('chat:addMessage',_source, {args = {"^1SYSTEM: ", "^5No tienes permisos para usar esto."}})
-	end
 end, false)
 
 RegisterCommand('msg', function(source, args)
@@ -211,7 +199,7 @@ end)
 ############################################################################
 ]]
 --Recupera el RolName del personaje
-function GetCharacterName(identifier)
+--[[function GetCharacterName(identifier)
 	local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {
 		['@identifier'] = identifier
 	})
@@ -221,36 +209,33 @@ function GetCharacterName(identifier)
 	else
 		return GetPlayerName(source)
 	end
-end
+end]]
+
 --Envia el mensaje a la faccion pertinente
 function sendChat(job, color, nombre, mensaje,faccion)
 	local xJugadores = ESX.GetPlayers()
-	TriggerEvent('es:getPlayers', function(players)
-		for i=1, #xJugadores, 1 do
-			local xJugador = ESX.GetPlayerFromId(xJugadores[i])
-			if xJugador.job.name == job then
-				TriggerClientEvent('chat:addMessage',xJugadores[i], {
-					template = '<font color="' .. color .. '"><b>*{0}*</b></font> <font color="#FFFFFF"><b>{1}</b></font><font color="' .. color .. '"><b>{2}</b></font>',
-					args = {string.upper(faccion), nombre, ": " .. mensaje}
-				})
-			end
+	for i=1, #xJugadores, 1 do
+		local xJugador = ESX.GetPlayerFromId(xJugadores[i])
+		if xJugador.job.name == job then
+			TriggerClientEvent('chat:addMessage',xJugadores[i], {
+				template = '<font color="' .. color .. '"><b>*{0}*</b></font> <font color="#FFFFFF"><b>{1}</b></font><font color="' .. color .. '"><b>{2}</b></font>',
+				args = {string.upper(faccion), nombre, ": " .. mensaje}
+			})
 		end
-	end)
+	end
 end
 
 function EmsPol(job,color,name,mensaje,faccion)
 	local xPlayers = ESX.GetPlayers()
-	TriggerEvent('es:getPlayers', function(players)
-		for i=1, #xPlayers, 1 do
-			local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-			if xPlayer.job.name == 'ambulance' or xPlayer.job.name == 'police' then
-				TriggerClientEvent('chat:addMessage',xPlayers[i], {
-					template = '<font color="' .. color .. '"><b>*{0}*</b></font> <font color="#FFFFFF"><b>{1}</b></font><font color="' .. color .. '"><b>{2}</b></font>',
-					args = {string.upper(faccion), name, ": " .. mensaje}
-				})
-			end
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'ambulance' or xPlayer.job.name == 'police' then
+			TriggerClientEvent('chat:addMessage',xPlayers[i], {
+				template = '<font color="' .. color .. '"><b>*{0}*</b></font> <font color="#FFFFFF"><b>{1}</b></font><font color="' .. color .. '"><b>{2}</b></font>',
+				args = {string.upper(faccion), name, ": " .. mensaje}
+			})
 		end
-	end)
+	end
 end
 
 --Comprueva el rango del personaje
