@@ -12,11 +12,13 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 	}
 
 	TriggerEvent('es:getPlayerFromId', _source, function(player)
-		-- Update user name in DB
+		-- Update user name & login date in DB
 		table.insert(tasks, function(cb)
+			--MySQL.Async.execute('UPDATE users SET name = @name, date_modified = @date_modified WHERE identifier = @identifier', {
 			MySQL.Async.execute('UPDATE users SET name = @name WHERE identifier = @identifier', {
 				['@identifier'] = player.getIdentifier(),
-				['@name'] = userData.playerName
+				['@name'] = userData.playerName,
+				--['@date_modified'] = os.date("%Y-%M-%d %H:%M:%S")
 			}, function(rowsChanged)
 				cb()
 			end)

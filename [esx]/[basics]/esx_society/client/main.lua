@@ -120,7 +120,7 @@ function OpenBossMenu(society, close, options)
 		table.insert(elements, {label = _U('deposit_society_money'), value = 'deposit_money'})
 	end
 -- los trabajos indicados no muestran gestion de empleados y gestion de salarios
-	if society ~= 'thelost' and society ~= 'ballas' and society ~= 'tender' and society ~= 'cardealer' and society ~= 'steel' then
+	if society ~= 'thelost' and society ~= 'ballas' and society ~= 'cardealer' and society ~= 'steel' then
 
 	
 		if options.employees then

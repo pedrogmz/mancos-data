@@ -61,17 +61,17 @@ AddEventHandler('chatMessage', function(source, args, message)
 			
 			local coordsReceptor = GetEntityCoords(receptor)
 			local coordsEmisor = GetEntityCoords(emisor)
-			
+
 			local nombreEmisor = GetPlayerName(source)
 			
 			if source == player then
 				TriggerClientEvent('chat:addMessage', source, {
-					template = '^6[OOC]^0 {0}: ^6 {1}',
+					template = '^0[OOC] '..playerRank(source)..' {0}: {1}',
 					args = {nombreEmisor, message}
 				})
 			elseif #(vector3(coordsReceptor) - vector3(coordsEmisor)) < 19.999 then
 				TriggerClientEvent('chat:addMessage', player, {
-					template = '^6[OOC]^0 {0}: ^6 {1}',
+					template = '^0[OOC] '..playerRank(source)..' {0}: {1}',
 					args = {nombreEmisor, message}
 				})
 			end
@@ -102,7 +102,7 @@ RegisterCommand('ad', function(source, args, rawCommand)
 	local _player = ESX.GetPlayerFromId(source)
 	local _name = GetRealPlayerName(source)
     	TriggerClientEvent('chat:addMessage', -1, {
-    	    template = '<div style="padding: 0.1vw; margin: 0.1vw; border-radius: 3px;"><i class="fas fa-ad"></i>^3 [Noticia]^0 [{2}] {1}</div>',
+    	    template = '<div style="padding: 0.1vw; margin: 0.1vw; border-radius: 3px;"><i class="fas fa-ad"></i>^3 [NOTICIA]^0 [{2}] {1}</div>',
 	        args = { _name, msg, source }
 		})
 		--sendToDiscord(source, "Anuncio",mensaje)
@@ -153,12 +153,12 @@ TriggerEvent('es:addCommand', 'me', function(source, args, user)
 		if source == player then
 			TriggerClientEvent('chat:addMessage', source, {
 				template = '^6[ME]^0 {0}: ^6 {1}',
-				args = {nombreEmisor, mensaje}
+				args = {source, mensaje}
 			})
 		elseif #(vector3(coordsReceptor) - vector3(coordsEmisor)) < 19.999 then
 			TriggerClientEvent('chat:addMessage', player, {
 				template = '^6[ME]^0 {0}: ^6 {1}',
-				args = {nombreEmisor, mensaje}
+				args = {source, mensaje}
 			})
 		end
 	end
@@ -178,13 +178,13 @@ TriggerEvent('es:addCommand', 'do', function(source, args, user)
 		
 		if source == player then
 			TriggerClientEvent('chat:addMessage', source, {
-				template = '^6[DO]^0 {0}: ^6 {1}',
-				args = {nombreEmisor, mensaje}
+				template = '^3[DO]^0 {0}: ^3 {1}',
+				args = {source, mensaje}
 			})
 		elseif #(vector3(coordsReceptor) - vector3(coordsEmisor)) < 19.999 then
 			TriggerClientEvent('chat:addMessage', player, {
-				template = '^6[DO]^0 {0}: ^6 {1}',
-				args = {nombreEmisor, mensaje}
+				template = '^3[DO]^0 {0}: ^3 {1}',
+				args = {source, mensaje}
 			})
 		end
 	end

@@ -46,7 +46,7 @@ function OpenCuffMenu()
 	TriggerEvent('mancos_ui:openMenu', 'social')
 
 	local elements = {
-		{label = 'Ropa', value = 'clothes'},
+		--{label = 'Ropa', value = 'clothes'},
         {label = 'Saco', value = 'headbag'},
         {label = _U('cuff'), value = 'cuff'},
         {label = _U('uncuff'), value = 'uncuff'}, 
@@ -64,9 +64,9 @@ function OpenCuffMenu()
 		align    = 'top-left',
 		elements = elements
 	}, function(data2, menu2)
-		if data2.current.value == 'clothes' then
-			TriggerEvent('smerfikubrania:openMenu')
-		end
+		--if data2.current.value == 'clothes' then
+			--TriggerEvent('smerfikubrania:openMenu')
+		--end
 			
 		if data2.current.value == 'headbag' then
 			ESX.TriggerServerCallback('esx_thief:getItemQ', function(quantity)

@@ -257,7 +257,7 @@ AddEventHandler('onResourceStart', function(resource)
 	end
 end)
 
---[[TriggerEvent('es:addCommand', 'register', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'char', 'admin', function(source, args, user)
 	getCharacters(source, function(data)
 		if data.firstname3 ~= '' then
 			TriggerClientEvent('chat:addMessage', source, { args = { '^[IDENTITY]', 'You can only have 3 registered characters. Use the ^3/chardel^0  command in order to delete existing characters.' } })
@@ -265,9 +265,11 @@ end)
 			TriggerClientEvent('esx_identity:showRegisterIdentity', source, {})
 		end
 	end)
-end, {help = "Register a new character"})]]
+end, function(source, args, user)
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient permissions!' } })
+end, {help = "Register a new character"})
 
---[[TriggerEvent('es:addGroupCommand', 'char', 'user', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'char', 'admin', function(source, args, user)
 	getIdentity(source, function(data)
 		if data.firstname == '' then
 			TriggerClientEvent('chat:addMessage', source, { args = { '^1[IDENTITY]', 'You do not have an active character!' } })
@@ -277,9 +279,9 @@ end, {help = "Register a new character"})]]
 	end)
 end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient permissions!' } })
-end, {help = "List your current character"})]]
+end, {help = "List your current character"})
 
---[[TriggerEvent('es:addGroupCommand', 'chardel', 'user', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'chardel', 'admin', function(source, args, user)
 	local charNumber = tonumber(args[1])
 
 	if charNumber == nil or charNumber > 3 or charNumber < 1 then
@@ -363,5 +365,5 @@ end, {help = "List your current character"})]]
 	end)
 end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient permissions!' } })
-end, {help = "Delete a registered character", params = {{name = "char", help = "the character id, ranges from 1-3"}}})]]
+end, {help = "Delete a registered character", params = {{name = "char", help = "the character id, ranges from 1-3"}}})
 
