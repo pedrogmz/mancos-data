@@ -50,12 +50,12 @@ function removeColors(color) {
 $('.close').click(function () {
     $('bankui').hide();
     removeColors(bankColor)
-    $.post('http://orp-banking/NUIFocusOff', JSON.stringify({}));
+    $.post('http://mancos_banking/NUIFocusOff', JSON.stringify({}));
 });
 
 $('#withdraw').click(function (e) {
     e.preventDefault();
-    $.post('http://orp-banking/withdrawl', JSON.stringify({
+    $.post('http://mancos_banking/withdrawl', JSON.stringify({
         amountw: $('#withdrawval').val()
     }));
     $('#withdrawval').val('');
@@ -63,7 +63,7 @@ $('#withdraw').click(function (e) {
 
 $('#deposit').click(function (e) {
     e.preventDefault();
-    $.post('http://orp-banking/deposit', JSON.stringify({
+    $.post('http://mancos_banking/deposit', JSON.stringify({
         amount: $('#depositval').val()
     }));
     $('#depositval').val('');
@@ -71,28 +71,28 @@ $('#deposit').click(function (e) {
 
 $('#withdraw-100').click(function (e) {
     e.preventDefault();
-    $.post('http://orp-banking/withdrawl', JSON.stringify({
+    $.post('http://mancos_banking/withdrawl', JSON.stringify({
         amountw: 100
     }));
 });
 
 $('#withdraw-250').click(function (e) {
     e.preventDefault();
-    $.post('http://orp-banking/withdrawl', JSON.stringify({
+    $.post('http://mancos_banking/withdrawl', JSON.stringify({
         amountw: 250
     }));
 });
 
 $('#withdraw-500').click(function (e) {
     e.preventDefault();
-    $.post('http://orp-banking/withdrawl', JSON.stringify({
+    $.post('http://mancos_banking/withdrawl', JSON.stringify({
         amountw: 500
     }));
 });
 
 $('#transfer').click(function (e) {
     e.preventDefault();
-    $.post('http://orp-banking/transfer', JSON.stringify({
+    $.post('http://mancos_banking/transfer', JSON.stringify({
         to: $('#idval').val(),
         amountt: $('#transferval').val()
     }));
@@ -104,7 +104,7 @@ document.onkeyup = function (data) {
         // $('bankui').hide();
         $('#bankui').fadeTo(10, 0.0)
         removeColors(bankColor)
-        $.post('http://orp-banking/NUIFocusOff', JSON.stringify({}))
+        $.post('http://mancos_banking/NUIFocusOff', JSON.stringify({}))
     }
 }
 

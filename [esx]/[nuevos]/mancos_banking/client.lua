@@ -37,7 +37,7 @@ end)
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-        if playerNearBank() or playerNearAtm() and not inMenu then
+        if playerNearBank() or playerNearATM() and not inMenu then
             DisplayHelpText("Press ~INPUT_PICKUP~ to access your bank")
             if IsControlJustPressed(0, 38) then
                 openPlayersBank('bank')

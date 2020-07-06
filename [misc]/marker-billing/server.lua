@@ -72,7 +72,7 @@ AddEventHandler('marker_billing:billing', function(id, date)
                 if (tonumber(xPlayer.getBank()) > tonumber(totalBilling)) or 1 == 1 then
 
                     -- En caso de tener dinero en el  banco, retiramos el dinero
-                    xPlayer.removeAccountMoney('bank', totalBilling)
+                    xPlayer.removeAccountMoney('bank', tonumber(totalBilling))
 
                     removeMoney(_source, xPlayer, date)
 					
@@ -154,7 +154,7 @@ AddEventHandler('marker_billing:billingMechanic', function(id, description, note
 						}, function (rowsChanged)
 							TriggerClientEvent('esx:showNotification', id, "~r~ MAZE BANK INFORMA: ~s~"..total.."$ retirados por pago de factura en Mecánico ["..description.."]")
 							
-							xPlayer.removeAccountMoney('bank', total)
+							xPlayer.removeAccountMoney('bank', tonumber(total))
 							-- Arnedo5 | El dinero se guarda en la sociedad
 							TriggerClientEvent('billingSocietyAdd', id, 'mechanic', tonumber(total)) -- Le sacamos dinero y se lo ponemos a la sociedad
 
