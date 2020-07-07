@@ -257,7 +257,7 @@ AddEventHandler('onResourceStart', function(resource)
 	end
 end)
 
-TriggerEvent('es:addGroupCommand', 'char', 'admin', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'register', 'admin', function(source, args, user)
 	getCharacters(source, function(data)
 		if data.firstname3 ~= '' then
 			TriggerClientEvent('chat:addMessage', source, { args = { '^[IDENTITY]', 'You can only have 3 registered characters. Use the ^3/chardel^0  command in order to delete existing characters.' } })

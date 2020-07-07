@@ -38,7 +38,7 @@ end)
 
 function isAllowedToChange(player)
     local allowed = false
-	if IsPlayerAceAllowed(player, 'admin.chat') then
+	if IsPlayerAceAllowed(player, 'admin.weather') then
 		allowed = true
 	end
     return allowed

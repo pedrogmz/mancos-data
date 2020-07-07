@@ -74,7 +74,7 @@ function openPlayersBank(type, color)
     end
 
     TaskPlayAnim(ped, dict, anim, 8.0, 8.0, -1, 0, 0, 0, 0, 0)
-    exports['progressBars']:startUI(time, "Inserting card...")
+    exports['progressBars']:startUI(time, "Insertando tarjeta...")
     Citizen.Wait(time)
     ClearPedTasks(ped)
     if type == 'bank' then
@@ -192,7 +192,7 @@ function closePlayersBank()
     SetNuiFocus(false, false)
     SendNUIMessage({type = 'closeAll'})
     TaskPlayAnim(ped, dict, anim, 8.0, 8.0, -1, 0, 0, 0, 0, 0)
-    exports['progressBars']:startUI(time, "Retrieving card...")
+    exports['progressBars']:startUI(time, "Retirando tarjeta...")
     Citizen.Wait(time)
     ClearPedTasks(ped)
     inMenu = false

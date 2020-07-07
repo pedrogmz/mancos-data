@@ -17,16 +17,14 @@ function LoadUser(identifier, source, new, licenseNotRequired)
 			
 			-- Tells other resources that a player has loaded
 			TriggerEvent('es:playerLoaded', Source, Users[Source])
-			
-			print(user.date_created)
-			
+						
 			--local pattern = "(%d+)-(%d+)-(%d+) (%d+):(%d+):(%d+)"
 			--local timeToConvert = user.date_created
 			--local runyear, runmonth, runday, runhour, runminute, runseconds = timeToConvert:match(pattern)
 			--local convertedTimestamp = os.time({year = runyear, month = runmonth, day = runday, hour = runhour, min = runminute, sec = runseconds})
-			local secondsPlayed = os.difftime(os.time(), user.date_created)
+			local secondsPlayed = os.difftime(os.time(), user.date_created / 1000)
 			
-			if secondsPlayed < 432000 then
+			if math.floor(secondsPlayed) < 432000 then
 				TriggerClientEvent('mancos_seguro:newUserLock', Source, true)
 			end
 		
