@@ -50,6 +50,29 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 
 end)
 
+ESX.RegisterServerCallback('esx_billing:getBillsTaxi', function(source, cb)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.fetchAll('SELECT * FROM billing WHERE target = "society_taxi" and identifier = @identifier', {
+		['@identifier'] = xPlayer.identifier
+	}, function(result)
+		local bills = {}
+		for i=1, #result, 1 do
+			table.insert(bills, {
+				id         = result[i].id,
+				identifier = result[i].identifier,
+				sender     = result[i].sender,
+				targetType = result[i].target_type,
+				target     = result[i].target,
+				label      = result[i].label,
+				amount     = result[i].amount
+			})
+		end
+
+		cb(bills)
+	end)
+end)
+
 ESX.RegisterServerCallback('esx_billing:getBills', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)
 

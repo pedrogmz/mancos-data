@@ -1021,8 +1021,6 @@ ESX.ShowInventory = function()
 	local playerPed = PlayerPedId()
 	local elements  = {}
 	
-	TriggerEvent('mancos_ui:openMenu', 'inventory')
-
 	if ESX.PlayerData.money > 0 then
 		local formattedMoney = _U('locale_currency', ESX.Math.GroupDigits(ESX.PlayerData.money))
 
@@ -1139,7 +1137,7 @@ ESX.ShowInventory = function()
 						foundPlayers = true
 
 						table.insert(elements, {
-							label = GetPlayerName(players[i]),
+							label = '['..players[i]..']',
 							player = players[i]
 						})
 					end

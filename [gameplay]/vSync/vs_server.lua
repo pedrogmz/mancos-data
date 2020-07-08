@@ -1,32 +1,8 @@
------------------- change this -------------------
-
-admins = {
-    'license:34356da5b80c59253cd824ba6131632f4e7f87fc', -- Sergio
-	'license:f16cead161d48209c3dde8db12a0d62cc13b6738', -- Pedro
-	'license:14dc41ff96c8e6177aff97a5fee45d0b97675f16', -- Raspu
-	'license:aeb25474bc56c9588cf84067538c56dbeda7bb79', -- Arnedo05
-	'license:6bf421b175ba389e833410b6160c66c5d5499592', -- Blazer
-	'license:226b2536c0903401a311299e90257daa5bb9e8a5', -- Zet
-	'license:c1c09c49be005ebc55e8717195cc5722552b1b86', -- EJGamingplay
-	'license:cb4a89bd8b3595452d2fa4165f1f98e9aa86f2ce', -- Dalnir
-	'license:e5e5dc06f091af1638f62b8f5eba60c08534951a', -- pacucho
-	'license:beb90d4461d975ad857a5d2ffaaac83430882b9a', -- Didi
-	'license:4e9184544e77f2bc6b6e2b4baedfff97594fda7f', -- MatiMiguez
-    --'license:1234975143578921327',
-}
-
--- Set this to false if you don't want the weather to change automatically every 10 minutes.
 DynamicWeather = true
 
---------------------------------------------------
+-----------------------------------------------------------
 debugprint = false -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.
---------------------------------------------------
-
-
-
-
-
-
+-----------------------------------------------------------
 
 -------------------- DON'T CHANGE THIS --------------------
 AvailableWeatherTypes = {
@@ -62,14 +38,9 @@ end)
 
 function isAllowedToChange(player)
     local allowed = false
-    for i,id in ipairs(admins) do
-        for x,pid in ipairs(GetPlayerIdentifiers(player)) do
-            if debugprint then print('admin id: ' .. id .. '\nplayer id:' .. pid) end
-            if string.lower(pid) == string.lower(id) then
-                allowed = true
-            end
-        end
-    end
+	if IsPlayerAceAllowed(player, 'admin.weather') then
+		allowed = true
+	end
     return allowed
 end
 

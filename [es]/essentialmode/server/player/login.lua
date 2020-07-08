@@ -17,8 +17,18 @@ function LoadUser(identifier, source, new, licenseNotRequired)
 			
 			-- Tells other resources that a player has loaded
 			TriggerEvent('es:playerLoaded', Source, Users[Source])
-
-			log('User (' .. identifier .. ') loaded')
+						
+			--local pattern = "(%d+)-(%d+)-(%d+) (%d+):(%d+):(%d+)"
+			--local timeToConvert = user.date_created
+			--local runyear, runmonth, runday, runhour, runminute, runseconds = timeToConvert:match(pattern)
+			--local convertedTimestamp = os.time({year = runyear, month = runmonth, day = runday, hour = runhour, min = runminute, sec = runseconds})
+			local secondsPlayed = os.difftime(os.time(), user.date_created / 1000)
+			
+			if math.floor(secondsPlayed) < 432000 then
+				TriggerClientEvent('mancos_seguro:newUserLock', Source, true)
+			end
+		
+			--log('User (' .. identifier .. ') loaded')
 
 			-- Sets a decorator on the client if enabled, allows some cool stuff on the client see: https://runtime.fivem.net/doc/natives/#_0xA06C969B02A97298
 			if(settings.defaultSettings.enableRankDecorators ~= "false")then
@@ -26,7 +36,7 @@ function LoadUser(identifier, source, new, licenseNotRequired)
 			end
 
 			-- Sets the money "icon" on the client. This is UTF8
-			TriggerClientEvent('es:setMoneyIcon', Source,settings.defaultSettings.moneyIcon)
+			--TriggerClientEvent('es:setMoneyIcon', Source,settings.defaultSettings.moneyIcon)
 
 			-- Sends the command suggestions to the client, this creates a neat autocomplete
 			for k,v in pairs(commandSuggestions) do

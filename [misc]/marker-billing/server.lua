@@ -1,89 +1,12 @@
 ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-RegisterCommand("get", function(source, args) 
-        
-    local argString = table.concat(args, " ")
-    MySQL.Async.fetchAll("SELECT * FROM users ORDER BY id ASC LIMIT 3",{}, 
-    function(result)
-
-        print("ENTER");
-        TriggerClientEvent("output", source, "^3("..result[1].name ..") - ^8".. result[1].id .."^0: " .. result[1].job)  
-    end)    
-end)
-
-AddEventHandler('playerConnecting', function(playerName, setKickReason)
-    identifiers = GetPlayerIdentifiers(source)
-    for i in ipairs(identifiers) do
-        print('Player: ' .. playerName .. ', Identifier #' .. i .. ': ' .. identifiers[i])
-    end
-end)
-
-
-    
-RegisterCommand("save", function(source, args)
-
-    local argString = table.concat(args, " ")
-    print(source);
-
-    MySQL.Async.fetchAll("INSERT INTO tablet (id, useridentifier, email, password) VALUES(NULL, @useridentifier, @email, @password)",     
-        --[[ 
-            (id, name, args)
-            These are the columns (in our database) we will be insterting the data into  
-        ]]
-        {
-        ["@useridentifier"] =  GetPlayerIdentifiers(source)[1], -- steam id
-        ["@email"] = argString,
-        ["@password"] = "a1234",
-        },
-            --[[ 
-                Here we are defining the '@' variables to in-game native functions
-            ]]
-            function (result)
-            TriggerClientEvent("output", source, "^2".. argString.. "^0")
-
-        end)
-
-end)
-
-RegisterServerEvent('informacion')
-AddEventHandler('informacion', function(name)
-
-    local xPlayers = ESX.GetPlayers()
-    local xPlayer = ESX.GetPlayerFromId(source)
-
-    local data = {
-        name       = GetPlayerName(source),
-        job        = xPlayer.job
-    }
-
-    print (GetPlayerName(source))
-    print (xPlayer.job.name)
-    print (xPlayer.id)
-    
-    TriggerEvent('es:getPlayers', function(players)
-        
-    for i=1, #xPlayers, 1 do
-        local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-            
-       -- print (name, " - ", json.encode(xPlayer))
-        --print (json.encode(xPlayer))
-            TriggerClientEvent('infoOut', xPlayers[i], json.encode(xPlayer))
-            -- TriggerClientEvent('esx:showAdvancedNotification', xPlayers[i], 'Policía', '', '~r~Alerta policía ~n~~w~'.. tonumber(_source) .. ' - ' .. msg, 'CHAR_CALL911', 1)
-          
-        end
-    end)
-end)
-
-
 -- Arnedo5 marker-billing
 RegisterServerEvent('marker_billing:checkJob')
 AddEventHandler('marker_billing:checkJob', function(marker)
 
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
-    -- local xPlayerSearch = ESX.GetPlayerFromId(2)
-    -- print (xPlayerSearch.job.name)
     local xPlayers = ESX.GetPlayers()
     
     if Pointers[marker] then
@@ -91,9 +14,7 @@ AddEventHandler('marker_billing:checkJob', function(marker)
         local marker = Pointers[marker]
 
         if (xPlayer.job.name == marker.job) then -- Acceso al ordenador
-            
             TriggerClientEvent('marker_billing:showPc', source, marker.job)	
-          
         else -- Error al entrar al ordenador
             TriggerClientEvent('chatMessage', source, '[ERROR] ', {255, 0, 0},  _U('error_job'))
 
@@ -106,11 +27,8 @@ AddEventHandler('marker_billing:checkJob', function(marker)
                     end
                 end
             end
-           
         end
-              
     end
-
 end)
 
 RegisterServerEvent('marker_billing:checkTotal')
@@ -119,8 +37,7 @@ AddEventHandler('marker_billing:checkTotal', function(id, job)
     local xPlayer = ESX.GetPlayerFromId(id)
     local _source = source
 
-
-    if (xPlayer) then
+    if xPlayer then
         MySQL.Async.fetchAll("SELECT COALESCE(SUM(amount),0) AS 'TOTAL' FROM billing LEFT JOIN tablet_npenal ON billing.id = tablet_npenal.TABNIDPENAL WHERE billing.identifier = @identifier AND billing.target = @target AND tablet_npenal.TABNPAID = 0", {
             ['@identifier'] = xPlayer.identifier,
             ['@target'] = 'society_'..job,
@@ -133,18 +50,16 @@ AddEventHandler('marker_billing:checkTotal', function(id, job)
     else
         TriggerClientEvent("showData", _source, _U('error_search'))
     end
-
 end)
 
 RegisterServerEvent('marker_billing:billing')
 AddEventHandler('marker_billing:billing', function(id, date)
 
     local xPlayer = ESX.GetPlayerFromId(id)
-    local xPlayers = ESX.GetPlayers()
+    --local xPlayers = ESX.GetPlayers()
     local _source = source
 
-
-    if (xPlayer) then
+    if xPlayer then
         MySQL.Async.fetchAll("SELECT COALESCE(SUM(amount),0) AS 'TOTAL' FROM billing LEFT JOIN tablet_npenal ON billing.id = tablet_npenal.TABNIDPENAL WHERE billing.identifier = @identifier AND tablet_npenal.TABNPAID = 0", {
             ['@identifier'] = xPlayer.identifier
         }, function (result)
@@ -157,22 +72,21 @@ AddEventHandler('marker_billing:billing', function(id, date)
                 if (tonumber(xPlayer.getBank()) > tonumber(totalBilling)) or 1 == 1 then
 
                     -- En caso de tener dinero en el  banco, retiramos el dinero
-                    --xPlayer.removeAccountMoney('bank', totalBilling)
+                    xPlayer.removeAccountMoney('bank', tonumber(totalBilling))
 
                     removeMoney(_source, xPlayer, date)
+					
+					TriggerClientEvent('esx:showNotification', id, "~r~ MAZE BANK INFORMA: ~s~"..totalBilling.._U('success_'..xPlayer.job.name).."")
+					-- Arnedo5 | El dinero se guarda en la sociedad
+					TriggerClientEvent('billingSocietyAdd', id, 'police', totalBilling) -- Le sacamos dinero y se lo ponemos a la sociedad
 
-                    for i=1, #xPlayers, 1 do
+                    --[[for i=1, #xPlayers, 1 do
                         local xPlayerr = ESX.GetPlayerFromId(xPlayers[i])
                         if xPlayerr.identifier == xPlayer.identifier then
-                            TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..totalBilling.._U('success_'..ESX.GetPlayerFromId(_source).job.name).."")
-
-                            -- Arnedo5 | El dinero se guarda en la sociedad
-                            TriggerClientEvent('billingSocietyAdd', xPlayers[i], 'police', totalBilling) -- Le sacamos dinero y se lo ponemos a la sociedad
-
+                            
                         end
-                    end
+                    end]]
 
-                   
                 else -- En caso de no tener dinero mostramos un mensaje de alerta por el terminal 
                     TriggerClientEvent("showData", _source,  _U('error_money'))
                 end 
@@ -198,7 +112,6 @@ function removeMoney(_source, xPlayer, date)
 			TriggerClientEvent("showData", _source, "Error al tramitar la facturacion")
         else 
             TriggerClientEvent("showData", _source,  _U('msg_'..ESX.GetPlayerFromId(_source).job.name))
-            
         end
     end)
 end
@@ -208,9 +121,7 @@ AddEventHandler('marker_billing:billingMechanic', function(id, description, note
 
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(id)
-    local xPlayers = ESX.GetPlayers()
     local sourceXPlayer = ESX.GetPlayerFromId(_source)
-    
 
     if (xPlayer) then
        
@@ -241,20 +152,12 @@ AddEventHandler('marker_billing:billingMechanic', function(id, description, note
                             ['@note'] = note,
 							['@date'] = date
 						}, function (rowsChanged)
-				
-							-- Una vez insertada la multa, mostramos mensaje al ciudano
-							for i=1, #xPlayers, 1 do
-								local xPlayerr = ESX.GetPlayerFromId(xPlayers[i])
-								if xPlayerr.identifier == xPlayer.identifier then
-                                    TriggerClientEvent('esx:showNotification', xPlayers[i], "~r~ MAZE BANK INFORMA: ~s~"..total.."$ retirados por pago de factura en Mecánico ["..description.."]")
-                                    
-                                    -- Arnedo5 | El dinero se guarda en la sociedad
-                                    TriggerClientEvent('billingSocietyAdd', xPlayers[i], 'mechanic', tonumber(total)) -- Le sacamos dinero y se lo ponemos a la sociedad
-								end
-                            end
+							TriggerClientEvent('esx:showNotification', id, "~r~ MAZE BANK INFORMA: ~s~"..total.."$ retirados por pago de factura en Mecánico ["..description.."]")
+							
+							xPlayer.removeAccountMoney('bank', tonumber(total))
+							-- Arnedo5 | El dinero se guarda en la sociedad
+							TriggerClientEvent('billingSocietyAdd', id, 'mechanic', tonumber(total)) -- Le sacamos dinero y se lo ponemos a la sociedad
 
-                            
-                            
                             -- Restart values form
                             TriggerClientEvent("marker_billing:exit", _source)
 						end)

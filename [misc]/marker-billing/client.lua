@@ -1,78 +1,9 @@
-local holdingup = false
-local hackholdingup = false
-local bombholdingup = false
-local bank = ""
-local savedbank = {}
-local secondsRemaining = 0
-local dooropen = false
-local platingbomb = false
-local platingbombtime = 20
-local blipRobbery = nil
-globalcoords = nil
-globalrotation = nil
-globalDoortype = nil
-globalbombcoords = nil
-globalbombrotation = nil
-globalbombDoortype = nil
-
-
-ESX = nil
-
 -- Auxiliar functions
 function DisplayHelpText(str)
 	SetTextComponentFormat("STRING")
 	AddTextComponentString(str)
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
-
-RegisterCommand("help", function ()
-
-    msg("e")
-
-end, false)
-
-function msg (text)
-
-    local name = GetPlayerName(PlayerId())
-    local ped = GetPlayerPed(PlayerId())
-
-    TriggerEvent("chatMessage", "[Server]", {255, 0, 0}, ped)
-
-end
-
-function chat(str, color)
-    TriggerEvent(
-        'chat:addMessage',
-        {
-            color = color,
-            multiline = true,
-            args = {str}
-        }
-    )
-end
-
--- Arnedo5 comando de test
-RegisterCommand("informacion",  function(source, args)
-
-    local name = GetPlayerName(PlayerId())
-    
-    TriggerServerEvent('informacion', name)
-end, false)
-
-
-RegisterNetEvent("output")
-AddEventHandler("output", function(argument)
-    TriggerEvent("chatMessage", "[Success]", {0,255,0}, argument)
-end) 
-
--- -------------------------------------------------------------------------------------------------------------
-RegisterNetEvent('infoOut')
-AddEventHandler('infoOut', function(player)
-
-    local playerOut = json.decode(player);
-
-    TriggerEvent("chatMessage", "[Info Out]", {0, 255, 0}, playerOut.identgetBankifier)
-end)
 
 Citizen.CreateThread(function()
 	while true do
@@ -107,7 +38,6 @@ Citizen.CreateThread(function()
 	end
 end)
 
-
 -- Mostrar info en pantalla
 RegisterNetEvent("showData")
 AddEventHandler("showData", function(data)
@@ -115,7 +45,6 @@ AddEventHandler("showData", function(data)
         data = data
     })
 end) 
-
 
 -- Arnedo5 display INFO
 local display = false

@@ -10,13 +10,6 @@ local Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-local getServerType = GetConvar("server_number", "Mancos01")
-if getServerType == "MancosWL" then
-	local secure = false
-else
-	local secure = true
-end
-
 -- colors
 local r,g,b,a = 166,166,255,255 -- rgba color
 
@@ -62,31 +55,6 @@ Citizen.CreateThread(function()
             end
             Marker(1, coords.x, coords.y, coords.z, voiceS * 2.0)
         end
-
-        -- Arnedo5 | Seguro [Bloquear el click izquierdo y derecho]
-        if IsControlPressed(0, Keys['~']) and IsControlPressed(0, Keys['LEFTSHIFT']) then
-
-            secure = not secure
-            Citizen.Wait(1000)
-          
-        end
-    end
-end)
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-
-        if secure then
-            DisableControlAction(0, 24, true) -- Attack
-			DisableControlAction(0, 257, true) -- Attack 2
-			DisableControlAction(0, 25, true) -- Aim
-			DisableControlAction(0, 263, true) -- Melee Attack 1
-			DisableControlAction(0, 45, true) -- Melee Attack 1
-			DisableControlAction(0, 80, true) -- Melee Attack 1
-			DisableControlAction(0, 140, true) -- Melee Attack 1
-			DisableControlAction(0, 263, true) -- Melee Attack 1
-        end
     end
 end)
 
@@ -118,34 +86,25 @@ Citizen.CreateThread(function()
             end
             Citizen.Wait(0)
 
-                drawTxt(0.164, 0.960, 1.0,1.0,0.4, "ID: ~b~" .. tostring(GetPlayerServerId(PlayerId())), 255, 255, 255, 255)
+			drawTxt(0.164, 0.960, 1.0,1.0,0.4, "ID: ~b~" .. tostring(GetPlayerServerId(PlayerId())), 255, 255, 255, 255)
 
-				if NetworkIsPlayerTalking(PlayerId()) then
-					if voice.current == 0 then
-						drawTxt(0.187, 0.960, 1.0,1.0,0.4, "Voz:~b~ Normal", 255, 255, 255, 255)
-					elseif voice.current == 1 then
-						drawTxt(0.187, 0.960, 1.0,1.0,0.4, "Voz:~r~ Gritando", 255, 255, 255, 255)
-					elseif voice.current == 2 then
-						drawTxt(0.187, 0.960, 1.5,1.0,0.4, "Voz:~g~ Susurrando", 255, 255, 255, 255)
-					end
-				else
-					if voice.current == 0 then
-						drawTxt(0.187, 0.960, 1.0,1.0,0.4, "~w~Voz: Normal", 255, 255, 255, 255)
-					elseif voice.current == 1 then
-						drawTxt(0.187, 0.960, 1.0,1.0,0.4, "~w~Voz: Gritando", 255, 255, 255, 255)
-					elseif voice.current == 2 then
-						drawTxt(0.187, 0.960, 1.0,1.0,0.4, "~w~Voz: Susurrando", 255, 255, 255, 255)
-					end
-                end
-
-                -- Arnedo5 | Seguro [Bloquear el click izquierdo y derecho]
-                if secure then
-                    drawTxt(0.245, 0.960, 1.0,1.0,0.4, "~w~Seguro: ~g~ON", 255, 255, 255, 255)
-                else
-                    drawTxt(0.245, 0.960, 1.0,1.0,0.4, "~w~Seguro: ~r~OFF", 255, 255, 255, 255)
-                end
-                
-  
+			if NetworkIsPlayerTalking(PlayerId()) then
+				if voice.current == 0 then
+					drawTxt(0.187, 0.960, 1.0,1.0,0.4, "Voz:~b~ Normal", 255, 255, 255, 255)
+				elseif voice.current == 1 then
+					drawTxt(0.187, 0.960, 1.0,1.0,0.4, "Voz:~r~ Gritando", 255, 255, 255, 255)
+				elseif voice.current == 2 then
+					drawTxt(0.187, 0.960, 1.5,1.0,0.4, "Voz:~g~ Susurrando", 255, 255, 255, 255)
+				end
+			else
+				if voice.current == 0 then
+					drawTxt(0.187, 0.960, 1.0,1.0,0.4, "~w~Voz: Normal", 255, 255, 255, 255)
+				elseif voice.current == 1 then
+					drawTxt(0.187, 0.960, 1.0,1.0,0.4, "~w~Voz: Gritando", 255, 255, 255, 255)
+				elseif voice.current == 2 then
+					drawTxt(0.187, 0.960, 1.0,1.0,0.4, "~w~Voz: Susurrando", 255, 255, 255, 255)
+				end
+			end
         end
     end
 end)
