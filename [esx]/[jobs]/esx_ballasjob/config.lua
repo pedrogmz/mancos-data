@@ -51,14 +51,12 @@ Config.Warehouse = {
 Config.Zones = {
 
     -- vestuario
-	--[[
     Cloakrooms = {
         Pos   = { x = 75.57, y = -1966.71, z = 20.22 },
         Size  = { x = 1.5, y = 1.5, z = 2.0 },
         Color = { r = 92, g = 16, b = 140 },
         Type  = 23,
     },
-	]]--
     -- armero
     Vaults = {
         Pos   = { x = 78.72, y = -1964.12, z = 20.12 },

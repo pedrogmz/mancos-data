@@ -36,17 +36,38 @@ MFS.RelaxAtSpeed    = 20  -- kph
 
 -- Stress Zones [Zonas de descanso]
 MFS.Zones = {
-	Badulaque = {
+	--[[Badulaque = {
 		Pos = {x = -705.7, y = -911.33, z = 19.22},
 		Coords = vector3(-705.7,-911.33, 19.22),
 		Dist = 50.0, -- Rango de la zona,
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
-	},
+	},]]
 	Vanilla = {
 		Pos = {x = 115.8, y = -1292.39, z = 28.26},
 		Coords = vector3(115.8, -1292.39, 28.26),
 		Dist = 25.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Police = {
+		Pos = {x = 440.8, y = -983.39, z = 30.26},
+		Coords = vector3(440.8, -983.39, 30.26),
+		Dist = 25.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Mechanic = {
+		Pos = {x = -346.8, y = -133.39, z = 39.26},
+		Coords = vector3(-346.8, -133.39, 39.26),
+		Dist = 50.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Hospital = {
+		Pos = {x = 303.8, y = -591.39, z = 43.26},
+		Coords = vector3(303.8, -591.39, 43.26),
+		Dist = 50.0, -- Rango de la zona,
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	}

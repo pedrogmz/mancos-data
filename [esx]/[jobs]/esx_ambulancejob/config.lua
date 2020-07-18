@@ -5,7 +5,7 @@ Config.DrawDistance               = 100.0
 Config.Marker                     = { type = 25, x = 1.5, y = 1.5, z = 0.5, r = 102, g = 0, b = 102, a = 100, rotate = false }
 Config.MarkerSize                 = { x = 3.0, y = 3.0, z = 1.5 }
 
-Config.ReviveReward               = 8  -- revive reward, set to 0 if you don't want it enabled
+Config.ReviveReward               = 25  -- revive reward, set to 0 if you don't want it enabled
 Config.AntiCombatLog              = false -- enable anti-combat logging?
 Config.LoadIpl                    = false -- disable if you're using fivem-ipl or other IPL loaders
 
@@ -17,7 +17,7 @@ else
 end
 
 -- Revivir en camilla
-Config.Payrevive				  = 70
+Config.Payrevive				  = 500
 Config.RevivirCamillaMax		  = 0	
 Config.EMS						  = 0
 Config.MaxDistance = 1.5

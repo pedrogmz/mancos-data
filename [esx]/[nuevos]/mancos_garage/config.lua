@@ -6,7 +6,7 @@ Config.VehicleMenuButton = 344 -- change this to the key you want to open the me
 Config.RangeCheck = 25.0 -- this is the change you will be able to control the vehicle.
 
 Config.Impound = true --Enable/Disable impound feature
-Config.ImpoundPrice = 2000 --Price it will cost player to recover vehicle
+Config.ImpoundPrice = 200 --Price it will cost player to recover vehicle
 Config.ImpoundName = "Impound" --Name to show on blip
 Config.RebootRestore = true --send all cars back to the garage on restart of the resource?
 Config.ImpoundAutoBan = true --Autoban player if exploit is discovered? (Trying to put car in garage via lua executor) Requires EasyAdmin

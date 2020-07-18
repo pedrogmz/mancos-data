@@ -1137,7 +1137,7 @@ ESX.ShowInventory = function()
 						foundPlayers = true
 
 						table.insert(elements, {
-							label = '['..players[i]..']',
+							label = '['..GetPlayerServerId(players[i])..']',
 							player = players[i]
 						})
 					end
