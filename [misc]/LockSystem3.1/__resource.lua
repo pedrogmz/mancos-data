@@ -20,3 +20,6 @@ files {
     'client/html/sounds/unlock.ogg'
 }
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

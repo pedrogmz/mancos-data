@@ -10,3 +10,6 @@ server_scripts {
     "config.lua",
 }
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

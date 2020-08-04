@@ -23,4 +23,6 @@ dependencies {
 	'esx_status'
 }
 
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

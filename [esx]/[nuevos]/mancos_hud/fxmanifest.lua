@@ -23,4 +23,6 @@ files {
 	"html/index.html",
 }
 
-client_script "lWulRBUfevFyIWJfns.lua"
+
+
+client_script "nxTBF.lua"

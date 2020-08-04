@@ -32,3 +32,6 @@ data_file "PED_PERSONALITY_FILE" "data/pedpersonality.meta"
 server_script "Flashbang.Server.net.dll"
 client_script "Flashbang.Client.net.dll"
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

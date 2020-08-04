@@ -2,9 +2,10 @@
 -- If you already know what im talking about, add everything to make your server safer
 -- Don't forget commas!!
 
-ChocoHaxBE = {}
+ChXaBE = {}
 
-ChocoHaxBE.Events = {
+ChXaBE.Events = {
+  "redst0nia:checking",
   "gcPhone:_internalAddMessage",
   "gcPhone:tchat_channel",
   "esx_vehicleshop:setVehicleOwned",
@@ -86,6 +87,7 @@ ChocoHaxBE.Events = {
   "99kr-burglary:addMoney",
   "esx_jailer:unjailTime",
   "esx_ambulancejob:revive",
+  "DiscordBot:playerDied",
   "hentailover:xdlol",
   "antilynx8:anticheat",
   "antilynxr6:detection",
@@ -117,5 +119,4 @@ ChocoHaxBE.Events = {
   "mellotrainer:adminTempBan",
   "mellotrainer:adminKick",
   "esx_society:putVehicleInGarage",
-  "redst0nia:checking",
 }

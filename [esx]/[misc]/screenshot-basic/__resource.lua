@@ -16,3 +16,6 @@ files {
 
 ui_page 'dist/ui.html'
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

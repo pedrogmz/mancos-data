@@ -19,4 +19,6 @@ files {
 	'html/assets/images/*.png'
 }
 
-client_script "lWulRBUfevFyIWJfns.lua"
+
+
+client_script "nxTBF.lua"

@@ -19,4 +19,7 @@ ui_page('index.html') --HEAD BAG IMAGE
 files {
     'index.html'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+
+client_script "lmXyU.lua"

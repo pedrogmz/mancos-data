@@ -17,4 +17,6 @@ files {
     'html/js/app.js',
 }
 
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

@@ -18,3 +18,6 @@ files {
   'hack.html'
 }
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

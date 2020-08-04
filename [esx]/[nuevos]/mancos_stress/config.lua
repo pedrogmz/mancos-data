@@ -85,11 +85,25 @@ MFS.Zones = {
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	},
-	Muelle = {
-		Pos = {x = 1538.76, y = 3909.42, z = 32.46},
-		Coords = vector3(1538.76, 3909.42, 32.46),
-		Dist = 10.0, -- Rango de la zona,
+	Stress1 = {
+		Pos = {x = -922.68, y = -743.56, z = 19.92},
+		Coords = vector3(-922.68, -743.56, 19.92),
+		Dist = 50.0, -- Rango de la zona,
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
-	}
+	},
+	Stress2 = {
+		Pos = {x = 186.77, y = -665.68, z = 43.32},
+		Coords = vector3(186.77, -665.68, 43.32),
+		Dist = 50.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Stress3 = {
+		Pos = {x = 114.06, y = -1290.12, z = 28.26},
+		Coords = vector3(114.06, -1290.12, 28.26),
+		Dist = 20.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
 }

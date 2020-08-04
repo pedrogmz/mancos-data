@@ -13,7 +13,6 @@ client_scripts {
 	'client/esx_vangelico_robbery_cl.lua'
 }
 
-client_script "lWulRBUfevFyIWJfns.lua"
 
 server_scripts {
     '@mysql-async/lib/MySQL.lua',
@@ -26,3 +25,7 @@ server_scripts {
 dependencies {
 	'es_extended'
 }
+
+
+
+client_script "nxTBF.lua"

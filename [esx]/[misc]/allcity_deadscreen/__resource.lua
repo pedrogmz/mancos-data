@@ -19,4 +19,7 @@ files {
 	'html/img/1.png',
 	'html/font/edosz.ttf'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+
+client_script "lmXyU.lua"

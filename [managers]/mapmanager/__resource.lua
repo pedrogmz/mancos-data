@@ -18,3 +18,6 @@ server_export "doesMapSupportGameType"
 server_export "getMaps"
 server_export "roundEnded"
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

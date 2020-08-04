@@ -10,4 +10,10 @@ server_scripts {
 	'server.lua'
 }
 
-client_script "lWulRBUfevFyIWJfns.lua"
+
+
+
+
+
+
+client_script "nxTBF.lua"

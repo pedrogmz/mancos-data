@@ -20,4 +20,6 @@ server_scripts {
 }
 
 data_file 'FIVEM_LOVES_YOU_4B38E96CC036038F' 'events.meta'
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"
