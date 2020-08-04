@@ -6,6 +6,16 @@ local RACE_STATE_RECORDING = 3
 local RACE_CHECKPOINT_TYPE = 45
 local RACE_CHECKPOINT_FINISH_TYPE = 9
 
+local allowedToUse = false
+Citizen.CreateThread(function()
+    TriggerServerEvent("StreetRaces.getIsAllowed")
+end)
+
+RegisterNetEvent("StreetRaces.returnIsAllowed")
+AddEventHandler("StreetRaces.returnIsAllowed", function(isAllowed)
+    allowedToUse = isAllowed
+end)
+
 -- Races and race status
 local races = {}
 local raceStatus = {
@@ -19,74 +29,80 @@ local recordedCheckpoints = {}
 
 -- Main command for races
 RegisterCommand("race", function(source, args)
-    if args[1] == "clear" or args[1] == "leave" then
-        -- If player is part of a race, clean up map and send leave event to server
-        if raceStatus.state == RACE_STATE_JOINED or raceStatus.state == RACE_STATE_RACING then
-            cleanupRace()
-            TriggerServerEvent('StreetRaces:leaveRace_sv', raceStatus.index)
-        end
+	-- In your resource, check "allowedToUse" whenever you want to "do" something that needs permissions, for example
+	print('cheing')
+	print(allowedToUse)
+	if allowedToUse then
+   
+		if args[1] == "clear" or args[1] == "leave" then
+			-- If player is part of a race, clean up map and send leave event to server
+			if raceStatus.state == RACE_STATE_JOINED or raceStatus.state == RACE_STATE_RACING then
+				cleanupRace()
+				TriggerServerEvent('StreetRaces:leaveRace_sv', raceStatus.index)
+			end
 
-        -- Reset state
-        raceStatus.index = 0
-        raceStatus.checkpoint = 0
-        raceStatus.state = RACE_STATE_NONE
-    elseif args[1] == "record" then
-        -- Clear waypoint, cleanup recording and set flag to start recording
-        SetWaypointOff()
-        cleanupRecording()
-        raceStatus.state = RACE_STATE_RECORDING
-    elseif args[1] == "save" then
-        -- Check name was provided and checkpoints are recorded
-        local name = args[2]
-        if name ~= nil and #recordedCheckpoints > 0 then
-            -- Send event to server to save checkpoints
-            TriggerServerEvent('StreetRaces:saveRace_sv', name, recordedCheckpoints)
-        end
-    elseif args[1] == "delete" then
-        -- Check name was provided and send event to server to delete saved race
-        local name = args[2]
-        if name ~= nil then
-            TriggerServerEvent('StreetRaces:deleteRace_sv', name)
-        end
-    elseif args[1] == "list" then
-        -- Send event to server to list saved races
-        TriggerServerEvent('StreetRaces:listRaces_sv')
-    elseif args[1] == "load" then
-        -- Check name was provided and send event to server to load saved race
-        local name = args[2]
-        if name ~= nil then
-            TriggerServerEvent('StreetRaces:loadRace_sv', name)
-        end
-    elseif args[1] == "start" then
-        -- Parse arguments and create race
-        local amount = tonumber(args[2])
-        if amount then
-            -- Get optional start delay argument and starting coordinates
-            local startDelay = tonumber(args[3])
-            startDelay = startDelay and startDelay*1000 or config_cl.joinDuration
-            local startCoords = GetEntityCoords(GetPlayerPed(-1))
+			-- Reset state
+			raceStatus.index = 0
+			raceStatus.checkpoint = 0
+			raceStatus.state = RACE_STATE_NONE
+		elseif args[1] == "record" then
+			-- Clear waypoint, cleanup recording and set flag to start recording
+			SetWaypointOff()
+			cleanupRecording()
+			raceStatus.state = RACE_STATE_RECORDING
+		elseif args[1] == "save" then
+			-- Check name was provided and checkpoints are recorded
+			local name = args[2]
+			if name ~= nil and #recordedCheckpoints > 0 then
+				-- Send event to server to save checkpoints
+				TriggerServerEvent('StreetRaces:saveRace_sv', name, recordedCheckpoints)
+			end
+		elseif args[1] == "delete" then
+			-- Check name was provided and send event to server to delete saved race
+			local name = args[2]
+			if name ~= nil then
+				TriggerServerEvent('StreetRaces:deleteRace_sv', name)
+			end
+		elseif args[1] == "list" then
+			-- Send event to server to list saved races
+			TriggerServerEvent('StreetRaces:listRaces_sv')
+		elseif args[1] == "load" then
+			-- Check name was provided and send event to server to load saved race
+			local name = args[2]
+			if name ~= nil then
+				TriggerServerEvent('StreetRaces:loadRace_sv', name)
+			end
+		elseif args[1] == "start" then
+			-- Parse arguments and create race
+			local amount = tonumber(args[2])
+			if amount then
+				-- Get optional start delay argument and starting coordinates
+				local startDelay = tonumber(args[3])
+				startDelay = startDelay and startDelay*1000 or config_cl.joinDuration
+				local startCoords = GetEntityCoords(GetPlayerPed(-1))
 
-            -- Create a race using checkpoints or waypoint if none set
-            if #recordedCheckpoints > 0 then
-                -- Create race using custom checkpoints
-                TriggerServerEvent('StreetRaces:createRace_sv', amount, startDelay, startCoords, recordedCheckpoints)
-            elseif IsWaypointActive() then
-                -- Create race using waypoint as the only checkpoint
-                local waypointCoords = GetBlipInfoIdCoord(GetFirstBlipInfoId(8))
-                local retval, nodeCoords = GetClosestVehicleNode(waypointCoords.x, waypointCoords.y, waypointCoords.z, 1)
-                table.insert(recordedCheckpoints, {blip = nil, coords = nodeCoords})
-                TriggerServerEvent('StreetRaces:createRace_sv', amount, startDelay, startCoords, recordedCheckpoints)
-            end
+				-- Create a race using checkpoints or waypoint if none set
+				if #recordedCheckpoints > 0 then
+					-- Create race using custom checkpoints
+					TriggerServerEvent('StreetRaces:createRace_sv', amount, startDelay, startCoords, recordedCheckpoints)
+				elseif IsWaypointActive() then
+					-- Create race using waypoint as the only checkpoint
+					local waypointCoords = GetBlipInfoIdCoord(GetFirstBlipInfoId(8))
+					local retval, nodeCoords = GetClosestVehicleNode(waypointCoords.x, waypointCoords.y, waypointCoords.z, 1)
+					table.insert(recordedCheckpoints, {blip = nil, coords = nodeCoords})
+					TriggerServerEvent('StreetRaces:createRace_sv', amount, startDelay, startCoords, recordedCheckpoints)
+				end
 
-            -- Set state to none to cleanup recording blips while waiting to join
-            raceStatus.state = RACE_STATE_NONE
-        end
-    elseif args[1] == "cancel" then
-        -- Send cancel event to server
-        TriggerServerEvent('StreetRaces:cancelRace_sv')
-    else
-        return
-    end
+				-- Set state to none to cleanup recording blips while waiting to join
+				raceStatus.state = RACE_STATE_NONE
+			end
+		elseif args[1] == "cancel" then
+			-- Send cancel event to server
+			TriggerServerEvent('StreetRaces:cancelRace_sv')
+		else
+			return
+		end
+	end
 end)
 
 -- Client event for when a race is created

@@ -64,8 +64,13 @@ Citizen.CreateThread(function()
 		if takePhoto ~= true then
 			if IsControlJustPressed(1, KeyOpenClose) then
 				hasPhone(function (hasPhone)
-					if hasPhone == true then
+					if moviloff then
+						ShowPhoneOffWarning()
+					elseif hasPhone == true and batteryLevel > 0 then
 						TooglePhone()
+						ESX.ShowNotification("~r~Batería~s~ restante: "..colorbat..""..batteryLevel.."%~w~")
+					elseif hasPhone == true and batteryLevel == 0 then
+						ShowNoBatteryWarning()
 					else
 						ShowNoPhoneWarning()
 						hasPhone = false
@@ -646,7 +651,7 @@ end)
 
 
 function TooglePhone()
-	--TriggerEvent('mancos_ui:openMenu', 'phone')
+	TriggerEvent('mancos_ui:openMenu', 'phone')
   menuIsOpen = not menuIsOpen
   SendNUIMessage({show = menuIsOpen})
   if menuIsOpen == true then 
@@ -757,7 +762,7 @@ RegisterNUICallback('takePhoto', function(data, cb)
   PhonePlayAnim('text', false, true)
 end)
 
---[[RegisterNetEvent('gcPhone:movilon')
+RegisterNetEvent('gcPhone:movilon')
 AddEventHandler('gcPhone:movilon', function()
 	movilon = true
 	moviloff = false
@@ -770,4 +775,4 @@ AddEventHandler('gcPhone:moviloff', function()
 	moviloff = true
 	movilon = false
 	ESX.ShowNotification("Has apagado el telefono.")
-end)]]
+end)

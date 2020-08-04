@@ -43,31 +43,52 @@ MFS.Zones = {
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	},]]
-	Vanilla = {
-		Pos = {x = 115.8, y = -1292.39, z = 28.26},
-		Coords = vector3(115.8, -1292.39, 28.26),
-		Dist = 25.0, -- Rango de la zona,
-		Stress = 10000, -- Total de estrés a quitar cada x tiempo
-		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
-	},
 	Police = {
-		Pos = {x = 440.8, y = -983.39, z = 30.26},
-		Coords = vector3(440.8, -983.39, 30.26),
-		Dist = 25.0, -- Rango de la zona,
-		Stress = 10000, -- Total de estrés a quitar cada x tiempo
-		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
-	},
-	Mechanic = {
-		Pos = {x = -346.8, y = -133.39, z = 39.26},
-		Coords = vector3(-346.8, -133.39, 39.26),
-		Dist = 50.0, -- Rango de la zona,
+		Pos = {x = 455.8, y = -991.39, z = 30.26},
+		Coords = vector3(455.8, -991.39, 30.26),
+		Dist = 5.0, -- Rango de la zona,
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	},
 	Hospital = {
-		Pos = {x = 303.8, y = -591.39, z = 43.26},
-		Coords = vector3(303.8, -591.39, 43.26),
-		Dist = 50.0, -- Rango de la zona,
+		Pos = {x = 334.8, y = -582.39, z = 28.79},
+		Coords = vector3(334.8, -582.39, 28.79),
+		Dist = 5.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Pier = {
+		Pos = {x = -3371.54, y = 967.39, z = 8.29},
+		Coords = vector3(-3371.8, 967.39, 8.29),
+		Dist = 20.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	VinewoodLook = {
+		Pos = {x = -426.0, y = 1120.24, z = 325.86},
+		Coords = vector3(-426.0, 1120.24, 325.86),
+		Dist = 20.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Piscina = {
+		Pos = {x = -3027.92, y = 37.28, z = 10.16},
+		Coords = vector3(-3027.92, 37.28, 10.16),
+		Dist = 20.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Bosque = {
+		Pos = {x = 501.37, y = 5601.84, z = 796.75},
+		Coords = vector3(501.37,5601.84, 796.75),
+		Dist = 10.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Muelle = {
+		Pos = {x = 1538.76, y = 3909.42, z = 32.46},
+		Coords = vector3(1538.76, 3909.42, 32.46),
+		Dist = 10.0, -- Rango de la zona,
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	}

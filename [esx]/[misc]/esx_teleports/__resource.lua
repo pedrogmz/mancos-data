@@ -1,24 +1,50 @@
---[[
-########################
-#                      #
-#     Walter White     #
-#                      #
-#                      #
-#         2018         #
-#                      #
-#                      #
-########################
---]]
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
-resource_manifest_version "44febabe-d386-4d18-afbe-5e627f4af937"
+description 'really simple ass teleport script'
 
-client_scripts {
+client_script {
 	'config.lua',
-	'client.lua',
+	'client/main.lua'
 }
 
-server_scripts {
-	'server.lua'
-}
 
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+version 'qalle'

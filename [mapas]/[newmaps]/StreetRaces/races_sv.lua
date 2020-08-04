@@ -1,6 +1,15 @@
 -- Server side array of active races
 local races = {}
 
+RegisterServerEvent("StreetRaces.getIsAllowed")
+AddEventHandler("StreetRaces.getIsAllowed", function()
+    if IsPlayerAceAllowed(source, "admin.races") then
+        TriggerClientEvent("StreetRaces.returnIsAllowed", source, true)
+    else
+        TriggerClientEvent("StreetRaces.returnIsAllowed", source, false)
+    end
+end)
+
 -- Cleanup thread
 Citizen.CreateThread(function()
     -- Loop forever and check status every 100ms

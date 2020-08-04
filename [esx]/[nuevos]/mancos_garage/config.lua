@@ -8,7 +8,7 @@ Config.RangeCheck = 25.0 -- this is the change you will be able to control the v
 Config.Impound = true --Enable/Disable impound feature
 Config.ImpoundPrice = 200 --Price it will cost player to recover vehicle
 Config.ImpoundName = "Impound" --Name to show on blip
-Config.RebootRestore = true --send all cars back to the garage on restart of the resource?
+Config.RebootRestore = false --send all cars back to the garage on restart of the resource?
 Config.ImpoundAutoBan = true --Autoban player if exploit is discovered? (Trying to put car in garage via lua executor) Requires EasyAdmin
 Config.AutoBanMessage = "You have been banned for exploiting the the impound system" -- Ban message to show
 
@@ -66,7 +66,8 @@ Config.Garages = {
     ["Central"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(211.8094329834, -934.98626708984, 24.275938034058)
+                ["position"] = vector3(211.8094329834, -934.98626708984, 24.275938034058),
+                ["blip"] = true
             },
             ["vehicle"] = {
                 ["position"] = vector3(219.86030578613, -932.77551269531, 24.141599655151), 
@@ -86,17 +87,18 @@ Config.Garages = {
 	["PRIVADO: Motor Club"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(988.23, -140.96, 73.05)
+                ["position"] = vector3(985.47, -203.65, 71.01),
+                ["blip"] = true
             },
             ["vehicle"] = {
-                ["position"] = vector3(985.64, -138.51, 73.03), 
-                ["heading"] = 55.49
+                ["position"] = vector3(991.38, -215.42, 69.87), 
+                ["heading"] = 240.76
             }
         },
         ["camera"] = { 
-            ["x"] = 988.06, 
-            ["y"] = -142.11, 
-            ["z"] = 76.38, 
+            ["x"] = 991.38, 
+            ["y"] = -215.42, 
+            ["z"] = 69.87, 
             ["rotationX"] = -12.637795701623, 
             ["rotationY"] = 0.0, 
             ["rotationZ"] = 195.73228356242 
@@ -106,7 +108,8 @@ Config.Garages = {
     ["Occupation Av."] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(273.67422485352, -344.15573120117, 44.919834136963)
+                ["position"] = vector3(273.67422485352, -344.15573120117, 44.919834136963),
+                ["blip"] = true
             },
             ["vehicle"] = {
                 ["position"] = vector3(272.50082397461, -337.40579223633, 44.919834136963), 
@@ -126,7 +129,8 @@ Config.Garages = {
     ["Little Seoul"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(-701.63, -972.18, 20.39)
+                ["position"] = vector3(-701.63, -972.18, 20.39),
+                ["blip"] = true
             },
             ["vehicle"] = {
                 ["position"] = vector3(-696.02, -982.17, 20.39), 
@@ -145,7 +149,8 @@ Config.Garages = {
     ["Tequi-la-la"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(-570.37, 314.65, 84.48)
+                ["position"] = vector3(-570.37, 314.65, 84.48),
+                ["blip"] = true
             },
             ["vehicle"] = {
                 ["position"] = vector3(-576.48, 323.91, 84.67), 
@@ -164,7 +169,8 @@ Config.Garages = {
     ["Sandy Shores"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(2669.38, 3286.85, 55.24)
+                ["position"] = vector3(2669.38, 3286.85, 55.24),
+                ["blip"] = true
             },
             ["vehicle"] = {
                 ["position"] = vector3(2661.73, 3278.36, 55.24), 
@@ -183,7 +189,8 @@ Config.Garages = {
     ["Paleto Bay"] = {
         ["positions"] = {
             ["menu"] = {
-                ["position"] = vector3(105.84, 6611.0, 31.95)
+                ["position"] = vector3(105.84, 6611.0, 31.95),
+                ["blip"] = true
             },
             ["vehicle"] = {
                 ["position"] = vector3(111.99, 6614.56, 31.87), 
@@ -198,7 +205,68 @@ Config.Garages = {
             ["rotationY"] = 0.0, 
             ["rotationZ"] = 90.110235854983 
         }
-    }	
+    },
+    ["Ballas"] = {
+        ["positions"] = {
+            ["menu"] = {
+                ["position"] = vector3(81.0, -1970.98, 20.9),
+                ["blip"] = false
+            },
+            ["vehicle"] = {
+                ["position"] = vector3(86.82, -1969.03, 20.67), 
+                ["heading"] = 227.06
+            }
+        },
+        ["camera"] = { 
+            ["x"] = 87.62, 
+            ["y"] = -1969.58, 
+            ["z"] = 20.75, 
+            ["rotationX"] = -39.496062710881, 
+            ["rotationY"] = 0.0, 
+            ["rotationZ"] = 90.110235854983 
+        }
+    },
+    ["Steel Thieves"] = {
+        ["positions"] = {
+            ["menu"] = {
+                ["position"] = vector3(-571.74, -1632.08, 19.41),
+                ["blip"] = false
+            },
+            ["vehicle"] = {
+                ["position"] = vector3(-569.97, -1639.14, 19.41), 
+                ["heading"] = 227.06
+            }
+        },
+        ["camera"] = { 
+            ["x"] = -569.97, 
+            ["y"] = -1639.14,
+            ["z"] = 19.41, 
+            ["rotationX"] = -39.496062710881, 
+            ["rotationY"] = 0.0, 
+            ["rotationZ"] = 90.110235854983 
+        }
+    },
+    ["The Lost"] = {
+        ["positions"] = {
+            ["menu"] = {
+                ["position"] = vector3(988.56, -141.27, 73.09),
+                ["blip"] = false
+            },
+            ["vehicle"] = {
+                ["position"] = vector3(985.74, -138.62, 73.09), 
+                ["heading"] = 227.06
+            }
+        },
+        ["camera"] = { 
+            ["x"] = 985.74, 
+            ["y"] = -138.62,
+            ["z"] = 73.09, 
+            ["rotationX"] = -39.496062710881, 
+            ["rotationY"] = 0.0, 
+            ["rotationZ"] = 90.110235854983 
+        }
+    },
+
 }
 
 Config.Labels = {

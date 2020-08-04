@@ -234,7 +234,7 @@ AddEventHandler('fishing:startSelling', function(item)
 			xPlayer.removeInventoryItem('shark', 1)
 			local payment = Config.SharkPrice.a
 			payment = math.random(Config.SharkPrice.a, Config.SharkPrice.b)
-			xPlayer.addMoney(payment)
+			xPlayer.addAccountMoney('black_money', payment)
 		end
 	end
 end)

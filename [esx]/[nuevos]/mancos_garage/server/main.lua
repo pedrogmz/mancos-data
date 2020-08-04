@@ -5,6 +5,7 @@ local cachedData = {}
 TriggerEvent("esx:getSharedObject", function(library) 
 	ESX = library 
 end)
+
 if Config.RebootRestore then
 MySQL.ready(function()
 	ReturnCars()

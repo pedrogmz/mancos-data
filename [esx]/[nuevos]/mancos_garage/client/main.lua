@@ -85,20 +85,23 @@ Citizen.CreateThread(function()
 	end
 
 	for garage, garageData in pairs(Config.Garages) do
-		local garageBlip = AddBlipForCoord(garageData["positions"]["menu"]["position"])
+		local showBlip = garageData["positions"]["menu"]["blip"]
+		if showBlip then
+			local garageBlip = AddBlipForCoord(garageData["positions"]["menu"]["position"])
 
-		SetBlipSprite(garageBlip, 357)
-		SetBlipDisplay(garageBlip, 4)
-		SetBlipScale (garageBlip, 0.8)
-		SetBlipColour(garageBlip, 67)
-		SetBlipAsShortRange(garageBlip, true)
-		BeginTextCommandSetBlipName("STRING")
-		if Config.OneBlipName then
-			AddTextComponentString(Config.GarageName)
-		else
-		AddTextComponentString(Config.GarageName .. ": " .. garage)
+			SetBlipSprite(garageBlip, 357)
+			SetBlipDisplay(garageBlip, 4)
+			SetBlipScale (garageBlip, 0.8)
+			SetBlipColour(garageBlip, 67)
+			SetBlipAsShortRange(garageBlip, true)
+			BeginTextCommandSetBlipName("STRING")
+			if Config.OneBlipName then
+				AddTextComponentString(Config.GarageName)
+			else
+			AddTextComponentString(Config.GarageName .. ": " .. garage)
+			end
+			EndTextCommandSetBlipName(garageBlip)
 		end
-		EndTextCommandSetBlipName(garageBlip)
 	end
 
 	while true do

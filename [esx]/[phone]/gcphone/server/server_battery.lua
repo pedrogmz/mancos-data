@@ -532,7 +532,7 @@ AddEventHandler('es:playerLoaded',function(source)
         TriggerClientEvent("gcPhone:myPhoneNumber", sourcePlayer, myPhoneNumber)
         TriggerClientEvent("gcPhone:contactList", sourcePlayer, getContacts(identifier))
         TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(myPhoneNumber))
-        --TriggerClientEvent("gcPhone:batteryLevel", sourcePlayer, getBattery(identifier))
+        TriggerClientEvent("gcPhone:batteryLevel", sourcePlayer, getBattery(identifier))
     end)
 end)
 
@@ -658,7 +658,7 @@ end
 --====================================================================================
 --  Battery
 --====================================================================================
---[[batteryLevel = 100
+batteryLevel = 100
 
 function getBattery(identifier)
     local result = MySQL.Sync.fetchAll("SELECT users.phone_battery FROM users WHERE users.identifier = @identifier", {
@@ -694,4 +694,3 @@ TriggerEvent('es:addGroupCommand', 'moviloff', 'user', function(source, args, us
 end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
 end, {help = "Apagar el telefono"})
-]]

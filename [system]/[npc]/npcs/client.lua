@@ -50,7 +50,7 @@ Citizen.CreateThread(function()
 			EnableDispatchService(i, Config.Dispatch)
 		end			
 		SetVehicleDensityMultiplierThisFrame(0.4)
-		SetPedDensityMultiplierThisFrame(0.4)
+		SetPedDensityMultiplierThisFrame(0.7)
 		SetRandomVehicleDensityMultiplierThisFrame(0.0)
 		SetParkedVehicleDensityMultiplierThisFrame(0.0)
 		SetScenarioPedDensityMultiplierThisFrame(0.4, 0.4)

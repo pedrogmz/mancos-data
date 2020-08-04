@@ -19,8 +19,8 @@ end)
 
 RegisterServerEvent('fetchjob')
 AddEventHandler('fetchjob', function()
-    local xPlayer  = ESX.GetPlayerFromId(source)
-    TriggerClientEvent('getjob', source, xPlayer.job.name)
+	local xPlayer  = ESX.GetPlayerFromId(source)
+	TriggerClientEvent('getjob', source, xPlayer.job.name)
 end)
 
 
@@ -139,16 +139,16 @@ end)
 function CountCops()
 
 	local xPlayers = ESX.GetPlayers()
-  
+
 	CopsConnected = 0
-  
-	for i=1, #xPlayers, 1 do
-	  local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-	  if xPlayer.job.name == 'police' then
-		CopsConnected = CopsConnected + 1
-	  end
+
+	for i = 1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			CopsConnected = CopsConnected + 1
+		end
 	end
-  
+
 	return CopsConnected
-  
-  end
+
+end

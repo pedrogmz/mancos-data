@@ -2,6 +2,8 @@ ESX                = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 TriggerEvent('esx_society:registerSociety', 'steel', 'steel', 'society_steel', 'society_steel', 'society_steel', {type = 'private'})
+TriggerEvent('esx_society:registerSociety', 'steel_black', 'steel_black', 'society_steel_black', 'society_steel', 'society_steel', {type = 'private'})
+
 
 -- almacen
 RegisterServerEvent('esx_steeljob:getStockItem')

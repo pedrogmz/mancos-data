@@ -83,6 +83,29 @@ AddEventHandler('esx_society:withdrawMoney', function(society, amount)
 	end)
 end)
 
+RegisterServerEvent('esx_society:withdrawBlackMoney')
+AddEventHandler('esx_society:withdrawBlackMoney', function(society, amount)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local society = GetSociety(society)
+	amount = ESX.Math.Round(tonumber(amount))
+
+	if xPlayer.job.name.."_black" ~= society.name then
+		print(('esx_society: %s attempted to call withdrawMoney!'):format(xPlayer.identifier))
+		return
+	end
+
+	TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+		if amount > 0 and account.money >= amount then
+			account.removeMoney(amount)
+			xPlayer.addAccountMoney("black_money", amount)
+
+			TriggerClientEvent('esx:showNotification', xPlayer.source, _U('have_withdrawn', ESX.Math.GroupDigits(amount)))
+		else
+			TriggerClientEvent('esx:showNotification', xPlayer.source, _U('invalid_amount'))
+		end
+	end)
+end)
+
 RegisterServerEvent('esx_society:depositMoney')
 AddEventHandler('esx_society:depositMoney', function(society, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -97,6 +120,29 @@ AddEventHandler('esx_society:depositMoney', function(society, amount)
 	if amount > 0 and xPlayer.getMoney() >= amount then
 		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 			xPlayer.removeMoney(amount)
+			account.addMoney(amount)
+		end)
+
+		TriggerClientEvent('esx:showNotification', xPlayer.source, _U('have_deposited', ESX.Math.GroupDigits(amount)))
+	else
+		TriggerClientEvent('esx:showNotification', xPlayer.source, _U('invalid_amount'))
+	end
+end)
+
+RegisterServerEvent('esx_society:depositBlackMoney')
+AddEventHandler('esx_society:depositBlackMoney', function(society, amount)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local society = GetSociety(society)
+	amount = ESX.Math.Round(tonumber(amount))
+
+	if xPlayer.job.name.."_black" ~= society.name then
+		print(('esx_society: %s attempted to call depositBlackMoney!'):format(xPlayer.identifier))
+		return
+	end
+
+	if amount > 0 and xPlayer.getMoney() >= amount then
+		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+			xPlayer.removeAccountMoney('black_money', amount)
 			account.addMoney(amount)
 		end)
 
@@ -164,6 +210,18 @@ AddEventHandler('esx_society:removeVehicleFromGarage', function(societyName, veh
 end)
 
 ESX.RegisterServerCallback('esx_society:getSocietyMoney', function(source, cb, societyName)
+	local society = GetSociety(societyName)
+
+	if society then
+		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+			cb(account.money)
+		end)
+	else
+		cb(0)
+	end
+end)
+
+ESX.RegisterServerCallback('esx_society:getSocietyBlackMoney', function(source, cb, societyName)
 	local society = GetSociety(societyName)
 
 	if society then
@@ -382,7 +440,7 @@ end
 TriggerEvent('cron:runAt', 3, 0, WashMoneyCRON)
 
 -- Arnedo 5 
-RegisterServerEvent('esx_society:getActualMoney')
+--[[RegisterServerEvent('esx_society:getActualMoney')
 AddEventHandler('esx_society:withdrawMoney', function(society)
 
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -391,3 +449,4 @@ AddEventHandler('esx_society:withdrawMoney', function(society)
 	print ("ACTUAL MONEY")
 	
 end)
+]]
