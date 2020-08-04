@@ -13,3 +13,6 @@ data_file 'VEHICLE_METADATA_FILE' 'vehicles.meta'
     -- 'vehicle_names.lua'
 -- }
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

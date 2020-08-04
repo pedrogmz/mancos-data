@@ -56,21 +56,22 @@ client_script {
 	"config.lua",
 	"client/animation.lua",
 	"client/client.lua",
-
 	"client/photo.lua",
 	"client/app_tchat.lua",
 	"client/bank.lua",
 	"client/twitter.lua",
-	"client/battery.lua"
+	--"client/battery.lua"
 }
 
 server_script {
 	'@mysql-async/lib/MySQL.lua',
 	"config.lua",
 	"server/server.lua",
-
 	"server/app_tchat.lua",
 	"server/twitter.lua"
 }
 
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

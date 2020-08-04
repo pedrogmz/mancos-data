@@ -51,6 +51,16 @@ end, function(source, args, user)
     TriggerClientEvent('chat:addMessage', source, {args = {"^1SYSTEM ", "Insufficienct permissions!"}})
 end, {help = _U('reloadwl_help_text'), params = {{name = "identifier", help = _U('wlr_help_text_param')}}})
 
+-- Rcon Reload Whitelist Command (Supports Ace)
+RegisterCommand("rconreloadwl", function(source, args, rawCommand)
+    for i = 0, #Whitelist do
+        Whitelist[i] = nil
+    end
+
+    initWhitelist()
+    RconPrint("[Whitelist] Reloaded")
+end, true)
+
 -- Load Whitelist
 function initWhitelist()
     MySQL.Async.fetchAll('SELECT identifier FROM whitelist', {}, function(result)

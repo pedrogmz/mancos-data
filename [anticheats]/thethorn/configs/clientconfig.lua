@@ -1,34 +1,25 @@
-ChocoHaxCc = {}
+ChXaC = {}
 
-ChocoHaxCc.GeneralStuff = true -- Includes: NO INFINITE AMMO, NO GODMODE, NO ANTI RUNOFF
-ChocoHaxCc.ResourceChecker = true -- This script is not available for now...
-ChocoHaxCc.RandomStringResource = true -- This script will check if a player tried to inject a random resource into the server
+ChXaC.ResourceChecker = true -- This script will check the users loaded resources NEW!
 
 --//Anti GodMode//--
-ChocoHaxCc.AntiGodMode = false -- Master switch for AntiGodMode
-    ChocoHaxCc.AntiGodModeTimer = 20000 -- AntiGodMode Timer, default: 200000 / 20 seconds, it does the check every x ms
-    ChocoHaxCc.AntiGodModeDemiGod = true -- Detects a player that get detected with demigod during the check (DO NOT USE THIS ON VRP)
-    ChocoHaxCc.MaxPlayerHealth = 200 -- Max player health
-    ChocoHaxCc.AntiGodModeKick = true -- Kick the AntiGodMode detected player
-    ChocoHaxCc.AntiGodModeBan = true -- Ban the AntiGodMode detected player
+ChXaC.AntiGodMode = false -- Master switch for AntiGodMode BUGGED!
+    ChXaC.AntiGodModeTimer = 20000 -- AntiGodMode Timer, default: 200000 / 20 seconds, it does the check every x ms
+    ChXaC.MaxPlayerHealth = 200 -- Max player health
+    ChXaC.AntiGodModeKick = true -- Kick the AntiGodMode detected player
+    ChXaC.AntiGodModeBan = true -- Ban the AntiGodMode detected player
 
 --//Anti AdminStuff//--
-ChocoHaxCc.AntiPlayerBlips = true -- Detects a user that activated Player Blips and is not allowed
-ChocoHaxCc.AntiSpectate = true -- Detects a user that is spectating someone else and is not allowed
-
---//Automatic Model Deleter//-- This script is going to delete any BLACKLISTED Model (NOT RECOMMENDED FOR LOW-END/LOW SERVERS) (blacklistedmodels.lua)
-ChocoHaxCc.AutomaticMDModel = true
-ChocoHaxCc.AutomaticMDEntity = true
-ChocoHaxCc.AutomaticMDPeds = true
-    ChocoHaxCc.AutomaticMDTimer = 7500 -- Timer default: 7500 / 7.5 seconds (lower the timer/higher the load aka. lag)
+ChXaC.AntiPlayerBlips = false -- Detects a user that activated Player Blips and is not allowed
+ChXaC.AntiSpectate = true -- Detects a user that is spectating someone else and is not allowed
 
 --//Anti Cheat Engine//--
-ChocoHaxCc.AntiDamageModifier = true -- Detects if a player tries to modify his damage or defence value
-ChocoHaxCc.BlacklistedWeaponDelete = true -- This will detect CLIENT SIDED weapons and automatically delete them (NO LOGS)
-ChocoHaxCc.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modifier
-    ChocoHaxCc.AntiWeaponDamageModifier = false -- Detects if a player tried to modify the weapon damage
-    ChocoHaxCc.AntiExplosiveWeapons = false -- Detects if a player modified his weapon to shoot explosive bullets, or explosive punch
-    ChocoHaxCc.WeaponDamagesTable = {
+ChXaC.AntiDamageModifier = true -- Detects if a player tries to modify his damage or defence value
+ChXaC.BlacklistedWeaponDelete = true -- This will detect CLIENT SIDED weapons and automatically delete them (NO LOGS)
+ChXaC.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modifier
+    ChXaC.AntiWeaponDamageModifier = false -- Detects if a player tried to modify the weapon damage
+    ChXaC.AntiExplosiveWeapons = false -- Detects if a player modified his weapon to shoot explosive bullets, or explosive punch
+    ChXaC.WeaponDamagesTable = {
     [-1357824103] = 34, -- AdvancedRifle
     [453432689] = 26, -- Pistol
     [1593441988] = 27, -- CombatPistol
@@ -82,10 +73,10 @@ ChocoHaxCc.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modi
     [2024373456] = 25, -- SMG Mk II
     }
 
-ChocoHaxCc.AntiVehicleHashChanger = true -- Detects if a player tried to change his vehicle hash model
+ChXaC.AntiVehicleHashChanger = true -- Detects if a player tried to change his vehicle hash model
 
-ChocoHaxCc.AntiModelChanger = true -- Detects if a player tried to change his model to a blacklisted model
-    ChocoHaxCc.AntiModelChangerTable = {
+ChXaC.AntiModelChanger = true -- Detects if a player tried to change his model to a blacklisted model
+    ChXaC.AntiModelChangerTable = {
 	"s_m_y_swat_01",
 	"a_m_y_mexthug_01", 
     "a_c_cat_01", 
@@ -110,7 +101,5 @@ ChocoHaxCc.AntiModelChanger = true -- Detects if a player tried to change his mo
 
 --//Resource Injection Protection//--
 --<<ANTI RESTART BOOLS>> (DO NOT RESTART SCRIPTS IF YOU ENALBED THESE!!!)
-ChocoHaxCc.ResourceCounter = true -- This script will check if a player have a diffrent amount of resources
-ChocoHaxCc.AntiResourceRestart = true -- This scripts will check if a player tries to restart scripts
-ChocoHaxCc.AntiResourceStop = true -- This script will check if a player tries to STOP a script
-ChocoHaxCc.AntiFCommands = true -- This script will check if a player injected custom commands into the server
+ChXaC.AntiResourceStop = false -- This script will check if a player tries to STOP a script
+ChXaC.AntiFCommands = false -- This script will check if a player injected custom commands into the server

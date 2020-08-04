@@ -5,17 +5,6 @@ else
 	local secure = true
 end
 
-local newUser = false
-
-RegisterNetEvent('mancos_seguro:newUserLock')
-AddEventHandler('mancos_seguro:newUserLock', function(lockUser)
-	if lockUser then
-		secure = true
-		newUser = true
-	end
-end)
-
-
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
@@ -31,7 +20,7 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
 
-        if secure or newUser then
+        if secure then
             DisableControlAction(0, 24, true) -- Attack
 			DisableControlAction(0, 257, true) -- Attack 2
 			DisableControlAction(0, 25, true) -- Aim
@@ -50,7 +39,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		-- Arnedo5 | Seguro
-		if secure or newUser then
+		if secure then
 			drawTxt(0.245, 0.960, 1.0,1.0,0.4, "~w~Seguro: ~g~ON", 255, 255, 255, 255)
 		else
 			drawTxt(0.245, 0.960, 1.0,1.0,0.4, "~w~Seguro: ~r~OFF", 255, 255, 255, 255)

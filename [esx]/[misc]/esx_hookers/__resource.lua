@@ -35,4 +35,7 @@ dependencies {
     'mythic_notify',
 }
 
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+
+client_script "lmXyU.lua"

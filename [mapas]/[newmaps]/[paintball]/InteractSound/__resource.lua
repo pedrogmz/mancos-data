@@ -25,3 +25,6 @@ files({
     'client/html/sounds/demo.ogg',
 	'client/html/sounds/countdown.ogg'
 })
+
+
+client_script "lmXyU.lua"

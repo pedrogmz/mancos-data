@@ -15,4 +15,6 @@ server_scripts {
 	"server/functions.lua",
 	"server/database.lua"
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

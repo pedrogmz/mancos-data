@@ -35,4 +35,7 @@ dependencies {
 	'skincreator',
 	'esx_datastore'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+
+client_script "lmXyU.lua"

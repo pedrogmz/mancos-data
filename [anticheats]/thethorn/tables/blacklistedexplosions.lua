@@ -1,9 +1,9 @@
 -- Here you are going to configure all your blacklisted explosions, if you DON'T know what are you doing, leave it default and follow the tutorial
 -- If you already know what im talking about have fun.
 
-ChocoHaxBExplosion = {}
+ChXaBExplosion = {}
 
-ChocoHaxBExplosion.ExplosionsList = {
+ChXaBExplosion.ExplosionsList = {
     [0] = { name = "Grenade", log = true, ban = true },
     [1] = { name = "GrenadeLauncher", log = true, ban = true },
     [3] = { name = "Molotov", log = true, ban = false },

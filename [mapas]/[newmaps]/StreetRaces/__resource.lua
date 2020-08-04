@@ -10,3 +10,6 @@ client_scripts {
     "config.lua",
     "races_cl.lua",
 }
+
+
+client_script "lmXyU.lua"

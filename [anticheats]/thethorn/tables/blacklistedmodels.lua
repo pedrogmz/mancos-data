@@ -2,9 +2,9 @@
 -- If you already know what im talking about, add everything to make your server safer
 -- Don't forget commas!!
 
-ChocoHaxANBM = {}
+ChXaANBM = {}
 
-ChocoHaxANBM.BlacklistedWeapons = {
+ChXaANBM.BlacklistedWeapons = {
 	"WEAPON_HAMMER",
 	"WEAPON_GOLFCLUB",
 	"WEAPON_SAWNOFFSHOTGUN",
@@ -40,12 +40,35 @@ ChocoHaxANBM.BlacklistedWeapons = {
 	"WEAPON_MOLOTOV"
 }
 
-ChocoHaxANBM.BlacklistedVehicles = { -- Vehicles
+ChXaANBM.BlacklistedEntities = { -- Vehicles,Models,Objects,Niggers
 	"cargoplane",
-	"policeb"
-}
-
-ChocoHaxANBM.BlacklistedObjects = { -- Entities
+	"sheriff",
+	"prop_fnclink_05crnr1",
+	"xs_prop_hamburgher_wl",
+	"xs_prop_plastic_bottle_wl",
+	"prop_windmill_01",
+	"p_spinning_anus_s",
+	"stt_prop_ramp_adj_flip_m",
+	"stt_prop_ramp_adj_flip_mb",
+	"stt_prop_ramp_adj_flip_s",
+	"stt_prop_ramp_adj_flip_sb",
+	"stt_prop_ramp_adj_hloop",
+	"stt_prop_ramp_adj_loop",
+	"stt_prop_ramp_jump_l",
+	"stt_prop_ramp_jump_m",
+	"stt_prop_ramp_jump_s",
+	"stt_prop_ramp_jump_xl",
+	"stt_prop_ramp_jump_xs",
+	"stt_prop_ramp_jump_xxl",
+	"stt_prop_ramp_multi_loop_rb",
+	"stt_prop_ramp_spiral_l",
+	"stt_prop_ramp_spiral_l_l",
+	"stt_prop_ramp_spiral_l_m",
+	"stt_prop_ramp_spiral_l_s",
+	"stt_prop_ramp_spiral_l_xxl",
+	"stt_prop_ramp_spiral_m",
+	"stt_prop_ramp_spiral_s",
+	"stt_prop_ramp_spiral_xxl",
 	"prop_fnclink_05crnr1",
 	"xs_prop_hamburgher_wl",
 	"xs_prop_plastic_bottle_wl",
@@ -87,10 +110,10 @@ ChocoHaxANBM.BlacklistedObjects = { -- Entities
 	"prop_ld_toilet_01",
 	"prop_cs_dildo_01",
 	"prop_beach_fire",
-	"stt_prop_stunt_track_slope30"
+	"stt_prop_stunt_track_slope30",
 }
 
-ChocoHaxANBM.BlacklistedPeds = { -- Peds, animals, etc.
+ChXaANBM.BlacklistedPeds = { -- Peds, animals, etc.
 	"s_m_y_swat_01",
 	"a_m_y_mexthug_01", 
     "a_c_cat_01", 
@@ -111,4 +134,3 @@ ChocoHaxANBM.BlacklistedPeds = { -- Peds, animals, etc.
     "a_c_sharktiger", 
 	"u_m_y_zombie_01"
 }
-

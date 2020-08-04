@@ -7,3 +7,6 @@ export 'printObituary'
 files 'obituary.css'
 
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

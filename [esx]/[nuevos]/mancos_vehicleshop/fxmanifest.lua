@@ -39,4 +39,6 @@ dependency 'es_extended'
 
 export 'GeneratePlate'
 
-client_script "lWulRBUfevFyIWJfns.lua"
+
+
+client_script "nxTBF.lua"

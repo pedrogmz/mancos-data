@@ -26,3 +26,6 @@ files {
 	'html/img/keys/return.png',
 }
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"

