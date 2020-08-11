@@ -1,18 +1,10 @@
 Config = {}
 
 Config.Items = {
-    {Label = 'Semillas hembra', Name = 'lowgradefemaleseed', Amount = math.random (1,3)},
     {Label = 'Rolex', Name = 'rolex', Amount = math.random (0,1)},
     {Label = 'Diamante', Name = 'diamond', Amount = 1},
-    {Label = 'Maceta', Name = 'plantpot', Amount = math.random (1,3)},
-    {Label = 'Fertilizante', Name = 'lowgradefert', Amount = math.random (1,3)},
-    {Label = 'Agua purificada', Name = 'purifiedwater', Amount = math.random (1,3)},
-    {Label = 'Semillas macho+', Name = 'highgrademaleseed', math.random (0,2)},
     {Label = 'Lingote de oro', Name = 'gold', Amount = math.random (0,1)},
-    {Label = 'Caña de pescar', Name = 'fishingrod', Amount = math.random (0,1)},
-    {Label = 'Diamantes', Name = 'fishbait', Amount = math.random (0,1)},
-} 
-
+}
 
 Config.GhettoPeds = { -- https://wiki.gt-mp.net/index.php/Peds
     588969535,

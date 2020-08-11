@@ -12,7 +12,7 @@ Config.Zones = {                  -- Zonas de venta de droga
         Pos                 = {x = -1597.17, y = -1128.43, z = 1.75},
         Coords              = vector3(-1597.17,-1128.43, 1.78),
         Dist                = 245.0,
-        Authorized_drugs    = { "porros" }, -- Drogas para vender en la zona
+        Authorized_drugs    = { "porros", "cocaine", "meth" }, -- Drogas para vender en la zona
         Prices = {
             Police0 = 40,
             Police1 = 250,
@@ -23,10 +23,10 @@ Config.Zones = {                  -- Zonas de venta de droga
 	},
 
 	Playa = {	
-        Pos   = {x = -1539.0, y = -1539.95, z = 1.11}, 
+        Pos   = { x = -1539.0, y = -1539.95, z = 1.11 },
         Coords  = vector3(-1539.0,-1271.95, 1.11),
         Dist    = 245.0,
-        Authorized_drugs    = { "porros" },
+        Authorized_drugs    = { "porros", "cocaine", "meth" },
         Prices = {
             Police0 = 40,
             Police1 = 250,

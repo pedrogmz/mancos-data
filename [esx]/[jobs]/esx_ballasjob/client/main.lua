@@ -28,41 +28,40 @@ ESX                           = nil
 
 Citizen.CreateThread(function()
   while ESX == nil do
-    TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-    Citizen.Wait(0)
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	Citizen.Wait(0)
   end
 end)
 
 function IsJobTrue()
-    if PlayerData ~= nil then
-        local IsJobTrue = false
-        if PlayerData.job ~= nil and PlayerData.job.name == 'ballas' then
-            IsJobTrue = true
-        end
-        return IsJobTrue
-    end
+	if PlayerData ~= nil then
+		local IsJobTrue = false
+		if PlayerData.job ~= nil and PlayerData.job.name == 'ballas' then
+			IsJobTrue = true
+		end
+		return IsJobTrue
+	end
 end
 
 
 function IsGradeBoss()
-
-    if PlayerData ~= nil then
-        local IsGradeBoss = false
-        if PlayerData.job.grade_name == 'boss' or PlayerData.job.grade_name == 'viceboss' then
-            IsGradeBoss = true
-        end
-        return IsGradeBoss
-    end
+	if PlayerData ~= nil then
+		local IsGradeBoss = false
+		if PlayerData.job.grade_name == 'boss' or PlayerData.job.grade_name == 'viceboss' then
+			IsGradeBoss = true
+		end
+		return IsGradeBoss
+	end
 end
 
 function SetVehicleMaxMods(vehicle)
 
   local props = {
-    modEngine       = 0,
-    modBrakes       = 0,
-    modTransmission = 0,
-    modSuspension   = 0,
-    modTurbo        = false,
+	modEngine       = 0,
+	modBrakes       = 0,
+	modTransmission = 0,
+	modSuspension   = 0,
+	modTurbo        = false,
   }
 
   ESX.Game.SetVehicleProperties(vehicle, props)
@@ -89,7 +88,7 @@ end
 function setClipset(playerPed, clip)
   RequestAnimSet(clip)
   while not HasAnimSetLoaded(clip) do
-    Citizen.Wait(0)
+	Citizen.Wait(0)
   end
   SetPedMovementClipset(playerPed, clip, true)
 end
@@ -110,62 +109,63 @@ function setUniform(job, playerPed)
 				TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms[job].female)
 			else
 				ESX.ShowNotification(_U('no_outfit'))
-      end
-      
+	  end
+	  
 		end
 	end)
 end
+
 
 function OpenCloakroomMenu()
 
   local playerPed = GetPlayerPed(-1)
 
   local elements = {
-    { label = _U('citizen_wear'),     value = 'citizen_wear'},
-    { label = "Pandillero",    value = 'pandillero_outfit'},
-    { label = "Teniente",    value = 'teniente_outfit'},
+	{ label = _U('citizen_wear'),     value = 'citizen_wear'},
+	{ label = "Pandillero",    value = 'pandillero_outfit'},
+	{ label = "Teniente",    value = 'teniente_outfit'},
   }
 
   ESX.UI.Menu.CloseAll()
 
   ESX.UI.Menu.Open(
-    'default', GetCurrentResourceName(), 'cloakroom',
-    {
-      title    = _U('cloakroom'),
-      align    = 'top-left',
-      elements = elements,
-    },
-    function(data, menu)
+	'default', GetCurrentResourceName(), 'cloakroom',
+	{
+	  title    = _U('cloakroom'),
+	  align    = 'top-left',
+	  elements = elements,
+	},
+	function(data, menu)
 
-      cleanPlayer(playerPed)
+	  cleanPlayer(playerPed)
 
-      if data.current.value == 'citizen_wear' then
+	  if data.current.value == 'citizen_wear' then
 
-        setUniform("clear_wear", playerped)
+		setUniform("clear_wear", playerped)
 
-        ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
-          TriggerEvent('skinchanger:loadSkin', skin)
-        end)
+		ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+		  TriggerEvent('skinchanger:loadSkin', skin)
+		end)
 
-      end
+	  end
 
-      if  data.current.value == 'pandillero_outfit' or 
-          data.current.value == 'teniente_outfit' 
-      then
-        setUniform(data.current.value, playerPed) -- Arnedo5 | Trajes
-      end
+	  if  data.current.value == 'pandillero_outfit' or 
+		  data.current.value == 'teniente_outfit' 
+	  then
+		setUniform(data.current.value, playerPed) -- Arnedo5 | Trajes
+	  end
 
-      CurrentAction     = 'menu_cloakroom'
-      CurrentActionMsg  = _U('open_cloackroom')
-      CurrentActionData = {}
+	  CurrentAction     = 'menu_cloakroom'
+	  CurrentActionMsg  = _U('open_cloackroom')
+	  CurrentActionData = {}
 
-    end,
-    function(data, menu)
-      menu.close()
-      CurrentAction     = 'menu_cloakroom'
-      CurrentActionMsg  = _U('open_cloackroom')
-      CurrentActionData = {}
-    end
+	end,
+	function(data, menu)
+	  menu.close()
+	  CurrentAction     = 'menu_cloakroom'
+	  CurrentActionMsg  = _U('open_cloackroom')
+	  CurrentActionData = {}
+	end
   )
 end
 
@@ -173,52 +173,52 @@ function OpenVaultMenu()
 
   if Config.EnableVaultManagement then
 
-    local elements = {
-      {label = _U('get_weapon'), value = 'get_weapon'},
-      {label = _U('put_weapon'), value = 'put_weapon'},
-      {label = _U('get_object'), value = 'get_stock'},
-      {label = _U('put_object'), value = 'put_stock'}
-    }
+	local elements = {
+	  {label = _U('get_weapon'), value = 'get_weapon'},
+	  {label = _U('put_weapon'), value = 'put_weapon'},
+	  {label = _U('get_object'), value = 'get_stock'},
+	  {label = _U('put_object'), value = 'put_stock'}
+	}
 
 
-    ESX.UI.Menu.CloseAll()
+	ESX.UI.Menu.CloseAll()
 
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'vault',
-      {
-        title    = _U('vault'),
-        align    = 'top-left',
-        elements = elements,
-      },
-      function(data, menu)
+	ESX.UI.Menu.Open(
+	  'default', GetCurrentResourceName(), 'vault',
+	  {
+		title    = _U('vault'),
+		align    = 'top-left',
+		elements = elements,
+	  },
+	  function(data, menu)
 
-        if data.current.value == 'get_weapon' then
-          OpenGetWeaponMenu()
-        end
+		if data.current.value == 'get_weapon' then
+		  OpenGetWeaponMenu()
+		end
 
-        if data.current.value == 'put_weapon' then
-          OpenPutWeaponMenu()
-        end
+		if data.current.value == 'put_weapon' then
+		  OpenPutWeaponMenu()
+		end
 
-        if data.current.value == 'put_stock' then
-           OpenPutStocksMenu()
-        end
+		if data.current.value == 'put_stock' then
+		   OpenPutStocksMenu()
+		end
 
-        if data.current.value == 'get_stock' then
-           OpenGetStocksMenu()
-        end
+		if data.current.value == 'get_stock' then
+		   OpenGetStocksMenu()
+		end
 
-      end,
-      
-      function(data, menu)
+	  end,
+	  
+	  function(data, menu)
 
-        menu.close()
+		menu.close()
 
-        CurrentAction     = 'menu_vault'
-        CurrentActionMsg  = _U('open_vault')
-        CurrentActionData = {}
-      end
-    )
+		CurrentAction     = 'menu_vault'
+		CurrentActionMsg  = _U('open_vault')
+		CurrentActionData = {}
+	  end
+	)
 
   end
 
@@ -226,176 +226,42 @@ end
 
 function OpenFridgeMenu()
 
-    local elements = {
-      {label = _U('get_object'), value = 'get_stock'},
-      {label = _U('put_object'), value = 'put_stock'}
-    }
-    
+	local elements = {
+	  {label = _U('get_object'), value = 'get_stock'},
+	  {label = _U('put_object'), value = 'put_stock'}
+	}
+	
 
-    ESX.UI.Menu.CloseAll()
+	ESX.UI.Menu.CloseAll()
 
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'fridge',
-      {
-        title    = _U('fridge'),
-        align    = 'top-left',
-        elements = elements,
-      },
-      function(data, menu)
+	ESX.UI.Menu.Open(
+	  'default', GetCurrentResourceName(), 'fridge',
+	  {
+		title    = _U('fridge'),
+		align    = 'top-left',
+		elements = elements,
+	  },
+	  function(data, menu)
 
-        if data.current.value == 'put_stock' then
-           OpenPutFridgeStocksMenu()
-        end
+		if data.current.value == 'put_stock' then
+		   OpenPutFridgeStocksMenu()
+		end
 
-        if data.current.value == 'get_stock' then
-           OpenGetFridgeStocksMenu()
-        end
+		if data.current.value == 'get_stock' then
+		   OpenGetFridgeStocksMenu()
+		end
 
-      end,
-      
-      function(data, menu)
+	  end,
+	  
+	  function(data, menu)
 
-        menu.close()
+		menu.close()
 
-        CurrentAction     = 'menu_fridge'
-        CurrentActionMsg  = _U('open_fridge')
-        CurrentActionData = {}
-      end
-    )
-
-end
-
-function OpenVehicleSpawnerMenu()
-
-  local vehicles = Config.Zones.Vehicles
-
-  ESX.UI.Menu.CloseAll()
-
-  if Config.EnableSocietyOwnedVehicles then
-
-    local elements = {}
-
-    ESX.TriggerServerCallback('esx_society:getVehiclesInGarage', function(garageVehicles)
-
-      for i=1, #garageVehicles, 1 do
-        table.insert(elements, {label = GetDisplayNameFromVehicleModel(garageVehicles[i].model) .. ' [' .. garageVehicles[i].plate .. ']', value = garageVehicles[i]})
-      end
-
-      ESX.UI.Menu.Open(
-        'default', GetCurrentResourceName(), 'vehicle_spawner',
-        {
-          title    = _U('vehicle_menu'),
-          align    = 'top-left',
-          elements = elements,
-        },
-        function(data, menu)
-
-          menu.close()
-
-          local vehicleProps = data.current.value
-          ESX.Game.SpawnVehicle(vehicleProps.model, vehicles.SpawnPoint, vehicles.Heading, function(vehicle)
-              ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
-              local playerPed = GetPlayerPed(-1)
-              --TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)  -- teleport into vehicle
-          end)            
-
-          TriggerServerEvent('esx_society:removeVehicleFromGarage', 'ballas', vehicleProps)
-
-        end,
-        function(data, menu)
-
-          menu.close()
-
-          CurrentAction     = 'menu_vehicle_spawner'
-          CurrentActionMsg  = _U('vehicle_spawner')
-          CurrentActionData = {}
-
-        end
-      )
-
-    end, 'ballas')
-
-  else
-
-    local elements = {}
-
-    for i=1, #Config.AuthorizedVehicles, 1 do
-      local vehicle = Config.AuthorizedVehicles[i]
-      table.insert(elements, {label = vehicle.label, value = vehicle.name})
-    end
-
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'vehicle_spawner',
-      {
-        title    = _U('vehicle_menu'),
-        align    = 'top-left',
-        elements = elements,
-      },
-      function(data, menu)
-
-        menu.close()
-
-        local model = data.current.value
-
-        local vehicle = GetClosestVehicle(vehicles.SpawnPoint.x,  vehicles.SpawnPoint.y,  vehicles.SpawnPoint.z,  3.0,  0,  71)
-
-        if not DoesEntityExist(vehicle) then
-
-          local playerPed = GetPlayerPed(-1)
-
-          if Config.MaxInService == 4 then
-
-            ESX.Game.SpawnVehicle(model, {
-              x = vehicles.SpawnPoint.x,
-              y = vehicles.SpawnPoint.y,
-              z = vehicles.SpawnPoint.z
-            }, vehicles.Heading, function(vehicle)
-              --TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1) -- teleport into vehicle
-              SetVehicleMaxMods(vehicle)
-              SetVehicleDirtLevel(vehicle, 0)
-            end)
-
-          else
-
-            ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
-
-              if canTakeService then
-
-                ESX.Game.SpawnVehicle(model, {
-                  x = vehicles[partNum].SpawnPoint.x,
-                  y = vehicles[partNum].SpawnPoint.y,
-                  z = vehicles[partNum].SpawnPoint.z
-                }, vehicles[partNum].Heading, function(vehicle)
-                  --TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)  -- teleport into vehicle
-                  SetVehicleMaxMods(vehicle)
-                  SetVehicleDirtLevel(vehicle, 0)
-                end)
-
-              else
-                ESX.ShowNotification(_U('service_max') .. inServiceCount .. '/' .. maxInService)
-              end
-
-            end, 'etat')
-
-          end
-
-        else
-          ESX.ShowNotification(_U('vehicle_out'))
-        end
-
-      end,
-      function(data, menu)
-
-        menu.close()
-
-        CurrentAction     = 'menu_vehicle_spawner'
-        CurrentActionMsg  = _U('vehicle_spawner')
-        CurrentActionData = {}
-
-      end
-    )
-
-  end
+		CurrentAction     = 'menu_fridge'
+		CurrentActionMsg  = _U('open_fridge')
+		CurrentActionData = {}
+	  end
+	)
 
 end
 
@@ -408,25 +274,25 @@ function OpenSocietyActionsMenu()
   ESX.UI.Menu.CloseAll()
 
   ESX.UI.Menu.Open(
-    'default', GetCurrentResourceName(), '247_actions',
-    {
-      title    = _U('247'),
-      align    = 'top-left',
-      elements = elements
-    },
-    function(data, menu)
+	'default', GetCurrentResourceName(), '247_actions',
+	{
+	  title    = _U('247'),
+	  align    = 'top-left',
+	  elements = elements
+	},
+	function(data, menu)
 
-      if data.current.value == 'billing' then
-        OpenBillingMenu()
-      end
+	  if data.current.value == 'billing' then
+		OpenBillingMenu()
+	  end
 
-    end,
+	end,
 
-    function(data, menu)
+	function(data, menu)
 
-      menu.close()
+	  menu.close()
 
-    end
+	end
   )
 
 end
@@ -434,32 +300,32 @@ end
 function OpenBillingMenu()
 
   ESX.UI.Menu.Open(
-    'dialog', GetCurrentResourceName(), 'billing',
-    {
-      title = _U('billing_amount')
-    },
-    function(data, menu)
-    
-      local amount = tonumber(data.value)
-      local player, distance = ESX.Game.GetClosestPlayer()
+	'dialog', GetCurrentResourceName(), 'billing',
+	{
+	  title = _U('billing_amount')
+	},
+	function(data, menu)
+	
+	  local amount = tonumber(data.value)
+	  local player, distance = ESX.Game.GetClosestPlayer()
 
-      if player ~= -1 and distance <= 3.0 then
+	  if player ~= -1 and distance <= 3.0 then
 
-        menu.close()
-        if amount == nil then
-            ESX.ShowNotification(_U('amount_invalid'))
-        else
-            TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_247', _U('billing'), amount)
-        end
+		menu.close()
+		if amount == nil then
+			ESX.ShowNotification(_U('amount_invalid'))
+		else
+			TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_ballas', _U('billing'), amount)
+		end
 
-      else
-        ESX.ShowNotification(_U('no_players_nearby'))
-      end
+	  else
+		ESX.ShowNotification(_U('no_players_nearby'))
+	  end
 
-    end,
-    function(data, menu)
-        menu.close()
-    end
+	end,
+	function(data, menu)
+		menu.close()
+	end
   )
 end
 
@@ -564,52 +430,52 @@ function OpenGetFridgeStocksMenu()
 
   ESX.TriggerServerCallback('esx_ballasjob:getFridgeStockItems', function(items)
 
-    local elements = {}
+	local elements = {}
 
-    for i=1, #items, 1 do
-      table.insert(elements, {label = 'x' .. items[i].count .. ' ' .. items[i].label, value = items[i].name})
-    end
+	for i=1, #items, 1 do
+	  table.insert(elements, {label = 'x' .. items[i].count .. ' ' .. items[i].label, value = items[i].name})
+	end
 
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'fridge_menu',
-      {
-        title    = _U('247_fridge_stock'),
-        elements = elements
-      },
-      function(data, menu)
+	ESX.UI.Menu.Open(
+	  'default', GetCurrentResourceName(), 'fridge_menu',
+	  {
+		title    = _U('247_fridge_stock'),
+		elements = elements
+	  },
+	  function(data, menu)
 
-        local itemName = data.current.value
+		local itemName = data.current.value
 
-        ESX.UI.Menu.Open(
-          'dialog', GetCurrentResourceName(), 'fridge_menu_get_item_count',
-          {
-            title = _U('quantity')
-          },
-          function(data2, menu2)
+		ESX.UI.Menu.Open(
+		  'dialog', GetCurrentResourceName(), 'fridge_menu_get_item_count',
+		  {
+			title = _U('quantity')
+		  },
+		  function(data2, menu2)
 
-            local count = tonumber(data2.value)
+			local count = tonumber(data2.value)
 
-            if count == nil then
-              ESX.ShowNotification(_U('invalid_quantity'))
-            else
-              menu2.close()
-              menu.close()
-              OpenGetStocksMenu()
+			if count == nil then
+			  ESX.ShowNotification(_U('invalid_quantity'))
+			else
+			  menu2.close()
+			  menu.close()
+			  OpenGetStocksMenu()
 
-              TriggerServerEvent('esx_ballasjob:getFridgeStockItem', itemName, count)
-            end
+			  TriggerServerEvent('esx_ballasjob:getFridgeStockItem', itemName, count)
+			end
 
-          end,
-          function(data2, menu2)
-            menu2.close()
-          end
-        )
+		  end,
+		  function(data2, menu2)
+			menu2.close()
+		  end
+		)
 
-      end,
-      function(data, menu)
-        menu.close()
-      end
-    )
+	  end,
+	  function(data, menu)
+		menu.close()
+	  end
+	)
 
   end)
 
@@ -619,58 +485,58 @@ function OpenPutFridgeStocksMenu()
 
 ESX.TriggerServerCallback('esx_ballasjob:getPlayerInventory', function(inventory)
 
-    local elements = {}
+	local elements = {}
 
-    for i=1, #inventory.items, 1 do
+	for i=1, #inventory.items, 1 do
 
-      local item = inventory.items[i]
+	  local item = inventory.items[i]
 
-      if item.count > 0 then
-        table.insert(elements, {label = item.label .. ' x' .. item.count, type = 'item_standard', value = item.name})
-      end
+	  if item.count > 0 then
+		table.insert(elements, {label = item.label .. ' x' .. item.count, type = 'item_standard', value = item.name})
+	  end
 
-    end
+	end
 
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'fridge_menu',
-      {
-        title    = _U('fridge_inventory'),
-        elements = elements
-      },
-      function(data, menu)
+	ESX.UI.Menu.Open(
+	  'default', GetCurrentResourceName(), 'fridge_menu',
+	  {
+		title    = _U('fridge_inventory'),
+		elements = elements
+	  },
+	  function(data, menu)
 
-        local itemName = data.current.value
+		local itemName = data.current.value
 
-        ESX.UI.Menu.Open(
-          'dialog', GetCurrentResourceName(), 'fridge_menu_put_item_count',
-          {
-            title = _U('quantity')
-          },
-          function(data2, menu2)
+		ESX.UI.Menu.Open(
+		  'dialog', GetCurrentResourceName(), 'fridge_menu_put_item_count',
+		  {
+			title = _U('quantity')
+		  },
+		  function(data2, menu2)
 
-            local count = tonumber(data2.value)
+			local count = tonumber(data2.value)
 
-            if count == nil then
-              ESX.ShowNotification(_U('invalid_quantity'))
-            else
-              menu2.close()
-              menu.close()
-              OpenPutFridgeStocksMenu()
+			if count == nil then
+			  ESX.ShowNotification(_U('invalid_quantity'))
+			else
+			  menu2.close()
+			  menu.close()
+			  OpenPutFridgeStocksMenu()
 
-              TriggerServerEvent('esx_ballasjob:putFridgeStockItems', itemName, count)
-            end
+			  TriggerServerEvent('esx_ballasjob:putFridgeStockItems', itemName, count)
+			end
 
-          end,
-          function(data2, menu2)
-            menu2.close()
-          end
-        )
+		  end,
+		  function(data2, menu2)
+			menu2.close()
+		  end
+		)
 
-      end,
-      function(data, menu)
-        menu.close()
-      end
-    )
+	  end,
+	  function(data, menu)
+		menu.close()
+	  end
+	)
 
   end)
 
@@ -680,43 +546,43 @@ function OpenGetWeaponMenu()
 
   ESX.TriggerServerCallback('esx_ballasjob:getVaultWeapons', function(weapons)
 
-    local elements = {}
+	local elements = {}
 
-    for i=1, #weapons, 1 do
+	for i=1, #weapons, 1 do
 
-        table.insert(elements, {
-          -- label = 'x' .. weapons[i].count .. ' ' .. ESX.GetWeaponLabel(weapons[i].name), 
-          label = ESX.GetWeaponLabel(weapons[i].name) .. ' [' .. (weapons[i].ammo) .. ']',
-          type  = 'item_weapon',
-          value = weapons[i].name,
-          ammo  = weapons[i].ammo
-        })
-     
-    end
+		table.insert(elements, {
+		  -- label = 'x' .. weapons[i].count .. ' ' .. ESX.GetWeaponLabel(weapons[i].name), 
+		  label = ESX.GetWeaponLabel(weapons[i].name) .. ' [' .. (weapons[i].ammo) .. ']',
+		  type  = 'item_weapon',
+		  value = weapons[i].name,
+		  ammo  = weapons[i].ammo
+		})
+	 
+	end
 
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'vault_get_weapon',
-      {
-        title    = _U('get_weapon_menu'),
-        align    = 'top-left',
-        elements = elements,
-      },
-      function(data, menu)
+	ESX.UI.Menu.Open(
+	  'default', GetCurrentResourceName(), 'vault_get_weapon',
+	  {
+		title    = _U('get_weapon_menu'),
+		align    = 'top-left',
+		elements = elements,
+	  },
+	  function(data, menu)
 
-        menu.close()
+		menu.close()
 
-        ESX.TriggerServerCallback('esx_ballasjob:removeVaultWeapon', function()
-         
-          ESX.SetTimeout(300, function()
-            OpenVaultMenu()
-          end)
-        end, data.current.type, data.current.value, data.current.ammo)
+		ESX.TriggerServerCallback('esx_ballasjob:removeVaultWeapon', function()
+		 
+		  ESX.SetTimeout(300, function()
+			OpenVaultMenu()
+		  end)
+		end, data.current.type, data.current.value, data.current.ammo)
 
-      end,
-      function(data, menu)
-        menu.close()
-      end
-    )
+	  end,
+	  function(data, menu)
+		menu.close()
+	  end
+	)
 
   end)
 
@@ -730,348 +596,342 @@ function OpenPutWeaponMenu()
 
   for i=1, #weaponList, 1 do
 
-    local weaponHash = GetHashKey(weaponList[i].name)
+	local weaponHash = GetHashKey(weaponList[i].name)
 
-    if HasPedGotWeapon(playerPed,  weaponHash,  false) and weaponList[i].name ~= 'WEAPON_UNARMED' then
-      local ammo = GetAmmoInPedWeapon(playerPed, weaponHash)
-      -- table.insert(elements, {label = weaponList[i].label, value = weaponList[i].name})
-      table.insert(elements, {
-        label = weaponList[i].label .. ' [' .. ammo .. ']',
-        type  = 'item_weapon',
-        value = weaponList[i].name,
-        ammo  =  ammo
-      })
+	if HasPedGotWeapon(playerPed,  weaponHash,  false) and weaponList[i].name ~= 'WEAPON_UNARMED' then
+	  local ammo = GetAmmoInPedWeapon(playerPed, weaponHash)
+	  -- table.insert(elements, {label = weaponList[i].label, value = weaponList[i].name})
+	  table.insert(elements, {
+		label = weaponList[i].label .. ' [' .. ammo .. ']',
+		type  = 'item_weapon',
+		value = weaponList[i].name,
+		ammo  =  ammo
+	  })
 
-    end
+	end
 
   end
 
   ESX.UI.Menu.Open(
-    'default', GetCurrentResourceName(), 'vault_put_weapon',
-    {
-      title    = _U('put_weapon_menu'),
-      align    = 'top-left',
-      elements = elements,
-    },
-    function(data, menu)
+	'default', GetCurrentResourceName(), 'vault_put_weapon',
+	{
+	  title    = _U('put_weapon_menu'),
+	  align    = 'top-left',
+	  elements = elements,
+	},
+	function(data, menu)
 
-      menu.close()
+	  menu.close()
 
-      -- Arnedo5 | Nuevo sistema para guardar armas [esx_casas]
-      if data.current.type == 'item_weapon' then
+	  -- Arnedo5 | Nuevo sistema para guardar armas [esx_casas]
+	  if data.current.type == 'item_weapon' then
 
-        ESX.TriggerServerCallback('esx_ballasjob:addVaultWeapon', function()
-          ESX.SetTimeout(300, function()
-            OpenVaultMenu()
-          end)
-        end, data.current.type, data.current.value, data.current.ammo)
+		ESX.TriggerServerCallback('esx_ballasjob:addVaultWeapon', function()
+		  ESX.SetTimeout(300, function()
+			OpenVaultMenu()
+		  end)
+		end, data.current.type, data.current.value, data.current.ammo)
   
-      end
+	  end
 
-    end,
-    function(data, menu)
-      menu.close()
-    end
+	end,
+	function(data, menu)
+	  menu.close()
+	end
   )
 
 end
 
 function OpenShopMenu(zone)
 
-    local elements = {}
-    for i=1, #Config.Zones[zone].Items, 1 do
+	local elements = {}
+	for i=1, #Config.Zones[zone].Items, 1 do
 
-        local item = Config.Zones[zone].Items[i]
+		local item = Config.Zones[zone].Items[i]
 
-        table.insert(elements, {
-            label     = item.label .. ' - <span style="color:red;">$' .. item.price .. ' </span>',
-            realLabel = item.label,
-            value     = item.name,
-            price     = item.price
-        })
+		table.insert(elements, {
+			label     = item.label .. ' - <span style="color:red;">$' .. item.price .. ' </span>',
+			realLabel = item.label,
+			value     = item.name,
+			price     = item.price
+		})
 
-    end
+	end
 
-    ESX.UI.Menu.CloseAll()
+	ESX.UI.Menu.CloseAll()
 
-    ESX.UI.Menu.Open(
-        'default', GetCurrentResourceName(), '247_shop',
-        {
-            title    = _U('shop'),
-            elements = elements
-        },
-        function(data, menu)
-            TriggerServerEvent('esx_ballasjob:buyItem', data.current.value, data.current.price, data.current.realLabel)
-        end,
-        function(data, menu)
-            menu.close()
-        end
-    )
+	ESX.UI.Menu.Open(
+		'default', GetCurrentResourceName(), '247_shop',
+		{
+			title    = _U('shop'),
+			elements = elements
+		},
+		function(data, menu)
+			TriggerServerEvent('esx_ballasjob:buyItem', data.current.value, data.current.price, data.current.realLabel)
+		end,
+		function(data, menu)
+			menu.close()
+		end
+	)
 
 end
 
 function animsAction(animObj)
-    Citizen.CreateThread(function()
-        if not playAnim then
-            local playerPed = GetPlayerPed(-1);
-            if DoesEntityExist(playerPed) then -- Check if ped exist
-                dataAnim = animObj
+	Citizen.CreateThread(function()
+		if not playAnim then
+			local playerPed = GetPlayerPed(-1);
+			if DoesEntityExist(playerPed) then -- Check if ped exist
+				dataAnim = animObj
 
-                -- Play Animation
-                RequestAnimDict(dataAnim.lib)
-                while not HasAnimDictLoaded(dataAnim.lib) do
-                    Citizen.Wait(0)
-                end
-                if HasAnimDictLoaded(dataAnim.lib) then
-                    local flag = 0
-                    if dataAnim.loop ~= nil and dataAnim.loop then
-                        flag = 1
-                    elseif dataAnim.move ~= nil and dataAnim.move then
-                        flag = 49
-                    end
+				-- Play Animation
+				RequestAnimDict(dataAnim.lib)
+				while not HasAnimDictLoaded(dataAnim.lib) do
+					Citizen.Wait(0)
+				end
+				if HasAnimDictLoaded(dataAnim.lib) then
+					local flag = 0
+					if dataAnim.loop ~= nil and dataAnim.loop then
+						flag = 1
+					elseif dataAnim.move ~= nil and dataAnim.move then
+						flag = 49
+					end
 
-                    TaskPlayAnim(playerPed, dataAnim.lib, dataAnim.anim, 8.0, -8.0, -1, flag, 0, 0, 0, 0)
-                    playAnimation = true
-                end
+					TaskPlayAnim(playerPed, dataAnim.lib, dataAnim.anim, 8.0, -8.0, -1, flag, 0, 0, 0, 0)
+					playAnimation = true
+				end
 
-                -- Wait end animation
-                while true do
-                    Citizen.Wait(0)
-                    if not IsEntityPlayingAnim(playerPed, dataAnim.lib, dataAnim.anim, 3) then
-                        playAnim = false
-                        TriggerEvent('ft_animation:ClFinish')
-                        break
-                    end
-                end
-            end -- end ped exist
-        end
-    end)
+				-- Wait end animation
+				while true do
+					Citizen.Wait(0)
+					if not IsEntityPlayingAnim(playerPed, dataAnim.lib, dataAnim.anim, 3) then
+						playAnim = false
+						TriggerEvent('ft_animation:ClFinish')
+						break
+					end
+				end
+			end -- end ped exist
+		end
+	end)
 end
 
 
 AddEventHandler('esx_ballasjob:hasEnteredMarker', function(zone)
- 
-    if zone == 'BossActions' and IsGradeBoss() then
-      CurrentAction     = 'menu_boss_actions'
-      CurrentActionMsg  = _U('open_bossmenu')
-      CurrentActionData = {}
-    end
 
-    if zone == 'Cloakrooms' then
-      CurrentAction     = 'menu_cloakroom'
-      CurrentActionMsg  = _U('open_cloackroom')
-      CurrentActionData = {}
-    end
+	if zone == 'BossActions' and IsGradeBoss() then
+		CurrentAction = 'menu_boss_actions'
+		CurrentActionMsg = _U('open_bossmenu')
+		CurrentActionData = {}
+	end
 
-    if Config.EnableVaultManagement then
-      if zone == 'Vaults' then
-        CurrentAction     = 'menu_vault'
-        CurrentActionMsg  = _U('open_vault')
-        CurrentActionData = {}
-      end
-    end
+	if zone == 'Cloakrooms' then
+		CurrentAction = 'menu_cloakroom'
+		CurrentActionMsg = _U('open_cloackroom')
+		CurrentActionData = {}
+	end
 
-    
-    --[[ 
-    if zone == 'Vehicles' then
-        CurrentAction     = 'menu_vehicle_spawner'
-        CurrentActionMsg  = _U('vehicle_spawner')
-        CurrentActionData = {}
-    end
+	if Config.EnableVaultManagement then
+		if zone == 'Vaults' then
+			CurrentAction = 'menu_vault'
+			CurrentActionMsg = _U('open_vault')
+			CurrentActionData = {}
+		end
+	end
 
-    if zone == 'VehicleDeleters' then
+	if zone == 'Vehicles' then
+		CurrentAction = 'menu_vehicle_spawner'
+		CurrentActionMsg = _U('vehicle_spawner')
+		CurrentActionData = {}
+	end
 
-      local playerPed = GetPlayerPed(-1)
+	if zone == 'VehicleDeleters' then
 
-      if IsPedInAnyVehicle(playerPed,  false) then
+		local playerPed = GetPlayerPed(-1)
 
-        local vehicle = GetVehiclePedIsIn(playerPed,  false)
+		if IsPedInAnyVehicle(playerPed, false) then
 
-        CurrentAction     = 'delete_vehicle'
-        CurrentActionMsg  = _U('store_vehicle')
-        CurrentActionData = {vehicle = vehicle}
-      end
+			local vehicle = GetVehiclePedIsIn(playerPed, false)
 
-    end
-]]--
---[[ 
-    if Config.EnableHelicopters then
-        if zone == 'Helicopters' then
+			CurrentAction = 'delete_vehicle'
+			CurrentActionMsg = _U('store_vehicle')
+			CurrentActionData = {
+				vehicle = vehicle
+			}
+		end
 
-          local helicopters = Config.Zones.Helicopters
+	end
 
-          if not IsAnyVehicleNearPoint(helicopters.SpawnPoint.x, helicopters.SpawnPoint.y, helicopters.SpawnPoint.z,  3.0) then
+	--[[ 
+	if Config.EnableHelicopters then
+		if zone == 'Helicopters' then
 
-            ESX.Game.SpawnVehicle('swift2', {
-              x = helicopters.SpawnPoint.x,
-              y = helicopters.SpawnPoint.y,
-              z = helicopters.SpawnPoint.z
-            }, helicopters.Heading, function(vehicle)
-              SetVehicleModKit(vehicle, 0)
-              SetVehicleLivery(vehicle, 0)
-            end)
+		  local helicopters = Config.Zones.Helicopters
 
-          end
+		  if not IsAnyVehicleNearPoint(helicopters.SpawnPoint.x, helicopters.SpawnPoint.y, helicopters.SpawnPoint.z,  3.0) then
 
-        end
+			ESX.Game.SpawnVehicle('swift2', {
+			  x = helicopters.SpawnPoint.x,
+			  y = helicopters.SpawnPoint.y,
+			  z = helicopters.SpawnPoint.z
+			}, helicopters.Heading, function(vehicle)
+			  SetVehicleModKit(vehicle, 0)
+			  SetVehicleLivery(vehicle, 0)
+			end)
 
-        if zone == 'HelicopterDeleters' then
+		  end
 
-          local playerPed = GetPlayerPed(-1)
+		end
 
-          if IsPedInAnyVehicle(playerPed,  false) then
+		if zone == 'HelicopterDeleters' then
 
-            local vehicle = GetVehiclePedIsIn(playerPed,  false)
+		  local playerPed = GetPlayerPed(-1)
 
-            CurrentAction     = 'delete_vehicle'
-            CurrentActionMsg  = _U('store_vehicle')
-            CurrentActionData = {vehicle = vehicle}
-          end
+		  if IsPedInAnyVehicle(playerPed,  false) then
 
-        end
-    end
+			local vehicle = GetVehiclePedIsIn(playerPed,  false)
+
+			CurrentAction     = 'delete_vehicle'
+			CurrentActionMsg  = _U('store_vehicle')
+			CurrentActionData = {vehicle = vehicle}
+		  end
+
+		end
+	end
 ]]--
 
 end)
 
+
 AddEventHandler('esx_ballasjob:hasExitedMarker', function(zone)
-
-    CurrentAction = nil
-    ESX.UI.Menu.CloseAll()
-
+	CurrentAction = nil
+	ESX.UI.Menu.CloseAll()
 end)
 
 -- Display markers
 Citizen.CreateThread(function()
-    while true do
+	while true do
 
-        Wait(0)
-        if IsJobTrue() then
-            local coords = GetEntityCoords(GetPlayerPed(-1))
+		Wait(0)
+		if IsJobTrue() then
+			local coords = GetEntityCoords(GetPlayerPed(-1))
 
-            for k,v in pairs(Config.Zones) do
-                if(v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
-                    DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 23, false, false, false, false)
-                end
-            end
-        end
+			for k,v in pairs(Config.Zones) do
+				if(v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
+					DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 23, false, false, false, false)
+				end
+			end
+		end
 
-    end
+	end
 end)
 
 -- Enter / Exit marker events
 Citizen.CreateThread(function()
-    while true do
+	while true do
 
-        Wait(0)
-        if IsJobTrue() then
+		Wait(0)
+		if IsJobTrue() then
 
-            local coords      = GetEntityCoords(GetPlayerPed(-1))
-            local isInMarker  = false
-            local currentZone = nil
+			local coords      = GetEntityCoords(GetPlayerPed(-1))
+			local isInMarker  = false
+			local currentZone = nil
 
-            for k,v in pairs(Config.Zones) do
-                if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
-                    isInMarker  = true
-                    currentZone = k
-                end
-            end
+			for k,v in pairs(Config.Zones) do
+				if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
+					isInMarker  = true
+					currentZone = k
+				end
+			end
 
-            if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
-                HasAlreadyEnteredMarker = true
-                LastZone                = currentZone
-                TriggerEvent('esx_ballasjob:hasEnteredMarker', currentZone)
-            end
+			if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
+				HasAlreadyEnteredMarker = true
+				LastZone                = currentZone
+				TriggerEvent('esx_ballasjob:hasEnteredMarker', currentZone)
+			end
 
-            if not isInMarker and HasAlreadyEnteredMarker then
-                HasAlreadyEnteredMarker = false
-                TriggerEvent('esx_ballasjob:hasExitedMarker', LastZone)
-            end
+			if not isInMarker and HasAlreadyEnteredMarker then
+				HasAlreadyEnteredMarker = false
+				TriggerEvent('esx_ballasjob:hasExitedMarker', LastZone)
+			end
 
-        end
-      end
+		end
+	  end
 end)
 
 -- Key Controls
 Citizen.CreateThread(function()
-  while true do
+	while true do
 
-    Citizen.Wait(0)
+		Citizen.Wait(0)
 
-    if CurrentAction ~= nil then
+		if CurrentAction ~= nil then
 
-      SetTextComponentFormat('STRING')
-      AddTextComponentString(CurrentActionMsg)
-      DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+			SetTextComponentFormat('STRING')
+			AddTextComponentString(CurrentActionMsg)
+			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-      if IsControlJustReleased(0,  Keys['E']) and IsJobTrue() then
+			if IsControlJustReleased(0, Keys['E']) and IsJobTrue() then
 
-        if CurrentAction == 'menu_cloakroom' then
-            OpenCloakroomMenu()
-        end
+				if CurrentAction == 'menu_cloakroom' then
+					OpenArmarioMenu()
+				end
 
-        if CurrentAction == 'menu_vault' then
-            OpenVaultMenu()
-        end
+				if CurrentAction == 'menu_vault' then
+					OpenVaultMenu()
+				end
 
-        if CurrentAction == 'menu_vehicle_spawner' then
-            OpenVehicleSpawnerMenu()
-        end
+				if CurrentAction == 'menu_vehicle_spawner' then
+					OpenVehicleSpawnerMenu()
+				end
 
-        if CurrentAction == 'delete_vehicle' then
+				if CurrentAction == 'delete_vehicle' then
 
-          if Config.EnableSocietyOwnedVehicles then
+					if Config.EnableSocietyOwnedVehicles then
 
-            local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
-            TriggerServerEvent('esx_society:putVehicleInGarage', 'ballas', vehicleProps)
+						local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
+						TriggerServerEvent('esx_society:putVehicleInGarage', 'ballas', vehicleProps)
 
-          else
+					else
 
-            if
-              GetEntityModel(vehicle) == GetHashKey('rentalbus')
-            then
-              TriggerServerEvent('esx_service:disableService', 'ballas')
-            end
+						if GetEntityModel(vehicle) == GetHashKey('rentalbus') then
+							TriggerServerEvent('esx_service:disableService', 'ballas')
+						end
 
-          end
+					end
 
-          ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
-        end
+					ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
+				end
 
+				if CurrentAction == 'menu_boss_actions' and IsGradeBoss() then
 
-        if CurrentAction == 'menu_boss_actions' and IsGradeBoss() then
+					local options = {
+						wash = Config.EnableMoneyWash,
+						black_money = Config.EnableBlackMoney
+					}
 
-          local options = {
-            wash      = Config.EnableMoneyWash,
-          }
+					ESX.UI.Menu.CloseAll()
 
-          ESX.UI.Menu.CloseAll()
+					TriggerEvent('esx_society:openBossMenu', 'ballas', function(data, menu)
 
-          TriggerEvent('esx_society:openBossMenu', 'ballas', function(data, menu)
+						menu.close()
+						CurrentAction = 'menu_boss_actions'
+						CurrentActionMsg = _U('open_bossmenu')
+						CurrentActionData = {}
 
-            menu.close()
-            CurrentAction     = 'menu_boss_actions'
-            CurrentActionMsg  = _U('open_bossmenu')
-            CurrentActionData = {}
+					end, options)
 
-          end,options)
+				end
 
-        end
+				CurrentAction = nil
 
-        
-        CurrentAction = nil
+			end
 
-      end
+		end
 
-    end
+		-- if IsControlJustReleased(0,  Keys['F6']) and IsJobTrue() and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), '247_actions') then
+		-- OpenSocietyActionsMenu()
+		-- end
 
-
-    if IsControlJustReleased(0,  Keys['F6']) and IsJobTrue() and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), '247_actions') then
-        OpenSocietyActionsMenu()
-    end
-
-
-  end
+	end
 end)
 
 
@@ -1085,94 +945,180 @@ end)
 -- Show top left hint
 Citizen.CreateThread(function()
   while true do
-    Wait(0)
-    if hintIsShowed == true then
-      SetTextComponentFormat("STRING")
-      AddTextComponentString(hintToDisplay)
-      DisplayHelpTextFromStringLabel(0, 0, 1, -1)
-    end
+	Wait(0)
+	if hintIsShowed == true then
+	  SetTextComponentFormat("STRING")
+	  AddTextComponentString(hintToDisplay)
+	  DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+	end
   end
 end)
 
 -- Arnedo5 | Display teleport markers warehouse
 Citizen.CreateThread(function()
   while true do
-    Wait(0)
+	Wait(0)
 
-    --if IsJobTrue() then
+	--if IsJobTrue() then
 
-        local coords = GetEntityCoords(GetPlayerPed(-1))
-        for k,v in pairs(Config.Warehouse) do
-          if(v.Marker ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
-            DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
-          end
-        end
+		local coords = GetEntityCoords(GetPlayerPed(-1))
+		for k,v in pairs(Config.Warehouse) do
+		  if(v.Marker ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
+			DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
+		  end
+		end
 
-    --end
+	--end
 
   end
 end)
 
 -- Activate teleport marker
-
 Citizen.CreateThread(function()
   while true do
-    Wait(0)
-    local coords      = GetEntityCoords(GetPlayerPed(-1))
-    local position    = nil
-    local zone        = nil
-    local status        = nil
+	Wait(0)
+	local coords      = GetEntityCoords(GetPlayerPed(-1))
+	local position    = nil
+	local zone        = nil
+	local status        = nil
 
-    --if IsJobTrue() then
+	--if IsJobTrue() then
 
-        for k,v in pairs(Config.Warehouse) do
-          if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
-            isInPublicMarker = true
-            position = v.Teleport
-            zone = v
-            status = v.Status
-            break
-          else
-            isInPublicMarker  = false
-          end
-        end
+		for k,v in pairs(Config.Warehouse) do
+		  if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
+			isInPublicMarker = true
+			position = v.Teleport
+			zone = v
+			status = v.Status
+			break
+		  else
+			isInPublicMarker  = false
+		  end
+		end
 
-        if IsControlJustReleased(0, Keys["E"]) and isInPublicMarker then
+		if IsControlJustReleased(0, Keys["E"]) and isInPublicMarker then
 
-          if status == 'in'  then
+		  if status == 'in'  then
 
-            ESX.TriggerServerCallback('esx_ballasjob:keycount', function(count)
-              if count > 0 then
-                TriggerEvent('esx_ballasjob:teleportMarkers', position)
-              else 
-                ESX.ShowNotification("No tienes acceso. Necesitas una llave de acceso.")
-              end
-            end)
+			ESX.TriggerServerCallback('esx_ballasjob:keycount', function(count)
+			  if count > 0 then
+				TriggerEvent('esx_ballasjob:teleportMarkers', position)
+			  else 
+				ESX.ShowNotification("No tienes acceso. Necesitas una llave de acceso.")
+			  end
+			end)
 
-          else 
-            TriggerEvent('esx_ballasjob:teleportMarkers', position)
-          end
-        
-        end
+		  else 
+			TriggerEvent('esx_ballasjob:teleportMarkers', position)
+		  end
+		
+		end
 
-        -- hide or show top left zone hints
-        if isInPublicMarker then
+		-- hide or show top left zone hints
+		if isInPublicMarker then
 
-          if status == 'in' then
-            hintToDisplay = _U('warehouse_in')
-          else 
-            hintToDisplay = _U('warehouse_out')
-          end
-         
-          hintIsShowed = true
-        else
-          if not isInMarker then
-            hintToDisplay = "No hay pistas para mostrar"
-            hintIsShowed = false
-          end
-        end
+		  if status == 'in' then
+			hintToDisplay = _U('warehouse_in')
+		  else 
+			hintToDisplay = _U('warehouse_out')
+		  end
+		 
+		  hintIsShowed = true
+		else
+		  if not isInMarker then
+			hintToDisplay = "No hay pistas para mostrar"
+			hintIsShowed = false
+		  end
+		end
 
-    --end
+	--end
 
   end
 end)
+
+------- New -------
+function OpenArmarioMenu()
+	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)
+		local elements = {}
+
+		for i=1, #dressing, 1 do
+			table.insert(elements, {
+				label = dressing[i],
+				value = i
+			})
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'player_dressing',
+		{
+			title    = _U('cloakroom'),
+			align    = 'top-left',
+			elements = elements
+		}, function(data2, menu2)
+
+			TriggerEvent('skinchanger:getSkin', function(skin)
+				ESX.TriggerServerCallback('esx_property:getPlayerOutfit', function(clothes)
+					TriggerEvent('skinchanger:loadClothes', skin, clothes)
+					TriggerEvent('esx_skin:setLastSkin', skin)
+
+					TriggerEvent('skinchanger:getSkin', function(skin)
+						TriggerServerEvent('esx_skin:save', skin)
+					end)
+				end, data2.current.value)
+			end)
+
+		end, function(data2, menu2)
+			menu2.close()
+		end)
+	end)
+end
+
+local spawnedVehicles = {}
+
+function OpenVehicleSpawnerMenu()
+
+	local spawnPoint = Config.Zones.Vehicles.SpawnPoint
+	ESX.UI.Menu.CloseAll()
+
+	local elements = {}
+
+	for i = 1, #Config.AuthorizedVehicles, 1 do
+		local vehicle = Config.AuthorizedVehicles[i]
+		table.insert(elements, {
+			label = vehicle.label,
+			value = vehicle.name
+		})
+	end
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_spawner', {
+		title = _U('vehicle_menu'),
+		align = 'top-left',
+		elements = elements
+	}, function(data, menu)
+		menu.close()
+		local model = data.current.value
+		DeleteSpawnedVehicles()
+
+		ESX.Game.SpawnVehicle(model, {x = spawnPoint.x, y = spawnPoint.y, z = spawnPoint.z}, spawnPoint.h, function(vehicle)
+			NetworkFadeInEntity(vehicle, true, true)
+			SetModelAsNoLongerNeeded(model)
+			TaskWarpPedIntoVehicle(PlayerPedId(), vehicle, -1)
+			SetEntityAsMissionEntity(vehicle, true, true)
+			table.insert(spawnedVehicles, vehicle)
+		end)
+
+	end, function(data, menu)
+		menu.close()
+		CurrentAction = 'menu_vehicle_spawner'
+		CurrentActionMsg = _U('vehicle_spawner')
+		CurrentActionData = {}
+	end)
+
+end
+
+function DeleteSpawnedVehicles()
+	while #spawnedVehicles > 0 do
+		local vehicle = spawnedVehicles[1]
+		ESX.Game.DeleteVehicle(vehicle)
+		table.remove(spawnedVehicles, 1)
+	end
+end

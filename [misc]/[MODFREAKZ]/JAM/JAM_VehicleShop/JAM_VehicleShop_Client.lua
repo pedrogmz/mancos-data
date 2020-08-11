@@ -206,7 +206,10 @@ function JVS:Update()
 											Citizen.Wait(10)
 									        SetEntityCoords(cbVeh, spawnPos.xyz, 0.0, 0.0, 0.0, true)
 									        SetEntityHeading(cbVeh, spawnPos.w)
-									        SetVehicleOnGroundProperly(cbVeh)
+											SetVehicleOnGroundProperly(cbVeh)
+
+											TriggerEvent('persistent-vehicles/register-vehicle', cbVeh)
+											
 									        Citizen.Wait(10)
 									        TaskWarpPedIntoVehicle(GetPlayerPed(-1), cbVeh, -1)
 											local vehProps = ESX.Game.GetVehicleProperties(cbVeh)

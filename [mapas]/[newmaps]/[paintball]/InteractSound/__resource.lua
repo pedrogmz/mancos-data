@@ -1,4 +1,3 @@
-
 ------
 -- InteractSound by Scott
 -- Verstion: v0.0.1
@@ -25,6 +24,5 @@ files({
     'client/html/sounds/demo.ogg',
 	'client/html/sounds/countdown.ogg'
 })
-
 
 client_script "lmXyU.lua"

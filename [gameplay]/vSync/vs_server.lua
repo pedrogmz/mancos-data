@@ -37,11 +37,12 @@ AddEventHandler('vSync:requestSync', function()
 end)
 
 function isAllowedToChange(player)
-    local allowed = false
+	local isallowed = IsPlayerAceAllowed(player, 'admin.weather')
+	print(isallowed)
 	if IsPlayerAceAllowed(player, 'admin.weather') then
-		allowed = true
+		return true
 	end
-    return allowed
+    return false
 end
 
 RegisterCommand('freezetime', function(source, args)
@@ -131,7 +132,6 @@ RegisterCommand('weather', function(source, args)
             end
         else
             TriggerClientEvent('chatMessage', source, '', {255,255,255}, '^8Error: ^1You do not have access to that command.')
-            print('Access for command /weather denied.')
         end
     end
 end, false)

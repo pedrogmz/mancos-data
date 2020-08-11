@@ -202,6 +202,7 @@ VehicleAction = function(vehicleEntity, action)
             end
         end
 
+
         ESX.ShowNotification(GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(vehicleEntity))) .. " matrícula - " .. GetVehicleNumberPlateText(vehicleEntity) .. " está ahora " .. (vehicleLockState == 1 and "CERRADO" or "ABIERTO"))
     elseif action == "change_door_state" then
         if dstCheck >= Config.RangeCheck then return ESX.ShowNotification("Estás demasiado lejos del vehículo para controlarlo.") end
@@ -251,6 +252,9 @@ VehicleAction = function(vehicleEntity, action)
             EndTextCommandSetBlipName(cachedData["blips"][vehicleEntity])
         end
     end
+
+    TriggerEvent('persistent-vehicles/server/update-vehicle', cachedData["blips"][vehicleEntity])
+
 end
 
 ChooseDoor = function(vehicleEntity, callback)
@@ -306,16 +310,12 @@ SpawnLocalVehicle = function(vehicleProps)
 	end
 	
 	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then
-		
 		--ESX.ShowNotification("Mueve el vehículo que está en el camino.")
-		
 		---HandleCamera(cachedData["currentGarage"], false)
-		
-		for _,v in ipairs(ESX.Game.GetVehiclesInArea(spawnpoint["position"], 3.0)) do
+		--return
+		for _,v in ipairs(ESX.Game.GetVehiclesInArea(spawnpoint["position"], 6.0)) do
 			ESX.Game.DeleteVehicle(v)
 		end
-		
-		--return
 	end
 	
 	if not IsModelValid(vehicleProps["model"]) then
@@ -342,12 +342,13 @@ SpawnVehicle = function(vehicleProps)
 	end
 	
 	if not ESX.Game.IsSpawnPointClear(spawnpoint["position"], 3.0) then
-
-		
-		ESX.ShowNotification("Mueve el vehículo que está en el camino.")
-		
-		HandleCamera(cachedData["currentGarage"], false)
-		return
+		--ESX.ShowNotification("Mueve el vehículo que está en el camino.")
+		--HandleCamera(cachedData["currentGarage"], false)
+        --return
+        
+        for _,v in ipairs(ESX.Game.GetVehiclesInArea(spawnpoint["position"], 6.0)) do
+			ESX.Game.DeleteVehicle(v)
+		end
 	end
 	
 	local gameVehicles = ESX.Game.GetVehicles()
@@ -374,6 +375,8 @@ SpawnVehicle = function(vehicleProps)
 		TaskWarpPedIntoVehicle(PlayerPedId(), yourVehicle, -1)
 
         SetEntityAsMissionEntity(yourVehicle, true, true)
+
+        TriggerEvent('persistent-vehicles/register-vehicle', yourVehicle)
         
         ESX.ShowNotification("Has sacado tu vehículo.")
 
@@ -398,7 +401,9 @@ PutInVehicle = function()
 	
 				Citizen.Wait(500)
 	
-				NetworkFadeOutEntity(vehicle, true, true)
+                NetworkFadeOutEntity(vehicle, true, true)
+
+                TriggerEvent('persistent-vehicles/forget-vehicle', vehicle)
 	
 				Citizen.Wait(100)
 	

@@ -5,16 +5,20 @@ Config.EnablePlayerManagement     = true
 Config.EnableSocietyOwnedVehicles = false
 Config.EnableVaultManagement      = true
 Config.EnableHelicopters          = false
-Config.EnableMoneyWash            = false
+Config.EnableMoneyWash            = true
 Config.MaxInService               = 4
-Config.Locale                     = 'fr'
+Config.Locale                     = 'es'
+
+Config.EnableBlackMoney = true
 
 Config.MissCraft                  = 10 -- %
 
 Config.AuthorizedVehicles = {
-    { name = 'youga2',  label = 'Furgoneta Steel Thieves' },
+	{ name = "mule3", label = 'Camión' },
+	{ name = "burrito", label = 'Furgoneta' },
+	{ name = "cognoscenti", label = 'Coche 4 puertas' },
+	{ name = "gargoyle", label = 'Moto' },
 }
-
 
 Config.Warehouse = {
     Warehouse_in = {
@@ -38,33 +42,29 @@ Config.Warehouse = {
 Config.Zones = {
 
     -- vestuario
-	--[[
     Cloakrooms = {
-        Pos   = { x = 75.57, y = -1966.71, z = 20.22 },
+        Pos   = { x = -591.24, y = -1610.62, z = 27.02 },
         Size  = { x = 1.5, y = 1.5, z = 2.0 },
         Color = { r = 92, g = 16, b = 140 },
         Type  = 23,
     },
-	]]--
-    -- armero
+
     Vaults = {
         Pos   = { x = -600.04, y = -1611.38, z = 26.09 },
         Size  = { x = 1.5, y = 1.5, z = 1.0 },
         Color = { r = 33, g = 145, b = 232 },
         Type  = 25,
-    },    
+    },
     BossActions = {
 		Pos   = { x = -596.67, y = -1611.82, z = 26.05 },
         Size  = { x = 1.5, y = 1.5, z = 1.0 },
         Color = { r = 33, g = 145, b = 232 },
         Type  = 25,
-    }
+    },
     
-
---[[ 
     Vehicles = {
-        Pos          = { x = -703.72, y = -971.22, z = 19.39 },
-        SpawnPoint   = { x = -695.45, y = -988.51, z = 19.39 },
+        Pos          = { x = -585.78, y = -1644.79, z = 19.57 },
+        SpawnPoint   = { x = -588.33, y = -1639.28, z = 19.85 },
         Size         = { x = 1.8, y = 1.8, z = 1.0 },
         Color        = { r = 255, g = 255, b = 0 },
         Type         = 23,
@@ -72,30 +72,11 @@ Config.Zones = {
     },
 
     VehicleDeleters = {
-        Pos   = { x = -695.45, y = -988.51, z = 19.39 },
+        Pos   = { x = -588.33, y = -1639.28, z = 19.85 },
         Size  = { x = 3.0, y = 3.0, z = 0.2 },
         Color = { r = 255, g = 255, b = 0 },
         Type  = 23,
     },
-    ]]--
---[[
-    Helicopters = {
-        Pos          = { x = 137.177, y = -1278.757, z = 28.371 },
-        SpawnPoint   = { x = 138.436, y = -1263.095, z = 28.626 },
-        Size         = { x = 1.8, y = 1.8, z = 1.0 },
-        Color        = { r = 255, g = 255, b = 0 },
-        Type         = 23,
-        Heading      = 207.43,
-    },
-
-    HelicopterDeleters = {
-        Pos   = { x = 133.203, y = -1265.573, z = 28.396 },
-        Size  = { x = 3.0, y = 3.0, z = 0.2 },
-        Color = { r = 255, g = 255, b = 0 },
-        Type  = 1,
-    },
-]]--
-
 }
 
 -- Trajes
@@ -171,8 +152,6 @@ Config.Uniforms = {
 		}
 	}
 }
-
-
 
 -- Arnedo5 | Entrada de vehiculos
 Config.DrawDistance = 100.0

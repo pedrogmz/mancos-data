@@ -1,19 +1,19 @@
 Config                            = {}
 
 Config.Teleporters = {
-	['EclipseTowers'] = {
+	['Comisaria'] = {
 		['Job'] = 'police',
 		['Enter'] = { 
-			['x'] = -777.03137207031, 
-			['y'] = 319.640625, 
-			['z'] = 84.717643432617,
-			['Information'] = '[E] Go Up',
+			['x'] = -469.78, 
+			['y'] = -986.78, 
+			['z'] = 30.717643432617,
+			['Information'] = '[E] Cruzar puerta',
 		},
 		['Exit'] = {
 			['x'] = -781.83642578125, 
 			['y'] = 325.7190246582, 
 			['z'] = 175.85869567871, 
-			['Information'] = '[E] Go Down' 
+			['Information'] = '[E] Cruzar puerta' 
 		}
 	},
 
