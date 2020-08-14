@@ -37,12 +37,9 @@ function handleOrientation(orientation)
 	end
 end
 
-playlist = nil
-
 Citizen.CreateThread(function()
 	TriggerServerEvent("EasyAdmin:amiadmin")
 	TriggerServerEvent("EasyAdmin:requestBanlist")
-	TriggerServerEvent("EasyAdmin:requestCachedPlayers")
 	if not GetResourceKvpString("ea_menuorientation") then
 		SetResourceKvp("ea_menuorientation", "right")
 		SetResourceKvpInt("ea_menuwidth", 0)
@@ -66,12 +63,6 @@ Citizen.CreateThread(function()
 		end
 		if IsControlJustReleased(0, settings.button) and isAdmin == true then --M by default
 			-- clear and re-create incase of permission change+player count change
-			-- clear and re-create incase of permission change+player count change
-			playerlist = nil
-			TriggerServerEvent("EasyAdmin:GetInfinityPlayerList") -- shitty fix for bigmode
-			repeat
-				Wait(100)
-			until playerlist
 			
 			if strings then
 				banLength = {
@@ -111,7 +102,6 @@ function StopDrawPlayerInfo()
 end
 
 function GenerateMenu() -- this is a big ass function
-	TriggerServerEvent("EasyAdmin:requestCachedPlayers")
 	_menuPool:Remove()
 	_menuPool = NativeUI.CreatePool()
 	collectgarbage()
@@ -143,30 +133,26 @@ function GenerateMenu() -- this is a big ass function
 
 	-- util stuff
 	players = {}
-	local localplayers = playerlist
-	local temp = {}
+	local localplayers = {}
+	for _, player in ipairs(GetActivePlayers()) do
+			table.insert( localplayers, GetPlayerServerId(player) )
+	end
 	
-	for i,thePlayer in pairs(localplayers) do
-		table.insert(temp, thePlayer.id)
+	table.sort(localplayers)
+	for i,thePlayer in ipairs(localplayers) do
+		--Citizen.Trace(thePlayer)
+		table.insert(players,GetPlayerFromServerId(thePlayer))
 	end
-	table.sort(temp)
-	for i, thePlayerId in pairs(temp) do
-		for _, thePlayer in pairs(localplayers) do
-			if thePlayerId == thePlayer.id then
-				players[i] = thePlayer
-			end
-		end
-	end
-	temp=nil
 
 	for i,thePlayer in ipairs(players) do
-		thisPlayer = _menuPool:AddSubMenu(playermanagement,"["..thePlayer.id.."] "..thePlayer.name,"",true)
+		thisPlayer = _menuPool:AddSubMenu(playermanagement,"["..GetPlayerServerId(thePlayer).."] "..GetPlayerName(thePlayer),"",true)
 		thisPlayer:SetMenuWidthOffset(menuWidth)
 		-- generate specific menu stuff, dirty but it works for now
 		
 		if permissions.ban then
 			local thisBanMenu = _menuPool:AddSubMenu(thisPlayer,GetLocalisedText("banplayer"),"",true)
 			thisBanMenu:SetMenuWidthOffset(menuWidth)
+			
 			local thisItem = NativeUI.CreateItem(GetLocalisedText("reason"),GetLocalisedText("banreasonguide"))
 			thisBanMenu:AddItem(thisItem)
 			BanReason = GetLocalisedText("noreason")
@@ -205,7 +191,7 @@ function GenerateMenu() -- this is a big ass function
 				if BanReason == "" then
 					BanReason = GetLocalisedText("noreason")
 				end
-				TriggerServerEvent("EasyAdmin:banPlayer", thePlayer.id, BanReason, banLength[BanTime].time, thePlayer.name)
+				TriggerServerEvent("EasyAdmin:banPlayer", GetPlayerServerId( thePlayer ), BanReason, banLength[BanTime].time, GetPlayerName( thePlayer ))
 				BanTime = 1
 				BanReason = ""
 				_menuPool:CloseAllMenus()
@@ -220,7 +206,7 @@ function GenerateMenu() -- this is a big ass function
 			local thisItem = NativeUI.CreateItem(strings.spectateplayer, "")
 			thisPlayer:AddItem(thisItem)
 			thisItem.Activated = function(ParentMenu,SelectedItem)
-				TriggerServerEvent("EasyAdmin:requestSpectate",thePlayer.id)
+				TriggerServerEvent("EasyAdmin:requestSpectate",thePlayer)
 			end
 		end
 

@@ -153,8 +153,8 @@ function OpenBossMenu(society, close, options)
 			table.insert(elements, {
 				label = "Depositar dinero negro",
 				value = 'deposit_black_money'
-			},
-			{
+			})
+			table.insert(elements, {
 				label = "Retirar dinero negro",
 				value = 'withdraw_black_money'
 			})

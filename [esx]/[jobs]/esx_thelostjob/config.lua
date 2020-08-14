@@ -42,7 +42,7 @@ Config.Warehouse = {
 Config.Zones = {
 	-- vestuario
 	Cloakrooms = {
-		Pos   = { x = 971.48, y = -98.8, z = 224.4 },
+		Pos   = { x = 971.99, y = -98.72, z = 73.85 },
 		Size  = { x = 1.5, y = 1.5, z = 2.0 },
 		Color = { r = 131, g = 76, b = 1 },
 		Type  = 25,

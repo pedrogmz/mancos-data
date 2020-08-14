@@ -210,7 +210,7 @@ function OpenCuffMenu()
 							playerheading = GetEntityHeading(GetPlayerPed(-1))
 							playerlocation = GetEntityForwardVector(PlayerPedId())
 							playerCoords = GetEntityCoords(GetPlayerPed(-1))
-							target_id = GetPlayerServerId(closestPlayer)
+							--target_id = GetPlayerServerId(closestPlayer)
 							--handcuffed = false
 							---
 

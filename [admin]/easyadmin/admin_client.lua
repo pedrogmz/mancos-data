@@ -7,7 +7,6 @@
 
 players = {}
 banlist = {}
-cachedplayers = {}
 
 RegisterNetEvent("EasyAdmin:adminresponse")
 RegisterNetEvent("EasyAdmin:amiadmin")
@@ -21,9 +20,6 @@ RegisterNetEvent("EasyAdmin:TeleportRequest")
 RegisterNetEvent("EasyAdmin:SlapPlayer")
 RegisterNetEvent("EasyAdmin:FreezePlayer")
 RegisterNetEvent("EasyAdmin:CaptureScreenshot")
-RegisterNetEvent("EasyAdmin:GetPlayerList")
-RegisterNetEvent("EasyAdmin:GetInfinityPlayerList")
-RegisterNetEvent("EasyAdmin:fillCachedPlayers")
 
 
 AddEventHandler('EasyAdmin:adminresponse', function(response,permission)
@@ -46,18 +42,6 @@ AddEventHandler("EasyAdmin:fillBanlist", function(thebanlist)
 	banlist = thebanlist
 end)
 
-AddEventHandler("EasyAdmin:fillCachedPlayers", function(thecached)
-	cachedplayers = thecached
-end)
-
-AddEventHandler("EasyAdmin:GetPlayerList", function(players)
-	playerlist = players
-end)
-
-AddEventHandler("EasyAdmin:GetInfinityPlayerList", function(players)
-	playerlist = players
-end)
-
 Citizen.CreateThread( function()
   while true do
     Citizen.Wait(0)
@@ -67,13 +51,22 @@ Citizen.CreateThread( function()
 				FreezeEntityPosition(GetVehiclePedIsIn(PlayerPedId(), false), frozen)
 			end 
 		end
+    players = {}
+    local localplayers = {}
+	for _, player in ipairs(GetActivePlayers()) do
+        table.insert( localplayers, GetPlayerServerId(player) )
+    end
+    table.sort(localplayers)
+    for i,thePlayer in ipairs(localplayers) do
+      table.insert(players,GetPlayerFromServerId(thePlayer))
+    end
   end
 end)
 
+
 AddEventHandler('EasyAdmin:requestSpectate', function(playerId)
-	local playerId = GetPlayerFromServerId(playerId)
 	spectatePlayer(GetPlayerPed(playerId),playerId,GetPlayerName(playerId))
-end)
+end)	
 
 RegisterCommand("ban", function(source, args, rawCommand)
 	if args[1] and tonumber(args[1]) then

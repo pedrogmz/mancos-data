@@ -35,7 +35,7 @@ ESX.RegisterUsableItem('bagofdope', function(source)
 			xPlayer.removeInventoryItem('papel', 2)
 			xPlayer.removeInventoryItem('bagofdope', 1)
 			xPlayer.addInventoryItem('porros', 2)
-			TriggerServerEvent('esx_venta:hacerPorros')
+			TriggerEvent('esx_venta:hacerPorros')
 		else
 			TriggerClientEvent('esx:showNotification', source, "~r~Necesitas minimo dos papeles para hacer un porro")
 		end

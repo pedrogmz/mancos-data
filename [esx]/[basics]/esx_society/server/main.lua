@@ -133,6 +133,7 @@ RegisterServerEvent('esx_society:depositBlackMoney')
 AddEventHandler('esx_society:depositBlackMoney', function(society, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local society = GetSociety(society)
+	local account = xPlayer.getAccount('black_money')
 	amount = ESX.Math.Round(tonumber(amount))
 
 	if xPlayer.job.name.."_black" ~= society.name then
@@ -140,7 +141,7 @@ AddEventHandler('esx_society:depositBlackMoney', function(society, amount)
 		return
 	end
 
-	if amount > 0 and xPlayer.getMoney() >= amount then
+	if amount > 0 and account.money >= amount then
 		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 			xPlayer.removeAccountMoney('black_money', amount)
 			account.addMoney(amount)
