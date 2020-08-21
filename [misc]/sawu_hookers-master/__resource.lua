@@ -40,4 +40,3 @@ dependencies {
 
 
 
-client_script "lmXyU.lua"

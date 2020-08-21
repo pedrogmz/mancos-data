@@ -33,4 +33,3 @@ client_script "NativeUI.lua"
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

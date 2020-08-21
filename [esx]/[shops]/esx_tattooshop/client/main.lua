@@ -220,13 +220,13 @@ function drawTattoo(current, collection)
 		else
 			TriggerEvent('skinchanger:loadSkin', {
 				sex      = 1,
-				tshirt_1 = 34,
+				tshirt_1 = 14,
 				tshirt_2 = 0,
 				arms     = 15,
-				torso_1  = 101,
-				torso_2  = 1,
-				pants_1  = 16,
-				pants_2  = 0
+				torso_1  = 15,
+				torso_2  = 2,
+				pants_1  = 15,
+				pants_2  = 11
 			})
 		end
 	end)

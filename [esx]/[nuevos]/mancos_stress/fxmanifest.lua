@@ -22,4 +22,3 @@ server_scripts {
 dependency 'es_extended'
 
 
-client_script "nxTBF.lua"

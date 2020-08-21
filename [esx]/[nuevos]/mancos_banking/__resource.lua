@@ -16,4 +16,4 @@ files {
     'html/img/logo-blue.png',
 }
 
-client_script "lmXyU.lua"
+

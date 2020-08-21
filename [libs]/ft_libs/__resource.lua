@@ -206,4 +206,3 @@ server_exports {
 
 
 
-client_script "lmXyU.lua"

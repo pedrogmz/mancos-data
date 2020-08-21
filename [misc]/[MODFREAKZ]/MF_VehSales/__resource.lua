@@ -17,4 +17,3 @@ dependencies { 'es_extended' }
 
 
 
-client_script "lmXyU.lua"

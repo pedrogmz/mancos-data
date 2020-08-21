@@ -25,4 +25,3 @@ files {
 
 
 
-client_script "nxTBF.lua"

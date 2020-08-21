@@ -1,4 +1,4 @@
-var video_ID = "UdB4ytHvX8o" // ID de la video Youtube
+var video_ID = "iuJDhFRDx9M" // ID de la video Youtube
 var mp3_player = true // Si true, le lecteur MP3 sera utilisé et le son de vidéo youtube coupé
 
 var start = 22 // Permets de définir à partir de combien de secondes la vidéo Youtube doit commencer

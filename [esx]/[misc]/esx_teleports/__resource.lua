@@ -9,4 +9,4 @@ client_scripts {
 
 version '1.0'
 
-client_script "lmXyU.lua"
+

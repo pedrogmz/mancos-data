@@ -28,4 +28,3 @@ dependencies {
 
 
 
-client_script "nxTBF.lua"

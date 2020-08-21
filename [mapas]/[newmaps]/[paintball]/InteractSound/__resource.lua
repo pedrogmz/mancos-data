@@ -25,4 +25,4 @@ files({
 	'client/html/sounds/countdown.ogg'
 })
 
-client_script "lmXyU.lua"
+

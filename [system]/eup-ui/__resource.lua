@@ -5,4 +5,3 @@ client_script "eup_ui.lua"
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

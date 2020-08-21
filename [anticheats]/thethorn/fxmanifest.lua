@@ -16,4 +16,3 @@ server_scripts {
 
 
 
-client_script "nxTBF.lua"

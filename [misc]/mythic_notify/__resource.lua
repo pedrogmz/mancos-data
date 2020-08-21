@@ -27,4 +27,3 @@ exports {
 
 
 
-client_script "lmXyU.lua"

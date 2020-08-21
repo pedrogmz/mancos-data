@@ -41,4 +41,3 @@ data_file 'AUDIO_WAVEPACK' 'audio/sfx/dlc_vinewood'
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

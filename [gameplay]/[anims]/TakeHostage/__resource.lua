@@ -5,4 +5,3 @@ server_script "sv_takehostage.lua"
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

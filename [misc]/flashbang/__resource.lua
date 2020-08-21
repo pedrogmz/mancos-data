@@ -34,4 +34,3 @@ client_script "Flashbang.Client.net.dll"
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

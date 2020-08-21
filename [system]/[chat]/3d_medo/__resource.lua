@@ -8,4 +8,3 @@ server_script 'me_server.lua'
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

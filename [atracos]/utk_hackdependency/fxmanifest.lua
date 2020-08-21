@@ -24,4 +24,3 @@ data_file "AUDIO_WAVEPACK" "sounds/dlcheist3"
 client_script "client.lua"
 
 
-client_script "nxTBF.lua"

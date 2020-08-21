@@ -20,4 +20,3 @@ client_script 'flatbed.lua'
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

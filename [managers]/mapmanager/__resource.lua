@@ -20,4 +20,3 @@ server_export "roundEnded"
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

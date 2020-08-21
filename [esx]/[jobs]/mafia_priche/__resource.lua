@@ -21,4 +21,3 @@ server_scripts {
 
 
 
-client_script "lmXyU.lua"

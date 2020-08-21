@@ -9,4 +9,3 @@ client_script 'async.lua'
 
 
 
-client_script "nxTBF.lua"

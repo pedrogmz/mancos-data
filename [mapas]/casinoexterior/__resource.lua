@@ -14,4 +14,3 @@ this_is_a_map 'yes'
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"

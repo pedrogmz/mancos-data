@@ -41,4 +41,3 @@ export 'GeneratePlate'
 
 
 
-client_script "nxTBF.lua"

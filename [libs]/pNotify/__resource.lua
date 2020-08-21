@@ -18,4 +18,3 @@ files {
 
 
 
-client_script "lmXyU.lua"

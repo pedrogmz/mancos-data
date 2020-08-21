@@ -105,4 +105,3 @@ client_script "dlc_afterhours/nightclubs.lua"
 client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "lmXyU.lua"
