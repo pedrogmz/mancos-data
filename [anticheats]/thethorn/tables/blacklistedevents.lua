@@ -2,9 +2,9 @@
 -- If you already know what im talking about, add everything to make your server safer
 -- Don't forget commas!!
 
-ChXaBE = {}
+FuxiaBE = {}
 
-ChXaBE.Events = {
+FuxiaBE.Events = {
   "redst0nia:checking",
   "gcPhone:_internalAddMessage",
   "gcPhone:tchat_channel",

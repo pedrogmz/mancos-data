@@ -25,6 +25,6 @@ files {
 	'html/img/keys/enter.png',
 	'html/img/keys/return.png',
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

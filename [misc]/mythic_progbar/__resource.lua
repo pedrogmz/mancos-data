@@ -18,6 +18,6 @@ exports {
     'ProgressWithTickEvent',
     'ProgressWithStartAndTick'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

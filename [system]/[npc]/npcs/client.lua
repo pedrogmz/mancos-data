@@ -19,16 +19,6 @@ function SetWeaponDrops()
     end
 end
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        SetWeaponDrops()
-		RemoveAllPickupsOfType(0xDF711959)
-		RemoveAllPickupsOfType(0xF9AFB48F)
-		RemoveAllPickupsOfType(0xA9355DCD)
-    end
-end)
-
 -- Set relations
 SetRelationshipBetweenGroups(1, GetHashKey("AMBIENT_GANG_HILLBILLY"), GetHashKey('PLAYER'))
 SetRelationshipBetweenGroups(1, GetHashKey("AMBIENT_GANG_BALLAS"), GetHashKey('PLAYER'))
@@ -59,20 +49,47 @@ Citizen.CreateThread(function()
 	
 	DisablePlayerVehicleRewards(iPlayerID)		-- Call it once.
 	
-	while Config.Switch == true do				-- Call it all...
-		Citizen.Wait(0)							-- Every Frame!
+	while true do				-- Call it all...
+		
 		for i = 0, 15 do						-- For all gangs and emergancy services.	
 			EnableDispatchService(i, Config.Dispatch)		-- Disable responding/dispatch.
-		end			
-		SetVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
-		SetPedDensityMultiplierThisFrame((Config.PedestrianX - Config.iPlayers) / Config.Divider)
-		SetRandomVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
-		SetParkedVehicleDensityMultiplierThisFrame((Config.ParkedX - Config.iPlayers) / Config.Divider)
-		SetScenarioPedDensityMultiplierThisFrame((Config.PedestrianX - Config.iPlayers) / Config.Divider, (Config.PedestrianX - Config.iPlayers) / Config.Divider)
+		end
+
+		---local npcDensity = (Config.TrafficX - Config.iPlayers) / Config.Divider
+
+		local npcDensity = (Config.TrafficX - Config.iPlayers) / Config.Divider
+
+		if NetworkIsHost() then
+			SetVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
+			SetPedDensityMultiplierThisFrame(npcDensity)
+			SetRandomVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
+			SetParkedVehicleDensityMultiplierThisFrame(0.0)
+			SetScenarioPedDensityMultiplierThisFrame(npcDensity, npcDensity)
+		else
+			--SetPedDensityMultiplierThisFrame(0.0)
+			SetScenarioPedDensityMultiplierThisFrame(0.0, 0.0)
+			SetVehicleDensityMultiplierThisFrame(0.0)
+			SetRandomVehicleDensityMultiplierThisFrame(0.0)
+			SetParkedVehicleDensityMultiplierThisFrame(0.0)
+		end
+
 		ClearAreaOfCops(iPlayer.x, iPlayer.y, iPlayer.z, 5000.0)
+		SetCreateRandomCops(false) -- disable random cops walking/driving around.
+		SetCreateRandomCopsNotOnScenarios(false) -- stop random cops (not in a scenario) from spawning.
+		SetCreateRandomCopsOnScenarios(false) -- stop random cops (in a scenario) from spawning.
 		RemoveVehiclesFromGeneratorsInArea(iPlayer.x - 500.0, iPlayer.y - 500.0, iPlayer.z - 500.0, iPlayer.x + 500.0, iPlayer.y + 500.0, iPlayer.z + 500.0);
+		--SetIgnoreLowPriorityShockingEvents(PlayerPedId(), true)
 		SetGarbageTrucks(0)
 		SetRandomBoats(0)
+
+		SetWeaponDrops()
+		RemoveAllPickupsOfType(0xDF711959)
+		RemoveAllPickupsOfType(0xF9AFB48F)
+		RemoveAllPickupsOfType(0xA9355DCD)
+
+		--print('npcs density changed: ' .. npcDensity)
+
+		Citizen.Wait(0)							-- Every Frame!
 	end
 end)
 
@@ -95,6 +112,8 @@ Citizen.CreateThread(function()
 
 		Wait(100)
 		Config.Switch = true
-		Citizen.Wait(5000)
+		
+		--print('player counted: '.. Config.iPlayers)
+		--Citizen.Wait(5000)
 	end
 end)

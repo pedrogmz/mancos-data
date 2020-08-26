@@ -18,6 +18,6 @@ ui_page('html/index.html')
 files {
     'html/index.html'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

@@ -19,6 +19,6 @@ files {
     'client/html/sounds/lock.ogg',
     'client/html/sounds/unlock.ogg'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

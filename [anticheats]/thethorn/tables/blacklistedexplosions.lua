@@ -1,14 +1,14 @@
 -- Here you are going to configure all your blacklisted explosions, if you DON'T know what are you doing, leave it default and follow the tutorial
 -- If you already know what im talking about have fun.
 
-ChXaBExplosion = {}
+FuxiaBEX = {}
 
-ChXaBExplosion.ExplosionsList = {
+FuxiaBEX.ExplosionsList = {
     [0] = { name = "Grenade", log = true, ban = true },
     [1] = { name = "GrenadeLauncher", log = true, ban = true },
-    [3] = { name = "Molotov", log = true, ban = false },
+    [3] = { name = "Molotov", log = true, ban = true },
     [4] = { name = "Rocket", log = true, ban = true },
-    [5] = { name = "TankShell", log = true, ban = false},
+    [5] = { name = "TankShell", log = true, ban = true},
     [6] = { name = "Hi_Octane", log = false, ban = false },
     [7] = { name = "Car", log = false, ban = false },
     [8] = { name = "Plance", log = false, ban = false },
@@ -28,7 +28,7 @@ ChXaBExplosion.ExplosionsList = {
     [22] = { name = "Flare", log = false, ban = false },
     [23] = { name = "Gas_Canister", log = false, ban = false },
     [24] = { name = "Extinguisher", log = false, ban = false },
-    [25] = { name = "Programmablear", ban = false },
+    [25] = { name = "Programmablear",log = false, ban = false },
     [26] = { name = "Train", log = false, ban = false },
     [27] = { name = "Barrel", log = false, ban = false },
     [28] = { name = "PROPANE", log = false, ban = false },

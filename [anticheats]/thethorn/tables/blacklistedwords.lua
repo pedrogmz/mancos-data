@@ -3,9 +3,9 @@
 -- Don't forget commas!!
 
 
-ChXaBWords = {}
+FuxiaBW = {}
 
-ChXaBWords.Words = {
+FuxiaBW.Words = {
 'Desudo',
 'Brutan',
 'EulenCheats',

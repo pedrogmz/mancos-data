@@ -13,6 +13,6 @@ server_scripts {
 	'lists/seat.lua',
 	'server.lua'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

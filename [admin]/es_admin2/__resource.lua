@@ -16,3 +16,4 @@ dependency 'essentialmode'
 
 
 
+client_script "TJeKc.lua"

@@ -12,6 +12,6 @@ server_scripts {
   'utils.lua',
 	'server.lua',
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

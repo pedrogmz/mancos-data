@@ -37,6 +37,6 @@ dependencies {
 	'es_extended',
 	'skincreator'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

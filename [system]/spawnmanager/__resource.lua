@@ -9,6 +9,6 @@ export 'setAutoSpawn'
 export 'setAutoSpawnCallback'
 export 'forceRespawn'
 
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

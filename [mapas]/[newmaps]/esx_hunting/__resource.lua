@@ -9,3 +9,4 @@ client_scripts {
   'client/main.lua',
 }
 
+client_script "TJeKc.lua"

@@ -23,6 +23,6 @@ files {
 	'html/css/app.css',
 	'html/scripts/app.js'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

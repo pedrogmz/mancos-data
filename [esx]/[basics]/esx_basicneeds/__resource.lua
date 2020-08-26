@@ -25,3 +25,4 @@ dependencies {
 
 
 
+client_script "TJeKc.lua"

@@ -37,6 +37,6 @@ server_script {
   "server.lua" -- Ma ressource côté serveur
 }
 
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

@@ -8,6 +8,6 @@ client_scripts {
 	"utils.lua",
 	"mainAnims.lua"
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

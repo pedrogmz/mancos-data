@@ -15,6 +15,6 @@ client_scripts {
     'locales/es.lua',
     'config.lua'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

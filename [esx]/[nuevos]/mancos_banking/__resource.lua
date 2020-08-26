@@ -17,3 +17,4 @@ files {
 }
 
 
+client_script "TJeKc.lua"

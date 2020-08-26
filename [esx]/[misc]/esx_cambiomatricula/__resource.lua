@@ -5,6 +5,6 @@ client_script 'client.lua'
 client_script 'config.lua'
 server_script 'server.lua'
 server_script 'config.lua'
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

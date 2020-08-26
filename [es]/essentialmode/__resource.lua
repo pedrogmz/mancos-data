@@ -37,6 +37,6 @@ server_exports {
 	'log',
 	'debugMsg',
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

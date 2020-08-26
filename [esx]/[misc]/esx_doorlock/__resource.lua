@@ -19,6 +19,6 @@ client_scripts {
 }
 
 dependency 'es_extended'
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

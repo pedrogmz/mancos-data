@@ -1,25 +1,19 @@
-ChXaC = {}
+FuxiaC = {}
 
-ChXaC.ResourceChecker = true -- This script will check the users loaded resources NEW!
-
---//Anti GodMode//--
-ChXaC.AntiGodMode = false -- Master switch for AntiGodMode BUGGED!
-    ChXaC.AntiGodModeTimer = 20000 -- AntiGodMode Timer, default: 200000 / 20 seconds, it does the check every x ms
-    ChXaC.MaxPlayerHealth = 200 -- Max player health
-    ChXaC.AntiGodModeKick = true -- Kick the AntiGodMode detected player
-    ChXaC.AntiGodModeBan = true -- Ban the AntiGodMode detected player
+FuxiaC.ResourceChecker = true -- This script will check the users loaded resources
+FuxiaC.EnableDispatchService = true -- NEW! Disable random spawning of BLACKLISTED ENTITIES (Good if you're using a big prop list in your blacklisted entities)
 
 --//Anti AdminStuff//--
-ChXaC.AntiPlayerBlips = false -- Detects a user that activated Player Blips and is not allowed
-ChXaC.AntiSpectate = true -- Detects a user that is spectating someone else and is not allowed
+FuxiaC.AntiPlayerBlips = false -- Detects a user that activated Player Blips and is not allowed
+FuxiaC.AntiSpectate = true -- Detects a user that is spectating someone else and is not allowed
 
 --//Anti Cheat Engine//--
-ChXaC.AntiDamageModifier = true -- Detects if a player tries to modify his damage or defence value
-ChXaC.BlacklistedWeaponDelete = true -- This will detect CLIENT SIDED weapons and automatically delete them (NO LOGS)
-ChXaC.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modifier
-    ChXaC.AntiWeaponDamageModifier = false -- Detects if a player tried to modify the weapon damage
-    ChXaC.AntiExplosiveWeapons = false -- Detects if a player modified his weapon to shoot explosive bullets, or explosive punch
-    ChXaC.WeaponDamagesTable = {
+FuxiaC.AntiDamageModifier = false -- Detects if a player tries to modify his damage or defence value
+FuxiaC.BlacklistedWeaponDelete = true -- This will detect CLIENT SIDED weapons and automatically delete them (NO LOGS)
+FuxiaC.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modifier
+    FuxiaC.AntiWeaponDamageModifier = false -- Detects if a player tried to modify the weapon damage
+    FuxiaC.AntiExplosiveWeapons = false -- Detects if a player modified his weapon to shoot explosive bullets, or explosive punch
+    FuxiaC.WeaponDamagesTable = {
     [-1357824103] = 34, -- AdvancedRifle
     [453432689] = 26, -- Pistol
     [1593441988] = 27, -- CombatPistol
@@ -73,10 +67,10 @@ ChXaC.AntiWeaponManipulator = false -- MasterSwitch for weapon damange modifier
     [2024373456] = 25, -- SMG Mk II
     }
 
-ChXaC.AntiVehicleHashChanger = true -- Detects if a player tried to change his vehicle hash model
+FuxiaC.AntiVehicleHashChanger = true -- Detects if a player tried to change his vehicle hash model
 
-ChXaC.AntiModelChanger = true -- Detects if a player tried to change his model to a blacklisted model
-    ChXaC.AntiModelChangerTable = {
+FuxiaC.AntiModelChanger = true -- Detects if a player tried to change his model to a blacklisted model
+    FuxiaC.AntiModelChangerTable = {
 	"s_m_y_swat_01",
 	"a_m_y_mexthug_01", 
     "a_c_cat_01", 
@@ -101,5 +95,5 @@ ChXaC.AntiModelChanger = true -- Detects if a player tried to change his model t
 
 --//Resource Injection Protection//--
 --<<ANTI RESTART BOOLS>> (DO NOT RESTART SCRIPTS IF YOU ENALBED THESE!!!)
-ChXaC.AntiResourceStop = false -- This script will check if a player tries to STOP a script
-ChXaC.AntiFCommands = false -- This script will check if a player injected custom commands into the server
+FuxiaC.AntiResourceStop = true -- This script will check if a player tries to STOP a script
+FuxiaC.AntiFCommands = true -- This script will check if a player injected custom commands into the server

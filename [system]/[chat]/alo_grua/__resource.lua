@@ -9,6 +9,6 @@ server_scripts {
 	'@mysql-async/lib/MySQL.lua',
 	'server.lua'
 }
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

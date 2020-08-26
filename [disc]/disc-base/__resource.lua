@@ -19,6 +19,6 @@ server_scripts {
     'server/cron.lua'
 }
 
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"

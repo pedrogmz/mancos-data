@@ -25,6 +25,6 @@ files {
     'html/vendor/fonts/LatoBold2.woff2',
   }
 
-client_script "TalJDiXcmrWuOdRetV.lua"
 
 
+client_script "TJeKc.lua"
