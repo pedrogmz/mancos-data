@@ -116,13 +116,13 @@ AddEventHandler('esx_vangelico_robbery:gioielli', function()
 end)
 
 RegisterServerEvent('lester:vendita')
-AddEventHandler('lester:vendita', function()
+AddEventHandler('lester:vendita', function(amount)
 
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
-	local reward = math.floor(Config.PriceForOneJewel * Config.MaxJewelsSell)
+	local reward = math.floor(Config.PriceForOneJewel * amount)
 
-	xPlayer.removeInventoryItem('jewels', Config.MaxJewelsSell)
+	xPlayer.removeInventoryItem('jewels', amount)
 	xPlayer.addAccountMoney("black_money", reward)
 end)
 

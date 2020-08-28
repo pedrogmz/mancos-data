@@ -59,19 +59,21 @@ Citizen.CreateThread(function()
 
 		local npcDensity = (Config.TrafficX - Config.iPlayers) / Config.Divider
 
-		if NetworkIsHost() then
-			SetVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
-			SetPedDensityMultiplierThisFrame(npcDensity)
-			SetRandomVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
-			SetParkedVehicleDensityMultiplierThisFrame(0.0)
-			SetScenarioPedDensityMultiplierThisFrame(npcDensity, npcDensity)
-		else
-			--SetPedDensityMultiplierThisFrame(0.0)
+		--if NetworkIsHost() then
+			--SetVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
+			--SetPedDensityMultiplierThisFrame(npcDensity)
+			--SetRandomVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
+			--SetParkedVehicleDensityMultiplierThisFrame(0.0)
+			--SetScenarioPedDensityMultiplierThisFrame(npcDensity, npcDensity)
+		--else
+			
+		--end
+		
+		SetPedDensityMultiplierThisFrame(0.0)
 			SetScenarioPedDensityMultiplierThisFrame(0.0, 0.0)
 			SetVehicleDensityMultiplierThisFrame(0.0)
 			SetRandomVehicleDensityMultiplierThisFrame(0.0)
 			SetParkedVehicleDensityMultiplierThisFrame(0.0)
-		end
 
 		ClearAreaOfCops(iPlayer.x, iPlayer.y, iPlayer.z, 5000.0)
 		SetCreateRandomCops(false) -- disable random cops walking/driving around.
