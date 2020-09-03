@@ -80,19 +80,11 @@ AddEventHandler('bank:change_drs', function(amount)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local base = 0
 	amount = tonumber(amount)
-	base = xPlayer.getAccount('dragon_coins').money
+	base = xPlayer.getAccount('coins').money
 	if amount == nil or amount < 100 or amount > base then
 		TriggerClientEvent('chatMessage', _source, "Cantidad no válida")
-	else
-	
-		MySQL.Async.execute('INSERT INTO transfer (Sender, Type, Amount, Receiver) VALUES (@Sender, @Type, @Amount, @Receiver) ', {
-				['@Sender']   = xPlayer.name,
-				['@Type']   = 'exchange_drs',
-				['@Amount']    = amount,
-				['@Receiver']    = xPlayer.name
-			})
-			
-		xPlayer.removeAccountMoney('dragon_coins', amount)
+	else	
+		xPlayer.removeAccountMoney('coins', amount)
 		local new_amount = amount*100
 		xPlayer.addAccountMoney('bank', new_amount)
 	end

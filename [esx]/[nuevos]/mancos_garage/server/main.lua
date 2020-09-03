@@ -137,10 +137,10 @@ RegisterServerEvent('garage:takecar')
 AddEventHandler('garage:takecar', function(plate, state)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local src = source
-			if Config.EnableLogs then
-				msg = GetPlayerName(src) .. " ha sacado el vehiculo con placa: " .. plate
-				sendToDiscord(Config.GarageWebhook, Config.ColourInfo, Config.GarageName, msg, " ")
-			end
+	if Config.EnableLogs then
+		msg = GetPlayerName(src) .. " ha sacado el vehiculo con placa: " .. plate
+		sendToDiscord(Config.GarageWebhook, Config.ColourInfo, Config.GarageName, msg, " ")
+	end
 	MySQL.Async.execute('UPDATE owned_vehicles SET `stored` = @stored WHERE plate = @plate', {
 		['@stored'] = state,
 		['@plate'] = plate
@@ -151,9 +151,9 @@ AddEventHandler('garage:takecar', function(plate, state)
 			else
 				print(('garage: %s exploited the garage!'):format(xPlayer.identifier))
 				if Config.EnableLogs then
-				msg = xPlayer.identifier .. " intento aprovecharse de un bug."
-				sendToDiscord(Config.ImpoundWebhook, Config.ColourExploit, Config.ImpoundName, msg, " ")
-			end
+					msg = xPlayer.identifier .. " intento aprovecharse de un bug."
+					sendToDiscord(Config.ImpoundWebhook, Config.ColourExploit, Config.ImpoundName, msg, " ")
+				end
 			end
 		end
 	end)

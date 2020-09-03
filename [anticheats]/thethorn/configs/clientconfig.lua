@@ -1,7 +1,7 @@
 FuxiaC = {}
 
 FuxiaC.ResourceChecker = true -- This script will check the users loaded resources
-FuxiaC.EnableDispatchService = true -- NEW! Disable random spawning of BLACKLISTED ENTITIES (Good if you're using a big prop list in your blacklisted entities)
+FuxiaC.EnableDispatchService = false -- NEW! Disable random spawning of BLACKLISTED ENTITIES (Good if you're using a big prop list in your blacklisted entities)
 
 --//Anti AdminStuff//--
 FuxiaC.AntiPlayerBlips = false -- Detects a user that activated Player Blips and is not allowed

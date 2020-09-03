@@ -54,26 +54,21 @@ Citizen.CreateThread(function()
 		for i = 0, 15 do						-- For all gangs and emergancy services.	
 			EnableDispatchService(i, Config.Dispatch)		-- Disable responding/dispatch.
 		end
+		local npcDensity = (Config.PedestrianX - Config.iPlayers) / Config.Divider
 
-		---local npcDensity = (Config.TrafficX - Config.iPlayers) / Config.Divider
-
-		local npcDensity = (Config.TrafficX - Config.iPlayers) / Config.Divider
-
-		--if NetworkIsHost() then
-			--SetVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
-			--SetPedDensityMultiplierThisFrame(npcDensity)
-			--SetRandomVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
-			--SetParkedVehicleDensityMultiplierThisFrame(0.0)
-			--SetScenarioPedDensityMultiplierThisFrame(npcDensity, npcDensity)
-		--else
-			
-		--end
-		
-		SetPedDensityMultiplierThisFrame(0.0)
+		if NetworkIsHost() then
+			SetVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
+			SetPedDensityMultiplierThisFrame(npcDensity)
+			SetRandomVehicleDensityMultiplierThisFrame((Config.TrafficX - Config.iPlayers) / Config.Divider)
+			SetParkedVehicleDensityMultiplierThisFrame(0.0)
+			SetScenarioPedDensityMultiplierThisFrame(npcDensity, npcDensity)
+		else
+			--SetPedDensityMultiplierThisFrame(0.0)
 			SetScenarioPedDensityMultiplierThisFrame(0.0, 0.0)
 			SetVehicleDensityMultiplierThisFrame(0.0)
 			SetRandomVehicleDensityMultiplierThisFrame(0.0)
 			SetParkedVehicleDensityMultiplierThisFrame(0.0)
+		end
 
 		ClearAreaOfCops(iPlayer.x, iPlayer.y, iPlayer.z, 5000.0)
 		SetCreateRandomCops(false) -- disable random cops walking/driving around.
@@ -88,8 +83,6 @@ Citizen.CreateThread(function()
 		RemoveAllPickupsOfType(0xDF711959)
 		RemoveAllPickupsOfType(0xF9AFB48F)
 		RemoveAllPickupsOfType(0xA9355DCD)
-
-		--print('npcs density changed: ' .. npcDensity)
 
 		Citizen.Wait(0)							-- Every Frame!
 	end
@@ -114,8 +107,5 @@ Citizen.CreateThread(function()
 
 		Wait(100)
 		Config.Switch = true
-		
-		--print('player counted: '.. Config.iPlayers)
-		--Citizen.Wait(5000)
 	end
 end)

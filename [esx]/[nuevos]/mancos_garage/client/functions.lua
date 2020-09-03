@@ -457,6 +457,7 @@ GetVehicleProperties = function(vehicle)
         vehicleProps["tyres"] = {}
         vehicleProps["windows"] = {}
         vehicleProps["doors"] = {}
+        vehicleProps["modelo"] = GetLabelText(GetDisplayNameFromVehicleModel(vehicleProps["model"]))
 
         for id = 1, 7 do
             local tyreId = IsVehicleTyreBurst(vehicle, id, false)

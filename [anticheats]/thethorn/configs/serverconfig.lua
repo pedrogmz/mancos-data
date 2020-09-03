@@ -37,7 +37,7 @@ FuxiaS.ClearPedTasksImmediatelyKick = true
 FuxiaS.ClearPedTasksImmediatelyBan = false
 
 --//BlacklistedEntity Detection//-- NEW
-FuxiaS.BlacklistedEntityDetection = true
+FuxiaS.BlacklistedEntityDetection = false
 FuxiaS.BlacklistedEntityDetectionKick = true
 FuxiaS.BlacklistedEntityDetectionBan = false
 

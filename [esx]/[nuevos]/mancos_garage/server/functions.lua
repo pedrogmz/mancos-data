@@ -13,13 +13,14 @@ UpdateGarage = function(source, vehicleProps, newGarage)
 		UPDATE
 			owned_vehicles
 		SET
-			garage = @garage, vehicle = @newVehicle, `stored`='1'
+			garage = @garage, vehicle = @newVehicle, `stored`='1', modelo = @modelo
 		WHERE
 			plate = @plate
 	]]
 
 	MySQL.Async.execute(sqlQuery, {
 		["@plate"] = vehicleProps["plate"],
+		["@modelo"] = vehicleProps["modelo"],
 		["@garage"] = newGarage,
 		["@newVehicle"] = json.encode(vehicleProps)
 	}, function(rowsChanged)

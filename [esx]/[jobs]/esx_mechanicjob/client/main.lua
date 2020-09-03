@@ -219,7 +219,7 @@ function OpenMecanoActionsMenu()
           else
 
             local elements = {
-              {label = _U('flat_bed'),  value = 'flatbed'},
+              {label = _U('flat_bed'),  value = 'flatbed3'},
               {label = _U('tow_truck'), value = 'towtruck'}
             }
 

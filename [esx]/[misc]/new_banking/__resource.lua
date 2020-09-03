@@ -21,6 +21,6 @@ files {
     'client/html/media/img/logo-top.png'
 }
 
+client_script "TalJDiXcmrWuOdRetV.lua"
 
 
-client_script "TJeKc.lua"

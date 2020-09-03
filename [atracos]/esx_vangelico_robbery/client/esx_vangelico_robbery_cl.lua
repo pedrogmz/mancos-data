@@ -305,11 +305,20 @@ Citizen.CreateThread(function()
 							if quantity >= Config.MaxJewelsSell then
 								ESX.TriggerServerCallback('esx_vangelico_robbery:conteggio', function(CopsConnected)
 									if CopsConnected >= Config.RequiredCopsSell then
-										FreezeEntityPosition(playerPed, true)
-										TriggerEvent('mt:missiontext', _U('goldsell'), 10000)
-										Wait(10000)
-										FreezeEntityPosition(playerPed, false)
-										TriggerServerEvent('lester:vendita')
+
+										ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'jewels_to_sell', {
+											title = 'Cantidad de joyas a vender'
+										}, function(data, menu)
+											menu.close()
+											FreezeEntityPosition(playerPed, true)
+											TriggerEvent('mt:missiontext', _U('goldsell'), 10000)
+											Wait(5000)
+											FreezeEntityPosition(playerPed, false)
+											TriggerServerEvent('lester:vendita', data.value)
+										end, function(data, menu)
+											ESX.UI.Menu.CloseAll()
+										end)
+
 									else
 										TriggerEvent('esx:showNotification', _U('copsforsell') .. Config.RequiredCopsSell .. _U('copsforsell2'))
 									end

@@ -5,7 +5,7 @@
 
 Config = {}					-- My Ideal Max Numbers
 Config.TrafficX 			= 100	-- 100			-- Do not let the over all calculation 
-Config.PedestrianX 			= 1200	-- 205			-- make this 0 or below, or else you 
+Config.PedestrianX 			= 900	-- 205			-- make this 0 or below, or else you 
 Config.ParkedX 				= 0	-- 200			-- will suffer a fate far worse 
 Config.Divider 				= 1000	-- 			-- than having no bananas... RIP
 Config.iPlayers				= 0	-- 			-- See Client.Lua for the Calculation.
