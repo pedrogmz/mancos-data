@@ -22,7 +22,7 @@ end)
 
 function ShowBillsMenu()
 
-	ESX.TriggerServerCallback('esx_billing:getBillsTaxi', function(bills)
+	ESX.TriggerServerCallback('esx_billing:getBills', function(bills)
 		ESX.UI.Menu.CloseAll()
 		local elements = {}
 
@@ -51,13 +51,13 @@ function ShowBillsMenu()
 
 end
 
-RegisterCommand('showbillstaxi', function()
+RegisterCommand('showbills', function()
 	if not isDead and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'billing') then
 		ShowBillsMenu()
 	end
 end, false)
 
-RegisterKeyMapping('showbillstaxi', "Mostrar facturas de Taxi", 'keyboard', 'F7')
+RegisterKeyMapping('showbills', "Mostrar facturas", 'keyboard', 'F7')
 
 AddEventHandler('esx:onPlayerDeath', function(data)
 	isDead = true

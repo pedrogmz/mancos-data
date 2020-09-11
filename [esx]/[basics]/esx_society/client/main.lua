@@ -75,230 +75,221 @@ end
 
 function OpenBossMenu(society, close, options)
 
-	-- Arnedo 5 | Mostrar el dinero de la sociedad
-	--ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
+	local isBoss = nil
+	local options = options or {}
+	local elements = {}
 
-		local isBoss = nil
-		local options = options or {}
-		local elements = {}
+	ESX.TriggerServerCallback('esx_society:isBoss', function(result)
+		isBoss = result
+	end, society)
 
-		ESX.TriggerServerCallback('esx_society:isBoss', function(result)
-			isBoss = result
-		end, society)
+	while isBoss == nil do
+		Citizen.Wait(100)
+	end
 
-		while isBoss == nil do
-			Citizen.Wait(100)
+	if not isBoss then
+		return
+	end
+
+	local defaultOptions = {
+		withdraw = true,
+		deposit = true,
+		wash = false,
+		employees = true,
+		grades = true,
+		black_money = false
+	}
+
+	for k, v in pairs(defaultOptions) do
+		if options[k] == nil then
+			options[k] = v
 		end
+	end
 
-		if not isBoss then
-			return
-		end
+	ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
+		societyMoney = money
+	end, society)
 
-		local defaultOptions = {
-			withdraw = true,
-			deposit = true,
-			wash = false,
-			employees = true,
-			grades = true,
-			black_money = false
-		}
-
-		for k, v in pairs(defaultOptions) do
-			if options[k] == nil then
-				options[k] = v
-			end
-		end
-
+	if options.black_money then
 		ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
-			societyMoney = money
-		end, society)
+			societyBlackMoney = money
+		end, society.."_black")
+	end
 
-		if options.black_money then
-			ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
-				societyBlackMoney = money
-			end, society.."_black")
-		end
+	while societyMoney == nil or (options.black_money and societyBlackMoney == nil) do
+		Citizen.Wait(100)
+	end
 
-		while societyMoney == nil or societyBlackMoney == nil do
-			Citizen.Wait(100)
-		end
+	table.insert(elements, {
+		label = "Dinero actual - <span style='color: green;'>" .. ESX.Math.GroupDigits(societyMoney) .. "</span>$",
+		value = "actual_money_nothing"
+	})
 
+	if options.black_money then
 		table.insert(elements, {
-			label = "Dinero actual - <span style='color: green;'>" .. ESX.Math.GroupDigits(societyMoney) .. "</span>$",
-			value = "actual_money_nothing"
+			label = "Dinero negro actual - <span style='color: black;'>" .. ESX.Math.GroupDigits(societyBlackMoney) .. "</span>$",
+			value = "actual_black_money_nothing"
 		})
+	end
 
-		if options.black_money then
-			table.insert(elements, {
-				label = "Dinero negro actual - <span style='color: black;'>" .. ESX.Math.GroupDigits(societyBlackMoney) .. "</span>$",
-				value = "actual_black_money_nothing"
-			})
-		end
+	if options.withdraw then
+		table.insert(elements, {
+			label = _U('withdraw_society_money'),
+			value = 'withdraw_society_money'
+		})
+	end
 
-		if options.withdraw then
-			table.insert(elements, {
-				label = _U('withdraw_society_money'),
-				value = 'withdraw_society_money'
-			})
-		end
+	if options.deposit then
+		table.insert(elements, {
+			label = _U('deposit_society_money'),
+			value = 'deposit_money'
+		})
+	end
 
-		if options.deposit then
-			table.insert(elements, {
-				label = _U('deposit_society_money'),
-				value = 'deposit_money'
-			})
-		end
+	if options.black_money then
+		table.insert(elements, {
+			label = "Depositar dinero negro",
+			value = 'deposit_black_money'
+		})
+		table.insert(elements, {
+			label = "Retirar dinero negro",
+			value = 'withdraw_black_money'
+		})
+	end
 
-		if options.black_money then
-			table.insert(elements, {
-				label = "Depositar dinero negro",
-				value = 'deposit_black_money'
-			})
-			table.insert(elements, {
-				label = "Retirar dinero negro",
-				value = 'withdraw_black_money'
-			})
-		end
+	if options.employees then
+		table.insert(elements, {
+			label = _U('employee_management'),
+			value = 'manage_employees'
+		})
+	end
 
-		-- los trabajos indicados no muestran gestion de empleados y gestion de salarios
-		if society ~= 'thelost' and society ~= 'ballas' and society ~= 'cardealer' and society ~= 'steel' then
-			if options.employees then
-				table.insert(elements, {
-					label = _U('employee_management'),
-					value = 'manage_employees'
-				})
-			end
+	if options.grades then
+		table.insert(elements, {
+			label = _U('salary_management'),
+			value = 'manage_grades'
+		})
+	end
 
-			if options.grades then
-				table.insert(elements, {
-					label = _U('salary_management'),
-					value = 'manage_grades'
-				})
-			end
-		end
+	if options.wash then
+		table.insert(elements, {
+			label = _U('wash_money'),
+			value = 'wash_money'
+		})
+	end
 
-		if options.wash then
-			table.insert(elements, {
-				label = _U('wash_money'),
-				value = 'wash_money'
-			})
-		end
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'boss_actions_' .. society, {
+		title = _U('boss_menu'),
+		align = 'top-left',
+		elements = elements
+	}, function(data, menu)
 
-		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'boss_actions_' .. society, {
-			title = _U('boss_menu'),
-			align = 'top-left',
-			elements = elements
-		}, function(data, menu)
+		if data.current.value == 'withdraw_society_money' then
 
-			if data.current.value == 'withdraw_society_money' then
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'withdraw_society_money_amount_' .. society, {
+				title = _U('withdraw_amount')
+			}, function(data, menu)
 
-				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'withdraw_society_money_amount_' .. society, {
-					title = _U('withdraw_amount')
-				}, function(data, menu)
+				local amount = tonumber(data.value)
 
-					local amount = tonumber(data.value)
-
-					if amount == nil then
-						ESX.ShowNotification(_U('invalid_amount'))
-					else
-						menu.close()
-						TriggerServerEvent('esx_society:withdrawMoney', society, amount)
-					end
-
-				end, function(data, menu)
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
 					menu.close()
-				end)
+					TriggerServerEvent('esx_society:withdrawMoney', society, amount)
+				end
 
-			elseif data.current.value == 'withdraw_black_money' then
+			end, function(data, menu)
+				menu.close()
+			end)
 
-				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'withdraw_black_money_amount_' .. society, {
-					title = _U('withdraw_amount')
-				}, function(data, menu)
+		elseif data.current.value == 'withdraw_black_money' then
 
-					local amount = tonumber(data.value)
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'withdraw_black_money_amount_' .. society, {
+				title = _U('withdraw_amount')
+			}, function(data, menu)
 
-					if amount == nil then
-						ESX.ShowNotification(_U('invalid_amount'))
-					else
-						menu.close()
-						TriggerServerEvent('esx_society:withdrawBlackMoney', society.."_black", amount)
-					end
+				local amount = tonumber(data.value)
 
-				end, function(data, menu)
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
 					menu.close()
-				end)
+					TriggerServerEvent('esx_society:withdrawBlackMoney', society.."_black", amount)
+				end
 
-			elseif data.current.value == 'deposit_money' then
+			end, function(data, menu)
+				menu.close()
+			end)
 
-				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_money_amount_' .. society, {
-					title = _U('deposit_amount')
-				}, function(data, menu)
+		elseif data.current.value == 'deposit_money' then
 
-					local amount = tonumber(data.value)
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_money_amount_' .. society, {
+				title = _U('deposit_amount')
+			}, function(data, menu)
 
-					if amount == nil then
-						ESX.ShowNotification(_U('invalid_amount'))
-					else
-						menu.close()
-						TriggerServerEvent('esx_society:depositMoney', society, amount)
-					end
+				local amount = tonumber(data.value)
 
-				end, function(data, menu)
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
 					menu.close()
-				end)
+					TriggerServerEvent('esx_society:depositMoney', society, amount)
+				end
 
-			elseif data.current.value == 'deposit_black_money' then
+			end, function(data, menu)
+				menu.close()
+			end)
 
-				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_black_money_amount_' .. society, {
-					title = "Cantidad a depositar"
-				}, function(data, menu)
+		elseif data.current.value == 'deposit_black_money' then
 
-					local amount = tonumber(data.value)
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_black_money_amount_' .. society, {
+				title = "Cantidad a depositar"
+			}, function(data, menu)
 
-					if amount == nil then
-						ESX.ShowNotification(_U('invalid_amount'))
-					else
-						menu.close()
-						TriggerServerEvent('esx_society:depositBlackMoney', society.."_black", amount)
-					end
+				local amount = tonumber(data.value)
 
-				end, function(data, menu)
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
 					menu.close()
-				end)
+					TriggerServerEvent('esx_society:depositBlackMoney', society.."_black", amount)
+				end
 
-			elseif data.current.value == 'wash_money' then
+			end, function(data, menu)
+				menu.close()
+			end)
 
-				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'wash_money_amount_' .. society, {
-					title = _U('wash_money_amount')
-				}, function(data, menu)
+		elseif data.current.value == 'wash_money' then
 
-					local amount = tonumber(data.value)
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'wash_money_amount_' .. society, {
+				title = _U('wash_money_amount')
+			}, function(data, menu)
 
-					if amount == nil then
-						ESX.ShowNotification(_U('invalid_amount'))
-					else
-						menu.close()
-						TriggerServerEvent('esx_society:washMoney', society, amount)
-					end
+				local amount = tonumber(data.value)
 
-				end, function(data, menu)
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
 					menu.close()
-				end)
+					TriggerServerEvent('esx_society:washMoney', society, amount)
+				end
 
-			elseif data.current.value == 'manage_employees' then
-				OpenManageEmployeesMenu(society)
-			elseif data.current.value == 'manage_grades' then
-				OpenManageGradesMenu(society)
-			end
+			end, function(data, menu)
+				menu.close()
+			end)
 
-		end, function(data, menu)
-			if close then
-				close(data, menu)
-			end
-		end)
+		elseif data.current.value == 'manage_employees' then
+			OpenManageEmployeesMenu(society)
+		elseif data.current.value == 'manage_grades' then
+			OpenManageGradesMenu(society)
+		end
 
-	--end, ESX.PlayerData.job.name)
-
+	end, function(data, menu)
+		if close then
+			close(data, menu)
+		end
+	end)
 end
 
 

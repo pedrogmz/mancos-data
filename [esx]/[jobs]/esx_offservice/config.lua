@@ -2,7 +2,7 @@ Config                            = {}
 Config.DrawDistance               = 100.0
 --language currently available EN and SV
 Config.Locale                     = 'en'
-Config.AvailableJobs = {'police', 'ambulance', 'taxi', 'mechanic', 'bar', 'cardealer', 'tender'}
+Config.AvailableJobs = {'police', 'ambulance', 'taxi', 'mechanic', 'bar', 'cardealer', 'tender', 'bahamas'}
 
 Config.Zones = {
 
@@ -45,6 +45,12 @@ Config.Zones = {
   },
   CardealerDuty = {
     Pos = { x = -31.57, y = -1112.09, z = 25.42 },
+    Size = { x = 1.5, y = 1.5, z = 1.5 },
+    Color = { r = 0, g = 255, b = 0 },
+    Type = 25,
+  },
+  BahamasDuty = {
+    Pos = { x = -1386.64, y = -589.49, z = 29.32 },
     Size = { x = 1.5, y = 1.5, z = 1.5 },
     Color = { r = 0, g = 255, b = 0 },
     Type = 25,

@@ -9,6 +9,7 @@ Locales['en'] = {
 	['nottax'] = 'Tu no eres Taxista.',
 	['notmec'] = 'Tu no eres Mecanico.',
 	['notten'] = 'Tu no eres tendero.',
+	['notbah'] = 'Tu no eres Bartender.',
 
 	-- Arnedo5 service
 	['service_anonunce'] = 'Información de servicio',

@@ -94,22 +94,19 @@ Citizen.CreateThread(function()
 	PlayerData = ESX.GetPlayerData()
 end)
 
-function IsAbleToSteal(targetSID, err)
+function IsAbleToSteal(targetSID, able)
 	ESX.TriggerServerCallback('esx_thief:getValue', function(result)
 		local result = result
 		if result.value then
-			err(false)
+			able(true)
 		else
-			err(_U('no_hands_up'))
+			able(_U('no_hands_up'))
 		end
 	end, targetSID)
 end
 
 ---- MENU
-
 function OpenCuffMenu()
-
-	TriggerEvent('mancos_ui:openMenu', 'social')
 
 	local elements = {{
 		label = 'Saco',
@@ -163,10 +160,12 @@ function OpenCuffMenu()
 		end
 
 		local player, distance = ESX.Game.GetClosestPlayer()
+
 		if distance ~= -1 and distance <= 3.0 then
 			if data2.current.value == 'put_in_vehicle' then
 				TriggerServerEvent('esx_robar:putInVehicle', GetPlayerServerId(player))
 			end
+
 			if data2.current.value == 'out_the_vehicle' then
 				TriggerServerEvent('esx_robar:OutVehicle', GetPlayerServerId(player))
 			end
@@ -174,17 +173,14 @@ function OpenCuffMenu()
 			if data2.current.value == 'cuff' then
 				if Config.EnableItems then
 					local target_id = GetPlayerServerId(player)
-					IsAbleToSteal(target_id, function(err)
-						if not err then
+					IsAbleToSteal(target_id, function(able)
+						if able then
 							ESX.TriggerServerCallback('esx_thief:getItemQ', function(quantity)
 								if quantity > 0 then
 									IsAbleToSearch = true
-									---
 									playerheading = GetEntityHeading(GetPlayerPed(-1))
 									playerlocation = GetEntityForwardVector(PlayerPedId())
 									playerCoords = GetEntityCoords(GetPlayerPed(-1))
-									--handcuffed = true
-									---
 
 									TriggerServerEvent('mancos_arrest:request_arrest', target_id, playerheading,
 										playerCoords, playerlocation)
@@ -201,20 +197,18 @@ function OpenCuffMenu()
 					TriggerServerEvent('cuffServer', GetPlayerServerId(player))
 				end
 			end
+
 			if data2.current.value == 'uncuff' then
 				if Config.EnableItems then
 					ESX.TriggerServerCallback('esx_thief:getItemQ', function(quantity)
 						if quantity > 0 then
 							IsAbleToSearch = false
-							---
 							playerheading = GetEntityHeading(GetPlayerPed(-1))
 							playerlocation = GetEntityForwardVector(PlayerPedId())
 							playerCoords = GetEntityCoords(GetPlayerPed(-1))
-							--target_id = GetPlayerServerId(closestPlayer)
-							--handcuffed = false
-							---
+							target_id = GetPlayerServerId(player)
 
-							TriggerServerEvent('mancos_arrest:requestrelease', target_id, playerheading, playerCoords,
+							TriggerServerEvent('mancos_arrest:request_release', target_id, playerheading, playerCoords,
 								playerlocation)
 						else
 							ESX.ShowNotification(_U('no_handcuffs'))
@@ -225,6 +219,7 @@ function OpenCuffMenu()
 					TriggerServerEvent('cuffServer', GetPlayerServerId(player))
 				end
 			end
+
 			if data2.current.value == 'drag' then
 				if Config.EnableItems then
 					ESX.TriggerServerCallback('esx_thief:getItemQ', function(quantity)
@@ -246,8 +241,8 @@ function OpenCuffMenu()
 					if IsAbleToSearch then
 						local target, distance = ESX.Game.GetClosestPlayer()
 						if target ~= -1 and distance ~= -1 and distance <= 2.0 then
-							local target_id = GetPlayerServerId(target)
-							OpenStealMenu(target, target_id)
+							TriggerServerEvent('esx_policejob:message', GetPlayerServerId(target), _U('being_searched'))
+							OpenBodySearchMenu(target)
 						elseif distance < 20 and distance > 2.0 then
 							ESX.ShowNotification(_U('too_far'))
 						else
@@ -425,14 +420,6 @@ Citizen.CreateThread(function()
 	end
 end)
 
----- END MENU
-
-function OpenStealMenu(target, target_id)
-
-	TriggerEvent("esx_inventoryhud:openPlayerInventory", GetPlayerServerId(target), GetPlayerName(target))
-
-end
-
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
@@ -445,3 +432,53 @@ Citizen.CreateThread(function()
 	end
 end)
 
+function OpenBodySearchMenu(player)
+	ESX.TriggerServerCallback('esx_robar:getOtherPlayerData', function(data)
+		local elements = {}
+
+		table.insert(elements, {
+			label    = 'Robar dinero en mano - <span style="color:red;">'..ESX.Math.Round(data.money)..'</span>',
+			value    = 'money',
+			itemType = 'item_money',
+			amount   = data.money
+		})
+
+		for i=1, #data.accounts, 1 do
+			if data.accounts[i].name ~= 'coins' and data.accounts[i].money > 0 then
+				table.insert(elements, {
+					label    = 'Robar ' ..data.accounts[i].label.. ' - <span style="color:red;">'..ESX.Math.Round(data.accounts[i].money)..'</span>',
+					value    = data.accounts[i].name,
+					itemType = 'item_account',
+					amount   = data.accounts[i].money
+				})
+				break
+			end
+		end
+
+		table.insert(elements, {label = _U('inventory_label')})
+
+		for i=1, #data.inventory, 1 do
+			if data.inventory[i].count > 0 and data.inventory[i].name == 'phone' then
+				table.insert(elements, {
+					label    = _U('confiscate_inv', data.inventory[i].count, data.inventory[i].label),
+					value    = data.inventory[i].name,
+					itemType = 'item_standard',
+					amount   = data.inventory[i].count
+				})
+			end
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'body_search', {
+			title    = _U('search'),
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			if data.current.value then
+				TriggerServerEvent('esx_robar:stealPlayerItem', GetPlayerServerId(player), data.current.itemType, data.current.value, data.current.amount)
+				OpenBodySearchMenu(player)
+			end
+		end, function(data, menu)
+			menu.close()
+		end)
+	end, GetPlayerServerId(player))
+end
