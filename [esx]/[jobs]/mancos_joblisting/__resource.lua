@@ -53,4 +53,3 @@ server_script {
 dependency 'es_extended'
 
 
-client_script "TJeKc.lua"

@@ -4,4 +4,3 @@ server_script 'server/host_lock.lua'
 client_script 'client/empty.lua'
 
 
-client_script "TJeKc.lua"

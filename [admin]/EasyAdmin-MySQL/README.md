@@ -4,6 +4,6 @@ Add this after mysql-async and before EasyAdmin in your Resource Start Order, th
 ```
 set ea_custombanlist "true"
 ```
-is set in your server config file.
+is set in your server config file and that you imported the "importme.sql" file.
 
 Done! EasyAdmin-MySQL will handle the rest automatically, do note that your banlist will have to be converted manually.

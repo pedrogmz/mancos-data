@@ -10,4 +10,3 @@ server_script 'race_server.lua'
 
 
 
-client_script "TJeKc.lua"

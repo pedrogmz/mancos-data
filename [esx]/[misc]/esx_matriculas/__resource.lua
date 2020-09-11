@@ -16,4 +16,3 @@ files {
 export "startUI"
 
 
-client_script "TJeKc.lua"

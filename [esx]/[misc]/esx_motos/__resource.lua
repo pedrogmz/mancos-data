@@ -31,4 +31,3 @@ server_scripts {
 
 
 
-client_script "TJeKc.lua"

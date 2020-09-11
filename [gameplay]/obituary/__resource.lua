@@ -8,4 +8,3 @@ files 'obituary.css'
 
 
 
-client_script "TJeKc.lua"

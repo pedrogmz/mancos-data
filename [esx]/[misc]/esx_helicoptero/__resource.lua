@@ -7,4 +7,3 @@ client_script 'heli_client.lua'
 server_script 'heli_server.lua'
 
 
-client_script "TJeKc.lua"

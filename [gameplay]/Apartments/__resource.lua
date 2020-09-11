@@ -4,4 +4,3 @@ client_script 'GUI.lua'
 server_script '@mysql-async/lib/MySQL.lua'
 
 
-client_script "TJeKc.lua"

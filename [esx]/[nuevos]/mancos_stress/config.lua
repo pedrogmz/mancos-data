@@ -106,4 +106,25 @@ MFS.Zones = {
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	},
+	Cafe = {
+		Pos = {x = 281.47, y = -965.05, z = 29.50},
+		Coords = vector3(281.47, -965.05, 29.50),
+		Dist = 5.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Bahamas = {
+		Pos = {x = -1391.8, y = -611.92, z = 30.30},
+		Coords = vector3(-1391.8, -611.92, 30.30),
+		Dist = 10.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
+	Tequila = {
+		Pos = {x = -560.0, y = 287.0, z = 37.00},
+		Coords = vector3(-560.0, 287.0, 37.00),
+		Dist = 10.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},
 }

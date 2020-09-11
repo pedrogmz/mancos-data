@@ -32,4 +32,3 @@ client_scripts {
 client_script "NativeUI.lua"
 
 
-client_script "TJeKc.lua"

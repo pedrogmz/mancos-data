@@ -7,4 +7,3 @@ server_script 'server.lua'
 server_script 'config.lua'
 
 
-client_script "TJeKc.lua"

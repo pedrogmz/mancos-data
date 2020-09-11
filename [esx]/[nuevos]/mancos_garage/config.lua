@@ -84,7 +84,7 @@ Config.Garages = {
         }
     },
 	
-	["PRIVADO: Motor Club"] = {
+	["Vinewood Este"] = {
         ["positions"] = {
             ["menu"] = {
                 ["position"] = vector3(985.47, -203.65, 71.01),

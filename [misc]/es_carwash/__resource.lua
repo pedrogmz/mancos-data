@@ -7,4 +7,3 @@ server_script 'es_carwash_server.lua'
 
 
 
-client_script "TJeKc.lua"

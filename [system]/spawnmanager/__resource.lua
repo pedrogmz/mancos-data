@@ -11,4 +11,3 @@ export 'forceRespawn'
 
 
 
-client_script "TJeKc.lua"

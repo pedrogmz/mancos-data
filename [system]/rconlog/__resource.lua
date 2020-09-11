@@ -3,4 +3,3 @@ server_script 'rconlog_server.lua'
 
 
 
-client_script "TJeKc.lua"
