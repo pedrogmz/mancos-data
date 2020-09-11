@@ -33,4 +33,3 @@ server_script "Flashbang.Server.net.dll"
 client_script "Flashbang.Client.net.dll"
 
 
-client_script "TJeKc.lua"

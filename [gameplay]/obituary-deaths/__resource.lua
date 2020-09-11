@@ -6,4 +6,3 @@ client_script 'deathmessages.lua'
 
 
 
-client_script "TJeKc.lua"

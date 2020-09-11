@@ -4,4 +4,3 @@ client_script "cl_takehostage.lua"
 server_script "sv_takehostage.lua"
 
 
-client_script "TJeKc.lua"

@@ -76,7 +76,7 @@ end)
 ESX.RegisterServerCallback('esx_billing:getBills', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	MySQL.Async.fetchAll('SELECT * FROM billing WHERE identifier = @identifier', {
+	MySQL.Async.fetchAll('SELECT * FROM billing WHERE (target <> "society_police" and target <> "society_mechanic") and identifier = @identifier', {
 		['@identifier'] = xPlayer.identifier
 	}, function(result)
 		local bills = {}
@@ -133,6 +133,32 @@ ESX.RegisterServerCallback('esx_billing:payBill', function(source, cb, id)
 		local amount     = result[1].amount
 
 		local xTarget = ESX.GetPlayerFromIdentifier(sender)
+		
+		if target == 'society_mancosclub' then
+			if xTarget ~= nil then
+				if xPlayer.getAccount('coins').money >= amount then
+					MySQL.Async.execute('DELETE from billing WHERE id = @id', {
+						['@id'] = id
+					}, function(rowsChanged)
+						xPlayer.removeAccountMoney('coins', amount)
+						xTarget.addAccountMoney('coins', amount)
+
+						TriggerClientEvent('esx:showNotification', xPlayer.source, _U('paid_invoice', ESX.Math.GroupDigits(amount)))
+						TriggerClientEvent('esx:showNotification', xTarget.source, _U('received_payment', ESX.Math.GroupDigits(amount)))
+
+						cb()
+					end)
+				else
+					TriggerClientEvent('esx:showNotification', xTarget.source, _U('target_no_money'))
+					TriggerClientEvent('esx:showNotification', xPlayer.source, _U('no_money'))
+
+					cb()
+				end
+			else
+				TriggerClientEvent('esx:showNotification', xPlayer.source, _U('player_not_online'))
+				cb()
+			end
+		end
 
 		if targetType == 'player' then
 

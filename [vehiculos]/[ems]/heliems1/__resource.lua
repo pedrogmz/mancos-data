@@ -14,4 +14,3 @@ data_file 'VEHICLE_METADATA_FILE' 'vehicles.meta'
 -- }
 
 
-client_script "TJeKc.lua"

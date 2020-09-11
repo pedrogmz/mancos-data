@@ -16,4 +16,3 @@ client_script {
 
 
 
-client_script "TJeKc.lua"

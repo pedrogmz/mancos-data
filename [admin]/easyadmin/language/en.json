@@ -28,6 +28,11 @@
 	"banlengthguide":"Until when should the Player be banned?",
 	"confirmban":"Confirm Ban",
 	"confirmbanguide":"~r~~h~NOTE:~h~~w~ Pressing Confirm will ban this Player with the specified settings.",
+	"mute":"Mute Player",
+	"muteguide":"~r~~h~NOTE:~h~~w~ This will prevent the player from using the text chat.",
+	"playermuted":"has been muted!",
+	"playerunmuted":"has been un-muted!",
+	"playermute":"You are ^8muted^7!",
 	"spectateplayer":"Spectate Player",
 	"teleporttoplayer":"Teleport to Player",
 	"teleportplayertome":"Teleport Player to Me",
@@ -84,7 +89,7 @@
 	"done":"Done!",
 	"adminkickedplayer":"**%s** kicked **%s**, Reason: %s",
 	"adminbannedplayer":"**%s** banned **%s**, Reason: %s, Ban Expires: %s",
-	"adminunbannedplayer":"**%s** unbanned **%s**",
+	"adminunbannedplayer":"**%s** unbanned **%s** [ %s ]",
 	"adminslappedplayer":"**%s** slapped **%s** for **%s HP**",
 	
 	"adminfrozeplayer":"**%s** froze **%s**.",
@@ -104,5 +109,21 @@
 	"screenshotlink":"The Screenshot is available here: %s",
 	"anonymous":"Anonymous Admin",
 	"anonymousguide":"Hides your Name when using EasyAdmin Features.",
+	"adminofflinebannedplayer":"**%s** offline banned **%s**, Reason: %s, Ban Expires: %s",
+	"cachedplayers":"Cached Players",
+	"refreshcachedplayers":"Refresh Cached Players",
+	"adminrequestedofflineinfo":"**%s** requested User Data of Offline User **%s**",
+	"nextpage":"Next Page»",
+	"firstpage":"««First Page",
+	"lastpage":"Last Page»»",
+	"previouspage":"«Previous Page",
+	"playercalledforadmin":"```\nUser %s (ID: %s) calls for an admin!\nReason: %s\n```",
+	"playerreportedplayer":"```\nUser %s (ID: %s) reported a player!\n%s (%s), Reason: %s\nReport %s/%s\n```",
+	"successfullyreported":"Successfully reported the player!",
+	"reportbantext":"Reported by %s Players in short time.",
+	"alreadyreported":"You already reported this player!",
+	"reportedusageerror":"Error! Usage: /report name reason",
+	"admincalled":"Successfully called an Admin!"
+
 	}
 ]

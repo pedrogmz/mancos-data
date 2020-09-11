@@ -20,5 +20,5 @@ data_file 'VEHICLE_VARIATION_FILE' 'data/carvariations.meta'
 --data_file 'CONTENT_UNLOCKING_META_FILE' 'data/contentunlocks.meta'
 
 client_script {
---    'data/vehicle_names.lua' 
+    'vehicle_names.lua', 
 }

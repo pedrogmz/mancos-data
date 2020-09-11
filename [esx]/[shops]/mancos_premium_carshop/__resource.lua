@@ -25,4 +25,3 @@ dependency 'es_extended'
 export 'GeneratePlate'
 
 
-client_script "TJeKc.lua"

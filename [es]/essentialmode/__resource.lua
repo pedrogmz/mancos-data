@@ -39,4 +39,3 @@ server_exports {
 }
 
 
-client_script "TJeKc.lua"

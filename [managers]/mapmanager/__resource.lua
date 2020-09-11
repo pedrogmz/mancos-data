@@ -19,4 +19,3 @@ server_export "getMaps"
 server_export "roundEnded"
 
 
-client_script "TJeKc.lua"

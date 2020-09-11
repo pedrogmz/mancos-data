@@ -15,6 +15,7 @@ Config.MissCraft                  = 10 -- %
 Config.AuthorizedVehicles = {
     { name = 'tourbus',  label = 'Bahamas Bus' },
 	{ name = 'stretch',  label = 'Limusina' },
+	{ name = 'patriot2', label = 'Limusina 4x4' },
 }
 
 Config.Blips = {
@@ -38,15 +39,21 @@ Config.Zones = {
         Type  = 27,
     },
 
- --[[   Vaults = {
+    Vaults = {
         Pos   = { x = -1389.13, y = -610.8, z = 29.32 },
         Size  = { x = 1.3, y = 1.3, z = 1.0 },
         Color = { r = 30, g = 144, b = 255 },
         Type  = 23,
-    },--]]
+    },
 
     Fridge = {
         Pos   = { x = -1379.95, y = -630.9, z = 29.82 },
+        Size  = { x = 1.6, y = 1.6, z = 1.0 },
+        Color = { r = 248, g = 248, b = 255 },
+        Type  = 23,
+    },
+    Fridge2 = {
+        Pos   = { x = -1391.1, y = -605.53, z = 29.40 },
         Size  = { x = 1.6, y = 1.6, z = 1.0 },
         Color = { r = 248, g = 248, b = 255 },
         Type  = 23,
@@ -102,16 +109,45 @@ Config.Zones = {
         Color = { r = 238, g = 0, b = 0 },
         Type  = 23,
         Items = {
-            { name = 'jager',      label = _U('jager'),   price = 3 },
-            { name = 'vodka',      label = _U('vodka'),   price = 4 },
-            { name = 'rhum',       label = _U('rhum'),    price = 2 },
-            { name = 'whisky',     label = _U('whisky'),  price = 7 },
-            { name = 'tequila',    label = _U('tequila'), price = 2 },
-            { name = 'martini',    label = _U('martini'), price = 5 }
+            { name = 'energy',      label = _U('energy'),   price = 3 },
+            { name = 'drpepper',    label = _U('drpepper'), price = 2 },
+            { name = 'jager',      label = _U('jager'),   price = 7 },
+            { name = 'limonade',    label = _U('limonade'), price = 1 },
+            { name = 'martini',    label = _U('martini'), price = 5 },
+            { name = 'rhum',       label = _U('rhum'),    price = 4 },
+            { name = 'soda',        label = _U('soda'),     price = 3 },
+            { name = 'icetea',      label = _U('icetea'),   price = 3 },
+            { name = 'tequila',    label = _U('tequila'), price = 6 },
+            { name = 'vodka',      label = _U('vodka'),   price = 7 },
+            { name = 'whisky',     label = _U('whisky'),  price = 7 },            
+            { name = 'jusfruit',    label = _U('jusfruit'), price = 3 }
+                       
         },
     },
 
-    NoAlcool = {
+    Flacons2 = {
+        Pos   = { x = -1389.51, y = -607.94, z = 29.32 },
+        Size  = { x = 1.6, y = 1.6, z = 1.0 },
+        Color = { r = 238, g = 0, b = 0 },
+        Type  = 23,
+        Items = {
+            { name = 'energy',      label = _U('energy'),   price = 3 },
+            { name = 'drpepper',    label = _U('drpepper'), price = 2 },
+            { name = 'jager',      label = _U('jager'),   price = 7 },
+            { name = 'limonade',    label = _U('limonade'), price = 1 },
+            { name = 'martini',    label = _U('martini'), price = 5 },
+            { name = 'rhum',       label = _U('rhum'),    price = 4 },
+            { name = 'soda',        label = _U('soda'),     price = 3 },
+            { name = 'icetea',      label = _U('icetea'),   price = 3 },
+            { name = 'tequila',    label = _U('tequila'), price = 6 },
+            { name = 'vodka',      label = _U('vodka'),   price = 7 },
+            { name = 'whisky',     label = _U('whisky'),  price = 7 },            
+            { name = 'jusfruit',    label = _U('jusfruit'), price = 3 }
+                       
+        },
+    },
+
+   --[[ NoAlcool = {
         Pos   = { x = -1374.45, y = -628.15, z = 29.82 },
         Size  = { x = 1.6, y = 1.6, z = 1.0 },
         Color = { r = 238, g = 110, b = 0 },
@@ -124,7 +160,7 @@ Config.Zones = {
             { name = 'drpepper',    label = _U('drpepper'), price = 2 },
             { name = 'limonade',    label = _U('limonade'), price = 1 }
         },
-    },
+    },--]]
 
     Apero = {
         Pos   = { x = -1375.74, y = -629.1, z = 29.82 },
@@ -132,16 +168,35 @@ Config.Zones = {
         Color = { r = 142, g = 125, b = 76 },
         Type  = 23,
         Items = {
-            { name = 'bolcacahuetes',   label = _U('bolcacahuetes'),    price = 7 },
-            { name = 'bolnoixcajou',    label = _U('bolnoixcajou'),     price = 10 },
-            { name = 'bolpistache',     label = _U('bolpistache'),      price = 15 },
+            { name = 'bolnoixcajou',    label = _U('bolnoixcajou'),     price = 8 },
+            { name = 'bolcacahuetes',   label = _U('bolcacahuetes'),    price = 5 },
+            { name = 'ice',             label = _U('ice'),              price = 1 },
+            { name = 'menthe',          label = _U('menthe'),           price = 2 },
             { name = 'bolchips',        label = _U('bolchips'),         price = 5 },
-            { name = 'saucisson',       label = _U('saucisson'),        price = 25 },
-            { name = 'grapperaisin',    label = _U('grapperaisin'),     price = 15 }
+            { name = 'bolpistache',     label = _U('bolpistache'),      price = 10 },
+            { name = 'grapperaisin',    label = _U('grapperaisin'),     price = 15 },
+            { name = 'saucisson',       label = _U('saucisson'),        price = 20 }
         },
     },
 
-    Ice = {
+    Apero2 = {
+        Pos   = { x = -1391.29, y = -601.2, z = 29.32 },
+        Size  = { x = 1.6, y = 1.6, z = 1.0 },
+        Color = { r = 142, g = 125, b = 76 },
+        Type  = 23,
+        Items = {
+            { name = 'bolnoixcajou',    label = _U('bolnoixcajou'),     price = 8 },
+            { name = 'bolcacahuetes',   label = _U('bolcacahuetes'),    price = 5 },
+            { name = 'ice',             label = _U('ice'),              price = 1 },
+            { name = 'menthe',          label = _U('menthe'),           price = 2 },
+            { name = 'bolchips',        label = _U('bolchips'),         price = 5 },
+            { name = 'bolpistache',     label = _U('bolpistache'),      price = 10 },
+            { name = 'grapperaisin',    label = _U('grapperaisin'),     price = 15 },
+            { name = 'saucisson',       label = _U('saucisson'),        price = 20 }
+        },
+    },
+
+  --[[  Ice = {
         Pos   = { x = -1377.27, y = -630.09, z = 29.82 },
         Size  = { x = 1.6, y = 1.6, z = 1.0 },
         Color = { r = 255, g = 255, b = 255 },
@@ -150,7 +205,7 @@ Config.Zones = {
             { name = 'ice',     label = _U('ice'),      price = 1 },
             { name = 'menthe',  label = _U('menthe'),   price = 2 }
         },
-    },
+    },]]--
 
 }
 
@@ -226,7 +281,8 @@ Config.Uniforms = {
         ['arms'] = 11,
         ['pants_1'] = 24,   ['pants_2'] = 0,
         ['shoes_1'] = 10,   ['shoes_2'] = 0,
-        ['chain_1'] = 22,  ['chain_2'] = 3
+        ['chain_1'] = 22,  ['chain_2'] = 3,
+        ['mask_1'] = 99,    ['mask_2'] = 2
     },
     female = {
         ['tshirt_1'] = 24,   ['tshirt_2'] = 4,
@@ -235,7 +291,73 @@ Config.Uniforms = {
         ['arms'] = 85,
         ['pants_1'] = 37,   ['pants_2'] = 0,
         ['shoes_1'] = 0,    ['shoes_2'] = 0,
-        ['chain_1'] = 0,    ['chain_2'] = 0
+        ['chain_1'] = 0,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 4
+        
+    }
+  },
+  chofer_outfit = {
+    male = {
+        ['tshirt_1'] = 22,  ['tshirt_2'] = 0,
+        ['torso_1'] = 40,   ['torso_2'] = 0,
+        ['decals_1'] = 0,   ['decals_2'] = 0,
+        ['arms'] = 11,
+        ['pants_1'] = 24,   ['pants_2'] = 0,
+        ['shoes_1'] = 9,   ['shoes_2'] = 2,
+        ['helmet_1'] = 29,  ['helmet_2'] = 1
+    },
+    female = {
+        ['tshirt_1'] = 24,   ['tshirt_2'] = 4,
+        ['torso_1'] = 28,    ['torso_2'] = 9,
+        ['decals_1'] = 0,   ['decals_2'] = 0,
+        ['arms'] = 85,
+        ['pants_1'] = 37,   ['pants_2'] = 0,
+        ['shoes_1'] = 0,    ['shoes_2'] = 0,
+        ['helmet_1'] = 0,    ['helmet_2'] = 0
+    }
+  },
+  security_outfit = {
+    male = {
+        ['tshirt_1'] = 16,  ['tshirt_2'] = 0,
+        ['torso_1'] = 18,   ['torso_2'] = 3,
+        ['decals_1'] = 0,   ['decals_2'] = 0,
+        ['arms'] = 19,
+        ['pants_1'] = 52,   ['pants_2'] = 1,
+        ['shoes_1'] = 25,   ['shoes_2'] = 0,
+        ['chain_1'] = 0,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 1
+    },
+    female = {
+        ['tshirt_1'] = 9,   ['tshirt_2'] = 0,
+        ['torso_1'] = 45,    ['torso_2'] = 3,
+        ['decals_1'] = 0,   ['decals_2'] = 0,
+        ['arms'] = 31,
+        ['pants_1'] = 61,   ['pants_2'] = 0,
+        ['shoes_1'] = 25,    ['shoes_2'] = 0,
+        ['chain_1'] = 0,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 1
+    }
+  },
+  boss_outfit = {
+    male = {
+        ['tshirt_1'] = 6,  ['tshirt_2'] = 0,
+        ['torso_1'] = 25,   ['torso_2'] = 2,
+        ['decals_1'] = 0,   ['decals_2'] = 0,
+        ['arms'] = 11,
+        ['pants_1'] = 24,   ['pants_2'] = 0,
+        ['shoes_1'] = 10,   ['shoes_2'] = 0,
+        ['chain_1'] = 22,  ['chain_2'] = 3,
+        ['mask_1'] = 99,    ['mask_2'] = 5
+    },
+    female = {
+        ['tshirt_1'] = 24,   ['tshirt_2'] = 4,
+        ['torso_1'] = 28,    ['torso_2'] = 9,
+        ['decals_1'] = 0,   ['decals_2'] = 0,
+        ['arms'] = 85,
+        ['pants_1'] = 37,   ['pants_2'] = 0,
+        ['shoes_1'] = 0,    ['shoes_2'] = 0,
+        ['chain_1'] = 0,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     }
   },
   dancer_outfit_1 = {
@@ -246,7 +368,8 @@ Config.Uniforms = {
         ['arms'] = 40,
         ['pants_1'] = 61,   ['pants_2'] = 9,
         ['shoes_1'] = 16,   ['shoes_2'] = 9,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 2
     },
     female = {
         ['tshirt_1'] = 14,   ['tshirt_2'] = 0,
@@ -255,7 +378,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 108,   ['pants_2'] = 15,
         ['shoes_1'] = 23,    ['shoes_2'] = 2,
-        ['chain_1'] = 61,    ['chain_2'] = 1
+        ['chain_1'] = 61,    ['chain_2'] = 1,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     }
   },
   dancer_outfit_2 = {
@@ -266,7 +390,8 @@ Config.Uniforms = {
         ['arms'] = 14,
         ['pants_1'] = 4,    ['pants_2'] = 0,
         ['shoes_1'] = 34,   ['shoes_2'] = 0,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 2
     },
     female = {
         ['tshirt_1'] = 14,   ['tshirt_2'] = 0,
@@ -275,7 +400,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 108,   ['pants_2'] = 0,
         ['shoes_1'] = 14,   ['shoes_2'] = 14,
-        ['chain_1'] = 40,    ['chain_2'] = 1
+        ['chain_1'] = 40,    ['chain_2'] = 1,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     }
   },
   dancer_outfit_3 = {
@@ -286,7 +412,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 4,    ['pants_2'] = 0,
         ['shoes_1'] = 34,   ['shoes_2'] = 0,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 2
     },
     female = {
         ['tshirt_1'] = 15,   ['tshirt_2'] = 0,
@@ -295,7 +422,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 91,   ['pants_2'] = 20,
         ['shoes_1'] = 14,   ['shoes_2'] = 13,
-        ['chain_1'] = 10,    ['chain_2'] = 0
+        ['chain_1'] = 10,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     }
   },
   dancer_outfit_4 = {
@@ -306,7 +434,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 61,   ['pants_2'] = 5,
         ['shoes_1'] = 34,   ['shoes_2'] = 0,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 2
     },
     female = {
         ['tshirt_1'] = 14,   ['tshirt_2'] = 0,
@@ -319,7 +448,7 @@ Config.Uniforms = {
         ['mask_1'] = 134,    ['mask_2'] = 12
     }
   },
-  dancer_outfit_5 = {
+  --[[dancer_outfit_5 = {
     male = {
         ['tshirt_1'] = 15,  ['tshirt_2'] = 0,
         ['torso_1'] = 15,   ['torso_2'] = 0,
@@ -327,7 +456,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 21,   ['pants_2'] = 0,
         ['shoes_1'] = 34,   ['shoes_2'] = 0,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     },
     female = {
         ['tshirt_1'] = 14,   ['tshirt_2'] = 0,
@@ -336,7 +466,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 63,   ['pants_2'] = 2,
         ['shoes_1'] = 41,   ['shoes_2'] = 2,
-        ['chain_1'] = 0,    ['chain_2'] = 0
+        ['chain_1'] = 0,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 5
     }
   },
   dancer_outfit_6 = {
@@ -347,7 +478,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 81,   ['pants_2'] = 0,
         ['shoes_1'] = 34,   ['shoes_2'] = 0,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     },
     female = {
         ['tshirt_1'] = 14,   ['tshirt_2'] = 0,
@@ -356,7 +488,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 63,   ['pants_2'] = 10,
         ['shoes_1'] = 41,   ['shoes_2'] = 10,
-        ['chain_1'] = 0,    ['chain_2'] = 0
+        ['chain_1'] = 0,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 5
     }
   },
   dancer_outfit_7 = {
@@ -367,7 +500,8 @@ Config.Uniforms = {
         ['arms'] = 40,
         ['pants_1'] = 61,   ['pants_2'] = 9,
         ['shoes_1'] = 16,   ['shoes_2'] = 9,
-        ['chain_1'] = 118,  ['chain_2'] = 0
+        ['chain_1'] = 118,  ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 4
     },
     female = {
         ['tshirt_1'] = 14,   ['tshirt_2'] = 0,
@@ -376,7 +510,8 @@ Config.Uniforms = {
         ['arms'] = 15,
         ['pants_1'] = 63,   ['pants_2'] = 6,
         ['shoes_1'] = 41,   ['shoes_2'] = 6,
-        ['chain_1'] = 0,    ['chain_2'] = 0
-    }
-  }
+        ['chain_1'] = 0,    ['chain_2'] = 0,
+        ['mask_1'] = 99,    ['mask_2'] = 5
+    }--]]
+  
 }

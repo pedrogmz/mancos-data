@@ -30,7 +30,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'zentorno','t20','reaper'},
+		Cars = {'zentorno','t20','schlagen'},
 	},
 	--2 Faro Sandy Shore # VALIDO
 	--Lighthouse 8.598KM
@@ -40,7 +40,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'sultanrs','osiris','cyclone'},
+		Cars = {'nero2','osiris','cyclone'},
 	},
 	--3 Oeste Paleto Pueblo # VALIDO
 	--House in Paleto 9.569KM
@@ -50,7 +50,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'entityxf','sheava'},
+		Cars = {'entityxf','entity2'},
 	},
 	--4 Autovia Oeste # VALIDO
 	--Chumash Norte 8.180KM
@@ -80,7 +80,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'pfister811','gp1'},
+		Cars = {'pfister811','visione'},
 	},
 	--7 Garaje Roto Sandy Shore pegado al lago # VALIDO
 	--Sandy Shore 6.792
@@ -90,7 +90,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'turismor','italigtb'},
+		Cars = {'italigto','italigtb'},
 	},
 	--8 Granja de vacas # VALIDO
 	--Monte Chiliad 9.68015KM
@@ -110,7 +110,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'raiden','nightshade'},
+		Cars = {'voltic','autarch'},
 	},
 	--10 Tienda Ropa 14 # VALIDO
 	--Rio Zancudo 6.339KM
@@ -120,7 +120,7 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'banshee2','ruston'},
+		Cars = {'banshee2','tyrus'},
 	},
 	--11 Casa Lago Norte # VALIDO
 	--Alamo Sea - North Calafia Way 7.379KM
@@ -130,6 +130,6 @@ Config.Delivery = {
 		Color = {r = 255, g = 0, b = 0},
 		Type  = 1,
 		Payment  = math.random(5000,10000),
-		Cars = {'sc1','comet5'},
+		Cars = {'deveste','comet5'},
 	},
 }

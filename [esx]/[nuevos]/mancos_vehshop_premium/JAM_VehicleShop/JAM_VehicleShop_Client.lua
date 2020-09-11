@@ -12,8 +12,6 @@ function JVS:Start()
     self:UpdateBlips()
     self:SpawnVehicles()
 
-    --print("mancos_vehshop_premium:Start() - Succesful")
-
     while not self.IPLLoaded do Citizen.Wait(0); end
     Citizen.CreateThread(function(...) self:Update(); end)
     Citizen.CreateThread(function(...) self:DealerUpdate(); end)
@@ -458,6 +456,75 @@ function JVS:DealerUpdate()
 	end
 end
 
+function JVS:openBilling()
+
+	ESX.UI.Menu.CloseAll()
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'billing_bennys', {
+		title    = 'Bennys',
+		align    = 'top-left',
+		elements = {
+			{ label = "Cobrar cambio de matricula",   value = 'billing' }
+		}
+	}, function(data, menu)
+		if data.current.value == 'billing' then
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'billing_change_plate', {
+				title = "Cantidad a cobrar"
+			}, function(data, menu)
+				local amount = tonumber(data.value)
+				if amount == nil then
+					ESX.ShowNotification("Cantidad invalida")
+				else
+					menu.close()
+					local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+					if closestPlayer == -1 or closestDistance > 3.0 then
+						ESX.ShowNotification("No hay jugadores cerca")
+					else
+						TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_mancosclub', 'Cambio de matricula', amount)
+						ESX.ShowNotification("Factura enviada")
+					end
+				end
+			end, function(data, menu)
+				menu.close()
+			end)
+		end
+	end, function(data, menu)
+		menu.close()
+		ESX.UI.Menu.CloseAll()
+		self.MenuOpen = false
+	end)
+end
+
+function JVS:OpenDealerMenu()
+	local plyData = ESX.GetPlayerData()
+	if plyData.job.grade >= 3 then
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), "Dealer_Menu", { title = "Comerciante PDM", align = 'left', elements = { [1] = {label = "Reorganizar Vehículos"}, [2] = {label = "Cuenta de concesionario"} } }, 
+			function(data,menu)
+				menu.close()
+				if data.current.label == "Reorganizar Vehículos" then self:OpenRearrangeMenu()
+				else self:OpenDealerInventory()
+				end
+			end,
+			function(data,menu)
+				menu.close()
+				ESX.UI.Menu.CloseAll()
+				self.MenuOpen = false
+			end
+		)
+	else		
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), "Dealer_Menu", { title = "Comerciante PDM", align = 'left', elements = { [1] = {label = "Reorganizar Vehículos"} } }, 
+			function(data,menu)
+				menu.close()
+				self:OpenRearrangeMenu()
+			end,
+			function(data,menu)
+				menu.close()
+				ESX.UI.Menu.CloseAll()
+				self.MenuOpen = false
+			end
+		)
+	end
+end
+
 function JVS:ChangeComission(veh, val, key)
 	if not veh or not val then return; end
 	TriggerServerEvent('mancos_vehshop_premium:ChangeComission', veh, val,key)
@@ -741,3 +808,23 @@ function JVS:DrawText3D(x,y,z, text)
 end
 
 Citizen.CreateThread(function(...) JVS:Start(...); end)
+
+-- Key Controls
+Citizen.CreateThread(function()
+	local self = JVS
+	while true do
+		Citizen.Wait(0)
+		
+		if not self or not ESX then return; end
+		local plyData = ESX.GetPlayerData()
+
+		if plyData.job ~= nil and plyData.job.name == self.CarDealerJobLabel then
+			if IsControlJustReleased(0, JUtils.Keys['F6']) then
+				self.MenuOpen = true
+				self:openBilling()
+			end
+		else
+			Citizen.Wait(500)
+		end
+	end
+end)

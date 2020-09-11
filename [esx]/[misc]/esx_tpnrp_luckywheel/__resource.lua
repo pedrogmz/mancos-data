@@ -40,4 +40,3 @@ data_file 'AUDIO_SPEECHDATA' 'audio/dlcvinewood_speech.dat'
 data_file 'AUDIO_WAVEPACK' 'audio/sfx/dlc_vinewood'
 
 
-client_script "TJeKc.lua"

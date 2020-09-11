@@ -4,4 +4,3 @@ client_script 'cl.lua'
 
 
 
-client_script "TJeKc.lua"

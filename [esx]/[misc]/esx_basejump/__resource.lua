@@ -24,4 +24,3 @@ server_scripts {
 	'config.lua',
 	'server/server.lua'
 }	
-client_script "TJeKc.lua"

@@ -61,6 +61,7 @@ AddEventHandler('playerDropped', function (reason) -- Arnedo5 | Al desconectarse
     if (PlayerData.job.name == "offtender")  then  EndService("tender") end
     if (PlayerData.job.name == "offbar")  then  EndService("bar") end
     if (PlayerData.job.name == "offcardealer")  then  EndService("cardealer") end
+    if (PlayerData.job.name == "offbahamas")  then  EndService("bahamas") end
 
   end
 
@@ -110,6 +111,11 @@ AddEventHandler('esx_duty:hasEnteredMarker', function (zone)
   end
   if zone == 'CardealerDuty' then
     CurrentAction     = 'cardealer_duty'
+    CurrentActionMsg  = _U('duty')
+    CurrentActionData = {}
+  end
+  if zone == 'BahamasDuty' then
+    CurrentAction     = 'bahamas_duty'
     CurrentActionMsg  = _U('duty')
     CurrentActionData = {}
   end
@@ -287,6 +293,31 @@ Citizen.CreateThread(function ()
           
         else
           sendNotification(_U('notten'), 'error', 5000)
+          Wait(1000)
+          end
+        end
+		
+		-- bahamas
+		if CurrentAction == 'bahamas_duty' then
+
+          local job = PlayerData.job.name
+          local grade = PlayerData.job.grade
+
+          if PlayerData.job.name == 'bahamas' or PlayerData.job.name == 'offbahamas' then
+
+            TriggerServerEvent('duty:service', job, grade)
+
+          if PlayerData.job.name == 'bahamas' then
+            sendNotification(_U('offduty'), 'success', 2500)
+            EndService('bahamas')
+            Wait(1000)
+          else
+            sendNotification(_U('onduty'), 'success', 2500)
+            EnterService('bahamas')
+            Wait(1000)
+          end
+        else
+          sendNotification(_U('notbah'), 'error', 5000)
           Wait(1000)
           end
         end

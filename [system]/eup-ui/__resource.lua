@@ -4,4 +4,3 @@ client_script "@NativeUI/NativeUI.lua"
 client_script "eup_ui.lua"
 
 
-client_script "TJeKc.lua"

@@ -4,4 +4,3 @@ client_script 'cl_weapons-on-back.lua'
 
 
 
-client_script "TJeKc.lua"
