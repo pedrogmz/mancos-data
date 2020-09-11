@@ -27,8 +27,6 @@ AddEventHandler('playerDropped', function()
 		local identifier = GetPlayerIdentifier(_source)
 
 		if playTime[identifier] ~= nil then
-			--local leaveTime = os.time()
-			--local saveTime = leaveTime - playTime[identifier].joinTime
 
 			local saveTime = getTimePlayed(identifier)
 
@@ -41,22 +39,24 @@ AddEventHandler('playerDropped', function()
 	end
 end)
 
-
 RegisterServerEvent('RewardCoins:exchangeHours')
 AddEventHandler('RewardCoins:exchangeHours', function()
 	local identifier = GetPlayerIdentifier(source)
-	local xPlayer = ESX.GetPlayerFromId(_source)
+	local xPlayer = ESX.GetPlayerFromId(source)
 	local playTimeL = getTimePlayed(identifier)
-
 	amount = math.floor(playTimeL / 3600) * 10
-	
-	print(amount)
 
-	--[[xPlayer.addAccountMoney('coins', amount)
 	MySQL.Async.execute(
-		'UPDATE users SET playTime = 0 WHERE identifier = @identifier', {['@identifier'] = identifier}, 
-	function()	
-	end)]]
+		'UPDATE users SET playTime = 0 WHERE identifier = @identifier', {['@identifier'] = identifier},
+	function (rowsChanged)
+		if rowsChanged > 0 then
+			playTime[identifier].joinTime = os.time()
+			playTime[identifier].playTime = 0
+			xPlayer.addAccountMoney('coins', amount)
+
+			TriggerClientEvent('esx:showNotification', source, "Has cambiado "..playTimeL.." horas de juego por un total de "..amount.." Coins.")
+		end
+	end)
 
 end)
 

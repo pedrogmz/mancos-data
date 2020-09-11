@@ -95,6 +95,7 @@ function ChangeCoins()
 	}, function(data, menu)
 
 		if data.current.value == 'exchange_hours' then
+			menu.close()
 			TriggerServerEvent('RewardCoins:exchangeHours')
 		end
 

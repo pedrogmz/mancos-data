@@ -3,6 +3,7 @@ Locales['es'] = {
     ['cloakroom']                = 'Vestuario',
     ['citizen_wear']             = 'Ropa de civil',
     ['barman_outfit']            = 'Ropa de barman',
+    ['security_outfit']          = 'Ropa de Seguridad',
     ['dancer_outfit_1']          = 'Ropa de gogo 1',
     ['dancer_outfit_2']          = 'Ropa de gogo 2',
     ['dancer_outfit_3']          = 'Ropa de gogo 3',
