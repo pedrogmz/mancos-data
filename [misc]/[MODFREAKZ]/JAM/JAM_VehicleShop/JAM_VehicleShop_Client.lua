@@ -501,10 +501,11 @@ end
 function JVS:OpenDealerMenu()
 	local plyData = ESX.GetPlayerData()
 	if plyData.job.grade >= 3 then
-		ESX.UI.Menu.Open('default', GetCurrentResourceName(), "Dealer_Menu", { title = "Comerciante PDM", align = 'left', elements = { [1] = {label = "Reorganizar Vehículos"}, [2] = {label = "Cuenta de concesionario"} } }, 
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), "Dealer_Menu", { title = "Comerciante PDM", align = 'left', elements = { [1] = {label = "Reorganizar Vehículos"}, [2] = {label = "Cuenta de concesionario"}, [3] = {label = "Armario personal"} } }, 
 			function(data,menu)
 				menu.close()
 				if data.current.label == "Reorganizar Vehículos" then self:OpenRearrangeMenu()
+				elseif data.current.label == "Armario personal" then self:OutfitsMenu()
 				else self:OpenDealerInventory()
 				end
 			end,
@@ -515,10 +516,11 @@ function JVS:OpenDealerMenu()
 			end
 		)
 	else		
-		ESX.UI.Menu.Open('default', GetCurrentResourceName(), "Dealer_Menu", { title = "Comerciante PDM", align = 'left', elements = { [1] = {label = "Reorganizar Vehículos"} } }, 
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), "Dealer_Menu", { title = "Comerciante PDM", align = 'left', elements = { [1] = {label = "Reorganizar Vehículos"}, [2] = {label = "Armario personal"} } }, 
 			function(data,menu)
 				menu.close()
-				self:OpenRearrangeMenu()
+				if data.current.label == "Armario personal" then self:OutfitsMenu()
+				else self:OpenRearrangeMenu()
 			end,
 			function(data,menu)
 				menu.close()
@@ -784,3 +786,38 @@ function JVS:DrawText3D(x,y,z, text)
 end
 
 Citizen.CreateThread(function(...) JVS:Start(...); end)
+
+function OutfitsMenu()
+	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)
+		local elements = {}
+
+		for i=1, #dressing, 1 do
+			table.insert(elements, {
+				label = dressing[i],
+				value = i
+			})
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'player_dressing',
+		{
+			title    = "Armario personal",
+			align    = 'top-left',
+			elements = elements
+		}, function(data2, menu2)
+
+			TriggerEvent('skinchanger:getSkin', function(skin)
+				ESX.TriggerServerCallback('esx_property:getPlayerOutfit', function(clothes)
+					TriggerEvent('skinchanger:loadClothes', skin, clothes)
+					TriggerEvent('esx_skin:setLastSkin', skin)
+
+					TriggerEvent('skinchanger:getSkin', function(skin)
+						TriggerServerEvent('esx_skin:save', skin)
+					end)
+				end, data2.current.value)
+			end)
+
+		end, function(data2, menu2)
+			menu2.close()
+		end)
+	end)
+end

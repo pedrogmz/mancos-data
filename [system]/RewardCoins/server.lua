@@ -51,7 +51,7 @@ AddEventHandler('RewardCoins:exchangeHours', function()
 	function (rowsChanged)
 		if rowsChanged > 0 then
 			playTime[identifier].joinTime = os.time()
-			playTime[identifier].playTime = 0
+			playTime[identifier].playTime = playTimeL - (amount * 3600)
 			xPlayer.addAccountMoney('coins', amount)
 
 			TriggerClientEvent('esx:showNotification', source, "Has cambiado "..playTimeL.." horas de juego por un total de "..amount.." Coins.")
