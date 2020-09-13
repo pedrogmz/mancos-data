@@ -118,7 +118,7 @@ Citizen.CreateThread(function()
 				BeginTextCommandSetBlipName("STRING")
 				AddTextComponentString(_U('shops'))
 				EndTextCommandSetBlipName(blip)
-			elseif k == 'Bar' then
+			elseif k == 'Bar' or k == 'SuperBadulake' then
 				local blip = AddBlipForCoord(v.Pos[i].x, v.Pos[i].y, v.Pos[i].z)
 				SetBlipSprite (blip, 93)
 				SetBlipDisplay(blip, 4)
@@ -194,7 +194,7 @@ Citizen.CreateThread(function()
 			if IsControlJustReleased(0, Keys['E'])  then
 				if CurrentAction == 'shop_menu' then
 					TriggerServerEvent('esx_shops:ComprobarServicio')
-					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShopBallas' or CurrentActionData.zone == 'GrowShopTheLost'then
+					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShopBallas' or CurrentActionData.zone == 'GrowShopTheLost' or CurrentActionData.zone == "SuperBadulake" then
 						OpenShopMenu(CurrentActionData.zone)
 					
 					elseif CurrentActionData.zone == 'Badulake' and employ < 1 then

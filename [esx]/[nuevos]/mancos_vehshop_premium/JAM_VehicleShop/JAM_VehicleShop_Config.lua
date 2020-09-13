@@ -16,7 +16,7 @@ JVS.DealerMarkerPos = vector3(-203.4, -1342.69, 30.89)
 JVS.PurchasedCarPos = vector4(-205.77, -1313.14, 31.20, 358.49) --Salida del vehiculo comprado
 --JVS.PurchasedUtilPos = vector4(-17.88, -1113.94, 26.67, 158.04) -- grua para embargar
 
-JVS.SmallSpawnVeh = 'chiron'
+JVS.SmallSpawnVeh = 'yFe458s2X' -- Ferrari 458 Italia
 JVS.SmallSpawnPos = vector4(-211.81, -1324.41, 30.89, 28.22)
 
 --JVS.LargeSpawnVeh = 'towtruck'
@@ -25,7 +25,7 @@ JVS.SmallSpawnPos = vector4(-211.81, -1324.41, 30.89, 28.22)
 JVS.DisplayPositions = {
 	[1] = vector4(-223.33, -1330.52, 30.89, 300.75),
 	[2] = vector4(-223.38, -1322.58, 30.89, 227.48),
-	--[3] = vector4(-211.81, -1323.41, 30.89, 28.22), --LFERRARI
+	--[3] = vector4(-211.81, -1323.41, 30.89, 28.22), 
 	[4] = vector4(-210.94, -1313.88, 30.89, 305.25),
 	[5] = vector4(-223.36, -1326.73, 30.89, 268.66),
 	--[6] = vector4(-206.02, -1324.77, 30.89, 276.87),

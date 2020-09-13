@@ -1,0 +1,41 @@
+Arguments: 
+  C:\FiveM\Server01\bin\FXServer.exe C:\FiveM\Server01\resources\[system]\[builders]\yarn\yarn_cli.js install
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  12.13.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/chrome-trace-event/-/chrome-trace-event-1.0.2.tgz: ENOENT: no such file or directory, open 'C:\Users\Administrator\AppData\Local\Yarn\Cache\v4\npm-chrome-trace-event-1.0.2-234090ee97c7d4ad1a2c4beae27505deffc608a4\node_modules\chrome-trace-event\.yarn-tarball.tgz'
+
+npm manifest: 
+  {
+    "name": "webpack-builder",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "async": "^2.6.1",
+      "webpack": "^4.12.0",
+      "worker-farm": "^1.6.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

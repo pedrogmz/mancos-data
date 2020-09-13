@@ -271,6 +271,7 @@ function OpenCloakroomMenu()
 	local grade = PlayerData.job.grade_name
 
 	local elements = {
+		{ label = 'Ropero', value = 'ropero' },
 		{ label = _U('citizen_wear'), value = 'citizen_wear' },
 		{ label = _U('bullet_wear'), value = 'bullet_wear' },
 		{ label = _U('gilet_wear'), value = 'gilet_wear' }
@@ -328,6 +329,9 @@ function OpenCloakroomMenu()
 
 		cleanPlayer(playerPed)
 
+		if data.current.value == 'ropero' then
+			OutfitsMenu()
+		end
 		--  ROPA CIVIL
 		if data.current.value == 'citizen_wear' then
 			if Config.EnableNonFreemodePeds then
@@ -2624,3 +2628,38 @@ RegisterNetEvent("mancos_arrest:toggleHandcuffed")
 AddEventHandler("mancos_arrest:toggleHandcuffed", function(_isHandcuffed)
 	isHandcuffed = _isHandcuffed
 end)
+
+function OutfitsMenu()
+	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)
+		local elements = {}
+
+		for i=1, #dressing, 1 do
+			table.insert(elements, {
+				label = dressing[i],
+				value = i
+			})
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'player_dressing',
+		{
+			title    = "Armario personal",
+			align    = 'top-left',
+			elements = elements
+		}, function(data2, menu2)
+
+			TriggerEvent('skinchanger:getSkin', function(skin)
+				ESX.TriggerServerCallback('esx_property:getPlayerOutfit', function(clothes)
+					TriggerEvent('skinchanger:loadClothes', skin, clothes)
+					TriggerEvent('esx_skin:setLastSkin', skin)
+
+					TriggerEvent('skinchanger:getSkin', function(skin)
+						TriggerServerEvent('esx_skin:save', skin)
+					end)
+				end, data2.current.value)
+			end)
+
+		end, function(data2, menu2)
+			menu2.close()
+		end)
+	end)
+end

@@ -3,6 +3,8 @@ local playTime, ESX = {}, nil
 -- ESX
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
+local CoinsPerHour = 10
+
 AddEventHandler('esx:playerLoaded', function(source)
 	local _source = source
 	local identifier = GetPlayerIdentifier(_source)
@@ -44,14 +46,14 @@ AddEventHandler('RewardCoins:exchangeHours', function()
 	local identifier = GetPlayerIdentifier(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local playTimeL = getTimePlayed(identifier)
-	amount = math.floor(playTimeL / 3600) * 10
+	amount = math.floor(playTimeL / 3600) * CoinsPerHour
 
 	MySQL.Async.execute(
 		'UPDATE users SET playTime = 0 WHERE identifier = @identifier', {['@identifier'] = identifier},
 	function (rowsChanged)
 		if rowsChanged > 0 then
 			playTime[identifier].joinTime = os.time()
-			playTime[identifier].playTime = 0
+			playTime[identifier].playTime = playTimeL - (amount * 3600)
 			xPlayer.addAccountMoney('coins', amount)
 
 			TriggerClientEvent('esx:showNotification', source, "Has cambiado "..playTimeL.." horas de juego por un total de "..amount.." Coins.")
