@@ -981,9 +981,6 @@ Citizen.CreateThread(function()
 		end
 		if GetResourceState("screenshot-basic") == "missing" then 
 			print("\nEasyAdmin: screenshot-basic is not installed on this Server, screenshots unavailable")
-		else
-			StartResource("screenshot-basic")
-			screenshots = true
 		end
 
 		if GetConvar("onesync_enableInfinity", "false") == "true" or GetConvarInt("onesync_enableInfinity", 0) == 1 then 

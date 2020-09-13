@@ -138,21 +138,14 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		local coords = GetEntityCoords(PlayerPedId())
-		--local employ = TriggerServerEvent('esx_shops:ComprobarServicio')
 
-		--if employ > 0 then
-			for k,v in pairs(Config.Zones) do
-				for i = 1, #v.Pos, 1 do
-					if(Config.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, true) < Config.DrawDistance) then
-						DrawMarker(Config.Type, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Size.x, Config.Size.y, Config.Size.z, Config.Color.r, Config.Color.g, Config.Color.b, 100, false, true, 2, false, false, false, false)
-					end
+		for k,v in pairs(Config.Zones) do
+			for i = 1, #v.Pos, 1 do
+				if(Config.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, true) < Config.DrawDistance) then
+					DrawMarker(Config.Type, v.Pos[i].x, v.Pos[i].y, v.Pos[i].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, Config.Size.x, Config.Size.y, Config.Size.z, Config.Color.r, Config.Color.g, Config.Color.b, 100, false, true, 2, false, false, false, false)
 				end
 			end
-		--[[
-		else
-			Citizen.Wait(5000)
 		end
-		]]--
 	end
 end)
 
@@ -196,7 +189,6 @@ Citizen.CreateThread(function()
 					TriggerServerEvent('esx_shops:ComprobarServicio')
 					if CurrentActionData.zone == 'Bar' or CurrentActionData.zone == 'GrowShopBallas' or CurrentActionData.zone == 'GrowShopTheLost' or CurrentActionData.zone == "SuperBadulake" then
 						OpenShopMenu(CurrentActionData.zone)
-					
 					elseif CurrentActionData.zone == 'Badulake' and employ < 1 then
 						OpenShopMenu(CurrentActionData.zone)
 					else

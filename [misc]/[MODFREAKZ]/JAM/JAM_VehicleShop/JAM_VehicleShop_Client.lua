@@ -521,6 +521,7 @@ function JVS:OpenDealerMenu()
 				menu.close()
 				if data.current.label == "Armario personal" then self:OutfitsMenu()
 				else self:OpenRearrangeMenu()
+				end
 			end,
 			function(data,menu)
 				menu.close()
@@ -787,7 +788,7 @@ end
 
 Citizen.CreateThread(function(...) JVS:Start(...); end)
 
-function OutfitsMenu()
+function JVS:OutfitsMenu()
 	ESX.TriggerServerCallback('esx_property:getPlayerDressing', function(dressing)
 		local elements = {}
 
