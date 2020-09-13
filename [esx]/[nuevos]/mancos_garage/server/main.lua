@@ -22,7 +22,6 @@ function ReturnCars()
 	end)
 end
 
-
 ESX.RegisterServerCallback("garage:fetchPlayerVehicles", function(source, callback, garage)
 	local player = ESX.GetPlayerFromId(source)
 
@@ -69,7 +68,7 @@ ESX.RegisterServerCallback("garage:fetchPlayerVehicles", function(source, callba
 							owner = @cid and garage = @garage
 					]]
 				else
-			sqlQuery = [[
+					sqlQuery = [[
 						SELECT
 							plate, vehicle
 						FROM
@@ -78,10 +77,7 @@ ESX.RegisterServerCallback("garage:fetchPlayerVehicles", function(source, callba
 							owner = @cid
 					]]
 				end
-		end
-
-
-
+			end
 		end
 
 		MySQL.Async.fetchAll(sqlQuery, {
@@ -159,8 +155,6 @@ AddEventHandler('garage:takecar', function(plate, state)
 	end)
 end)
 
-
-
 -- Fetch impounded Cars
 ESX.RegisterServerCallback('garage:getOutOwnedCars', function(source, cb)
 	local ownedCars = {}
@@ -179,12 +173,6 @@ ESX.RegisterServerCallback('garage:getOutOwnedCars', function(source, cb)
 		cb(ownedCars)
 	end)
 end)
-
-
-
-
-
-
 
 -- Check Money for impounded Cars
 ESX.RegisterServerCallback('garage:checkMoneyCars', function(source, cb)
@@ -208,9 +196,7 @@ AddEventHandler('garage:payCar', function(plate)
 	TriggerClientEvent('esx:showNotification', source, 'You have paid $' .. Config.ImpoundPrice)
 end)
 
-
 --logging
-
 function sendToDiscord(webhook, color, name, message, footer)
   local embed = {
         {

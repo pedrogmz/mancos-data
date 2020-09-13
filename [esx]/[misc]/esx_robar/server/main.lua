@@ -5,6 +5,59 @@ local Users         = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
+RegisterServerEvent('esx_robar:stealPlayerItem')
+AddEventHandler('esx_robar:stealPlayerItem', function(target, itemType, itemName, amount)
+	local _source = source
+	local sourceXPlayer = ESX.GetPlayerFromId(_source)
+	local targetXPlayer = ESX.GetPlayerFromId(target)
+
+	if itemType == 'item_standard' then
+		local targetItem = targetXPlayer.getInventoryItem(itemName)
+		local sourceItem = sourceXPlayer.getInventoryItem(itemName)
+
+		-- does the target player have enough in their inventory?
+		if targetItem.count > 0 and targetItem.count <= amount then
+
+			-- can the player carry the said amount of x item?
+			if sourceItem.limit ~= -1 and (sourceItem.count + amount) > sourceItem.limit then
+				TriggerClientEvent('esx:showNotification', _source, _U('invalid_quantity'))
+			else
+				targetXPlayer.removeInventoryItem(itemName, amount)
+				sourceXPlayer.addInventoryItem   (itemName, amount)
+				TriggerClientEvent('esx:showNotification', _source, _U('you_stole', amount, sourceItem.label))
+				TriggerClientEvent('esx:showNotification', target,  _U('got_stolen', amount, sourceItem.label))
+			end
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('invalid_quantity'))
+		end
+
+	elseif itemType == 'item_account' then
+		targetXPlayer.removeAccountMoney(itemName, amount)
+		sourceXPlayer.addAccountMoney   (itemName, amount)
+
+		TriggerClientEvent('esx:showNotification', _source, _U('you_stole_account', amount, itemName))
+		TriggerClientEvent('esx:showNotification', target,  _U('got_stolen_account', amount, itemName))
+	elseif itemType == 'item_money' then
+		if amount > 0 and targetXPlayer.get('money') >= amount then
+			targetXPlayer.removeMoney(amount)
+			sourceXPlayer.addMoney(amount)
+
+			TriggerClientEvent('esx:showNotification', sourceXPlayer.source,
+				_U('you_stole') .. ' ~g~$' .. amount .. ' ~w~' .. _U('from_your_target'))
+			TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('someone_stole') .. ' ~r~$' .. amount)
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('invalid_quantity'))
+		end
+	elseif itemType == 'item_weapon' then
+		if amount == nil then amount = 0 end
+		targetXPlayer.removeWeapon(itemName, amount)
+		sourceXPlayer.addWeapon   (itemName, amount)
+
+		TriggerClientEvent('esx:showNotification', _source, _U('you_confiscated_weapon', ESX.GetWeaponLabel(itemName), targetXPlayer.name, amount))
+		TriggerClientEvent('esx:showNotification', target,  _U('got_confiscated_weapon', ESX.GetWeaponLabel(itemName), amount, sourceXPlayer.name))
+	end
+end)
+
 RegisterServerEvent('cuffServer')
 AddEventHandler('cuffServer', function(closestID)
 	TriggerClientEvent('cuffClient', closestID)
@@ -17,8 +70,8 @@ end)
 
 RegisterServerEvent('dragServer')
 AddEventHandler('dragServer', function(target)
-  local _source = source
-  TriggerClientEvent('cuffscript:drag', target, _source)
+	local _source = source
+	TriggerClientEvent('cuffscript:drag', target, _source)
 end)
 
 ESX.RegisterUsableItem('kajdanki', function(source)
@@ -32,109 +85,111 @@ end)
 
 
 ESX.RegisterServerCallback('esx_thief:getValue', function(source, cb, targetSID)
-    if Users[targetSID] then
-        cb(Users[targetSID])
-    else
-        cb({value = false, time = 0})
-    end
+	if Users[targetSID] then
+		cb(Users[targetSID])
+	else
+		cb({value = false, time = 0})
+	end
 end)
 
-ESX.RegisterServerCallback('esx_thief:getOtherPlayerData', function(source, cb, target)
-
-    local xPlayer = ESX.GetPlayerFromId(target)
-
-    local data = {
-      name        = GetPlayerName(target),
-      inventory   = xPlayer.inventory,
-      accounts    = xPlayer.accounts,
-      money       = xPlayer.get('money'),
-      weapons     = xPlayer.loadout
-
-    }
-
-      cb(data)
-
+ESX.RegisterServerCallback('esx_robar:getOtherPlayerData', function(source, cb, target)
+	local xPlayer = ESX.GetPlayerFromId(target)
+	local data = {
+		name = GetPlayerName(target),
+		inventory = xPlayer.inventory,
+		accounts = xPlayer.accounts,
+		money = xPlayer.get('money'),
+	}
+	cb(data)
 end)
 
+--[[RegisterServerEvent('esx_robar:stealPlayerItem')
+AddEventHandler('esx_robar:stealPlayerItem', function(target, itemType, itemName, amount)
 
-RegisterServerEvent('esx_thief:stealPlayerItem')
-AddEventHandler('esx_thief:stealPlayerItem', function(target, itemType, itemName, amount)
+	local sourceXPlayer = ESX.GetPlayerFromId(source)
+	local targetXPlayer = ESX.GetPlayerFromId(target)
 
-    local sourceXPlayer = ESX.GetPlayerFromId(source)
-    local targetXPlayer = ESX.GetPlayerFromId(target)
+	if itemType == 'item_standard' then
+		print("item_standard")
 
-    if itemType == 'item_standard' then
-        print("item_standard")
+		local label = sourceXPlayer.getInventoryItem(itemName).label
+		local itemLimit = sourceXPlayer.getInventoryItem(itemName).limit
+		local sourceItemCount = sourceXPlayer.getInventoryItem(itemName).count
+		local targetItemCount = targetXPlayer.getInventoryItem(itemName).count
 
-        local label = sourceXPlayer.getInventoryItem(itemName).label
-        local itemLimit = sourceXPlayer.getInventoryItem(itemName).limit
-        local sourceItemCount = sourceXPlayer.getInventoryItem(itemName).count
-        local targetItemCount = targetXPlayer.getInventoryItem(itemName).count
+		if amount > 0 and targetItemCount >= amount then
 
-        if amount > 0 and targetItemCount >= amount then
-    
-            if itemLimit ~= -1 and (sourceItemCount + amount) > itemLimit then
-                TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('ex_inv_lim_target'))
-                TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('ex_inv_lim_source'))
-            else
+			if itemLimit ~= -1 and (sourceItemCount + amount) > itemLimit then
+				TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('ex_inv_lim_target'))
+				TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('ex_inv_lim_source'))
+			else
 
-                targetXPlayer.removeInventoryItem(itemName, amount)
-                sourceXPlayer.addInventoryItem(itemName, amount)
+				targetXPlayer.removeInventoryItem(itemName, amount)
+				sourceXPlayer.addInventoryItem(itemName, amount)
 
-                TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('you_stole') .. ' ~g~x' .. amount .. ' ' .. label .. ' ~w~' .. _U('from_your_target') )
-                TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('someone_stole') .. ' ~r~x'  .. amount .. ' ' .. label )
+				TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('you_stole') .. ' ~g~x' .. amount ..
+					' ' .. label .. ' ~w~' .. _U('from_your_target'))
+				TriggerClientEvent('esx:showNotification', targetXPlayer.source,
+					_U('someone_stole') .. ' ~r~x' .. amount .. ' ' .. label)
 
-            end
+			end
 
-        else
-             TriggerClientEvent('esx:showNotification', _source, _U('invalid_quantity'))
-        end
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('invalid_quantity'))
+		end
 
-    end
+	end
 
-  if itemType == 'item_money' then
+	if itemType == 'item_money' then
 
-    if amount > 0 and targetXPlayer.get('money') >= amount then
+		if amount > 0 and targetXPlayer.get('money') >= amount then
 
-      targetXPlayer.removeMoney(amount)
-      sourceXPlayer.addMoney(amount)
+			targetXPlayer.removeMoney(amount)
+			sourceXPlayer.addMoney(amount)
 
-      TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('you_stole') .. ' ~g~$' .. amount .. ' ~w~' .. _U('from_your_target') )
-      TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('someone_stole') .. ' ~r~$'  .. amount )
+			TriggerClientEvent('esx:showNotification', sourceXPlayer.source,
+				_U('you_stole') .. ' ~g~$' .. amount .. ' ~w~' .. _U('from_your_target'))
+			TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('someone_stole') .. ' ~r~$' .. amount)
 
-    else
-      TriggerClientEvent('esx:showNotification', _source, _U('imp_invalid_amount'))
-    end
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('imp_invalid_amount'))
+		end
 
-  end
+	end
 
-  if itemType == 'item_account' then
+	if itemType == 'item_account' then
 
-    if amount > 0 and targetXPlayer.getAccount(itemName).money >= amount then
+		if amount > 0 and targetXPlayer.getAccount(itemName).money >= amount then
 
-        targetXPlayer.removeAccountMoney(itemName, amount)
-        sourceXPlayer.addAccountMoney(itemName, amount)
+			targetXPlayer.removeAccountMoney(itemName, amount)
+			sourceXPlayer.addAccountMoney(itemName, amount)
 
-        TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('you_stole') .. ' ~g~$' .. amount .. ' ~w~' .. _U('of_black_money') .. ' ' .. _U('from_your_target') )
-        TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('someone_stole') .. ' ~r~$'  .. amount .. ' ~w~' .. _U('of_black_money') )
+			TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('you_stole') .. ' ~g~$' .. amount ..
+				' ~w~' .. _U('of_black_money') .. ' ' .. _U('from_your_target'))
+			TriggerClientEvent('esx:showNotification', targetXPlayer.source,
+				_U('someone_stole') .. ' ~r~$' .. amount .. ' ~w~' .. _U('of_black_money'))
 
-    else
-        TriggerClientEvent('esx:showNotification', _source, _U('imp_invalid_amount'))
-    end
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('imp_invalid_amount'))
+		end
 
-  end
+	end
 
-  if itemType == 'item_weapon' then
-    print("Item_weapon")
-    if amount == nil then amount = 0 end
+	if itemType == 'item_weapon' then
+		print("Item_weapon")
+		if amount == nil then
+			amount = 0
+		end
 
-        targetXPlayer.removeWeapon(itemName, amount)
-        sourceXPlayer.addWeapon(itemName, amount)
+		targetXPlayer.removeWeapon(itemName, amount)
+		sourceXPlayer.addWeapon(itemName, amount)
 
-        TriggerClientEvent('esx:showNotification', sourceXPlayer.source, _U('you_stole') .. ' ~g~x' .. amount .. ' ' .. label .. ' ~w~' .. _U('from_your_target') )
-        TriggerClientEvent('esx:showNotification', targetXPlayer.source, _U('someone_stole') .. ' ~r~x'  .. amount .. ' ' .. label )
-  end
-end)
+		TriggerClientEvent('esx:showNotification', sourceXPlayer.source,
+			_U('you_stole') .. ' ~g~x' .. amount .. ' ' .. label .. ' ~w~' .. _U('from_your_target'))
+		TriggerClientEvent('esx:showNotification', targetXPlayer.source,
+			_U('someone_stole') .. ' ~r~x' .. amount .. ' ' .. label)
+	end
+end)]]
 
 RegisterServerEvent("esx_thief:update")
 AddEventHandler("esx_thief:update", function(bool)
@@ -144,12 +199,7 @@ end)
 
 RegisterServerEvent("esx_thief:getValue")
 AddEventHandler("esx_thief:getValue", function(targetSID)
-    local source = source
-	if Users[targetSID] then
 		TriggerClientEvent("esx_thief:returnValue", source, Users[targetSID])
-	else
-		TriggerClientEvent("esx_thief:returnValue", source, Users[targetSID])
-	end
 end)
 
 RegisterServerEvent('esx_robar:putInVehicle')
@@ -166,8 +216,8 @@ end)
 ---- HANDCUFFS + ROPE ----
 
 ESX.RegisterServerCallback('esx_thief:getItemQ', function(source, cb, item)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    local quantity = xPlayer.getInventoryItem(item)
+		local xPlayer = ESX.GetPlayerFromId(source)
+		local quantity = xPlayer.getInventoryItem(item)
 	if quantity == nil then
 		cb(0)
 	else

@@ -820,6 +820,7 @@ Citizen.CreateThread(function()
 
 		if plyData.job ~= nil and plyData.job.name == self.CarDealerJobLabel then
 			if IsControlJustReleased(0, JUtils.Keys['F6']) then
+				print('Opening facturas Bennys')
 				self.MenuOpen = true
 				self:openBilling()
 			end
