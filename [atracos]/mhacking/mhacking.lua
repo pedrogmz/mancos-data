@@ -10,7 +10,7 @@ Citizen.CreateThread(function()
 			if helpTimer > GetGameTimer() then
 				showHelpText("Desplazate con ~y~W,A,S,D~s~ y confirma con ~y~SPACE~s~ para el bloque de código izquierdo.")
 			elseif helpTimer > GetGameTimer()-helpCycle then
-				showHelpText("Usa las  ~y~Flechas~s~ y ~y~ENTER~s~ para el bloque de código derecho.")
+				showHelpText("Usa las ~y~Flechas~s~ y ~y~ENTER~s~ para el bloque de código derecho.")
 			else
 				helpTimer = GetGameTimer()+helpCycle
 			end
