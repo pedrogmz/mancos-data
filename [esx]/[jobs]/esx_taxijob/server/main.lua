@@ -2,9 +2,9 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-if Config.MaxInService ~= -1 then
+--[[if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'taxi', Config.MaxInService)
-end
+end]]
 
 TriggerEvent('esx_phone:registerNumber', 'taxi', _U('taxi_client'), true, true)
 TriggerEvent('esx_society:registerSociety', 'taxi', 'Taxi', 'society_taxi', 'society_taxi', 'society_taxi', {type = 'public'})

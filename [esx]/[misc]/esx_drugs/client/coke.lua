@@ -195,10 +195,10 @@ function GenerateCokeCoords()
 end
 
 function GetCoordZ(x, y)
-	local groundCheckHeights = { 80.0, 81.0, 82.0, 83.0, 84.0, 85.0, 86.0, 87.0, 88.0, 89.0, 90.0, 91.0,92.0,93.0,94.0,95.0,96.0,97.0,98.0,99.0,100.0,101.0,102.0,103.0,104.0,105.0,106.0,107.0 }
+	local groundCheckHeights = { 80.0, 115.0 }
 
-	for i, height in ipairs(groundCheckHeights) do
-		local foundGround, z = GetGroundZFor_3dCoord(x, y, height)
+	for i = groundCheckHeights[1], groundCheckHeights[2] do
+		local foundGround, z = GetGroundZFor_3dCoord(x, y, i)
 
 		if foundGround then
 			return z

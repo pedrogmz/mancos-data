@@ -51,7 +51,7 @@ AddEventHandler('playerDropped', function (reason) -- Arnedo5 | Al desconectarse
  
 	local playerData = ESX.GetPlayerData()
   
-	if ((PlayerData.job.name == "police" or PlayerData.job.name == "offpolice") and activeGps == true) then
+	if ((PlayerData.job.name == "police") and activeGps == true) then
 		local currentPlayer = PlayerId() -- Obtenemos el jugador actual
 		TriggerServerEvent('esx_gps:disable', currentPlayer)
 
@@ -601,13 +601,15 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 		DeleteSpawnedVehicles()
 
 		if type == 'car' then
+			
+			local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(station, part, partNum)
 
-			if not ESX.Game.IsSpawnPointClear(Config.Zones.VehicleSpawnPoint.Pos, 5.0) then
+			if not foundSpawn then
 				ESX.ShowNotification(_U('spawnpoint_blocked'))
 				return
 			end
 
-			ESX.Game.SpawnVehicle(data.current.model, Config.Zones.VehicleSpawnPoint.Pos, Config.Zones.VehicleSpawnPoint.Heading, function(vehicle)
+			ESX.Game.SpawnVehicle(data.current.model, spawnPoint.coords, spawnPoint.heading, function(vehicle)
 				table.insert(spawnedVehicles, vehicle)
 				local playerPed = PlayerPedId()
 				TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
@@ -1812,7 +1814,7 @@ AddEventHandler('esx_policejob:hasEnteredMarker', function(station, part, partNu
 		CurrentAction     = 'menu_boss_actions'
 		CurrentActionMsg  = _U('open_bossmenu')
 		CurrentActionData = {}
-	elseif part == 'VehicleDeleter' then
+	elseif part == 'VehicleDeleter' or part == 'VehicleDeleterPaleto' then
 		local playerPed = PlayerPedId()
 		local vehicle   = GetVehiclePedIsIn(playerPed, false)
 
@@ -2358,12 +2360,12 @@ Citizen.CreateThread(function()
 
 		-- Arnedo5 | Activar / desactivar localización
 		if PlayerData.job  ~=  nil then
-			if IsControlJustReleased(0, 243) and not isDead and PlayerData.job and PlayerData.job.name == 'police' or (PlayerData.job.name == 'offpolice' and activeGps== true)then
+			if IsControlJustReleased(0, 243) and not isDead and PlayerData.job and PlayerData.job.name == 'police' then
 			
 				if activeGps == false then
 	
 					local currentPlayer = PlayerId() -- Obtenemos el jugador actual
-					TriggerServerEvent('ex_gps:enable', currentPlayer)
+					TriggerServerEvent('esx_gps:enable', currentPlayer)
 	
 					activeGps = true
 	
@@ -2383,7 +2385,6 @@ Citizen.CreateThread(function()
 			end
 		end
 		
-
 		if IsControlJustReleased(0, 38) and currentTask.busy then
 			ESX.ShowNotification(_U('impound_canceled'))
 			ESX.ClearTimeout(currentTask.task)

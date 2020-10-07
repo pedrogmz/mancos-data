@@ -29,10 +29,10 @@ Config.ColourExploit = 16711680
 Config.ColourInfo = 65280
 
 Config.BlipImpound = {
-    Sprite = 527,
-    Color = 60,
-    Display = 2,
-    Scale = 0.7
+	Sprite = 527,
+	Color = 60,
+	Display = 2,
+	Scale = 0.7
 }
 
 Config.DrawDistance = 100.0
@@ -40,246 +40,266 @@ Config.DrawDistance = 100.0
 --Impounds
 
 Config.CarPounds = {
-    Pound_LosSantos = {
-        PoundPoint = { x = 408.61, y = -1625.47, z = 28.29 },
-        SpawnPoint = { x = 405.64, y = -1643.4, z = 27.61, h = 229.54 }
-    },
-    
-    Pound_Sandy = {
-        PoundPoint = { x = 1651.38, y = 3804.84, z = 37.65 },
-        SpawnPoint = { x = 1627.84, y = 3788.45, z = 33.77, h = 308.53 }
-    },
-    
-    Pound_Paleto = {
-        PoundPoint = { x = -234.82, y = 6198.65, z = 30.94 },
-        SpawnPoint = { x = -230.08, y = 6190.24, z = 30.49, h = 140.24 }
-    }
+	Pound_LosSantos = {
+		PoundPoint = { x = 408.61, y = -1625.47, z = 28.29 },
+		SpawnPoint = { x = 405.64, y = -1643.4, z = 27.61, h = 229.54 }
+	},
+	
+	Pound_Sandy = {
+		PoundPoint = { x = 1651.38, y = 3804.84, z = 37.65 },
+		SpawnPoint = { x = 1627.84, y = 3788.45, z = 33.77, h = 308.53 }
+	},
+	
+	Pound_Paleto = {
+		PoundPoint = { x = -234.82, y = 6198.65, z = 30.94 },
+		SpawnPoint = { x = -230.08, y = 6190.24, z = 30.49, h = 140.24 }
+	}
 }
 
 Config.PoundMarker = {
-    r = 0, g = 0, b = 100,     -- Blue Color
-    x = 1.5, y = 1.5, z = 1.0  -- Standard Size Circle
+	r = 0, g = 0, b = 100,     -- Blue Color
+	x = 1.5, y = 1.5, z = 1.0  -- Standard Size Circle
 }
 
 --Garages
 Config.Garages = {
-    ["Central"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(211.8094329834, -934.98626708984, 24.275938034058),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(219.86030578613, -932.77551269531, 24.141599655151), 
-                ["heading"] = 140.0
-            }
-        },
-        ["camera"] = {  -- camera is not needed just if you want cool effects.
-            ["x"] = 224.94281005859, 
-            ["y"] = -930.33062744141, 
+	["Central"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(211.8094329834, -934.98626708984, 24.275938034058),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(219.86030578613, -932.77551269531, 24.141599655151), 
+				["heading"] = 140.0
+			}
+		},
+		["camera"] = {  -- camera is not needed just if you want cool effects.
+			["x"] = 224.94281005859, 
+			["y"] = -930.33062744141, 
 			["z"] = 26.571212768555, 
 			["rotationX"] = -31.401574149728, 
 			["rotationY"] = 0.0, 
 			["rotationZ"] = -243.40157422423 
-        }
-    },
+		}
+	},
 	
 	["Vinewood Este"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(985.47, -203.65, 71.01),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(991.38, -215.42, 69.87), 
-                ["heading"] = 240.76
-            }
-        },
-        ["camera"] = { 
-            ["x"] = 991.38, 
-            ["y"] = -215.42, 
-            ["z"] = 69.87, 
-            ["rotationX"] = -12.637795701623, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 195.73228356242 
-        }
-    },
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(985.47, -203.65, 71.01),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(991.38, -215.42, 69.87), 
+				["heading"] = 240.76
+			}
+		},
+		["camera"] = { 
+			["x"] = 991.38, 
+			["y"] = -215.42, 
+			["z"] = 69.87, 
+			["rotationX"] = -12.637795701623, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 195.73228356242 
+		}
+	},
 	
-    ["Occupation Av."] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(273.67422485352, -344.15573120117, 44.919834136963),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(272.50082397461, -337.40579223633, 44.919834136963), 
-                ["heading"] = 160.0
-            }
-        },
-        ["camera"] = { 
-            ["x"] = 283.28225708008, 
-            ["y"] = -333.24017333984, 
-            ["z"] = 50.004745483398, 
-            ["rotationX"] = -21.637795701623, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 125.73228356242 
-        }
-    },
+	["Occupation Av."] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(273.67422485352, -344.15573120117, 44.919834136963),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(272.50082397461, -337.40579223633, 44.919834136963), 
+				["heading"] = 160.0
+			}
+		},
+		["camera"] = { 
+			["x"] = 283.28225708008, 
+			["y"] = -333.24017333984, 
+			["z"] = 50.004745483398, 
+			["rotationX"] = -21.637795701623, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 125.73228356242 
+		}
+	},
 
-    ["Little Seoul"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(-701.63, -972.18, 20.39),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(-696.02, -982.17, 20.39), 
-                ["heading"] = 357.84
-            }
-        },
-        ["camera"] = { 
-            ["x"] = -701.73, 
-            ["y"] = -987.62, 
-            ["z"] = 25.39, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = -42.110235854983 
-        }
-    },
-    ["Tequi-la-la"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(-570.37, 314.65, 84.48),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(-576.48, 323.91, 84.67), 
-                ["heading"] = 355.07
-            }
-        },
-        ["camera"] = { 
-            ["x"] = -580.91, 
-            ["y"] = 319.8, 
-            ["z"] = 87.55, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = -42.110235854983 
-        }
-    },
-    ["Sandy Shores"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(2669.38, 3286.85, 55.24),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(2661.73, 3278.36, 55.24), 
-                ["heading"] = 65.97
-            }
-        },
-        ["camera"] = { 
-            ["x"] = 2656.03, 
-            ["y"] = 3277.23, 
-            ["z"] = 60.25, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = -90.110235854983 
-        }
-    },
-    ["Paleto Bay"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(105.84, 6611.0, 31.95),
-                ["blip"] = true
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(111.99, 6614.56, 31.87), 
-                ["heading"] = 227.06
-            }
-        },
-        ["camera"] = { 
-            ["x"] = 119.39, 
-            ["y"] = 6614.61, 
-            ["z"] = 36.86, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 90.110235854983 
-        }
-    },
-    ["Ballas"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(81.0, -1970.98, 20.9),
-                ["blip"] = false
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(86.82, -1969.03, 20.67), 
-                ["heading"] = 227.06
-            }
-        },
-        ["camera"] = { 
-            ["x"] = 87.62, 
-            ["y"] = -1969.58, 
-            ["z"] = 20.75, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 90.110235854983 
-        }
-    },
-    ["Steel Thieves"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(-571.74, -1632.08, 19.41),
-                ["blip"] = false
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(-569.97, -1639.14, 19.41), 
-                ["heading"] = 227.06
-            }
-        },
-        ["camera"] = { 
-            ["x"] = -569.97, 
-            ["y"] = -1639.14,
-            ["z"] = 19.41, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 90.110235854983 
-        }
-    },
-    ["The Lost"] = {
-        ["positions"] = {
-            ["menu"] = {
-                ["position"] = vector3(988.56, -141.27, 73.09),
-                ["blip"] = false
-            },
-            ["vehicle"] = {
-                ["position"] = vector3(985.74, -138.62, 73.09), 
-                ["heading"] = 227.06
-            }
-        },
-        ["camera"] = { 
-            ["x"] = 985.74, 
-            ["y"] = -138.62,
-            ["z"] = 73.09, 
-            ["rotationX"] = -39.496062710881, 
-            ["rotationY"] = 0.0, 
-            ["rotationZ"] = 90.110235854983 
-        }
-    },
+	["Little Seoul"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(-701.63, -972.18, 20.39),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(-696.02, -982.17, 20.39), 
+				["heading"] = 357.84
+			}
+		},
+		["camera"] = { 
+			["x"] = -701.73, 
+			["y"] = -987.62, 
+			["z"] = 25.39, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = -42.110235854983 
+		}
+	},
+	["Tequi-la-la"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(-570.37, 314.65, 84.48),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(-576.48, 323.91, 84.67), 
+				["heading"] = 355.07
+			}
+		},
+		["camera"] = { 
+			["x"] = -580.91, 
+			["y"] = 319.8, 
+			["z"] = 87.55, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = -42.110235854983 
+		}
+	},
+	["Sandy Shores"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(2669.38, 3286.85, 55.24),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(2661.73, 3278.36, 55.24), 
+				["heading"] = 65.97
+			}
+		},
+		["camera"] = { 
+			["x"] = 2656.03, 
+			["y"] = 3277.23, 
+			["z"] = 60.25, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = -90.110235854983 
+		}
+	},
+	["Paleto Bay"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(105.84, 6611.0, 31.95),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(111.99, 6614.56, 31.87), 
+				["heading"] = 227.06
+			}
+		},
+		["camera"] = { 
+			["x"] = 119.39, 
+			["y"] = 6614.61, 
+			["z"] = 36.86, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
+	["Ballas"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(81.0, -1970.98, 20.9),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(86.82, -1969.03, 20.67), 
+				["heading"] = 227.06
+			}
+		},
+		["camera"] = { 
+			["x"] = 87.62, 
+			["y"] = -1969.58, 
+			["z"] = 20.75, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
+	["Steel Thieves"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(-571.74, -1632.08, 19.41),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(-569.97, -1639.14, 19.41), 
+				["heading"] = 227.06
+			}
+		},
+		["camera"] = { 
+			["x"] = -569.97, 
+			["y"] = -1639.14,
+			["z"] = 19.41, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
+	["The Lost"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(988.56, -141.27, 73.09),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(985.74, -138.62, 73.09), 
+				["heading"] = 227.06
+			}
+		},
+		["camera"] = { 
+			["x"] = 985.74, 
+			["y"] = -138.62,
+			["z"] = 73.09, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
+	["Green Bullets"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(-104.17, -63.83, 56.45),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(-97.67, -57.85, 55.69), 
+				["heading"] = 253.06
+			}
+		},
+		["camera"] = { 
+			["x"] = -97.74, 
+			["y"] = -57.62,
+			["z"] = 60.09, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
 
 }
 
 Config.Labels = {
-    ["menu"] = "~INPUT_CONTEXT~ Abrir garaje %s.",
-    ["vehicle"] = "~INPUT_CONTEXT~ Guarda '%s' en tu garaje."
+	["menu"] = "~INPUT_CONTEXT~ Abrir garaje %s.",
+	["vehicle"] = "~INPUT_CONTEXT~ Guarda '%s' en tu garaje."
 }
 
 Config.Trim = function(value)
-    if value then
-        return (string.gsub(value, "^%s*(.-)%s*$", "%1"))
-    else
-        return nil
-    end
+	if value then
+		return (string.gsub(value, "^%s*(.-)%s*$", "%1"))
+	else
+		return nil
+	end
 end
 
 Config.AlignMenu = "right" -- this is where the menu is located [left, right, center, top-right, top-left etc.]

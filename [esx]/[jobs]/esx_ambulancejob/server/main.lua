@@ -9,9 +9,9 @@ local playersHealing = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-if Config.MaxInService ~= -1 then
+--[[if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'ambulance', Config.MaxInService)
-end
+end]]
 
 RegisterServerEvent('esx_ambulancejob:revive')
 AddEventHandler('esx_ambulancejob:revive', function(target)

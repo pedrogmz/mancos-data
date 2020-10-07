@@ -72,7 +72,7 @@ end)
 function AddCraftingPoints(source)
     local identifier =  GetPlayerIdentifiers(source)[1]
     MySQL.Sync.execute('UPDATE user_levels SET crafting = crafting + @crafting WHERE identifier = @identifier', {
-        ['@crafting'] = 10,
+        ['@crafting'] = 2,
         ['@identifier'] = identifier
     })
 end
@@ -85,7 +85,7 @@ function RemoveCraftingPoints(source)
         local craftinglevel = tonumber(result1[1].crafting)
         if craftinglevel > 0 then
             MySQL.Sync.execute('UPDATE user_levels SET crafting = crafting - @crafting WHERE identifier = @identifier', {
-                ['@crafting'] = 5,
+                ['@crafting'] = 1,
                 ['@identifier'] = identifier
             })
         else

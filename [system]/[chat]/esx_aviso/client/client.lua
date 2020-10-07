@@ -60,7 +60,7 @@ Citizen.CreateThread(function()
    
       if IsControlJustReleased(0, Keys['F9']) then
          
-         local job = PlayerData.job.name:gsub("off", "") -- Sacamos el off de delante del trabajo si hay.
+         local job = PlayerData.job.name
 
          if job == 'police' or job == 'ambulance' or job == 'mechanic' or job == 'taxi' then
 
@@ -134,7 +134,7 @@ Citizen.CreateThread(function()
             
          end
 
-         local job = PlayerData.job.name:gsub("off", "") -- Sacamos el off de delante del trabajo si hay.
+         local job = PlayerData.job.name
 
          if job == 'police' or job == 'ambulance' or job == 'mechanic' or job == 'taxi' then
 
@@ -180,7 +180,7 @@ AddEventHandler("esx_aviso:sendElement", function(identifier, id, job, descripti
 
    if job ~=  nil then
 
-      local job = PlayerData.job.name:gsub("off", "") -- Sacamos el off de delante del trabajo si hay.
+      local job = PlayerData.job.name
 
          ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
             
@@ -231,7 +231,7 @@ AddEventHandler('esx_service:notifyAllInService', function(notification, target)
 end)
 
 function delElement (data) 
-   local job = PlayerData.job.name:gsub("off", "") -- Sacamos el off de delante del trabajo si hay.
+   local job = PlayerData.job.name
 
    for i=#elements[job],1,-1 do -- Buscamos el elemento y lo eliminamos
       local v = elements[job][i]

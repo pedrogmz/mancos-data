@@ -70,6 +70,7 @@ ESX.RegisterServerCallback('esx_service:getInServiceCount', function(source, cb)
 	inServiceCount['bar'] = GetInServiceCount('bar')
 	inServiceCount['tender'] = GetInServiceCount('tender')
 	inServiceCount['cardealer'] = GetInServiceCount('cardealer')
+	inServiceCount['bahamas'] = GetInServiceCount('bahamas')
 	cb(inServiceCount)
 end)
 

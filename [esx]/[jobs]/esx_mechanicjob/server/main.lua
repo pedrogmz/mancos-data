@@ -8,7 +8,7 @@ PlayersCrafting3   = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-TriggerEvent('esx_service:activateService', 'mechanic', Config.MaxInService)
+--TriggerEvent('esx_service:activateService', 'mechanic', Config.MaxInService)
 
 TriggerEvent('esx_phone:registerNumber', 'mechanic', _U('mecano_customer'), true, true)
 TriggerEvent('esx_society:registerSociety', 'mechanic', 'mechanic', 'society_mechanic', 'society_mechanic', 'society_mechanic', {type = 'private'})

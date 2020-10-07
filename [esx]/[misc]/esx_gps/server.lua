@@ -14,7 +14,7 @@ AddEventHandler('ex_gps:enable', function(idPlayerBlip)
             for i=1, #xPlayers, 1 do
                 local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
                 
-                if xPlayer.job.name == 'police' then -- En caso de que el jugador sea policia y este en servicio
+                if xPlayer.job.name == 'police' then
                 
                     print(xPlayer.name)
                     TriggerClientEvent('esx_gps:enable', xPlayers[i], idPlayerBlip)
@@ -41,7 +41,7 @@ AddEventHandler('esx_gps:disable', function(idPlayerBlip)
             for i=1, #xPlayers, 1 do
                 local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
                 
-                if xPlayer.job.name == 'police' or xPlayer.job.name == 'offpolice' then -- En caso de que el jugador sea policia y este dentro o fuera de servicio
+                if xPlayer.job.name == 'police' then
                 
                     TriggerClientEvent('esx_gps:disable', xPlayers[i], idPlayerBlip)
     

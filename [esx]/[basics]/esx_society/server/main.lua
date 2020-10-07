@@ -238,10 +238,8 @@ ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, soci
 	if Config.EnableESXIdentity then
 
 		--'SELECT firstname, lastname, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC'
-		-- Arnedo5 | Modificacion SQL para que busque tambien los OFF _ job
-		MySQL.Async.fetchAll('SELECT firstname, lastname, identifier, REPLACE(job, "off", "") AS job, job_grade FROM users WHERE job IN (@job, @job1)  ORDER BY job_grade DESC', {
+		MySQL.Async.fetchAll('SELECT firstname, lastname, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC', {
 			['@job'] = society,
-			['@job1'] = "off"..society,
 		}, function (results)
 			local employees = {}
 
@@ -263,9 +261,8 @@ ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, soci
 		end)
 	else
 		-- 'SELECT name, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC'
-		MySQL.Async.fetchAll('SELECT name, identifier, REPLACE(job, "off", "") AS job, job_grade FROM users WHERE job  IN (@job, @job1) ORDER BY job_grade DESC', {
+		MySQL.Async.fetchAll('SELECT name, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC', {
 			['@job'] = society,
-			['@job1'] = "off"..society,
 		}, function (result)
 			local employees = {}
 

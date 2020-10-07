@@ -870,7 +870,7 @@ Citizen.CreateThread(function()
 			if IsControlJustReleased(0,  Keys['E']) and IsJobTrue() then
 
 				if CurrentAction == 'menu_cloakroom' then
-					OpenArmarioMenu()()
+					OpenArmarioMenu()
 				end
 
 				if CurrentAction == 'menu_vault' then
