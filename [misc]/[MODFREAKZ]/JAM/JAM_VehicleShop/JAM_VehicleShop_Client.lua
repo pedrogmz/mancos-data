@@ -815,10 +815,12 @@ function JVS:OutfitsMenu()
 						TriggerServerEvent('esx_skin:save', skin)
 					end)
 				end, data2.current.value)
+				self.MenuOpen = false
 			end)
 
 		end, function(data2, menu2)
 			menu2.close()
+			self.MenuOpen = false
 		end)
 	end)
 end

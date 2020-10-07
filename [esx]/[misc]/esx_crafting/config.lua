@@ -27,17 +27,17 @@ Crafting.Items = {
     ["WEAPON_CROWBAR"] = {
         label = "Palanca",
         needs = {
-            ["metalscrap"] = {label = "Metalscrap", count = 1},
-            ["plastic"] = {label = "Plastic", count = 2},
+            ["metalscrap"] = {label = "Metalscrap", count = 5},
+            ["plastic"] = {label = "Plastic", count = 5},
         },
-        threshold = 0,
+        threshold = 10,
     },
-    ["WEAPON_PISTOL"] = {
-        label = "Pistola",
+    ["WEAPON_KNUCKLE"] = {
+        label = "Nudillos",
         needs = {
-            ["metalscrap"] = {label = "Metalscrap", count = 2},
-            ["plastic"] = {label = "Plastic", count = 4},
-            ["bread"] = {label = "Pan", count = 1},
+            ["metalscrap"] = {label = "Metalscrap", count = 6},
+            --["plastic"] = {label = "Plastic", count = 3},
+            --["bread"] = {label = "Pan", count = 1},
         },
         threshold = 15,
     },
@@ -45,11 +45,11 @@ Crafting.Items = {
         label = "Advanced lockpick",
         needs = {
             ["metalscrap"] = {label = "Metalscrap", count = 4},
-            ["plastic"] = {label = "Plastic", count = 6},
-            ["stone"] = {label = "Stone", count = 1},
-            ["wood"] = {label = "Wood", count = 1},
+            ["plastic"] = {label = "Plastic", count = 1},
+            --["stone"] = {label = "Stone", count = 1},
+            --["wood"] = {label = "Wood", count = 1},
         },
-        threshold = 20,
+        threshold = 12,
     },
     ["handcuffs"] = {
         label = "Handcuffs",
@@ -57,7 +57,7 @@ Crafting.Items = {
             ["metalscrap"] = {label = "Metalscrap", count = 5},
             ["simplelockpick"] = {label = "Small lockpick", count = 1},
         },
-        threshold = 18,
+        threshold = 20,
     },
     ["drill"] = {
         label = "Drill",
@@ -67,16 +67,36 @@ Crafting.Items = {
             ["rubber"] = {label = "Rubber", count = 6},
             ["stone"] = {label = "Stone", count = 8},
         },
-        threshold = 250,
+        threshold = 60,
     },
     ["fixkit"] = {
         label = "Repair kit",
         needs = {
             ["metalscrap"] = {label = "Metalscrap", count = 5},
-            ["plastic"] = {label = "Plastic", count = 12},
-            ["rubber"] = {label = "Rubber", count = 5},
-            ["wood"] = {label = "Wood", count = 8},
+            ["plastic"] = {label = "Plastic", count = 10},
+           -- ["rubber"] = {label = "Rubber", count = 5},
+           -- ["wood"] = {label = "Wood", count = 8},
         },
-        threshold = 350,
+        threshold = 30,
+    },
+    ["simplelockpick"] = {
+        label = "Ganzúa",
+        needs = {
+            ["metalscrap"] = {label = "Metalscrap", count = 2},
+            ["plastic"] = {label = "Plastic", count = 1},
+            --["stone"] = {label = "Stone", count = 1},
+            --["wood"] = {label = "Wood", count = 1},
+        },
+        threshold = 0,
+    },
+    ["WEAPON_MOLOTOV"] = {
+        label = "CÓCTEL MOLOTOV",
+        needs = {
+            ["tequila"] = {label = "Tequila", count = 1},
+            ["papel"] = {label = "Papel", count = 5},
+            --["stone"] = {label = "Stone", count = 1},
+            --["wood"] = {label = "Wood", count = 1},
+        },
+        threshold = 5,
     },
 }

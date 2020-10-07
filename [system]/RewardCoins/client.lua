@@ -10,7 +10,7 @@ end)
 -- Puntos donde canjear horas jugadas
 RewardPoints = {
     ["Bennys"] = {
-        ["position"] = vector3(-203.74, -1331.07, 33.89),
+        ["position"] = vector3(-203.74, -1331.07, 34.89),
     },
 }
 
