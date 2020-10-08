@@ -48,7 +48,7 @@ Config.Zones = {
 	},
 
 	cardealer = {
-		Pos = {x = -31.57, y = -1112.09, z = 25.42},
+		Pos = {x = -31.57, y = -1112.09, z = 25.49},
 		Size = {x = 1.5, y = 1.5, z = 1.5},
 		Color = {r = 0, g = 255, b = 0},
 		Type = 25

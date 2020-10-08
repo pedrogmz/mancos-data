@@ -118,6 +118,10 @@ Citizen.CreateThread(function()
 		Wait(0)
 
 		local coords = GetEntityCoords(GetPlayerPed(-1))
+		
+		while ESX.PlayerData.job == nil do
+			Citizen.Wait(10)
+		end
 
 		for k, v in pairs(Config.Zones) do
 			if ESX.PlayerData.job.name == k and (v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
