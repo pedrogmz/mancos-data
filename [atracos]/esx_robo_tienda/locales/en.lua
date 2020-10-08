@@ -1,4 +1,4 @@
-Locales['en'] = {
+Locales['es'] = {
   ['shop_robbery'] = 'Robo de tienda',
   ['press_to_rob'] = '~INPUT_CONTEXT~ para ~o~robar~s~ ~b~%s~s~',
   ['robbery_timer'] = 'Tiempo restante: ~r~%s~s~ segundos',

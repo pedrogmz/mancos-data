@@ -13,12 +13,12 @@ Config.EnableBlackMoney = true
 
 Config.MissCraft                  = 10 -- %
 
-Config.AuthorizedVehicles = {
+--[[Config.AuthorizedVehicles = {
 	{ name = "mule3", label = 'Camión' },
 	{ name = "burrito", label = 'Furgoneta' },
 	{ name = "buffalo", label = 'Coche 4 puertas' },
 	{ name = "sanchez2", label = 'Moto' },
-}
+}--]]
 
 Config.Warehouse = {
 	Warehouse_in = {
@@ -65,7 +65,7 @@ Config.Zones = {
 	},
 
 	BossActions = {
-		Pos   = { x = -94.34, y = -64.53, z = 61.74 },
+		Pos   = { x = -95.72, y = -66.15, z = 61.74 },
 		Size  = { x = 1.5, y = 1.5, z = 1.0 },
 		Color = { r = 92, g = 16, b = 140 },
 		Type  = 23,
@@ -81,7 +81,7 @@ Config.Zones = {
 	},
 
 	VehicleDeleters = {
-		Pos   = { x = -97.67, y = -57.85, z = 0 },
+		Pos   = { x = -97.67, y = -57.85, z = 0.69 },
 		Size  = { x = 3.0, y = 3.0, z = 0.2 },
 		Color = { r = 255, g = 255, b = 0 },
 		Type  = 23,

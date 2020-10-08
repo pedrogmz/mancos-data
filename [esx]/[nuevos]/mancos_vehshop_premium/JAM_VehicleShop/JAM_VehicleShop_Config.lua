@@ -8,12 +8,12 @@ JVS.SpawnVehDist = 50.0
 JVS.VehRetDist = 5.0
 
 JVS.CarDealerJobLabel = "cardealer"
-JVS.DealerMarkerPos = vector3(-203.4, -1342.69, 30.89)
+JVS.DealerMarkerPos = vector3(-203.4, -1342.69, 30.59)
 
 -- Why vector4's, you ask?
 -- X, Y, Z, Heading.
 
-JVS.PurchasedCarPos = vector4(-205.77, -1313.14, 31.20, 358.49) --Salida del vehiculo comprado
+JVS.PurchasedCarPos = vector4(-199.0, -1324.39, 30.7, 89.33) --Salida del vehiculo comprado
 --JVS.PurchasedUtilPos = vector4(-17.88, -1113.94, 26.67, 158.04) -- grua para embargar
 
 JVS.SmallSpawnVeh = 'yFe458s2X' -- Ferrari 458 Italia

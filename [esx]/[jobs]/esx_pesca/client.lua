@@ -228,8 +228,8 @@ AddEventHandler('fishing:spawnPed', function()
 		end
 	local pos = GetEntityCoords(GetPlayerPed(-1))
 	
-	local ped = CreatePed(29, 0x06C3F072, pos.x, pos.y, pos.z, 90.0, true, false)
-	SetEntityHealth(ped, 0)
+	--local ped = CreatePed(29, 0x06C3F072, pos.x, pos.y, pos.z, 90.0, true, false)
+	--SetEntityHealth(ped, 0)
 end)
 
 RegisterNetEvent('fishing:setbait')
