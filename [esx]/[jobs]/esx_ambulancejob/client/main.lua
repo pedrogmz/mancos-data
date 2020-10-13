@@ -440,15 +440,7 @@ if Config.LoadIpl then
 	end)
 end
 
-function openAmbulance()
-	if PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' and (GetGameTimer() - GUI.Time) > 150 then
-		OpenMobileAmbulanceActionsMenu()
-		GUI.Time = GetGameTimer()
-	end
-end
-
--- tattoo
-
+-- Tattoo
 function OpenRemoveTattooMenu()
 	local elements = {}
 	
@@ -541,56 +533,12 @@ AddEventHandler('esx_ambulancejob:sendToBed', function(id, data)
         TriggerServerEvent('esx_ambulancejob:enteredBed')
     end)
 end)
---[[
-RegisterNetEvent('esx_ambulancejob:drag')
-AddEventHandler('esx_ambulancejob:drag', function(copId)
-	
-	dragStatus.isDragged = not dragStatus.isDragged
-	dragStatus.CopId = copId
 
-end)
-
-Citizen.CreateThread(function()
-	local playerPed
-	local targetPed
-
-	while true do
-		Citizen.Wait(1)		
-			playerPed = PlayerPedId()
-			
-			if dragStatus.isDragged then
-				targetPed = GetPlayerPed(GetPlayerFromServerId(dragStatus.CopId))
-				SetPedToRagdoll(targetPed, 1000, 1000, 0, 0, 0, 0)
-				-- undrag if target is in an vehicle
-				if IsPedSittingInAnyVehicle(targetPed) then
-					AttachEntityToEntity(playerPed, targetPed, 11816, 0.54, 0.54, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
-				
-				elseif not IsPedSittingInAnyVehicle(targetPed) then
-					AttachEntityToEntity(playerPed, targetPed, 11816, 0.54, 0.54, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
-				
-				else
-					dragStatus.isDragged = false
-					DetachEntity(playerPed, true, false)
-				end
-
-				if IsPedDeadOrDying(targetPed, true) then
-					dragStatus.isDragged = false
-					DetachEntity(playerPed, true, false)
-				end
-
-			else
-				DetachEntity(playerPed, true, false)
-			end
-		
-	end
-end)
-]]--
 RegisterNetEvent('esx_ambulancejob:OutVehicle')
 AddEventHandler('esx_ambulancejob:OutVehicle', function()
 	local playerPed = PlayerPedId()
 
 	if not IsPedSittingInAnyVehicle(playerPed) then
-		print('squwi el problema')
 		return
 	end
 

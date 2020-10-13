@@ -120,197 +120,169 @@ end
 
 function OpenMecanoActionsMenu()
 
-	local elements = {
-		{label = _U('vehicle_list'),   value = 'vehicle_list'},
-		-- {label = _U('work_wear'),      value = 'cloakroom'},
-		{label = _U('civ_wear'),       value = 'cloakroom2'},
-		{label = 'Ropero',       value = 'ropero'},
-		{label = _U('deposit_stock'),  value = 'put_stock'},
-		{label = _U('withdraw_stock'), value = 'get_stock'}
-	}
+	local elements = {{
+		label = _U('vehicle_list'),
+		value = 'vehicle_list'
+	}, {
+		label = _U('civ_wear'),
+		value = 'cloakroom2'
+	}, {
+		label = 'Ropero',
+		value = 'ropero'
+	}, {
+		label = _U('deposit_stock'),
+		value = 'put_stock'
+	}, {
+		label = _U('withdraw_stock'),
+		value = 'get_stock'
+	}}
 
 	local grade = PlayerData.job.grade_name
 
 	-- Arnedo 5 | Trajes por rango
 	if grade == 'recrue' then
-		table.insert(elements, {label = _U('work_wear'), value = 'recrue_wear'})
+		table.insert(elements, {
+			label = _U('work_wear'),
+			value = 'recrue_wear'
+		})
 	elseif grade == 'novice' then
-		table.insert(elements, {label = _U('work_wear'), value = 'novice_wear'})
+		table.insert(elements, {
+			label = _U('work_wear'),
+			value = 'novice_wear'
+		})
 	elseif grade == 'experimente' then
-		table.insert(elements, {label = _U('work_wear'), value = 'experimente_wear'})
+		table.insert(elements, {
+			label = _U('work_wear'),
+			value = 'experimente_wear'
+		})
 	elseif grade == 'chief' then
-		table.insert(elements, {label = _U('work_wear'), value = 'chief_wear'})
+		table.insert(elements, {
+			label = _U('work_wear'),
+			value = 'chief_wear'
+		})
 	elseif grade == 'boss' then
-		table.insert(elements, {label = _U('work_wear'), value = 'boss_wear'})
+		table.insert(elements, {
+			label = _U('work_wear'),
+			value = 'boss_wear'
+		})
 	end
-	
+
 	if Config.EnablePlayerManagement and PlayerData.job ~= nil and PlayerData.job.grade_name == 'boss' then
-		table.insert(elements, {label = _U('boss_actions'), value = 'boss_actions'})
+		table.insert(elements, {
+			label = _U('boss_actions'),
+			value = 'boss_actions'
+		})
 	end
 
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open(
-		'default', GetCurrentResourceName(), 'mecano_actions',
-		{
-			title    = _U('mechanic'),
-			align    = 'top-left',
-			elements = elements
-		},
-		function(data, menu)
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mecano_actions', {
+		title = _U('mechanic'),
+		align = 'top-left',
+		elements = elements
+	}, function(data, menu)
 
+		-- Arnedo5 | Trajes por rango
+		if data.current.value == 'recrue_wear' or data.current.value == 'novice_wear' or data.current.value == 'experimente_wear' or data.current.value == 'chief_wear' or data.current.value == 'boss_wear' then
+			local playerPed = GetPlayerPed(-1)
+			setUniform(data.current.value, playerPed)
+		end
 
-			-- Arnedo5 | Trajes por rango
-			if
-				data.current.value == 'recrue_wear' or
-				data.current.value == 'novice_wear' or
-				data.current.value == 'experimente_wear' or
-				data.current.value == 'chief_wear' or
-				data.current.value == 'boss_wear'
-			then
+		if data.current.value == 'ropero' then
+			OutfitsMenu()
+		end
 
-				local playerPed = GetPlayerPed(-1)
-				setUniform(data.current.value, playerPed)
-				
-			end
+		if data.current.value == 'vehicle_list' then
 
-			if data.current.value == 'ropero' then
-				OutfitsMenu()
-			end
+			if Config.EnableSocietyOwnedVehicles then
 
-			if data.current.value == 'vehicle_list' then
+				local elements = {}
 
-				if Config.EnableSocietyOwnedVehicles then
+				ESX.TriggerServerCallback('esx_society:getVehiclesInGarage', function(vehicles)
 
-						local elements = {}
+					for i = 1, #vehicles, 1 do
+						table.insert(elements, {
+							label = GetDisplayNameFromVehicleModel(vehicles[i].model) .. ' [' .. vehicles[i].plate ..']',
+							value = vehicles[i]
+						})
+					end
 
-						ESX.TriggerServerCallback('esx_society:getVehiclesInGarage', function(vehicles)
+					ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle_spawner', {
+						title = _U('service_vehicle'),
+						align = 'top-left',
+						elements = elements
+					}, function(data, menu)
 
-							for i=1, #vehicles, 1 do
-								table.insert(elements, {label = GetDisplayNameFromVehicleModel(vehicles[i].model) .. ' [' .. vehicles[i].plate .. ']', value = vehicles[i]})
-							end
+						menu.close()
 
-							ESX.UI.Menu.Open(
-								'default', GetCurrentResourceName(), 'vehicle_spawner',
-								{
-									title    = _U('service_vehicle'),
-									align    = 'top-left',
-									elements = elements,
-								},
-								function(data, menu)
+						local vehicleProps = data.current.value
 
-									menu.close()
-
-									local vehicleProps = data.current.value
-
-									ESX.Game.SpawnVehicle(vehicleProps.model, Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(vehicle)
-										ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
-										local playerPed = GetPlayerPed(-1)
-										TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)
-									end)
-
-									TriggerServerEvent('esx_society:removeVehicleFromGarage', 'mechanic', vehicleProps)
-
-								end,
-								function(data, menu)
-									menu.close()
-								end
-							)
-
-						end, 'mechanic')
-
-					else
-
-						local elements = {
-							{label = _U('flat_bed'),  value = 'flatbed3'},
-							{label = _U('tow_truck'), value = 'towtruck'}
-						}
-
-						if Config.EnablePlayerManagement and PlayerData.job ~= nil and
-							(PlayerData.job.grade_name == 'boss' or PlayerData.job.grade_name == 'chef' or PlayerData.job.grade_name == 'experimente') then
-							table.insert(elements, {label = 'SlamVan', value = 'slamvan3'})
-						end
-
-						ESX.UI.Menu.CloseAll()
-
-						ESX.UI.Menu.Open(
-							'default', GetCurrentResourceName(), 'spawn_vehicle',
-							{
-								title    = _U('service_vehicle'),
-								align    = 'top-left',
-								elements = elements
-							},function(data, menu)
-					for i=1, #elements, 1 do
-						if Config.MaxInService == -1 then
-							ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 90.0, function(vehicle)
+						ESX.Game.SpawnVehicle(vehicleProps.model, Config.Zones.VehicleSpawnPoint.Pos, 270.0,
+							function(vehicle)
+								ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
 								local playerPed = GetPlayerPed(-1)
 								TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
 							end)
-						break
+
+						TriggerServerEvent('esx_society:removeVehicleFromGarage', 'mechanic', vehicleProps)
+
+					end, function(data, menu)
+						menu.close()
+					end)
+
+				end, 'mechanic')
+
+			else
+
+				local elements = {{
+					label = _U('flat_bed'),
+					value = 'flatbed3'
+				}, {
+					label = _U('tow_truck'),
+					value = 'towtruck'
+				}}
+
+				if Config.EnablePlayerManagement and PlayerData.job ~= nil and (PlayerData.job.grade_name == 'boss' or PlayerData.job.grade_name == 'chef' or PlayerData.job.grade_name == 'experimente') then
+					table.insert(elements, {
+						label = 'SlamVan',
+						value = 'slamvan3'
+					})
+				end
+
+				ESX.UI.Menu.CloseAll()
+
+				ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'spawn_vehicle', {
+					title = _U('service_vehicle'),
+					align = 'top-left',
+					elements = elements
+				}, function(data, menu)
+					for i = 1, #elements, 1 do
+						if Config.MaxInService == -1 then
+							ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 90.0,
+								function(vehicle)
+									local playerPed = GetPlayerPed(-1)
+									TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
+								end)
+							break
 						else
-							ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 90.0, function(vehicle)
-								local playerPed = GetPlayerPed(-1)
-								TaskWarpPedIntoVehicle(playerPed,  vehicle, -1)
-							end)
+							ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 90.0,
+								function(vehicle)
+									local playerPed = GetPlayerPed(-1)
+									TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
+								end)
 							break
 						end
 					end
 					menu.close()
-				end,
-				function(data, menu)
+				end, function(data, menu)
 					menu.close()
 					OpenMecanoActionsMenu()
 				end)
 
-					end
 			end
+		end
 
 		if data.current.value == 'cloakroom' then
-		
-
-			
-			--[[
-			local serviceOk = 'waiting'
-
-			ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-				if not isInService then
-
-					ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
-						if not canTakeService then
-							ESX.ShowNotification(_U('service_max', inServiceCount, maxInService))
-						else
-
-							serviceOk = true
-							playerInService = true
-
-							local notification = {
-								title    = _U('service_anonunce'),
-								subject  = '',
-								msg      = _U('service_in_announce', GetPlayerName(PlayerId())),
-								iconType = 1
-							}
-	
-							TriggerServerEvent('esx_service:notifyAllInService', notification, 'mechanic')
-							ESX.ShowNotification(_U('service_in'))
-						end
-					end, 'mechanic')
-
-				else
-					serviceOk = true
-				end
-			end, 'mechanic')
-
-			while type(serviceOk) == 'string' do
-				Citizen.Wait(5)
-			end
-
-			-- if we couldn't enter service don't let the player get changed
-			if not serviceOk then
-				return
-			end
-
-			]]--
-
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 				if skin.sex == 0 then
 					TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_male)
@@ -318,64 +290,35 @@ function OpenMecanoActionsMenu()
 					TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_female)
 				end
 			end)
-			
 		end
 
 		if data.current.value == 'cloakroom2' then
-			
-			--[[ 
-			if Config.MaxInService ~= -1 then
-
-			ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-					if isInService then
-
-						playerInService = false
-
-						local notification = {
-							title    = _U('service_anonunce'),
-							subject  = '',
-							msg      = _U('service_out_announce', GetPlayerName(PlayerId())),
-							iconType = 1
-						}
-
-						TriggerServerEvent('esx_service:notifyAllInService', notification, 'mechanic')
-						TriggerServerEvent('esx_service:disableService', 'mechanic')
-						ESX.ShowNotification(_U('service_out'))
-					end
-				end, 'mechanic')
-			end
-]]--
-
 			setUniform("clear_wear", playerped)
-			
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 				TriggerEvent('skinchanger:loadSkin', skin)
 			end)
-			
 		end
 
-			if data.current.value == 'put_stock' then
-				OpenPutStocksMenu()
-			end
-
-			if data.current.value == 'get_stock' then
-				OpenGetStocksMenu()
-			end
-
-			if data.current.value == 'boss_actions' then
-				TriggerEvent('esx_society:openBossMenu', 'mechanic', function(data, menu)
-					menu.close()
-				end)
-			end
-
-		end,
-		function(data, menu)
-			menu.close()
-			CurrentAction     = 'mecano_actions_menu'
-			CurrentActionMsg  = _U('open_actions')
-			CurrentActionData = {}
+		if data.current.value == 'put_stock' then
+			OpenPutStocksMenu()
 		end
-	)
+
+		if data.current.value == 'get_stock' then
+			OpenGetStocksMenu()
+		end
+
+		if data.current.value == 'boss_actions' then
+			TriggerEvent('esx_society:openBossMenu', 'mechanic', function(data, menu)
+				menu.close()
+			end)
+		end
+
+	end, function(data, menu)
+		menu.close()
+		CurrentAction = 'mecano_actions_menu'
+		CurrentActionMsg = _U('open_actions')
+		CurrentActionData = {}
+	end)
 end
 
 function OpenMecanoHarvestMenu()
@@ -1077,7 +1020,7 @@ AddEventHandler('esx_mecanojob:hasEnteredEntityZone', function(entity)
 
 	local playerPed = GetPlayerPed(-1)
 
-	if PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and not IsPedInAnyVehicle(playerPed, false) then
+	if PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and playerInService and not IsPedInAnyVehicle(playerPed, false) then
 		CurrentAction     = 'remove_entity'
 		CurrentActionMsg  = _U('press_remove_obj')
 		CurrentActionData = {entity = entity}
@@ -1175,7 +1118,7 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Wait(0)
-		if PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' then
+		if PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and playerInService then
 			local coords = GetEntityCoords(GetPlayerPed(-1))
 			for k,v in pairs(Config.Zones) do
 				if(v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
@@ -1190,7 +1133,7 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Wait(0)
-		if PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' then
+		if PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and playerInService then
 			local coords      = GetEntityCoords(GetPlayerPed(-1))
 			local isInMarker  = false
 			local currentZone = nil
@@ -1269,93 +1212,91 @@ end)
 
 -- Key Controls
 Citizen.CreateThread(function()
-		while true do
-				Citizen.Wait(0)
+	while true do
+		Citizen.Wait(0)
 
-				if CurrentAction ~= nil then
+		if CurrentAction ~= nil then
 
-					SetTextComponentFormat('STRING')
-					AddTextComponentString(CurrentActionMsg)
-					DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+			SetTextComponentFormat('STRING')
+			AddTextComponentString(CurrentActionMsg)
+			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-					if IsControlJustReleased(0, Keys['E']) and PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' then
+			if IsControlJustReleased(0, Keys['E']) and PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and playerInService then
 
-						if CurrentAction == 'mecano_actions_menu' then
-								OpenMecanoActionsMenu()
-						end
-
-						if CurrentAction == 'mecano_harvest_menu' then
-								OpenMecanoHarvestMenu()
-						end
-
-						if CurrentAction == 'mecano_craft_menu' then
-								OpenMecanoCraftMenu()
-						end
-			
-			if CurrentAction == 'mecano_repair_car' then
-								RepairCar()
-						end
-
-						if CurrentAction == 'delete_vehicle' then
-
-							if Config.EnableSocietyOwnedVehicles then
-
-								local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
-								TriggerServerEvent('esx_society:putVehicleInGarage', 'mechanic', vehicleProps)
-
-							else
-
-								if
-									GetEntityModel(vehicle) == GetHashKey('flatbed')   or
-									GetEntityModel(vehicle) == GetHashKey('towtruck') or
-									GetEntityModel(vehicle) == GetHashKey('slamvan3')
-								then
-									TriggerServerEvent('esx_service:disableService', 'mechanic')
-								end
-
-							end
-
-							ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
-						end
-
-						if CurrentAction == 'remove_entity' then
-							DeleteEntity(CurrentActionData.entity)
-						end
-
-						CurrentAction = nil
-					end
+				if CurrentAction == 'mecano_actions_menu' then
+					OpenMecanoActionsMenu()
 				end
 
-				if IsControlJustReleased(0, Keys['F6']) and not IsDead and PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' then
-						OpenMobileMecanoActionsMenu()
+				if CurrentAction == 'mecano_harvest_menu' then
+					OpenMecanoHarvestMenu()
 				end
 
-				if IsControlJustReleased(0, Keys['DELETE']) and not IsDead and PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' then
+				if CurrentAction == 'mecano_craft_menu' then
+					OpenMecanoCraftMenu()
+				end
 
-					if NPCOnJob then
+				if CurrentAction == 'mecano_repair_car' then
+					RepairCar()
+				end
 
-						if GetGameTimer() - NPCLastCancel > 5 * 60000 then
-							StopNPCJob(true)
-							NPCLastCancel = GetGameTimer()
-						else
-							ESX.ShowNotification(_U('wait_five'))
-						end
+				if CurrentAction == 'delete_vehicle' then
+
+					if Config.EnableSocietyOwnedVehicles then
+
+						local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
+						TriggerServerEvent('esx_society:putVehicleInGarage', 'mechanic', vehicleProps)
 
 					else
 
-						local playerPed = GetPlayerPed(-1)
-
-						if IsPedInAnyVehicle(playerPed, false) and IsVehicleModel(GetVehiclePedIsIn(playerPed, false), GetHashKey("flatbed")) then
-							StartNPCJob()
-						else
-							ESX.ShowNotification(_U('must_in_flatbed'))
+						if GetEntityModel(vehicle) == GetHashKey('flatbed') or GetEntityModel(vehicle) ==
+							GetHashKey('towtruck') or GetEntityModel(vehicle) == GetHashKey('slamvan3') then
+							TriggerServerEvent('esx_service:disableService', 'mechanic')
 						end
 
 					end
 
+					ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
 				end
 
+				if CurrentAction == 'remove_entity' then
+					DeleteEntity(CurrentActionData.entity)
+				end
+
+				CurrentAction = nil
+			end
 		end
+
+		if IsControlJustReleased(0, Keys['F6']) and not IsDead and PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and playerInService then
+			OpenMobileMecanoActionsMenu()
+		end
+
+		if IsControlJustReleased(0, Keys['DELETE']) and not IsDead and PlayerData.job ~= nil and PlayerData.job.name == 'mechanic' and playerInService then
+
+			if NPCOnJob then
+
+				if GetGameTimer() - NPCLastCancel > 5 * 60000 then
+					StopNPCJob(true)
+					NPCLastCancel = GetGameTimer()
+				else
+					ESX.ShowNotification(_U('wait_five'))
+				end
+
+			else
+
+				local playerPed = GetPlayerPed(-1)
+
+				if IsPedInAnyVehicle(playerPed, false) and
+					IsVehicleModel(GetVehiclePedIsIn(playerPed, false), GetHashKey("flatbed")) then
+					StartNPCJob()
+				else
+					ESX.ShowNotification(_U('must_in_flatbed'))
+				end
+
+			end
+
+		end
+
+	end
 end)
 
 AddEventHandler('esx:onPlayerDeath', function()
@@ -1400,3 +1341,17 @@ function OutfitsMenu()
 		end)
 	end)
 end
+
+RegisterNetEvent("esx_offservice:enteredService")
+AddEventHandler("esx_offservice:enteredService", function(job)
+	if PlayerData.job and PlayerData.job.name == 'mechanic' then
+		playerInService = true
+	end 
+end)
+
+RegisterNetEvent("esx_offservice:disabledService")
+AddEventHandler("esx_offservice:disabledService", function(job)
+	if PlayerData.job and PlayerData.job.name == 'mechanic' then
+		playerInService = false
+	end 
+end)

@@ -143,82 +143,12 @@ function OpenCloakroom()
 		}
 	}, function(data, menu)
 		if data.current.value == 'wear_citizen' then
-
-			if Config.MaxInService ~= -1 then
-
-				-- Arnedo5 | servicio
-				--[[ 
-				ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-					if isInService then
-
-						playerInService = false
-
-						local notification = {
-							title    = _U('service_anonunce'),
-							subject  = '',
-							msg      = _U('service_out_announce', GetPlayerName(PlayerId())),
-							iconType = 1
-						}
-
-						TriggerServerEvent('esx_service:notifyAllInService', notification, 'taxi')
-						TriggerServerEvent('esx_service:disableService', 'taxi')
-						ESX.ShowNotification(_U('service_out'))
-					end
-				end, 'taxi')
-				]]--
-			end
-
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 				TriggerEvent('skinchanger:loadSkin', skin)
 			end)
 		elseif Config.MaxInService ~= -1 and data.current.value == 'wear_work' then
 
 			local serviceOk = 'waiting'
-
-			-- Arnedo5 | servicio
-			--[[ 
-			ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
-				if not isInService then
-
-					ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
-						if not canTakeService then
-							ESX.ShowNotification(_U('service_max', inServiceCount, maxInService))
-						else
-
-							serviceOk = true
-							playerInService = true
-
-							local notification = {
-								title    = _U('service_anonunce'),
-								subject  = '',
-								msg      = _U('service_in_announce', GetPlayerName(PlayerId())),
-								iconType = 1
-							}
-	
-							TriggerServerEvent('esx_service:notifyAllInService', notification, 'taxi')
-							TriggerServerEvent('esx_jobs:dutyTime', Config.DutyWebhook, 'started')
-							
-							ESX.ShowNotification(_U('service_in'))
-						end
-					end, 'taxi')
-
-				else
-					serviceOk = true
-				end
-			end, 'taxi')
-			
-
-
-			while type(serviceOk) == 'string' do
-				Citizen.Wait(5)
-			end
-
-			-- if we couldn't enter service don't let the player get changed
-			if not serviceOk then
-				return
-			end
-			]]--
-
 			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 				if skin.sex == 0 then
 					TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_male)
@@ -420,7 +350,7 @@ function OpenMobileTaxiActionsMenu()
 			if OnJob then
 				StopTaxiJob()
 			else
-				if ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'taxi' then
+				if ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'taxi' and playerInService then
 					local playerPed = PlayerPedId()
 					local vehicle   = GetVehiclePedIsIn(playerPed, false)
 
@@ -631,7 +561,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
-		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' and playerInService then
 			local coords = GetEntityCoords(PlayerPedId())
 			local isInMarker, currentZone = false
 
@@ -838,7 +768,7 @@ Citizen.CreateThread(function()
 		if CurrentAction and not IsDead then
 			ESX.ShowHelpNotification(CurrentActionMsg)
 
-			if IsControlJustReleased(0, Keys['E']) and ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+			if IsControlJustReleased(0, Keys['E']) and ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' and playerInService then
 				if CurrentAction == 'taxi_actions_menu' then
 					OpenTaxiActionsMenu()
 				elseif CurrentAction == 'cloakroom' then
@@ -853,7 +783,7 @@ Citizen.CreateThread(function()
 			end
 		end
 
-		if IsControlJustReleased(0, Keys['F6']) and IsInputDisabled(0) and not IsDead and Config.EnablePlayerManagement and ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+		if IsControlJustReleased(0, Keys['F6']) and IsInputDisabled(0) and not IsDead and Config.EnablePlayerManagement and ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' and playerInService then
 			OpenMobileTaxiActionsMenu()
 		end
 	end
@@ -865,4 +795,18 @@ end)
 
 AddEventHandler('playerSpawned', function(spawn)
 	IsDead = false
+end)
+
+RegisterNetEvent("esx_offservice:enteredService")
+AddEventHandler("esx_offservice:enteredService", function(job)
+	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+		playerInService = true
+	end 
+end)
+
+RegisterNetEvent("esx_offservice:disabledService")
+AddEventHandler("esx_offservice:disabledService", function(job)
+	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+		playerInService = false
+	end 
 end)

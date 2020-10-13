@@ -653,7 +653,7 @@ AddEventHandler('esx_ambulancejob:hasEnteredMarker', function(hospital, part, pa
 		CurrentActionData = {to = travelItem.To.coords, heading = travelItem.To.heading}
 	end
 	
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
+	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' and playerInService then
 		if part == 'AmbulanceActions' then
 			CurrentAction = part
 			CurrentActionMsg = _U('actions_prompt')
@@ -756,7 +756,7 @@ Citizen.CreateThread(function()
 
 			end
 
-		elseif ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'ambulance' and not IsDead then
+		elseif ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'ambulance' and playerInService and not IsDead then
 			if IsControlJustReleased(0, Keys['F6']) then
 				OpenMobileAmbulanceActionsMenu()
 			end
@@ -1754,3 +1754,24 @@ function loadAnimDict(dict)
 		Citizen.Wait(5)
 	end
 end
+
+function openAmbulance()
+	if PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' and playerInService and (GetGameTimer() - GUI.Time) > 150 then
+		OpenMobileAmbulanceActionsMenu()
+		GUI.Time = GetGameTimer()
+	end
+end
+
+RegisterNetEvent("esx_offservice:enteredService")
+AddEventHandler("esx_offservice:enteredService", function(job)
+	if PlayerData.job and PlayerData.job.name == 'ambulance' then
+		playerInService = true
+	end 
+end)
+
+RegisterNetEvent("esx_offservice:disabledService")
+AddEventHandler("esx_offservice:disabledService", function(job)
+	if PlayerData.job and PlayerData.job.name == 'ambulance' then
+		playerInService = false
+	end 
+end)

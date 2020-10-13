@@ -40,5 +40,3 @@ dependencies {
 exports {
   'openTaxi'
 }
-
-

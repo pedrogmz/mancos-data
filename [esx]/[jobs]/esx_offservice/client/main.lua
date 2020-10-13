@@ -92,6 +92,8 @@ function EnterService(job)
 
 		inService = true
 
+		TriggerEvent("esx_offservice:enteredService", job)
+
 	end, job)
 end
 
@@ -107,6 +109,8 @@ function EndService(job)
 	TriggerServerEvent('esx_service:notifyAllInService', notification, job)
 
 	inService = false
+
+	TriggerEvent("esx_offservice:disabledService", job)
 
 	TriggerServerEvent('esx_service:disableService', job)
 	ESX.ShowNotification(_U('service_out'))
