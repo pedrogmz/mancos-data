@@ -22,21 +22,33 @@ Config.SharkPrice = {a = 4000, b = 6000} --Will get dirty money
 Config.Sell = {{
 	pos = vec3(-3251.2, 991.5, 11.49),
 	type = "fish",
-	sellText = "Fish Dealer",
-	blip = 356,
-	colour = 17
+	sellText = "Comprador de Peces",
+	Hide = false,
+	BlipType = 356,
+	BlipColour = 17,
+	MarkerSize = vec3(2.0, 2.0, 2.0),
+	MarkerColor = {r = 0, g = 70, b = 250, a = 100},
+	MarkerType = 25,
 }, {
-	pos = vec3(3804.0, 4443.3, 3.0),
+	pos = vec3(3804.0, 4443.3, 3.20),
 	type = "turtle",
-	sellText = "Sea Turtle Dealer",
-	blip = 68,
-	colour = 49
+	sellText = "Comprador de Tortugas",
+	Hide = false,
+	BlipType = 68,
+	BlipColour = 49,
+	MarkerSize = vec3(2.0, 2.0, 2.0),
+	MarkerColor = {r = 255, g = 0, b = 0, a = 100},
+	MarkerType = 25,
 }, {
-	pos = vec3(2517.6, 4218.0, 38.8),
+	pos = vec3(2517.6, 4218.0, 39.1),
 	type = "shark",
-	sellText = "Shark Dealer",
-	blip = 68,
-	colour = 49
+	sellText = "Comprador de Tiburones",
+	Hide = true,
+	BlipType = 68,
+	BlipColour = 49,
+	MarkerSize = vec3(1.0, 1.0, 1.0),
+	MarkerColor = {r = 255, g = 0, b = 0, a = 30},
+	MarkerType = 25,
 }}
 
 --------------------------------------------------------
