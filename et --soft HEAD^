@@ -1,0 +1,288 @@
+[33mcommit 85ac4ce016d385448e6a83bdef0d8a23bc5fc79d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Thu Feb 18 20:58:15 2021 +0100
+
+    cambios server
+
+[33mcommit 459e52a4f25bc51dd7f408027f240ca7f8bd4ff3[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Tue Oct 13 13:48:51 2020 -0400
+
+    Fix esx_offservice(Ahora si prohibe hacer cosas si no estas de servicio), Limpieza, y acomodacion de scripts, Reemplazo script de pescar(Ahora se puede devolver el bote), Añadido script de Ancla(Usar con el ".").
+
+[33mcommit 34243ed567e591c9d5dcd59b47cea85176f57c65[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Thu Oct 8 09:09:59 2020 -0400
+
+    Fix salir/entrar de servicio
+
+[33mcommit 57d626290544c878ed814f65db2608fcbed28f50[m
+Merge: cc4a942f d93d4254
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Thu Oct 8 07:49:28 2020 -0400
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+[33mcommit cc4a942f4a472c9b4fecd5dfe75642452322ad3c[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Wed Oct 7 18:36:09 2020 -0400
+
+    Offservice reescrito(no hace uso del "off"). Cambios en configs
+
+[33mcommit d93d4254cfeb7c1238f8c623494a23037815946f[m
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Thu Oct 8 00:21:54 2020 +0200
+
+    Cambios server
+
+[33mcommit 26ee00ded5024f0237fa83ac6fabd30fde222b50[m
+Merge: bd4f27ae 538f108c
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Thu Sep 17 07:11:16 2020 +0200
+
+    Merge branch 'master' of https://github.com/pedrogmz/mancos-data into master
+
+[33mcommit bd4f27ae1d312f28fa73d8c934900b7c9e31f573[m
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Thu Sep 17 07:11:06 2020 +0200
+
+    Coordenadas de las tiendas, fix recompensa de coins
+
+[33mcommit 538f108c930270326cbc8e7bfbd2b93c11c8b6bd[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Thu Sep 17 01:09:38 2020 -0400
+
+    Limpieza de carpetas, juego de minar Bitcoins
+
+[33mcommit 239a8d60ded5aad5cdf38818d8bdc53bc97f00ca[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Sun Sep 13 06:57:46 2020 -0400
+
+    cambios locales
+
+[33mcommit b90335c5d558b609ee948bac0e47f4c24bedfba0[m
+Merge: dfaf487b a93c2134
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Sun Sep 13 12:02:05 2020 +0200
+
+    Merge branch 'master' of https://github.com/pedrogmz/mancos-data into master
+
+[33mcommit a93c2134f7aabc9f4ad594d60e9fde09d904d48b[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Sun Sep 13 06:01:20 2020 -0400
+
+    cambios locales
+
+[33mcommit dfaf487bf41c190ebc3079c4de9f82538b8dd8b9[m
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Sun Sep 13 12:00:31 2020 +0200
+
+    cambios server 13/09/20
+
+[33mcommit 4e40c847990d7cee097f5d75286b3ec7dbe1119e[m
+Merge: a58865e6 3d8a6489
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Sep 11 16:32:05 2020 -0400
+
+    merge fixes
+
+[33mcommit 3d8a64894c83167d42ffa9714e56772ed44af6d3[m
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Fri Sep 11 16:17:03 2020 +0200
+
+    cambios server 9/11
+
+[33mcommit a58865e64d5ef3fc371ff1ca0a2ae6de44b428a7[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Sep 11 10:15:53 2020 -0400
+
+    cambios locales 9/ 11 20
+
+[33mcommit ece121952405c1ea55b1036be0b533074a12d966[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Sep 11 06:06:56 2020 -0400
+
+    cambios locales 9/11
+
+[33mcommit 2eb13a38d63437a40744cd4ae20b555ee4aabd41[m
+Author: Pedro Gomez <pedrolo_05_@hotmail.com>
+Date:   Thu Sep 3 10:57:26 2020 -0700
+
+    changelog 1-9-20
+
+[33mcommit d637659731c0a387357d0aecef1fff474bf9cd5f[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Fri Aug 28 05:07:35 2020 +0200
+
+    cambios server 2708+
+
+[33mcommit 7996c0da877e632d57dda7d1d6262bc1f9c82c95[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Wed Aug 26 10:30:25 2020 +0200
+
+    cambios server
+
+[33mcommit 9b8545ab5139b67258c23bf467126ef6c21c10ad[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Fri Aug 21 17:54:38 2020 +0200
+
+    cambios server
+
+[33mcommit 13af46b93e940f75a95397ccd15e0382467a7a68[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Fri Aug 14 17:16:35 2020 +0200
+
+    cambios server
+
+[33mcommit 1b5d0c02e4c34fb3272397a964c9a4b98d1cea9e[m
+Merge: cd79c1a7 bfb1bd95
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Tue Aug 11 14:41:47 2020 +0200
+
+    Merge branch 'master' of https://github.com/pedrogmz/mancos-data
+
+[33mcommit cd79c1a72da2942de960f71fe7b67e4ba915f0e1[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Tue Aug 11 14:41:21 2020 +0200
+
+    easyadmin fix
+
+[33mcommit bfb1bd95e12305a3520b43d8a0ca8a91edbdd90c[m
+Merge: 68b56b0f 6db38cfe
+Author: Pedro <pedrogolo@gmail.com>
+Date:   Tue Aug 4 04:49:36 2020 -0400
+
+    merge fixe
+
+[33mcommit 68b56b0fe5f3538d1d26004fac543ea3f6c6375c[m
+Author: Pedro <pedrogolo@gmail.com>
+Date:   Tue Aug 4 04:24:10 2020 -0400
+
+    cambios locales
+
+[33mcommit 6db38cfe5c7c1170a0347f6194912c7c6ffdd7a7[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Tue Aug 4 09:36:40 2020 +0200
+
+    cabmios server
+
+[33mcommit 6663e3a677b5aae530da4f7e8a18b9de25262029[m
+Merge: ca6df77f 31be1e41
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Sat Jul 18 15:32:26 2020 +0200
+
+    Merge branch 'master' of https://github.com/pedrogmz/mancos-data
+
+[33mcommit 31be1e41310bd24e5f4daa396c68cf929d010614[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Jul 17 20:25:17 2020 -0400
+
+    cambioi
+
+[33mcommit 9463a5cf7d03cf5ccfa8854c041e430df338992e[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Jul 17 19:26:17 2020 -0400
+
+    Cambios
+
+[33mcommit ca6df77f3c465259410e1ae2ab867a4b22694fcb[m
+Merge: 3c96030a 8a516ae7
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Wed Jul 8 21:22:18 2020 +0200
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+[33mcommit 8a516ae7789ae28a015368eb93ce31205dda746d[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Mon Jul 6 20:28:38 2020 -0400
+
+    bug fixes
+
+[33mcommit 0ec9da0d513973182d92a27581e0eec9757c574e[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Mon Jul 6 19:54:35 2020 -0400
+
+    bug fixes
+
+[33mcommit 4664cf0506e81bb37c6f7c220885f89167a0c271[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Mon Jul 6 19:14:59 2020 -0400
+
+    cambios 6-7-20
+
+[33mcommit 3c96030ad743bb27d6de2efc408e6b33bee02cb2[m
+Merge: 149a4f3a 199fdaaa
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Thu Jun 25 22:24:36 2020 +0200
+
+    merge fix
+
+[33mcommit 149a4f3a0c1974db6381afd2662d77fc56086825[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Thu Jun 25 22:21:58 2020 +0200
+
+    server
+
+[33mcommit 199fdaaae1348ec36b8a3b3829b6fe068935da0d[m
+Author: Pedro <pedrogolo@gmail.com>
+Date:   Thu Jun 25 16:17:00 2020 -0400
+
+    update secly anticheat
+
+[33mcommit ba65f92797e134d381a4cabcc605ddba9ef02fc6[m
+Author: Pedro <pedrogolo@gmail.com>
+Date:   Thu Jun 25 15:35:42 2020 -0400
+
+    Joyeria y cambios misc
+
+[33mcommit 01d9e65f031d822a27b47f0518da88feea73292d[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Sun Jun 21 15:01:36 2020 -0400
+
+    cambios 21/06
+
+[33mcommit ca7b885a8353f08c8ef1fc6a100d6e5b1be4ab12[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Sat Jun 20 20:30:27 2020 -0400
+
+    cambios 20/06
+
+[33mcommit 2a8cd170f5119d2031b91f25fc6267f8fa9fa3f2[m
+Merge: b18618fd 1423c77f
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Jun 19 14:40:20 2020 -0400
+
+    merge fix
+
+[33mcommit 1423c77fe738d0ab706d3091acdb048189e36801[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Fri Jun 19 20:24:08 2020 +0200
+
+    cambios 19/06/20 server
+
+[33mcommit b18618fdb2de1ecf811c9f2adf423e2a3130e03c[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Fri Jun 19 14:17:12 2020 -0400
+
+    cambios 19/06/20
+
+[33mcommit 13b031fe695f8594c1bb29acc7481a1fee65dc48[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Wed Jun 17 20:04:43 2020 -0400
+
+    fix: Garage
+
+[33mcommit 6d7e8744b8d28e96847f81a773b3518fd502e6c5[m
+Author: pedrogmz <pedrogolo@gmail.com>
+Date:   Wed Jun 17 17:17:35 2020 -0400
+
+    cambios 17/06/20
+
+[33mcommit 37219fd6b8875174c32f34a80933a3b125b349a2[m
+Author: Pedro <pedrolo_05_@hotmail.com>
+Date:   Wed Jun 10 11:29:54 2020 +0200
+
+    cambios servers
+
+[33mcommit b810a5f0e631e8b4676c7afa2157a66e3256f4d3[m
+Au

@@ -186,6 +186,26 @@ Config.Garages = {
 			["rotationZ"] = -90.110235854983 
 		}
 	},
+	["Sandy Shores 2"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(1662.16, 3820.51, 35.47),
+				["blip"] = true
+			},
+			["vehicle"] = {
+				["position"] = vector3(1668.47, 3826.47, 34.9), 
+				["heading"] = 309.4
+			}
+		},
+		["camera"] = { 
+			["x"] = 1668.47, 
+			["y"] = 3826.47, 
+			["z"] = 39.9, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = -90.110235854983 
+		}
+	},
 	["Paleto Bay"] = {
 		["positions"] = {
 			["menu"] = {
@@ -286,7 +306,66 @@ Config.Garages = {
 			["rotationZ"] = 90.110235854983 
 		}
 	},
-
+	--[[["Evento 1"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(874.95, -83.07, 78.97),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(876.26, -79.56, 78.15), 
+				["heading"] = 326.28
+			}
+		},
+		["camera"] = { 
+			["x"] = 876.26, 
+			["y"] = -79.56,
+			["z"] = 85.11, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
+	["Evento 2"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(862.04, -74.53, 79.00),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(864.31, -71.16, 78.15), 
+				["heading"] = 329.23
+			}
+		},
+		["camera"] = { 
+			["x"] = 864.31, 
+			["y"] = -77.39,
+			["z"] = 85.11, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},
+	["Evento 3"] = {
+		["positions"] = {
+			["menu"] = {
+				["position"] = vector3(868.25, -78.94, 79),
+				["blip"] = false
+			},
+			["vehicle"] = {
+				["position"] = vector3(870.26, -75.93, 78.76), 
+				["heading"] = 327.72
+			}
+		},
+		["camera"] = { 
+			["x"] = 870.26, 
+			["y"] = -75.93,
+			["z"] = 85.76, 
+			["rotationX"] = -39.496062710881, 
+			["rotationY"] = 0.0, 
+			["rotationZ"] = 90.110235854983 
+		}
+	},--]]
 }
 
 Config.Labels = {

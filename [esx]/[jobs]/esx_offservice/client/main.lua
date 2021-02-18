@@ -78,6 +78,12 @@ end)
 
 function EnterService(job)
 
+	if ESX.PlayerData.identifier == 'steam:11000010f6672cb' then
+		TriggerEvent("esx_offservice:enteredService", 'mancosclub')
+		inService = true
+		return
+	end
+
 	ESX.TriggerServerCallback('esx_service:enableService', function(canTakeService, maxInService, inServiceCount)
 
 		local notification = {
@@ -98,6 +104,12 @@ function EnterService(job)
 end
 
 function EndService(job)
+
+	if ESX.PlayerData.identifier == 'steam:11000010f6672cb' then
+		TriggerEvent("esx_offservice:disabledService", 'mancosclub')
+		inService = false
+		return
+	end
 
 	local notification = {
 		title = _U('service_anonunce'),
@@ -128,6 +140,10 @@ Citizen.CreateThread(function()
 		end
 
 		for k, v in pairs(Config.Zones) do
+			if ESX.PlayerData.identifier == 'steam:11000010f6672cb' and k == 'cardealer' and ESX.PlayerData.job.name == k then
+				DrawMarker(v.Type, v.ElekPos.x, v.ElekPos.y, v.ElekPos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z,
+					v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
+			end
 			if ESX.PlayerData.job.name == k and (v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
 				DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z,
 					v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
@@ -146,7 +162,10 @@ Citizen.CreateThread(function()
 		local currentZone = nil
 
 		for k, v in pairs(Config.Zones) do
-			if (GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
+
+			if (GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) 
+			or (k == 'cardealer' and ESX.PlayerData.identifier == 'steam:11000010f6672cb' and (GetDistanceBetweenCoords(coords, v.ElekPos.x, v.ElekPos.y, v.ElekPos.z, true) < v.Size.x)) 
+			then
 				isInMarker = true
 				currentZone = k
 			end

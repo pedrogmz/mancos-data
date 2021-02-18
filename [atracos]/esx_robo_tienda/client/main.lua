@@ -104,8 +104,7 @@ Citizen.CreateThread(function()
 			if distance < Config.Marker.DrawDistance then
 				if not holdingUp then
 					DrawMarker(Config.Marker.Type, storePos.x, storePos.y, storePos.z - 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Marker.x, Config.Marker.y, Config.Marker.z, Config.Marker.r, Config.Marker.g, Config.Marker.b, Config.Marker.a, false, false, 2, false, false, false, false)
-
-					if distance < 0.5 then
+					if distance < 1.1 then
 						ESX.ShowHelpNotification(_U('press_to_rob', v.nameOfStore))
 
 						if IsControlJustReleased(0, Keys['E']) then

@@ -1,9 +1,9 @@
 local JVS = JAM.VehicleShop
 
 ESX.RegisterServerCallback('mancos_vehshop_premium:GetVehList', function(source, cb)
-	local inShop = MySQL.Sync.fetchAll("SELECT * FROM vehicles_p WHERE inshop=@inshop",{['@inshop'] = 1})
+	local inShop = MySQL.Sync.fetchAll("SELECT * FROM vehicles_p WHERE inshop=@inshop ORDER BY name",{['@inshop'] = 1})
 	local inPort = MySQL.Sync.fetchAll("SELECT * FROM vehicles_p WHERE inshop=@inshop",{['@inshop'] = 0})
-	local inDisplay = MySQL.Sync.fetchAll("SELECT * FROM vehicles_display_p")
+	local inDisplay = MySQL.Sync.fetchAll("SELECT * FROM vehicles_display_p ORDER BY name")
 	cb(inShop,inDisplay,inPort,vehCats)
 end)
 

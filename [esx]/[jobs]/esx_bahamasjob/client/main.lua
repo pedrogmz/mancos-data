@@ -897,7 +897,7 @@ end
 
 AddEventHandler('esx_bahamasjob:hasEnteredMarker', function(zone)
  
-		if zone == 'BossActions' and IsGradeBoss() then
+		if zone == 'BossActions' or zone == 'BossActions2' and IsGradeBoss() then
 			CurrentAction     = 'menu_boss_actions'
 			CurrentActionMsg  = _U('open_bossmenu')
 			CurrentActionData = {}

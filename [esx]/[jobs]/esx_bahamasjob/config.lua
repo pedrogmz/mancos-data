@@ -5,7 +5,7 @@ Config.EnablePlayerManagement     = true
 Config.EnableSocietyOwnedVehicles = false
 Config.EnableVaultManagement      = true
 Config.EnableHelicopters          = false
-Config.EnableMoneyWash            = false
+Config.EnableMoneyWash            = true
 Config.MaxInService               = -1
 Config.Locale                     = 'es'
 
@@ -99,6 +99,14 @@ Config.Zones = {
         Color = { r = 0, g = 100, b = 0 },
         Type  = 27,
     },
+
+	BossActions2 = {
+		Pos   = { x = 1407.16, y = 1147.75, z = 113.33 },
+		Size  = { x = 1.5, y = 1.5, z = 1.0 },
+		Color = { r = 92, g = 16, b = 140 },
+        Type  = 23,
+    },
+
 
 -----------------------
 -------- SHOPS --------

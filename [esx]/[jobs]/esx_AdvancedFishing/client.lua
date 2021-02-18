@@ -24,15 +24,17 @@ local bait = "none"
 local SellWait = false
 
 for _, v in ipairs(Config.Sell) do
-	local blip = AddBlipForCoord(v.pos)
-	SetBlipSprite (blip, v.blip)
-	SetBlipDisplay(blip, 4)
-	SetBlipScale  (blip, 0.8)
-	SetBlipColour (blip, v.colour)
-	SetBlipAsShortRange(blip, true)
-	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString(v.sellText)
-	EndTextCommandSetBlipName(blip)
+	if not v.Hide then
+		local blip = AddBlipForCoord(v.pos)
+		SetBlipSprite(blip, v.BlipType)
+		SetBlipDisplay(blip, 4)
+		SetBlipScale(blip, 0.8)
+		SetBlipColour(blip, v.BlipColour)
+		SetBlipAsShortRange(blip, true)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString(v.sellText)
+		EndTextCommandSetBlipName(blip)
+	end
 end
 			
 for _, info in pairs(Config.MarkerZones) do
@@ -40,7 +42,7 @@ for _, info in pairs(Config.MarkerZones) do
 	SetBlipSprite(info.blip, 455)
 	SetBlipDisplay(info.blip, 4)
 	SetBlipScale(info.blip, 0.8)
-	SetBlipColour(info.blip, 20)
+	SetBlipColour(info.blip, 7)
 	SetBlipAsShortRange(info.blip, true)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString("Alquiler de barcos")
@@ -86,10 +88,10 @@ Citizen.CreateThread(function()
 		-- Sell markers
 		for k, v in ipairs(Config.Sell) do
 			if #(pedCoords - v.pos) < 100.0 then
-				DrawMarker(1, v.pos, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 3.0, 3.0, 1.0, 0, 255, 0, 100, false, true, 2, false, false, false, false)
+				DrawMarker(v.MarkerType, v.pos, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.MarkerSize, v.MarkerColor.r, v.MarkerColor.b, v.MarkerColor.g, v.MarkerColor.a, false, true, 2, false, false, false, false)
 			end
 			if #(pedCoords - v.pos) < 3.0 and not SellWait then
-				DrawMarker(1, v.pos, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 3.0, 3.0, 1.0, 0, 255, 0, 100, false, true, 2, false, false, false, false)
+				DrawMarker(v.MarkerType, v.pos, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.MarkerSize, v.MarkerColor.r, v.MarkerColor.b, v.MarkerColor.g, v.MarkerColor.a, false, true, 2, false, false, false, false)
 				TriggerServerEvent('fishing:startSelling', v.type)
 				SellWait = true
 			end

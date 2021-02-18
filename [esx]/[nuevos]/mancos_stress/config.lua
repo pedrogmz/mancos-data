@@ -127,4 +127,11 @@ MFS.Zones = {
 		Stress = 10000, -- Total de estrés a quitar cada x tiempo
 		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
 	},
+	Evento = {
+		Pos = {x = 1138.9, y = 113.03, z = 80.72},
+		Coords = vector3(1138.9, 113.03, 80.72),
+		Dist = 1000.0, -- Rango de la zona,
+		Stress = 10000, -- Total de estrés a quitar cada x tiempo
+		Whait = 60000 -- Tiempo de espera entre descanso y descanso [60 segundos - 60000]
+	},--Evento 24/10
 }

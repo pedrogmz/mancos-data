@@ -335,7 +335,7 @@ Config.AuthorizedVehicles = {
 		{ model = 'poli5', label = 'Patrulla - Taurus' },
 		{ model = 'poli3', label = 'Patrulla - Explorer 4x4' },
 		{ model = 'moto1', label = 'Patrulla - Moto' },
---		{ model = 'poli4', label = 'Interceptor - A' },
+		{ model = 'poli4', label = 'Interceptor - A' },
 --		{ model = 'polf430', label = 'Interceptor - B' },
 		{ model = 'furgon1', label = 'Patrulla - SWAT' },
 		{ model = 'pbus', label = 'Bus - Prison Bus' },	
