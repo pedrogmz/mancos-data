@@ -214,3 +214,12 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+
+RegisterNetEvent('esx_weaponshop:addAmmo')
+AddEventHandler('esx_weaponshop:addAmmo', function(weaponName, weaponAmmo)
+	local playerPed = PlayerPedId()
+	local weaponHash = GetHashKey(weaponName)
+
+	SetPedAmmo(playerPed, weaponHash, weaponAmmo)
+	AddAmmoToPed(playerPed, weaponHash, weaponAmmo)
+end)

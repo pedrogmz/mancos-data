@@ -33,6 +33,22 @@ Config.Teleporters = {
 		}
 	},]]--
 	--Next here
+	['Circuito'] = { --Tp al circuito al norte del mapa
+		['Job'] = 'none',
+		['Enter'] = { 
+			['x'] = 1249.42, 
+			['y'] = 7361.3, 
+			['z'] = 79.04,
+			['Information'] = '[E] Volver a la ciudad',
+		},
+		['Exit'] = {
+			['x'] = -204.46, 
+			['y'] = -1339.61, 
+			['z'] = 33.89, 
+			['Information'] = '[E] Ir al circuito' 
+		}
+	},
+
 }
 
 

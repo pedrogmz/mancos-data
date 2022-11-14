@@ -964,34 +964,11 @@ Citizen.CreateThread(function()
 	local updatePath = "/Bluethefurry/EasyAdmin"
 	local resourceName = "EasyAdmin ("..GetCurrentResourceName()..")"
 	function checkVersion(err,response, headers)
-		if err == 200 then
-			local data = json.decode(response)
-			if curVersion ~= data.fivem.version and tonumber(curVersion) < tonumber(data.fivem.version) then
-				print("\n--------------------------------------------------------------------------")
-				print("\n"..resourceName.." is outdated.\nNewest Version: "..data.fivem.version.."\nYour Version: "..curVersion.."\nPlease update it from https://github.com"..updatePath.."")
-				print("\nUpdate Changelog:\n"..data.changelog)
-				print("\n--------------------------------------------------------------------------")
-			elseif tonumber(curVersion) > tonumber(data.version) then
-				print("Your version of "..resourceName.." seems to be higher than the current version.")
-			else
-				print(resourceName.." is up to date!")
-			end
-		else
-			print("EasyAdmin Version Check failed!")
-		end
-		if GetResourceState("screenshot-basic") == "missing" then 
-			print("\nEasyAdmin: screenshot-basic is not installed on this Server, screenshots unavailable")
-		end
 
 		if GetConvar("onesync_enableInfinity", "false") == "true" or GetConvarInt("onesync_enableInfinity", 0) == 1 then 
 			infinity = true
 		end
 		
-		SetTimeout(3600000, checkVersionHTTPRequest)
-	end
-	
-	function checkVersionHTTPRequest()
-		PerformHttpRequest("https://raw.githubusercontent.com/Bluethefurry/EasyAdmin/master/version.json", checkVersion, "GET")
 	end
 	
 	function loopUpdateBlacklist()
@@ -1004,5 +981,4 @@ Citizen.CreateThread(function()
 	---------------------------------- END USEFUL
 	loopUpdateBlacklist()
 	updateAdmins()
-	checkVersionHTTPRequest()
 end)

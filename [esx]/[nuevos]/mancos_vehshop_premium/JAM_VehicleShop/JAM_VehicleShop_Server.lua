@@ -32,9 +32,9 @@ ESX.RegisterServerCallback('mancos_vehshop_premium:GetShopData', function(source
 		Categories = {},
 	}
 
-	local vehicles = MySQL.Sync.fetchAll('SELECT * FROM vehicles_p')
-	local displays = MySQL.Sync.fetchAll('SELECT * FROM vehicles_display_p')
-	local categories = MySQL.Sync.fetchAll('SELECT * FROM vehicle_categories_p')
+	local vehicles = MySQL.Sync.fetchAll('SELECT * FROM vehicles_p ORDER BY name')
+	local displays = MySQL.Sync.fetchAll('SELECT * FROM vehicles_display_p ORDER BY name')
+	local categories = MySQL.Sync.fetchAll('SELECT * FROM vehicle_categories_p ORDER BY label')
 
 	for k,v in pairs(vehicles) do 
 		if v.inshop == 1 then 

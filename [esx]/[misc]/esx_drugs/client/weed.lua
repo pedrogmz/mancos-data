@@ -114,7 +114,7 @@ Citizen.CreateThread(function()
 
 					isPickingUp = false
 
-				end, 'cannabis')
+				end, 'trimmedweed')
 			end
 
 		else

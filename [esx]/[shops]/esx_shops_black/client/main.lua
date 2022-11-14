@@ -103,8 +103,9 @@ RegisterNetEvent('esx_shops_black:employs')
 AddEventHandler('esx_shops_black:employs', function(data)
 	employ = data
 end)
+
 -- Create Blips
-Citizen.CreateThread(function()
+--[[Citizen.CreateThread(function()
 	
 	for k,v in pairs(Config.Zones) do
 		for i = 1, #v.Pos, 1 do				
@@ -119,7 +120,7 @@ Citizen.CreateThread(function()
 			EndTextCommandSetBlipName(blip)
 		end
 	end
-end)
+end)]]
 
 -- Display markers
 Citizen.CreateThread(function()

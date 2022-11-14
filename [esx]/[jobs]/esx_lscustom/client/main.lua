@@ -90,6 +90,9 @@ function OpenLSMenu(elems, menuName, menuTitle, parent)
 					elseif v.modType == 17 then
 						price = math.floor(vehiclePrice * v.price[1] / 100)
 						TriggerServerEvent("esx_lscustom:buyMod", price)
+					elseif v.modType == 99 then
+						price = math.floor(v.price[1])
+						TriggerServerEvent("esx_lscustom:buyMod", price)
 					else
 						price = math.floor(vehiclePrice * v.price / 100)
 						TriggerServerEvent("esx_lscustom:buyMod", price)
@@ -147,9 +150,16 @@ function UpdateMods(data)
 			props['modSmokeEnabled'] = true
 			ESX.Game.SetVehicleProperties(vehicle, props)
 			props = {}
+		elseif data.modType == 'extras' then
+			data.modNum.extras[data.modNum.extraId] = not data.modNum.extras[data.modNum.extraId]
 		end
+		
+		if data.modType == 'extras' then
+		props[data.modType] = data.modNum.extras
+		else 
+			props[data.modType] = data.modNum
 
-		props[data.modType] = data.modNum
+		end
 		ESX.Game.SetVehicleProperties(vehicle, props)
 	end
 end
@@ -317,6 +327,17 @@ function GetAction(data)
 						_label = 'Turbo - <span style="color:green;">$' .. math.floor(vehiclePrice * v.price[1] / 100) .. ' </span>'
 					end
 					table.insert(elements, {label = _label, modType = k, modNum = true})
+				elseif v.modType == 99 then -- EXTRA
+					local _label = ''
+					local extras = currentMods[k]
+					for id,enabled in pairs(extras) do
+						if enabled then
+							_label = 'Extra #'.. id ..' - <span style="color:cornflowerblue;">'.. _U('installed') ..'</span>'
+						else
+							_label = 'Extra #'.. id ..' - <span style="color:green;">$' .. math.floor(v.price[1]) .. ' </span>'
+						end						
+						table.insert(elements, {label = _label, modType = k, modNum = {extraId = id, extras = extras}})
+					end
 				else
 					local modCount = GetNumVehicleMods(vehicle, v.modType) -- BODYPARTS
 					for j = 0, modCount, 1 do

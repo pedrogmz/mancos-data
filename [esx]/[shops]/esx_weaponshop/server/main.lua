@@ -51,8 +51,18 @@ ESX.RegisterServerCallback('esx_weaponshop:buyWeapon', function(source, cb, weap
 		cb(false)
 	else
 		if xPlayer.hasWeapon(weaponName) then
-			xPlayer.showNotification(_U('already_owned'))
-			cb(false)
+			--xPlayer.showNotification(_U('already_owned'))
+			local ammoPrice = price * 0.25
+			
+			if xPlayer.getAccount('black_money').money >= ammoPrice then
+				xPlayer.removeAccountMoney('black_money', ammoPrice)
+				TriggerClientEvent("esx_weaponshop:addAmmo", source, weaponName, 42)
+
+				cb(true)
+			else
+				xPlayer.showNotification(_U('not_enough_black'))
+				cb(false)
+			end
 		else
 			if zone == 'BlackWeashop' then
 				if xPlayer.getAccount('black_money').money >= price then

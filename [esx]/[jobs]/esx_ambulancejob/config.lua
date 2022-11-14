@@ -29,15 +29,15 @@ Config.Locale                     = 'es'
 local second = 1000
 local minute = 60 * second
 
-Config.EarlyRespawnTimer          = 10 * minute  -- Time til respawn is available
+Config.EarlyRespawnTimer          = 1 * minute  -- Time til respawn is available
 Config.BleedoutTimer              = 10 * minute -- Time til the player bleeds out
 
 Config.EnablePlayerManagement     = true
 Config.MaxInService               = 10
 
-Config.RemoveWeaponsAfterRPDeath  = true
-Config.RemoveCashAfterRPDeath     = true
-Config.RemoveItemsAfterRPDeath    = true
+Config.RemoveWeaponsAfterRPDeath  = false
+Config.RemoveCashAfterRPDeath     = false
+Config.RemoveItemsAfterRPDeath    = false
 
 -- Let the player pay for respawning early, only if he can afford it.
 Config.EarlyRespawnFine           = false

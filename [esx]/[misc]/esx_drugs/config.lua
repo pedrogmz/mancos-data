@@ -8,12 +8,8 @@ Config.Delays = {
 }
 
 Config.DrugDealerItems = {
-	marijuana = 400,
+	bagofdope = 400,
 	coke_pooch = 1000
-}
-
-Config.MafiaCanSell = {
-	coke_pooch = "medellin"
 }
 
 Config.LicenseEnable = false -- enable processing licenses? The player will be required to buy a license in order to process drugs. Requires esx_license

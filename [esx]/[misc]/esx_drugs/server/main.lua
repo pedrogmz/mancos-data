@@ -14,13 +14,6 @@ AddEventHandler('esx_drugs:sellDrug', function(itemName, amount)
 		print(('esx_drugs: %s attempted to sell an invalid drug!'):format(xPlayer.identifier))
 		return
 	end
-	
-	local canSellMafia = canSellMafia(itemName, xPlayer.job.name)
-	
-	if not canSellMafia then
-		TriggerClientEvent('esx:showNotification', source, "No puedes vender este objeto")
-		return
-	end
 
 	if xItem.count < amount then
 		TriggerClientEvent('esx:showNotification', source, _U('dealer_notenough'))
@@ -63,7 +56,7 @@ end)
 RegisterServerEvent('esx_drugs:pickedUpCannabis')
 AddEventHandler('esx_drugs:pickedUpCannabis', function()
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local xItem = xPlayer.getInventoryItem('cannabis')
+	local xItem = xPlayer.getInventoryItem('trimmedweed')
 
 	if xItem.limit ~= -1 and (xItem.count + 1) > xItem.limit then
 		TriggerClientEvent('esx:showNotification', _source, _U('weed_inventoryfull'))
@@ -102,15 +95,15 @@ AddEventHandler('esx_drugs:processCannabis', function()
 
 		playersProcessingCannabis[_source] = ESX.SetTimeout(Config.Delays.WeedProcessing, function()
 			local xPlayer = ESX.GetPlayerFromId(_source)
-			local xCannabis, xMarijuana = xPlayer.getInventoryItem('cannabis'), xPlayer.getInventoryItem('marijuana')
+			local xCannabis, xMarijuana = xPlayer.getInventoryItem('trimmedweed'), xPlayer.getInventoryItem('bagofdope')
 
 			if xMarijuana.limit ~= -1 and (xMarijuana.count + 1) >= xMarijuana.limit then
 				TriggerClientEvent('esx:showNotification', _source, _U('weed_processingfull'))
 			elseif xCannabis.count < 3 then
 				TriggerClientEvent('esx:showNotification', _source, _U('weed_processingenough'))
 			else
-				xPlayer.removeInventoryItem('cannabis', 3)
-				xPlayer.addInventoryItem('marijuana', 1)
+				xPlayer.removeInventoryItem('trimmedweed', 3)
+				xPlayer.addInventoryItem('bagofdope', 1)
 
 				TriggerClientEvent('esx:showNotification', _source, _U('weed_processed'))
 			end
@@ -148,16 +141,6 @@ AddEventHandler('esx_drugs:processCoke', function()
 		print(('esx_drugs: %s attempted to exploit coke processing!'):format(GetPlayerIdentifiers(source)[1]))
 	end
 end)
-
-function canSellMafia(item , mafia)
-	local Item = Config.MafiaCanSell[item]
-	if Item == mafia then
-		return true
-	else
-		return false
-	end
-end
-
 
 function CancelProcessing(playerID)
 	if playersProcessingCannabis[playerID] then

@@ -61,7 +61,7 @@ AddEventHandler('esx_shops_black:buyItem', function(itemName, amount, zone)
 	price = price * amount
 
 	-- can the player afford this item?
-	if xPlayer.getAccount('black_money').money () >= price then
+	if xPlayer.getAccount('black_money').money >= price then
 		-- can the player carry the said amount of x item?
 		if sourceItem.limit ~= -1 and (sourceItem.count + amount) > sourceItem.limit then
 			TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
@@ -72,7 +72,7 @@ AddEventHandler('esx_shops_black:buyItem', function(itemName, amount, zone)
 			TriggerClientEvent('esx:showNotification', _source, _U('bought', amount, itemLabel, ESX.Math.GroupDigits(price)))
 		end
 	else
-		local missingMoney = price - xPlayer.getMoney()
+		local missingMoney = price - xPlayer.getAccount('black_money').money
 		TriggerClientEvent('esx:showNotification', _source, _U('not_enough', ESX.Math.GroupDigits(missingMoney)))
 	end
 end)

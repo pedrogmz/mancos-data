@@ -6,7 +6,7 @@ Config.IsMechanicJobOnly = true
 Config.Zones = {
 
 	ls1 = {
-	    Pos   = { x = -325.59, y = -145.19, z = 39.06},
+	    Pos   = { x = -328.42, y = -143.94, z = 39.06},
 		Size  = {x = 1.0, y = 1.0, z = 0.2},
 		Color = {r = 204, g = 204, b = 0},
 		Marker= 1,
@@ -454,13 +454,20 @@ Config.Menus = {
 		modTransmission	= _U('transmission'),
 		modSuspension	= _U('suspension'),
 		modArmor		= _U('armor'),
-		modTurbo		= _U('turbo')
+		modTurbo		= _U('turbo'),
+		extras = "Extras",
 	},
 	modEngine = {
 		label = _U('engine'),
 		parent = 'upgrades',
 		modType = 11,
 		price = {13.95, 32.56, 65.12, 139.53}
+	},
+	extras = {
+		label = "Extras",
+		parent = 'cosmetics',
+		modType = 99,
+		price = {1000}
 	},
 	modBrakes = {
 		label = _U('brakes'),

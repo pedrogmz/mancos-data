@@ -1,7 +1,7 @@
 Config = {}
 Config.DrawDistance = 100.0
 Config.Locale = 'en'
-Config.AvailableJobs = {'police', 'ambulance', 'taxi', 'mechanic', 'bar', 'cardealer', 'tender', 'bahamas', 'elektrika'}
+Config.AvailableJobs = {'police', 'ambulance', 'taxi', 'mechanic', 'bar', 'cardealer', 'tender', 'bahamas'}
 
 Config.Zones = {
 
@@ -49,7 +49,6 @@ Config.Zones = {
 
 	cardealer = {
 		Pos = {x = -31.57, y = -1112.09, z = 25.49},
-		ElekPos = {x = -204.39, y = -1328.96, z = 30.19},
 		Size = {x = 1.5, y = 1.5, z = 1.5},
 		Color = {r = 0, g = 255, b = 0},
 		Type = 25

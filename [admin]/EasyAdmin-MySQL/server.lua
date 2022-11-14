@@ -60,39 +60,3 @@ AddEventHandler('ea_data:removeBan', function(data)
 		end
 	end
 end)
-
-
-
-Citizen.CreateThread(function()
-	local verFile = LoadResourceFile(GetCurrentResourceName(), "version.json")
-	local verContent = json.decode(verFile)
-	local curVersion = verContent.version
-	local updatePath = "/Bluethefurry/EasyAdmin-MySQL"
-	local resourceName = "EasyAdmin-MySQL ("..GetCurrentResourceName()..")"
-	function checkVersion(err,response, headers)
-		if err == 200 then
-			local data = json.decode(response)
-			if curVersion ~= verContent.version and tonumber(curVersion) < tonumber(verContent.version) then
-				print("\n--------------------------------------------------------------------------")
-				print("\n"..resourceName.." is outdated.\nNewest Version: "..data.fivem.version.."\nYour Version: "..curVersion.."\nPlease update it from https://github.com"..updatePath.."")
-				print("\nUpdate Changelog:\n"..data.changelog)
-				print("\n--------------------------------------------------------------------------")
-			elseif tonumber(curVersion) > tonumber(data.version) then
-				print("Your version of "..resourceName.." seems to be higher than the current version.")
-			else
-				print(resourceName.." is up to date!")
-			end
-		else
-			print("EasyAdmin-MySQL Version Check failed!")
-		end
-		
-		SetTimeout(3600000, checkVersionHTTPRequest)
-	end
-	
-	function checkVersionHTTPRequest()
-		PerformHttpRequest("https://raw.githubusercontent.com/Bluethefurry/EasyAdmin-MySQL/master/version.json", checkVersion, "GET")
-	end
-
-	checkVersionHTTPRequest()
-
-end)

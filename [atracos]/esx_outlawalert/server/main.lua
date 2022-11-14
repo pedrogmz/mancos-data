@@ -3,15 +3,24 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterServerEvent('esx_outlawalert:carJackInProgress')
-AddEventHandler('esx_outlawalert:carJackInProgress', function(targetCoords, streetName, vehicleLabel)
+AddEventHandler('esx_outlawalert:carJackInProgress', function(targetCoords, streetName, vehicleLabel, playerGender)
 	if playerGender == 0 then
 		playerGender = _U('male')
 	else
 		playerGender = _U('female')
 	end
 
-	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('carjack', "Bil", streetName))
-	TriggerClientEvent('esx_outlawalert:carJackInProgress', -1, targetCoords)
+	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('carjack', playerGender, vehicleLabel, streetName))
+
+	local xPlayers = ESX.GetPlayers()	
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			TriggerClientEvent('entorno:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(source), 'police', _U('carjack', playerGender, vehicleLabel, streetName), targetCoords.x, targetCoords.y, targetCoords.z) -- Arnedo 5 | Nuevo aviso policia
+		end
+	end
+	--TriggerClientEvent('esx_outlawalert:carJackInProgress', -1, targetCoords)
 end)
 
 RegisterServerEvent('esx_outlawalert:combatInProgress')
@@ -23,19 +32,37 @@ AddEventHandler('esx_outlawalert:combatInProgress', function(targetCoords, stree
 	end
 
 	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('combat', streetName))
-	TriggerClientEvent('esx_outlawalert:combatInProgress', -1, targetCoords)
+
+	local xPlayers = ESX.GetPlayers()	
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			TriggerClientEvent('entorno:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(source), 'police', _U('combat', streetName))
+		end
+	end
+	--TriggerClientEvent('esx_outlawalert:combatInProgress', -1, targetCoords)
 end)
 
 RegisterServerEvent('esx_outlawalert:gunshotInProgress')
-AddEventHandler('esx_outlawalert:gunshotInProgress', function(targetCoords, streetName)
+AddEventHandler('esx_outlawalert:gunshotInProgress', function(targetCoords, streetName, playerGender)
 	if playerGender == 0 then
 		playerGender = _U('male')
 	else
 		playerGender = _U('female')
 	end
 
-	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('gunshot', streetName))
-	TriggerClientEvent('esx_outlawalert:gunshotInProgress', -1, targetCoords)
+	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('gunshot', playerGender, streetName))
+
+	local xPlayers = ESX.GetPlayers()	
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			TriggerClientEvent('entorno:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(source), 'police', _U('gunshot', playerGender, streetName))
+		end
+	end
+	--TriggerClientEvent('esx_outlawalert:gunshotInProgress', -1, targetCoords)
 end)
 
 RegisterServerEvent('esx_outlawalert:drugsaleInProgress')
@@ -47,7 +74,16 @@ AddEventHandler('esx_outlawalert:drugsaleInProgress', function(targetCoords, str
 	end
 
 	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('drugsale', streetName))
-	TriggerClientEvent('esx_outlawalert:drugsaleInProgress', -1, targetCoords)
+
+	local xPlayers = ESX.GetPlayers()	
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			TriggerClientEvent('entorno:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(source), 'police', _U('drugsale', streetName))
+		end
+	end
+	--TriggerClientEvent('esx_outlawalert:drugsaleInProgress', -1, targetCoords)
 end)
 
 RegisterServerEvent('esx_outlawalert:AtmHackInProgress')
@@ -59,7 +95,16 @@ AddEventHandler('esx_outlawalert:AtmHackInProgress', function(targetCoords, stre
 	end
 
 	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('atmhack', streetName))
-	TriggerClientEvent('esx_outlawalert:AtmHackInProgress', -1, targetCoords)
+
+	local xPlayers = ESX.GetPlayers()	
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			TriggerClientEvent('entorno:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(source), 'police', _U('atmhack', streetName))
+		end
+	end
+	--TriggerClientEvent('esx_outlawalert:AtmHackInProgress', -1, targetCoords)
 end)
 
 RegisterServerEvent('esx_outlawalert:TruckRobberyInProgress')
@@ -83,7 +128,16 @@ AddEventHandler('esx_outlawalert:RobNPCInProgress', function(targetCoords, stree
 	end
 
 	TriggerClientEvent('esx_outlawalert:outlawNotify', -1, _U('robnpc', streetName))
-	TriggerClientEvent('esx_outlawalert:RobNPCInProgress', -1, targetCoords)
+
+	local xPlayers = ESX.GetPlayers()	
+	for i=1, #xPlayers, 1 do
+		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+		if xPlayer.job.name == 'police' then
+			TriggerClientEvent('entorno:setBlip', xPlayers[i], name, x, y, z)
+			TriggerClientEvent('esx_aviso:sendElement', xPlayers[i], xPlayer.identifier, tonumber(source), 'police', _U('robnpc', streetName))
+		end
+	end
+	--TriggerClientEvent('esx_outlawalert:RobNPCInProgress', -1, targetCoords)
 end)
 
 RegisterServerEvent('esx_outlawalert:HoldUpInProgress')

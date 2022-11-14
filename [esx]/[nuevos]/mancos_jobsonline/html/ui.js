@@ -13,7 +13,6 @@ $(document).ready(function() {
             jobOnlineColor(event.data.cardeleronline, '.job#cardealer .job_count', 'cardealer');
             jobOnlineColor(event.data.tenderonline, '.job#tendero .job_count', 'tendero');
             jobOnlineColor(event.data.bahamasonline, '.job#bahamas .job_count', 'bahamas');
-            jobOnlineColor(event.data.mancosclubonline, '.job#mancosclub .job_count', 'mancosclub');
         }
 
         if (action == "toggle") {

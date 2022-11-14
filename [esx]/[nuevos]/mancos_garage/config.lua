@@ -20,8 +20,8 @@ Config.GarageName = "Garage - " .. GetConvar("server_number", "Mancos01")
 --Logging
 Config.EnableLogs = true
 --Webhooks
-Config.GarageWebhook = "https://discordapp.com/api/webhooks/720228722916982824/SrfVlNUtAJ0Zb0ClU_8oCIQ1N0KXgMmZdCWyUtVetdA6C1X52Usrz559K7W9fqilHP2Q"
-Config.ImpoundWebhook = "https://discordapp.com/api/webhooks/720228722916982824/SrfVlNUtAJ0Zb0ClU_8oCIQ1N0KXgMmZdCWyUtVetdA6C1X52Usrz559K7W9fqilHP2Q"
+Config.GarageWebhook = "https://discord.com/api/webhooks/834476920543510557/1iluyx-ue0RtgpzYv7DDQ05aI3C2wOuzmhiSMdweTfwAvi-8yc2D2iWKG-l9np93xYhS"
+Config.ImpoundWebhook = "https://discord.com/api/webhooks/834476920543510557/1iluyx-ue0RtgpzYv7DDQ05aI3C2wOuzmhiSMdweTfwAvi-8yc2D2iWKG-l9np93xYhS"
 
 --Colours
 --use this for help getting decimal colour https://convertingcolors.com/mass-conversion.html

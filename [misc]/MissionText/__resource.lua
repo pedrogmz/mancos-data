@@ -1,3 +1,0 @@
-client_script "missiontext.lua"
-
-

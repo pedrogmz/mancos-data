@@ -83,7 +83,27 @@ end
 RegisterNetEvent('esx_outlawalert:carJackInProgress')
 AddEventHandler('esx_outlawalert:carJackInProgress', function(targetCoords)
 	if isPlayerWhitelisted then
+		if Config.CarJackingAlert then
+			local alpha = 250
+			local thiefBlip = AddBlipForRadius(targetCoords.x, targetCoords.y, targetCoords.z, Config.BlipJackingRadius)
 
+			SetBlipHighDetail(thiefBlip, true)
+			SetBlipColour(thiefBlip, 1)
+			SetBlipAlpha(thiefBlip, alpha)
+			SetBlipAsShortRange(thiefBlip, true)
+
+			while alpha ~= 0 do
+				Citizen.Wait(Config.BlipJackingTime * 4)
+				alpha = alpha - 1
+				SetBlipAlpha(thiefBlip, alpha)
+
+				if alpha == 0 then
+					RemoveBlip(thiefBlip)
+					return
+				end
+			end
+
+		end
 	end
 end)
 
@@ -114,7 +134,24 @@ end)
 RegisterNetEvent('esx_outlawalert:combatInProgress')
 AddEventHandler('esx_outlawalert:combatInProgress', function(targetCoords)
 	if isPlayerWhitelisted and Config.MeleeAlert then
+		local alpha = 250
+		local meleeBlip = AddBlipForRadius(targetCoords.x, targetCoords.y, targetCoords.z, Config.BlipMeleeRadius)
 
+		SetBlipHighDetail(meleeBlip, true)
+		SetBlipColour(meleeBlip, 17)
+		SetBlipAlpha(meleeBlip, alpha)
+		SetBlipAsShortRange(meleeBlip, true)
+
+		while alpha ~= 0 do
+			Citizen.Wait(Config.BlipMeleeTime * 4)
+			alpha = alpha - 1
+			SetBlipAlpha(meleeBlip, alpha)
+
+			if alpha == 0 then
+				RemoveBlip(meleeBlip)
+				return
+			end
+		end
 	end
 end)
 
@@ -267,7 +304,7 @@ Citizen.CreateThread(function()
 			Citizen.Wait(3000)
 			local vehicle = GetVehiclePedIsIn(playerPed, true)
 
-			ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
+			--ESX.TriggerServerCallback('esx_service:isInService', function(isInService)
 				if vehicle and ((isPlayerWhitelisted and Config.ShowCopsMisbehave and not isInService) or not isPlayerWhitelisted) then
 					local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
 
@@ -283,11 +320,11 @@ Citizen.CreateThread(function()
 								x = ESX.Math.Round(playerCoords.x, 1),
 								y = ESX.Math.Round(playerCoords.y, 1),
 								z = ESX.Math.Round(playerCoords.z, 1)
-							}, streetName, vehicleLabel)
+							}, streetName, vehicleLabel, playerGender)
 						end
 					end, plate)
 				end
-			end, 'police')
+			--end, 'police')
 
 		elseif IsPedInMeleeCombat(playerPed) and Config.MeleeAlert and distance < Config.AlertMelee then
 
@@ -314,7 +351,7 @@ Citizen.CreateThread(function()
 						x = ESX.Math.Round(playerCoords.x, 1),
 						y = ESX.Math.Round(playerCoords.y, 1),
 						z = ESX.Math.Round(playerCoords.z, 1)
-					}, streetName)
+					}, streetName, playerGender)
 				end	
 			end
 		end

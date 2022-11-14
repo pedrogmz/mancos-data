@@ -44,7 +44,7 @@ local AnimalPositions = {
 local AnimalsInSession = {}
 
 local Positions = {
-	['StartHunting'] = { ['hint'] = '[E] Iniciar caceria', ['x'] = -769.23773193359, ['y'] = 5595.6215820313, ['z'] = 33.48571395874 },
+	['StartHunting'] = { ['hint'] = '[E] Iniciar cacería', ['x'] = -769.23773193359, ['y'] = 5595.6215820313, ['z'] = 33.48571395874 },
 	['Sell'] = { ['hint'] = '[E] Vender', ['x'] = 969.16375732422, ['y'] = -2107.9033203125, ['z'] = 31.475671768188 },
 	['SpawnATV'] = { ['x'] = -769.63067626953, ['y'] = 5592.7573242188, ['z'] = 33.48571395874 }
 }

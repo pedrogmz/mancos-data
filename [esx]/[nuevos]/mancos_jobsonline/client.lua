@@ -31,21 +31,6 @@ mecanoonline = 0
 barmanonline = 0
 cardeleronline = 0
 tenderonline = 0
-mancosclubonline = 0
-
-RegisterNetEvent("esx_offservice:enteredService")
-AddEventHandler("esx_offservice:enteredService", function(job)
-	if job == 'mancosclub' then
-		mancosclubonline = 1
-	end
-end)
-
-RegisterNetEvent("esx_offservice:disabledService")
-AddEventHandler("esx_offservice:disabledService", function(job)
-	if job == 'mancosclub' then
-		mancosclubonline = 0
-	end
-end)
 
 -- Get jobs data every 10 secconds
 Citizen.CreateThread(function()
@@ -73,7 +58,6 @@ Citizen.CreateThread(function()
 			cardeleronline = cardeleronline,
 			tenderonline = tenderonline,
 			bahamasonline = bahamasonline,
-			mancosclubonline = mancosclubonline
 		})
 
 	end
